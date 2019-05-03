@@ -9,7 +9,7 @@ const engine = require('ejs-locals');
 const app = express();
 
 // All environments
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 app.engine('ejs', engine);
 app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
