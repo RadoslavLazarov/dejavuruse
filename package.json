@@ -1,0 +1,32 @@
+{
+  "name": "dejavu",
+  "version": "1.0.0",
+  "description": "new-site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^5.0.0",
+    "mongodb": "^3.2.3",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.0"
+  }
+}
