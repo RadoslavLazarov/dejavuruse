@@ -4,13 +4,11 @@
         <%- include ../head.ejs %>
     </head>
     <body>
+        <%- include ../../components/header/header.ejs %>
         <main>
-            <div class="container-fluid">
-                <%- include ../../components/header/header.ejs %>
-                <%- body -%>
-                <%- include ../../components/footer/footer.ejs %>
-            </div>
+            <%- body -%>
         </main>
+        <%- include ../../components/footer/footer.ejs %>
         <%- include ../scripts.ejs %>
     </body>
 </html>

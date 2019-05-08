@@ -1,9 +1,15 @@
 <header>
     <nav>
         <ul>
-            <% categories.forEach(function(category) { %>
-                <li><%= category.name %></li>
+            <% mainCategories.forEach(function(category) { %>
+                <li><a href="<%= category.url %>"><%= category.name %></a></li>
             <% }); %>
         </ul>
     </nav>
+    <div>
+        <ul>
+            <li><a class="<%= (lang=="bg"?"active":"") %>" href="/lang/bg">Bulgarian</a></li>
+            <li><a class="<%= (lang=="en"?"active":"") %>" href="/lang/en">English</a></li>
+        </ul>
+    </div> 
 </header>

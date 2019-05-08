@@ -78,7 +78,10 @@ dist
 .serverless
 
 # IDE
-.idea
+.vscode
+
+# GIT
+.gitignore
 
 # Service worker
 sw.*

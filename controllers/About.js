@@ -4,10 +4,10 @@ const { getMainCategories, getPageMeta } = require('../models/db');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const pageMeta = await getPageMeta('home');
+  const pageMeta = await getPageMeta('about');
   const mainCategories = await getMainCategories();
 
-  res.render('home', {
+  res.render('about', {
     pageMeta,
     mainCategories,
   });
