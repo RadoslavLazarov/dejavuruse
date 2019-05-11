@@ -4,13 +4,39 @@
 
 const { getDb } = require('../db');
 
-async function getMainCategories() {
-  let mainCategories;
+const getPageMeta = async (locale, page) => {
+  let pageMeta;
+
   try {
     const dbResponse = () => {
       return new Promise((resolve, reject) => {
         const db = getDb();
-        db.find({}).sort({ priority: 1 }).toArray((err, result) => {
+        db.collection('categories').find({ 'id': page }).toArray((err, result) => {
+          err ? reject(err) : resolve(result);
+        });
+      });
+    };
+    const mainCategories = await dbResponse();
+
+    // Returns meta data from current locale
+    for (const category of mainCategories) {
+      pageMeta = category.meta[locale];
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+  return pageMeta;
+};
+
+const getNavCategories = async () => {
+  let mainCategories;
+
+  try {
+    const dbResponse = () => {
+      return new Promise((resolve, reject) => {
+        const db = getDb();
+        db.collection('categories').find({ 'isVisible': true }).sort({ priority: 1 }).toArray((err, result) => {
           err ? reject(err) : resolve(result);
         });
       });
@@ -21,33 +47,30 @@ async function getMainCategories() {
   }
 
   return mainCategories;
-}
+};
 
-async function getPageMeta(page) {
-  let mainCategories;
-  let pageMeta;
+const getNewsArticles = async () => {
+  let articles;
+
   try {
     const dbResponse = () => {
       return new Promise((resolve, reject) => {
         const db = getDb();
-        db.find({ 'id': page }).toArray((err, result) => {
+        db.collection('articles').find({ 'isVisible': true }).toArray((err, result) => {
           err ? reject(err) : resolve(result);
         });
       });
     };
-    mainCategories = await dbResponse();
+    articles = await dbResponse();
   } catch (e) {
     console.log(e);
   }
 
-  for (const category of mainCategories) {
-    pageMeta = category.meta;
-  }
-  // console.log(pageMeta.description);
-  return pageMeta;
-}
+  return articles;
+};
 
 module.exports = {
-  getMainCategories,
   getPageMeta,
+  getNavCategories,
+  getNewsArticles,
 };

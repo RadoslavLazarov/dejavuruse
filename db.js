@@ -7,7 +7,6 @@ const db = {
     useNewUrlParser: true,
   },
   dbName: 'dejavu',
-  collectionName: 'categories',
 };
 
 // DB Initialization
@@ -32,7 +31,7 @@ function initDb(callback) {
 }
 
 function getDb() {
-  return _db.collection(db.collectionName);
+  return _db;
 }
 
 module.exports = {

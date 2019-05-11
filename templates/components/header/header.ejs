@@ -1,8 +1,8 @@
 <header>
     <nav>
         <ul>
-            <% mainCategories.forEach(function(category) { %>
-                <li><a href="<%= category.url %>"><%= category.name %></a></li>
+            <% navCategories.forEach(function(category) { %>
+                <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
             <% }); %>
         </ul>
     </nav>

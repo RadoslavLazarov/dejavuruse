@@ -34,15 +34,21 @@ app.use(i18n({
   textsVarName: 'translation',
   browserEnable: false,
   defaultLang: 'bg',
-  paramLangName: 'lang',
+  cookieLangName: 'lang',
 }));
 
 // Controllers
-const { Home, About, Locale } = require('./controllers/index');
+const {
+  Home,
+  Locale,
+  About,
+  News,
+} = require('./controllers/index');
 
 app.use('/', Home);
-app.use('/about', About);
 app.use('/lang', Locale);
+app.use('/about', About);
+app.use('/news', News);
 
 // Connect to DB and run the server
 const { initDb } = require('./db');
