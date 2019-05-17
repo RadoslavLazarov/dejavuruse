@@ -1,5 +1,6 @@
 // Dependencies
 const express = require('express');
+const mongoose = require('mongoose');
 const session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -7,6 +8,8 @@ const morgan = require('morgan');
 const engine = require('ejs-locals');
 const i18n = require('i18n-express');
 const cookieParser = require('cookie-parser');
+const setLocale = require('./scripts/middleware/setLocale');
+const locals = require('./scripts/middleware/locals');
 
 const app = express();
 
@@ -36,23 +39,23 @@ app.use(i18n({
   defaultLang: 'bg',
   cookieLangName: 'lang',
 }));
+app.use(setLocale);
+app.use(locals);
 
 // Controllers
-const {
-  Home,
-  Locale,
-  About,
-  News,
-} = require('./controllers/index');
+const controllers = require('./controllers/index');
 
-app.use('/', Home);
-app.use('/lang', Locale);
-app.use('/about', About);
-app.use('/news', News);
+app.use('/', controllers.Home);
+app.use('/lang', controllers.Locale);
+app.use('/about', controllers.About);
+app.use('/news', controllers.News);
+app.use('/test', controllers.Test);
 
-// Connect to DB and run the server
-const { initDb } = require('./db');
+// Connect to DB
+mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-2v9az.mongodb.net/dejavu?retryWrites=true', { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', error => console.error(error));
+db.once('open', () => console.log('Connected to Mongoose'));
 
-initDb(() => {
-  app.listen(app.get('port'), () => console.log(`Express listening on port ${app.get('port')}`));
-});
+// Run the server
+app.listen(app.get('port'), () => console.log(`Express listening on port ${app.get('port')}`));

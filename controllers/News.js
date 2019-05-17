@@ -1,28 +1,17 @@
 const express = require('express');
-const { setLocale } = require('../models/setLocale');
-const {
-  getPageMeta,
-  getNavCategories,
-  getNewsArticles,
-} = require('../models/db');
+const Article = require('../models/articles');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const langCookie = req.cookies.lang;
-    const getLocale = setLocale(langCookie);
-    const pageMeta = await getPageMeta(getLocale, 'news');
-    const navCategories = await getNavCategories();
-    const newsArticles = await getNewsArticles();
+    const articles = await Article.find();
 
     res.render('news', {
-      getLocale,
-      pageMeta,
-      navCategories,
-      newsArticles,
+      articles,
     });
   } catch (e) {
+    console.log(e);
     res.sendStatus(500);
   }
 });
