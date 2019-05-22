@@ -1,0 +1,7 @@
+<% layout('common/layout/default') -%>
+
+<% decoration.forEach(function(item) { %>
+    <div>
+        <h5><a href="decoration/<%= item.id %>"><%= item.name[getLocale] %></a></h5>
+    </div>
+<% }); %>

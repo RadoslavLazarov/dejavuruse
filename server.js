@@ -49,6 +49,7 @@ app.use('/', controllers.Home);
 app.use('/lang', controllers.Locale);
 app.use('/about', controllers.About);
 app.use('/news', controllers.News);
+app.use('/decoration', controllers.Decoration);
 app.use('/test', controllers.Test);
 
 // Connect to DB
