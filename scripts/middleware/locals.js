@@ -6,12 +6,13 @@ const {
 } = require('../resources');
 
 module.exports = async (req, res, next) => {
-  const page = getCurrentPage(req.originalUrl);
+  const url = getCurrentPage(req.originalUrl);
   const getLocale = locale();
-  const pageMeta = await getPageMeta(page);
+  const pageMeta = await getPageMeta(url);
   const navCategories = await getNavCategories();
 
   res.locals = {
+    url,
     getLocale,
     pageMeta,
     navCategories,

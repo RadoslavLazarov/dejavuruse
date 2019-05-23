@@ -4,6 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,700|Poppins:200,400,700&display=swap");
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -7020,7 +7021,47 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+body {
+  font-family: 'Cormorant Garamond', serif; }
+
 ul {
   list-style-type: none; }
   ul li {
     display: inline-block; }
+
+#header-home {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100; }
+  #header-home .logo-wrapper {
+    width: 130px; }
+    #header-home .logo-wrapper img {
+      width: 100%;
+      margin-left: 50px; }
+  #header-home a {
+    color: white; }
+    #header-home a:hover {
+      text-decoration: none; }
+  #header-home ul {
+    margin: 25px 0; }
+    #header-home ul li {
+      font-size: 1.5em;
+      margin-right: 15px; }
+
+.background-video-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1) url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQYV2NkYGD4D8SMQAwGcAY2AbBKDBUAVuYCBX45Xb8AAAAASUVORK5CYII=");
+  height: 100vh; }
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  min-width: 100%;
+  height: auto;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: -1; }
