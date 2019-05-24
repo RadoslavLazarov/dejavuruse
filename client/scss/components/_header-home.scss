@@ -1,33 +1,81 @@
 #header-home {
+    font-family: 'Cormorant Garamond', serif;
     position: absolute;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    // background-color: rgba(0, 0, 0, 0.5);
+    // background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0));
     z-index: 100;
 
+    .language {
+        
+    }
+
     .logo-wrapper {
-        width: 130px;
+        position: absolute;
+        top: 0;
+        left: 42%;
+        
+        .logo {
+            width: 250px;
+            margin: 10px 0;
+        }
 
         img {
             width: 100%;
-            margin-left: 50px;
+            // margin-left: 50px;
         }
     }
-
+    
     a {
-        color: white;
+        // color: #a071a0;
+        color: #fff;
+        // transition: color .5s;
 
         &:hover {
             text-decoration: none;
+            // color: #c1a1c1;
+            // transition: color .5s;
         }
     }
 
-    ul {
-        margin: 25px 0;
-
-        li {
-            font-size: 1.5em;
-            margin-right: 15px;
+    nav[role="main-nav"] {
+        ul {
+            display: flex;
+            justify-content: center;
+            margin: 45px 0;
+    
+            li {
+                font-size: 1.25em;
+                margin-right: 60px;
+                font-weight: 700;
+                text-transform: uppercase;
+                
+                &:nth-child(2) {
+                    margin-right: 400px
+                }
+    
+                .active {
+                    text-decoration: underline;
+                }
+    
+                &:after {
+                    content: '';
+                    display: block;
+                    margin: auto;
+                    height: 2px;
+                    width: 0px;
+                    background: transparent;
+                    transition: width .5s ease, background-color .5s ease;
+                }
+    
+                &:hover:after {
+                    width: 100%;
+                    background: #fff;
+                }
+            }
         }
     }
+
+    
     
 }
