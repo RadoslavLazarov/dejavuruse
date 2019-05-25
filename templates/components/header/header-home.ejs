@@ -1,21 +1,29 @@
 <header id="header-home">
     <div class="row m-0">
-        <!-- <div class="col-12 p-0"> 
+        <div class="col-12 p-0 header-top"> 
             <div class="row m-0">
-                <div class="col-6">
-                    dsa
+                <div class="col-6 social">
+                    <a href="https://www.facebook.com/DEJAVURUSE/" class="circle-animate" target="blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="/" class="circle-animate">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="/" class="circle-animate">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
                 <div class="col-6 language">
                     <ul>
-                        <li><a class="<%= (lang=="bg"?"active":"") %>" href="/lang/bg">bg</a></li>
-                        <li><a class="<%= (lang=="en"?"active":"") %>" href="/lang/en">en</a></li>
+                        <li><a class="circle-animate <%= (lang=="bg"?"active":"") %>" href="/lang/bg">bg</a></li>
+                        <li><a class="circle-animate <%= (lang=="en"?"active":"") %>" href="/lang/en">en</a></li>
                     </ul>
                 </div>
             </div>
-        </div> -->
-        <div class="col-12 p-0"> 
+        </div>
+        <div class="col-12 p-0 d-flex justify-content-center"> 
             <nav role="main-nav">
-                <ul>
+                <ul class="p-0">
                     <% navCategories.forEach(function(category) { %>
                         <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
                     <% }); %>
@@ -27,17 +35,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-xl-4 col-sm-12 p-0">
-            <div class="logo-wrapper">
-                <a href="/"><img src="static/logo-white.png" alt=""></a>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-12 p-0">
-            <ul>
-                <li><a class="<%= (lang=="bg"?"active":"") %>" href="/lang/bg">bg</a></li>
-                <li><a class="<%= (lang=="en"?"active":"") %>" href="/lang/en">en</a></li>
-            </ul>
-        </div> -->
     </div>
 
 </header>

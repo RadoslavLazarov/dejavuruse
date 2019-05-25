@@ -2,10 +2,22 @@
 
 <div class="row m-0">
     <div class="col-12 p-0">
-        <div class="background-video-wrapper"> 
-            <video autoplay loop muted class="background-video">
-                <source src="static/videos/background-video-mechka.mp4" type="video/mp4">
-            </video>
+        <div class="background-video-wrapper">
+            <% backgroundVideos.forEach(function(video) { %> 
+                <video autoplay loop muted class="background-video">
+                    <% video.source.forEach(function(source) { %> 
+                        <source src="<%= source.src %>" type="<%= source.type %>">
+                    <% }); %>
+                </video>
+                <div class="summary onload">
+                    <h2 class="title">
+                        <%= video.summary[getLocale].title %>
+                    </h2>
+                    <div class="text">
+                        <%= video.summary[getLocale].text %>
+                    </div>
+                </div>
+            <% }); %>
         </div>
     </div>
 </div>
