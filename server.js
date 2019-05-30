@@ -8,9 +8,9 @@ const morgan = require('morgan');
 const engine = require('ejs-locals');
 const i18n = require('i18n-express');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 const setLocale = require('./scripts/middleware/setLocale');
 const locals = require('./scripts/middleware/locals');
-const cors = require('cors');
 
 const app = express();
 
@@ -21,9 +21,8 @@ app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
 
 // Middleware
-app.use(cors({
-  origin: 'https://dejavuruse.herokuapp.com/',
-}));
+app.use(helmet());
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
