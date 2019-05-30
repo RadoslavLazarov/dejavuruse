@@ -19,7 +19,7 @@ window.fbAsyncInit = function () {
         appId: '449532792515169',
         autoLogAppEvents: true,
         xfbml: true,
-        version: 'v3.3'
+        version: 'v2.11'
     });
 };
 (function (d, s, id) {
