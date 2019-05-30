@@ -6,7 +6,9 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const backgroundVideos = await BackgroundVideos.find();
-
+    res.set({
+      'Content-Security-Policy': 'frame-ancestors https://www.facebook.com',
+    });
     res.render('home', {
       backgroundVideos,
     });
