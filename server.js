@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(helmet());
-app.use(helmet.referrerPolicy({ policy: 'origin' }));
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.use(frameguard({
   action: 'allow-from',
   domain: 'https://www.facebook.com/',
