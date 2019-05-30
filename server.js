@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const engine = require('ejs-locals');
 const i18n = require('i18n-express');
 const cookieParser = require('cookie-parser');
-// const helmet = require('helmet');
+const helmet = require('helmet');
 const frameguard = require('frameguard');
 const setLocale = require('./scripts/middleware/setLocale');
 const locals = require('./scripts/middleware/locals');
@@ -22,8 +22,8 @@ app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
 
 // Middleware
-// app.use(helmet());
-// app.use(helmet.referrerPolicy({ policy: 'origin' }));
+app.use(helmet());
+app.use(helmet.referrerPolicy({ policy: 'origin' }));
 app.use(frameguard({
   action: 'allow-from',
   domain: 'https://www.facebook.com/',
