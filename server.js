@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(helmet());
-app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+app.use(helmet.referrerPolicy({ policy: 'origin' }));
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
