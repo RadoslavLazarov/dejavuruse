@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 // app.use(helmet.referrerPolicy({ policy: 'origin' }));
 app.use(frameguard({
   action: 'allow-from',
-  domain: 'https://www.messenger.com/',
+  domain: 'https://www.facebook.com/',
 }));
 app.use(cookieParser());
 app.use(morgan('combined'));
