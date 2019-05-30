@@ -1,8 +1,7 @@
 window.fbAsyncInit = function () {
     FB.init({
         xfbml: true,
-        version: 'v3.3',
-        ref: 'https://dejavuruse.herokuapp.com/'
+        version: 'v3.3'
     });
 };
 
