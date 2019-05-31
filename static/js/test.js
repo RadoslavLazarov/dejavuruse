@@ -7,6 +7,7 @@ $(function () {
         $('.main-nav-wrapper').toggleClass('d-none');
         $('.header-top').toggleClass('d-none');
         $('.logo').toggle();
+        $('nav').toggleClass('opened');
     });
 
     $('.nav-icon').click(function () {

@@ -7040,6 +7040,20 @@ i {
   align-items: center;
   z-index: 9999; }
 
+.fb-messenger {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  bottom: 85px;
+  font-size: 3em;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 1s; }
+  .fb-messenger:hover {
+    opacity: 1;
+    transition: opacity 1s;
+    text-decoration: none; }
+
 .circle-animate {
   position: relative;
   display: flex;
@@ -7286,17 +7300,6 @@ ul {
             content: ""; } }
       #footer-home .footer-nav ul li:last-child::after {
         content: ""; }
-  #footer-home .fb-messenger {
-    display: flex;
-    position: absolute;
-    right: 20px;
-    font-size: 3em;
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 1s; }
-    #footer-home .fb-messenger:hover {
-      opacity: 1;
-      transition: opacity 1s; }
   #footer-home .copyright, #footer-home .development {
     text-align: center;
     font-size: 0.625em; }
