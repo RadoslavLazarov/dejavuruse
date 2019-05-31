@@ -1,4 +1,6 @@
 #footer-home {
+    display: flex;
+    align-items: center;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -24,12 +26,28 @@
                 &::after {
                     content: "|";
                     margin: 0 5px;
+                    @media screen and (max-width: 414px) {
+                        content: "";
+                    }
                 }
 
                 &:last-child::after{
                     content: "";
                 }
             }
+        }
+    }
+    .fb-messenger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        font-size: 3em;
+        text-decoration: none;
+        opacity: 0.7;
+        transition: opacity 1s;
+        &:hover {
+            opacity: 1;
+            transition: opacity 1s;
         }
     }
 
