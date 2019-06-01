@@ -1,51 +1,32 @@
 <header id="header-home">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 d-none d-sm-block header-top"> 
+            <div class="col-12 header-top"> 
                 <div class="row m-0">
-                    <div class="col-6 social">
-                        <a href="https://www.facebook.com/DEJAVURUSE/" class="circle-animate" target="blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="/" class="circle-animate">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="/" class="circle-animate">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="tel:+359887777072" class="circle-animate">
-                            <i class="fas fa-phone"></i>
-                        </a>
+                    <div class="col-6 p-0">
+                            <%- include ../socials.ejs %>
                     </div>
-                    <div class="col-6 language">
-                        <ul>
-                            <li><a class="circle-animate <%= (lang=="bg"?"active":"") %>" href="/lang/bg">bg</a></li>
-                            <li><a class="circle-animate <%= (lang=="en"?"active":"") %>" href="/lang/en">en</a></li>
-                        </ul>
+                    <div class="col-6 p-0">
+                        <%- include ../lang.ejs %>
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-flex justify-content-center header-bottom"> 
-                 <div class="row w-100">
-                    <div class="col-12 p-0 d-none d-xl-block main-nav-wrapper">
-                        <nav role="main-nav">
-                            <ul class="p-0">
-                                <% navCategories.forEach(function(category) { %>
-                                    <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
-                                <% }); %>
-                            </ul>
-                            <div class="splash">
-                            </div>
-                        </nav>
-                    </div>
-                </div>
+            <div class="col-12 header-bottom">
+                <%- include ../socials.ejs %> 
+                <%- include ../lang.ejs %>
+                <nav role="main-nav">
+                    <ul class="p-0">
+                        <% navCategories.forEach(function(category) { %>
+                            <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
+                        <% }); %>
+                    </ul> 
+                </nav>
+                <div class="splash"></div>
             </div>
-            <div class="logo-wrapper">
-                <div class="logo">
-                    <a href="/"><img src="static/logo-white.png" alt=""></a>
-                </div>
-            </div>
-            <div class="nav-button d-xl-none">
+            <a href="/" class="logo">
+                <img src="static/logo-white.png" alt="">
+            </a>
+            <div class="nav-button">
                 <div class="nav-icon">
                     <span></span>
                     <span></span>

@@ -4,10 +4,11 @@ $(function () {
     }, 500);
 
     $('.nav-button').on('click', function () {
-        $('.main-nav-wrapper').toggleClass('d-none');
+        // $('.main-nav-wrapper').toggleClass('d-none');
+        $('nav[role="main-nav"]').toggle();
         $('.header-top').toggleClass('d-none');
         $('.logo').toggle();
-        $('nav').toggleClass('opened');
+        $('.header-bottom').toggleClass('opened');
     });
 
     $('.nav-icon').click(function () {
