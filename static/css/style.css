@@ -7022,8 +7022,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  height: 100vh; }
+  font-family: 'Montserrat', sans-serif; }
 
 i {
   color: #fff;
@@ -7379,6 +7378,7 @@ ul {
   right: 0;
   overflow: hidden;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   z-index: -100; }
   .background-video-wrapper .overlay {
     height: 100%;

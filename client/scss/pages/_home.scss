@@ -8,6 +8,7 @@
     right: 0;
     overflow: hidden;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     z-index: -100;
     .overlay {
         height: 100%;
