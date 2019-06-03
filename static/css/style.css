@@ -7154,6 +7154,7 @@ ul {
           justify-content: center;
           align-items: center;
           height: 100vh;
+          height: calc(var(--vh, 1vh) * 100);
           width: 100%;
           visibility: hidden; } }
       #header-home .header-bottom nav[role="main-nav"] > ul {
@@ -7378,7 +7379,6 @@ ul {
   right: 0;
   overflow: hidden;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
   z-index: -100; }
   .background-video-wrapper .overlay {
     height: 100%;
