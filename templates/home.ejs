@@ -1,8 +1,9 @@
 <% layout('common/layout/home') -%>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 p-0">
+        <div class="col-12">
             <div class="background-video-wrapper">
+                <div class="overlay"></div>
                 <% backgroundVideos.forEach(function(video) { %> 
                     <video autoplay loop muted class="background-video">
                         <% video.source.forEach(function(source) { %> 
@@ -10,7 +11,7 @@
                         <% }); %>
                         Your browser doesn't support HTML5 video tag.
                     </video>
-                    <div class="summary onload d-none d-xl-block">
+                    <div class="container summary onload">
                         <h2 class="title">
                             <%= video.summary[getLocale].title %>
                         </h2>
