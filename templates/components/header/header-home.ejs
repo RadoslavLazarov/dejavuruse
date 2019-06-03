@@ -4,12 +4,12 @@
             <div class="col-12 header-top"> 
                 <div class="row">
                     <div class="col-6">
-                        <div class="socials-wrapper">
+                        <div class="socials-wrapper visibility-xl-visible">
                             <%- include ../socials.ejs %>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="language-wrapper">
+                        <div class="language-wrapper visibility-xl-visible">
                             <%- include ../lang.ejs %>
                         </div>
                     </div>
@@ -17,18 +17,11 @@
             </div>
             <div class="col-12 header-bottom">
                 <nav role="main-nav">
-                    <ul>
+                    <ul class="visibility-xl-visible">
                         <% navCategories.forEach(function(category) { %>
                             <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
                         <% }); %>
                     </ul>
-                    <!-- Mobile version language and socials -->
-                    <div class="language-wrapper"> 
-                        <%- include ../lang.ejs %>
-                    </div>
-                    <div class="socials-wrapper">
-                        <%- include ../socials.ejs %>
-                    </div> 
                     <div class="splash"></div>
                 </nav>
             </div>

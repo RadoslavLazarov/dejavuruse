@@ -8,13 +8,24 @@
     .header-top {
         padding-top: 5px;
         @media screen and (max-width: 1200px) {
+            position: absolute;
             padding-top: 0px;
+        }
+        .socials-wrapper, .language-wrapper {
+            @media screen and (max-width: 1200px) {
+                position: absolute;
+                z-index: 20;
+                top: 28px;
+            }
+        }
+        .language-wrapper {
+            right: 80px;
         }
         .socials-wrapper .social, .language-wrapper .language {
             display: flex;
-            @media screen and (max-width: 1200px) {
-                display: none;
-            }
+            opacity: 0;
+            transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
+            transform: translateY(-40px);
         }
         .socials-wrapper .social {
             a {
@@ -27,11 +38,25 @@
             margin: 0;
             li {
                 margin-left: 5px;
+                .circle-animate.active {
+                    &::before {
+                        border-top-color: #fff;
+                        border-right-color: #fff;
+                        border-bottom-color: #fff;
+                    }
+                    &::after {
+                        border-top: 2px solid #fff;
+                        border-left-width: 2px;
+                        border-right-width: 2px;
+                        transform: rotate(270deg);
+                    }
+                }
             }
         }
     }
     .header-bottom {
         overflow: hidden;
+        height: 100vh;
         padding: 0;
         a {
             color: $white;
@@ -48,7 +73,6 @@
                 align-items: center;
                 height: 100vh;
                 width: 100%;
-                visibility: hidden;
             }
             &>ul {
                 display: flex;
@@ -108,35 +132,6 @@
                 }
             }
         }
-        .socials-wrapper, .language-wrapper {
-            display: block;
-            @media screen and (min-width: 1200px) {
-                display: none;
-            }
-        }
-        .social, .language {
-            position: absolute;
-            opacity: 0;
-            transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
-            transform: translateY(-40px);
-            z-index: 100;
-            font-size: 1.125em;
-        }
-        .social {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            top: 28px;
-            left: 0;
-            width: 50vw;
-        }
-        .language {
-            top: 28px;
-            right: 78px;
-            margin: 0;
-            padding: 0;
-            text-transform: uppercase;
-        }
         .splash {
             position: absolute;
             top: 44px;
@@ -161,19 +156,6 @@
               will-change: transform;
             }
         } 
-        &.opened {
-            .splash::after {
-                transform: scale(1);
-            }
-            nav[role="main-nav"]>ul li{
-                opacity:1;
-                transform: translateY(0);
-            }
-            .language-wrapper .language, .socials-wrapper .social {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     }
     .logo {
         position: absolute;
@@ -233,20 +215,40 @@
                 stroke-dasharray: circumference(23);
             }
         }
-        &.opened {
+    }
+    // ---------------------------
+    // Active state
+    // ---------------------------
+    &.mobile-menu-open {
+        .header-top {
+            .language-wrapper .language, .socials-wrapper .social {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .header-bottom {
+            .splash::after {
+                transform: scale(1);
+            }
+            nav[role="main-nav"]>ul li{
+                opacity:1;
+                transform: translateY(0);
+            }
+        }
+        .nav-button {
             .menuicon {
                 transform: rotate(180deg);
                 .circle {
                     stroke-dashoffset: 0;
                 }
                 .bar:nth-child(1), .bar:nth-child(4) {
-                     opacity: 0;
+                    opacity: 0;
                 }
                 .bar:nth-child(2) {
-                     transform: rotate(45deg);
+                    transform: rotate(45deg);
                 }
                 .bar:nth-child(3) {
-                      transform: rotate(-45deg);
+                    transform: rotate(-45deg);
                 }
             }
         }

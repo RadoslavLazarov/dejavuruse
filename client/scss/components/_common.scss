@@ -24,6 +24,13 @@ i {
     }
 }
 
+.visibility-xl-visible {
+    visibility: hidden; 
+    @media (min-width: 1200px) {
+        visibility: visible; 
+    }
+}
+
 #loading-screen {
     position: absolute;
     display: flex;

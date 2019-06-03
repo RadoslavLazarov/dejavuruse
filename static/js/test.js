@@ -5,18 +5,10 @@ $(function () {
     }, 500);
 
     $('.nav-button').on('click', function () {
-        const navigation = $('nav[role="main-nav"]');
-
-        if (navigation.css('visibility') === 'hidden') {
-            navigation.css({ 'visibility': 'visible' })
-        } else if (navigation.css('visibility') === 'visible') {
-            setTimeout(function () {
-                navigation.css({ 'visibility': 'hidden' })
-            }, 500);
-        }
-
-        $('.header-bottom').toggleClass('opened');
-        $(this).toggleClass('opened');
+        $('nav[role="main-nav"]>ul').toggleClass('visibility-xl-visible');
+        $('.socials-wrapper').toggleClass('visibility-xl-visible');
+        $('.language-wrapper').toggleClass('visibility-xl-visible');
+        $('#header-home').toggleClass('mobile-menu-open');
     });
 
     $('.nav-icon').click(function () {
