@@ -14,18 +14,23 @@
         .socials-wrapper, .language-wrapper {
             @media screen and (max-width: 1200px) {
                 position: absolute;
-                z-index: 20;
                 top: 28px;
             }
         }
+        .socials-wrapper {
+            z-index: 21;
+        }
         .language-wrapper {
             right: 80px;
+            z-index: 20;
         }
         .socials-wrapper .social, .language-wrapper .language {
             display: flex;
-            opacity: 0;
-            transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
-            transform: translateY(-40px);
+            @media screen and (max-width: 1200px) {
+                opacity: 0;
+                transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
+                transform: translateY(-40px);
+            }
         }
         .socials-wrapper .social {
             a {
@@ -40,12 +45,12 @@
                 margin-left: 5px;
                 .circle-animate.active {
                     &::before {
-                        border-top-color: #fff;
-                        border-right-color: #fff;
-                        border-bottom-color: #fff;
+                        border-top-color: $white;
+                        border-right-color: $white;
+                        border-bottom-color: $white;
                     }
                     &::after {
-                        border-top: 2px solid #fff;
+                        border-top: 2px solid $white;
                         border-left-width: 2px;
                         border-right-width: 2px;
                         transform: rotate(270deg);
@@ -56,7 +61,6 @@
     }
     .header-bottom {
         overflow: hidden;
-        height: 100vh;
         padding: 0;
         a {
             color: $white;
@@ -84,7 +88,7 @@
                     position: relative;
                     flex-direction: column;
                     justify-content: space-evenly;
-                    z-index: 100;
+                    z-index: 15;
                     height: 80vh;
                     width: unset;
                     margin: 0;

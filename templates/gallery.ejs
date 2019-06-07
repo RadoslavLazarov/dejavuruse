@@ -1,0 +1,15 @@
+<% layout('common/layout/default') -%>
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <% getGalleryCategories.forEach(function(item) { %>
+            <div class="col-4 p-0 category-wrapper">
+                <a href="gallery/<%= item.id %>" class="category">
+                    <h1><%= item.name[getLocale] %></h1>
+                    <img src="<%= item.imageCover.link %>" alt="<%= item.imageCover.alt %>">
+                </a>
+            </div>
+        <% }); %>
+    </div>
+</div>

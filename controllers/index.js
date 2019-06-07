@@ -2,7 +2,7 @@ const Home = require('./Home');
 const About = require('./About');
 const Locale = require('./Locale');
 const News = require('./News');
-const Decoration = require('./Decoration');
+const Gallery = require('./Gallery');
 const Test = require('./Test');
 
 module.exports = {
@@ -10,6 +10,6 @@ module.exports = {
   About,
   Locale,
   News,
-  Decoration,
+  Gallery,
   Test,
 };

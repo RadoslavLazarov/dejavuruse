@@ -1,0 +1,10 @@
+<% layout('common/layout/default') -%>
+
+<% getGalleryAlbums.forEach(function(album) { %>
+    <div>
+        <h5><a href="/gallery/<%= currentCategory %>/<%= album.id %>"><%= album.name[getLocale] %></a></h5>
+        <% if (album.imageCover) { %>
+            <img src="<%= album.imageCover.link %>" alt="<%= album.imageCover.alt %>" width="150px">
+        <% } %>
+    </div>
+<% }); %>

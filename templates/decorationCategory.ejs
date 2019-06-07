@@ -1,7 +1,0 @@
-<% layout('common/layout/default') -%>
-
-<% decorationAlbums.forEach(function(item) { %>
-    <div>
-        <h5><a href="<%= currentCategory %>/<%= item.id %>"><%= item.name[getLocale] %></a></h5>
-    </div>
-<% }); %>

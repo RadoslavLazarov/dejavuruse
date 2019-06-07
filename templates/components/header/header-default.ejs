@@ -1,0 +1,44 @@
+<header id="header-default">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 header-top"> 
+                <div class="row">
+                    <div class="col-6">
+                        <div class="socials-wrapper visibility-xl-visible">
+                            <%- include ../socials.ejs %>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="language-wrapper visibility-xl-visible">
+                            <%- include ../lang.ejs %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 header-bottom">
+                <nav role="main-nav">
+                    <ul class="visibility-xl-visible">
+                        <% navCategories.forEach(function(category) { %>
+                            <li><a href="<%= category.url %>"><%= category.name[getLocale] %></a></li>
+                        <% }); %>
+                    </ul>
+                    <div class="splash"></div>
+                </nav>
+            </div>
+            <a href="/" class="logo">
+                <img src="/static/logo-white.png" alt="">
+            </a>
+            <div class="nav-button">
+                <svg class="menuicon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                    <g>
+                        <line class="bar" x1="13" y1="16.5" x2="37" y2="16.5"/>
+                        <line class="bar" x1="13" y1="24.5" x2="37" y2="24.5"/>
+                        <line class="bar" x1="13" y1="24.5" x2="37" y2="24.5"/>
+                        <line class="bar" x1="13" y1="32.5" x2="37" y2="32.5"/>
+                        <circle class="circle" r="23" cx="25" cy="25" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</header>
