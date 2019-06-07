@@ -5,7 +5,7 @@
             <div class="background-video-wrapper">
                 <div class="overlay"></div>
                 <% backgroundVideos.forEach(function(video) { %> 
-                    <video autoplay loop muted class="background-video">
+                    <video autoplay loop muted playsinline class="background-video">
                         <% video.source.forEach(function(source) { %> 
                             <source src="<%= source.src %>" type="<%= source.type %>">
                         <% }); %>
