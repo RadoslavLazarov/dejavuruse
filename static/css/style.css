@@ -7207,6 +7207,10 @@ li {
     #header-default.fixed .logo {
       top: unset;
       width: 37px; }
+      #header-default.fixed .logo .logo-big {
+        display: none; }
+      #header-default.fixed .logo .logo-small {
+        display: block; }
     #header-default.fixed .header-bottom nav[role="main-nav"] ul li:nth-child(3) {
       margin-right: 100px; }
     #header-default.fixed .header-bottom nav[role="main-nav"] ul li:hover:after {
@@ -7352,7 +7356,7 @@ li {
         position: absolute;
         z-index: 10;
         border-radius: 50%;
-        background-color: #000;
+        background-color: #755275;
         width: 284vmax;
         height: 284vmax;
         top: -142vmax;
@@ -7365,6 +7369,10 @@ li {
     position: absolute;
     top: 10px;
     width: 250px; }
+    #header-default .logo .logo-big {
+      display: block; }
+    #header-default .logo .logo-small {
+      display: none; }
     @media screen and (max-width: 1200px) {
       #header-default .logo {
         width: 200px; } }
@@ -7572,7 +7580,7 @@ li {
         position: absolute;
         z-index: 10;
         border-radius: 50%;
-        background-color: #000;
+        background-color: #755275;
         width: 284vmax;
         height: 284vmax;
         top: -142vmax;
@@ -7608,7 +7616,8 @@ li {
     z-index: 200; }
     @media screen and (max-width: 1200px) {
       #header-home .nav-button {
-        display: block; } }
+        display: block;
+        position: fixed; } }
     #header-home .nav-button .menuicon {
       display: block;
       cursor: pointer;
@@ -7628,24 +7637,26 @@ li {
         transition: stroke-dashoffset .3s linear .1s;
         stroke-dashoffset: 144.51326;
         stroke-dasharray: 144.51326; }
-  #header-home.mobile-menu-open .header-top .language-wrapper .language, #header-home.mobile-menu-open .header-top .socials-wrapper .social {
-    opacity: 1;
-    transform: translateY(0); }
-  #header-home.mobile-menu-open .header-bottom .splash::after {
-    transform: scale(1); }
-  #header-home.mobile-menu-open .header-bottom nav[role="main-nav"] > ul li {
-    opacity: 1;
-    transform: translateY(0); }
-  #header-home.mobile-menu-open .nav-button .menuicon {
-    transform: rotate(180deg); }
-    #header-home.mobile-menu-open .nav-button .menuicon .circle {
-      stroke-dashoffset: 0; }
-    #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(1), #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(4) {
-      opacity: 0; }
-    #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(2) {
-      transform: rotate(45deg); }
-    #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(3) {
-      transform: rotate(-45deg); }
+  #header-home.mobile-menu-open {
+    z-index: 10; }
+    #header-home.mobile-menu-open .header-top .language-wrapper .language, #header-home.mobile-menu-open .header-top .socials-wrapper .social {
+      opacity: 1;
+      transform: translateY(0); }
+    #header-home.mobile-menu-open .header-bottom .splash::after {
+      transform: scale(1); }
+    #header-home.mobile-menu-open .header-bottom nav[role="main-nav"] > ul li {
+      opacity: 1;
+      transform: translateY(0); }
+    #header-home.mobile-menu-open .nav-button .menuicon {
+      transform: rotate(180deg); }
+      #header-home.mobile-menu-open .nav-button .menuicon .circle {
+        stroke-dashoffset: 0; }
+      #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(1), #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(4) {
+        opacity: 0; }
+      #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(2) {
+        transform: rotate(45deg); }
+      #header-home.mobile-menu-open .nav-button .menuicon .bar:nth-child(3) {
+        transform: rotate(-45deg); }
 
 #footer-default {
   position: relative;
@@ -7762,15 +7773,15 @@ li {
     .background-video-wrapper .summary.loaded .title {
       font-family: 'Cormorant Garamond', serif;
       text-align: center; }
-      @media screen and (max-width: 576px) {
+      @media screen and (max-width: 768px) {
         .background-video-wrapper .summary.loaded .title {
-          font-size: 1.75em; } }
+          font-size: 1.5em; } }
     .background-video-wrapper .summary.loaded .text {
       font-size: 1.125em;
       text-align: center; }
       @media screen and (max-width: 576px) {
         .background-video-wrapper .summary.loaded .text {
-          font-size: 1em; } }
+          font-size: 0.938em; } }
 
 .category-wrapper {
   overflow: hidden;

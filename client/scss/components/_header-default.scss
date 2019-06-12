@@ -20,6 +20,12 @@
         .logo {
             top: unset;
             width: 37px;
+            .logo-big {
+                display: none;
+            }
+            .logo-small {
+                display: block;
+            }
         }
         
         .header-bottom nav[role="main-nav"] ul li {
@@ -195,7 +201,7 @@
               position: absolute;
               z-index: 10;
               border-radius: 50%;
-              background-color: $black;
+              background-color: $color1;
               // screen diameter can be 142vmax at most, circle needs to be twice that size to cover it
               width: 284vmax;
               height: 284vmax;
@@ -212,6 +218,12 @@
         position: absolute;
         top: 10px;   
         width: 250px;
+        .logo-big {
+            display: block;
+        }
+        .logo-small {
+            display: none;
+        }
         @media screen and (max-width: 1200px) {
             width: 200px;
         }

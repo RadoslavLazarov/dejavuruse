@@ -39,15 +39,15 @@
         .title {
             font-family: 'Cormorant Garamond', serif;
             text-align: center;
-            @media screen and (max-width: 576px) {
-                font-size: 1.75em;
+            @media screen and (max-width: 768px) {
+                font-size: 1.5em;
             }
         }
         .text {
             font-size: 1.125em;
             text-align: center;
             @media screen and (max-width: 576px) {
-                font-size: 1em;
+                font-size: 0.938em;
             }
         }
     }

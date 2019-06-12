@@ -26,7 +26,7 @@ $(function () {
 
     // Button splash animation
     $('.button')
-        .on('mouseenter', function (e) {
+        .on('mouseenter touchstart', function (e) {
             var parentOffset = $(this).offset(),
                 relX = e.pageX - parentOffset.left,
                 relY = e.pageY - parentOffset.top,
@@ -34,12 +34,14 @@ $(function () {
                 width = $(this).outerWidth() * 2 + 7,
                 height = $(this).outerWidth() * 2 + 7;
             $(this).find('span').css({ top: relY, left: relX, width: width, height: height })
+            $(this).css({ color: '#fff' });
         })
-        .on('mouseout', function (e) {
+        .on('mouseout touchend', function (e) {
             var parentOffset = $(this).offset(),
                 relX = e.pageX - parentOffset.left,
                 relY = e.pageY - parentOffset.top;
             $(this).find('span').css({ top: relY, left: relX, width: 0, height: 0 })
+            $(this).css({ color: '#755275' });
         });
 
     $(window).scroll(function () {
@@ -49,9 +51,7 @@ $(function () {
         if (window.matchMedia('(min-width: 1201px)').matches) {
             if (scroll >= 100) {
                 sticky.addClass('fixed');
-                $('.logo img').attr('src', '/static/logo-purple-small.png');
             } else {
-                $('.logo img').attr('src', '/static/logo-white.png');
                 sticky.removeClass('fixed');
             }
         }

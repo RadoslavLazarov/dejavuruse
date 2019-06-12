@@ -166,7 +166,7 @@
               position: absolute;
               z-index: 10;
               border-radius: 50%;
-              background-color: $black;
+              background-color: $color1;
               // screen diameter can be 142vmax at most, circle needs to be twice that size to cover it
               width: 284vmax;
               height: 284vmax;
@@ -208,6 +208,7 @@
         z-index: 200;
         @media screen and (max-width: 1200px) {
             display: block;
+            position: fixed;
         }
         .menuicon {
             display: block;
@@ -242,6 +243,7 @@
     // Active state
     // ---------------------------
     &.mobile-menu-open {
+        z-index: 10;
         .header-top {
             .language-wrapper .language, .socials-wrapper .social {
                 opacity: 1;
