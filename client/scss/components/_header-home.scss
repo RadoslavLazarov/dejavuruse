@@ -2,6 +2,23 @@
     font-family: 'Cormorant Garamond', serif;
     position: absolute;
     width: 100%;
+    i {
+        color: $white;
+    }
+    .circle-animate { 
+        color: $white;
+        &:hover {
+            color: $white;
+        }
+        &:hover::before {
+            border-top-color: $white;
+            border-right-color: $white;
+            border-bottom-color: $white;
+        }
+        &:hover::after {
+            border-top: 2px solid $white;
+        }    
+    }
     a:hover {
         text-decoration: none;
     } 
@@ -10,6 +27,7 @@
         @media screen and (max-width: 1200px) {
             position: absolute;
             padding-top: 0px;
+            top: 0;
         }
         .socials-wrapper, .language-wrapper {
             @media screen and (max-width: 1200px) {

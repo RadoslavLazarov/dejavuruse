@@ -1,6 +1,6 @@
 const express = require('express');
-const GalleryCategoriesModel = require('../models/galleryCategories');
-const GalleryAlbumsModel = require('../models/galleryAlbums');
+const GalleryCategoriesModel = require('../models/gallery_categories');
+const GalleryAlbumsModel = require('../models/gallery_albums');
 const { locale } = require('../scripts/getLocale');
 
 const router = express.Router();
@@ -54,13 +54,13 @@ router.get('/:category', async (req, res) => {
   // }
 
   const currentCategory = req.params.category;
-  // const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
+  const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
   const galleryAlbums = new GalleryAlbumsModel(null, currentCategory);
-  // let getGalleryCategories;
+  let getGalleryCategories;
   let getGalleryAlbums;
 
   try {
-    // getGalleryCategories = await galleryCategories.findCategories;
+    getGalleryCategories = await galleryCategories.findCategories;
     getGalleryAlbums = await galleryAlbums.findAlbums;
   } catch (e) {
     console.log(e);
@@ -69,6 +69,7 @@ router.get('/:category', async (req, res) => {
 
   res.render('galleryCategory', {
     currentCategory,
+    getGalleryCategories,
     getGalleryAlbums,
   });
 });

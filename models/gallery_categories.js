@@ -11,6 +11,15 @@ const galleryCategories = new mongoose.Schema({
     type: String,
   },
   imageCover: {
+    type: String,
+  },
+  priority: {
+    type: Number,
+  },
+  summary: {
+    type: Object,
+  },
+  meta: {
     type: Object,
   },
 });
@@ -18,7 +27,10 @@ const galleryCategories = new mongoose.Schema({
 const getGalleryCategories = mongoose.model('Gallery_categories', galleryCategories);
 
 async function findCategories() {
-  const categories = await getGalleryCategories.find();
+  const categories = await getGalleryCategories.find(
+    { isVisible: true }, null, { sort: { priority: 1 } },
+  );
+
   return categories;
 }
 
@@ -38,6 +50,7 @@ async function validateCategories(res, currentCategory) {
 }
 
 function GalleryCategoriesModel(res, currentCategory) {
+  this.Model = getGalleryCategories;
   this.findCategories = findCategories();
   if (res && currentCategory) {
     this.validateCategories = validateCategories(res, currentCategory);

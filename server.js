@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const engine = require('ejs-locals');
 const i18n = require('i18n-express');
+const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const setLocale = require('./scripts/middleware/setLocale');
 const locals = require('./scripts/middleware/locals');
@@ -20,6 +21,7 @@ app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
 
 // Middleware
+app.use(favicon(path.join(__dirname, 'static', 'favicon-32x32.png')));
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));

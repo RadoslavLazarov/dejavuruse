@@ -1,0 +1,7 @@
+<div class="background-page-wrapper">
+    <% if(pageResources) { %>
+        <div class="background-image onload" style="background-image:url('<%= pageResources.imageCover %>')"></div>
+    <% }; %>
+    <div class="background-overlay"></div>
+    <div class="page-title"><h1><%= pageResources.name[getLocale] %></h1></div>
+</div>

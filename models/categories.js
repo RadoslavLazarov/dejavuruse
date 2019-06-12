@@ -19,6 +19,12 @@ const category = new mongoose.Schema({
   meta: {
     type: Object,
   },
+  imageCover: {
+    type: String,
+  },
+  subPages: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('Category', category);

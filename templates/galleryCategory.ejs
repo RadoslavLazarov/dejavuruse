@@ -1,5 +1,6 @@
 <% layout('common/layout/default') -%>
 
+<%- include ./components/pageCover.ejs %>
 <% getGalleryAlbums.forEach(function(album) { %>
     <div>
         <h5><a href="/gallery/<%= currentCategory %>/<%= album.id %>"><%= album.name[getLocale] %></a></h5>
