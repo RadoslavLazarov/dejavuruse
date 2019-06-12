@@ -10,7 +10,7 @@
     </div>
     <div class="row justify-content-center">
         <% getGalleryCategories.forEach(function(category) { %>
-            <div class="col-xl-3 col-lg-4 col-sm-6 category-wrapper">
+            <div class="col-xl-3 col-lg-4 col-sm-6 category-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
                 <a href="gallery/<%= category.id %>" class="category">
                     <div class="title">
                         <h1><%= category.name[getLocale] %></h1>

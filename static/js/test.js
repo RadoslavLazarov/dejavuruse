@@ -7,7 +7,7 @@ $('.nav-button').on('click', function () {
 });
 
 $(function () {
-    // AOS.init();
+    AOS.init();
 
     setTimeout(function () {
         $('#loading-screen').fadeOut("slow");
