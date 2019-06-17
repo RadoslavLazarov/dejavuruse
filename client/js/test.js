@@ -12,11 +12,16 @@ AOS.init();
 setTimeout(function () {
     $('#loading-screen').fadeOut("slow");
 }, 500);
-// setTimeout(function () {
-//     $('#loading-screen').detach();
-// }, 1000);
 
-
+/*! Fades out the whole page when clicking links */
+$('a').click(function (e) {
+    e.preventDefault();
+    newLocation = this.href;
+    $('body').fadeOut('slow', newpage);
+});
+function newpage() {
+    window.location = newLocation;
+}
 
 $('.nav-icon').click(function () {
     $(this).toggleClass('open');
