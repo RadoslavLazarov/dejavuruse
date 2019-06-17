@@ -75,28 +75,18 @@ router.get('/:category', async (req, res) => {
 });
 
 router.get('/:category/:album', async (req, res) => {
-  // let getGalleryAlbums;
   let album;
-  let dimensions;
   const currentCategory = req.params.category;
   const currentAlbum = req.params.album;
-  // const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
   const galleryAlbums = new GalleryAlbumsModel(res, currentCategory, currentAlbum);
 
   try {
-    // getGalleryAlbums = await galleryAlbums.findAlbums;
     album = await galleryAlbums.findAlbum;
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
   }
-  // const sizeOf = require('image-size');
-  // for (item of album.images) {
-  //   const dimensions = sizeOf(`static/images/gallery/${currentCategory}/${currentAlbum}/${item}`);
-  //   console.log(dimensions.width, dimensions.height);
-  // }
 
-  // console.log(album);
   res.render('galleryAlbum', {
     currentCategory,
     album,

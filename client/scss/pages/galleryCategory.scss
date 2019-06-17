@@ -6,6 +6,10 @@
     &:nth-child(2n) {
         padding-right: 0;
     }
+    @media screen and (max-width: 992px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
     .album {
         position: relative;
         display: flex;

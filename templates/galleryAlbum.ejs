@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
         <% album.images.forEach(function(item) { %>
-            <figure class="col-3 photo-wrapper" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
+            <figure class="col-xl-3 col-lg-4 col-sm-6 photo-wrapper" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
                 <a href="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" class="image" itemprop="contentUrl" data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">      
                     <img src="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" itemprop="thumbnail" alt="Image description" />
                     <div class="overlay">
