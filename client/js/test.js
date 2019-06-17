@@ -14,7 +14,7 @@ setTimeout(function () {
 }, 500);
 
 /*! Fades out the whole page when clicking links */
-$('a:not(.image)').click(function (e) {
+$('a:not(.image, a[target="blank"])').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', newpage);
