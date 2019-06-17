@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+// Mobile menu toggle
 $('.nav-button').on('click', function () {
     $('nav[role="main-nav"]>ul').toggleClass('visibility-xl-visible');
     $('.socials-wrapper').toggleClass('visibility-xl-visible');
@@ -7,27 +8,14 @@ $('.nav-button').on('click', function () {
     $('header').toggleClass('mobile-menu-open');
 });
 
-AOS.init();
-
-setTimeout(function () {
-    $('#loading-screen').fadeOut("slow");
-}, 500);
-
-/*! Fades out the whole page when clicking links */
-$('a:not(.image, a[target="blank"])').click(function (e) {
+// Fades out the whole page when clicking links
+$('a:not(.image, a[target="blank"], a[href^="tel:"])').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
-    $('body').fadeOut('slow', newpage);
+    $('body').fadeOut('slow', function () {
+        window.location = newLocation;
+    });
 });
-function newpage() {
-    window.location = newLocation;
-}
-
-$('.nav-icon').click(function () {
-    $(this).toggleClass('open');
-});
-
-$('.onload').addClass('loaded');
 
 // Button splash animation
 $('.button')
@@ -49,6 +37,7 @@ $('.button')
         $(this).css({ color: '#755275' });
     });
 
+// Fixed header on scroll
 $(window).scroll(function () {
     var sticky = $('#header-default'),
         scroll = $(window).scrollTop();
@@ -61,5 +50,3 @@ $(window).scroll(function () {
         }
     }
 });
-
-
