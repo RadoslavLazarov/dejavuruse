@@ -1,11 +1,20 @@
 <% layout('common/layout/default') -%>
 
-<%- include ./components/pageCover.ejs %>
-<% getGalleryAlbums.forEach(function(album) { %>
-    <div>
-        <h5><a href="/gallery/<%= currentCategory %>/<%= album.id %>"><%= album.name[getLocale] %></a></h5>
-        <% if (album.imageCover) { %>
-            <img src="<%= album.imageCover.link %>" alt="<%= album.imageCover.alt %>" width="150px">
-        <% } %>
+<div class="container">
+    <div class="row justify-content-center">
+        <% getGalleryAlbums.forEach(function(album) { %>
+            <div class="col-6 album-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
+                <a href="/gallery/<%= currentCategory %>/<%= album.id %>" class="album">
+                    <div class="title">
+                        <h1><%= album.name[getLocale] %></h1>
+                        <span class="view-more">View more</span>
+                    </div>
+                    <% if (album.imageCover) { %>
+                        <div class="image" style="background-image:url('/static/images/gallery/<%= url.currentPage %>/<%= album.id %>/<%= album.imageCover.link %>')"></div>
+                    <% } %>
+                    <div class="overlay"></div>
+                </a>
+            </div>
+        <% }); %>
     </div>
-<% }); %>
+</div>

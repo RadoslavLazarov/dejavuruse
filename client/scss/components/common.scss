@@ -8,8 +8,32 @@ body {
 ::-moz-selection { background: $color2 }
 ::selection { background: $color2 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: $white; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $purple-dark; 
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 i {
     font-weight: 500;
+    color: $white;
+}
+
+figure {
+    margin: 0;
 }
 
 li {
@@ -54,18 +78,24 @@ li {
 .fb-messenger {
     position: fixed;
     display: flex;
+    align-items: center;
+    justify-content: center;
     right: 20px;
     bottom: 85px;
-    font-size: 3em;
+    font-size: 2.250em;
     text-decoration: none;
     opacity: 0.7;
     transition: opacity 1s;
-    color: $color1;
+    color: $white;
+    width: 53px;
+    height: 53px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50%;
     &:hover {
         opacity: 1;
         transition: opacity 1s;
         text-decoration: none;
-        color: $color1;
+        color: $white;
     }
 }
 
@@ -77,6 +107,10 @@ li {
     width: 33px;
     height: 33px;
     font-weight: 700;
+    color: $white;
+    &:hover {
+        color: $white;
+    }
     &::before, &::after {
       content: '';
       position: absolute;
@@ -92,6 +126,9 @@ li {
         border: 2px solid transparent;
     }
     &:hover::before {
+        border-top-color: $white;
+        border-right-color: $white;
+        border-bottom-color: $white;
         transition:
         border-top-color 0.15s linear,
         border-right-color 0.15s linear 0.10s,
@@ -103,6 +140,7 @@ li {
     &:hover::after {
         border-left-width: 2px;
         border-right-width: 2px;
+        border-top: 2px solid $white;
         transform: rotate(270deg);
         transition:
         transform 0.4s linear 0s,
@@ -130,7 +168,7 @@ li {
         background-repeat: no-repeat;
         background-size: cover;
         z-index: -5;
-        transition: transform 6s ease-in;
+        transition: transform 10s ease-in;
         &.loaded {
             transform: scale(1.1);
         }
@@ -166,8 +204,8 @@ li {
     font-weight: 900;
     letter-spacing: 3px;
     overflow: hidden;
-    border: 2px solid $color1;
-    color: $color1;
+    border: 2px solid $purple-dark;
+    color: $purple-dark;
     text-align: center;
     transition: color .5s;
     &:hover {
@@ -186,6 +224,6 @@ li {
         -webkit-transition: width 0.4s, height 0.4s;
         transition: width 0.4s, height 0.4s;
         z-index: -1;
-        background-color: $color1;
+        background-color: $purple-dark;
     }
 }

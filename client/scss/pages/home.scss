@@ -12,7 +12,8 @@
     .overlay {
         height: 100%;
         width: 100%;
-        background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%); //gradient top and bottom
+        //gradient top and bottom
+        background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
     }  
     .background-video {
         position: absolute;

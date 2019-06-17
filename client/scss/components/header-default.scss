@@ -1,27 +1,43 @@
-#header-home {
-    font-family: 'Cormorant Garamond', serif;
+#header-default {
     position: absolute;
     width: 100%;
-    i {
-        color: $white;
+    font-family: 'Cormorant Garamond', serif;
+    @media screen and (min-width: 1201px) {
+        transform: translatey(0%);
+        transition: transform .2s ease-in-out;
     }
-    .circle-animate { 
-        color: $white;
-        &:hover {
-            color: $white;
+    &.fixed {
+        position: fixed;
+        top: -53px;
+        z-index: 1000;
+        background-color: $white;
+        border-bottom: 1px solid $purple-dark;
+        transform: translatey(100%);
+        .header-top {
+            display: none;
         }
-        &:hover::before {
-            border-top-color: $white;
-            border-right-color: $white;
-            border-bottom-color: $white;
+        .logo {
+            top: unset;
+            width: 37px;
+            .logo-big {
+                display: none;
+            }
+            .logo-small {
+                display: block;
+            }
         }
-        &:hover::after {
-            border-top: 2px solid $white;
-        }    
+        .header-bottom nav[role="main-nav"] ul li {
+            &:nth-child(3) {
+                margin-right: 100px;
+            }
+            &:hover:after {
+                background: $purple-dark;
+            }
+            a {
+                color: $purple-dark;
+            }
+        }
     }
-    a:hover {
-        text-decoration: none;
-    } 
     .header-top {
         padding-top: 5px;
         @media screen and (max-width: 1200px) {
@@ -166,7 +182,7 @@
               position: absolute;
               z-index: 10;
               border-radius: 50%;
-              background-color: $color1;
+              background-color: $purple-dark;
               // screen diameter can be 142vmax at most, circle needs to be twice that size to cover it
               width: 284vmax;
               height: 284vmax;
@@ -183,14 +199,20 @@
         position: absolute;
         top: 10px;   
         width: 250px;
+        .logo-big {
+            display: block;
+        }
+        .logo-small {
+            display: none;
+        }
+        img {
+            width: 100%;
+        }
         @media screen and (max-width: 1200px) {
             width: 200px;
         }
         @media screen and (max-width: 576px) {
             width: 150px;
-        }
-        img {
-            width: 100%;
         }
     }
     .nav-button {  
@@ -208,7 +230,6 @@
         z-index: 200;
         @media screen and (max-width: 1200px) {
             display: block;
-            position: fixed;
         }
         .menuicon {
             display: block;
@@ -216,7 +237,6 @@
             color: $white;
             transform: rotate(0deg);
             transition: .3s cubic-bezier(0.165, 0.840, 0.440, 1.000); 
-            
             .bar, .circle {
                 fill: none;
                 stroke: currentColor;
@@ -243,7 +263,6 @@
     // Active state
     // ---------------------------
     &.mobile-menu-open {
-        z-index: 10;
         .header-top {
             .language-wrapper .language, .socials-wrapper .social {
                 opacity: 1;
@@ -254,9 +273,11 @@
             .splash::after {
                 transform: scale(1);
             }
-            nav[role="main-nav"]>ul li{
-                opacity:1;
-                transform: translateY(0);
+            nav[role="main-nav"] {
+                &>ul li{
+                    opacity:1;
+                    transform: translateY(0);
+                }
             }
         }
         .nav-button {

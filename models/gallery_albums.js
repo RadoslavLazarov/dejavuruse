@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
+const sizeOf = require('image-size');
 
 const galleryAlbums = new mongoose.Schema({
   isVisible: {
@@ -24,6 +26,44 @@ const galleryAlbums = new mongoose.Schema({
 
 const getGalleryAlbums = mongoose.model('Gallery_albums', galleryAlbums);
 
+async function createAlbum() {
+  const categoriesObjectId = {
+    christenings: '5cf635f01c9d4400008e7d8e',
+    graduates: '5cf636341c9d4400008e7d8f',
+    birthdays: '5cf636631c9d4400008e7d90',
+    weddings: '5cf636781c9d4400008e7d91',
+    kidsParties: '5cfb8cb21c9d4400004c3763',
+  };
+
+  const Albums = new getGalleryAlbums({
+    isVisible: true,
+    name: {
+      bg: 'Теодора Палас',
+      en: 'Teodora Palace',
+    },
+    id: 'teodora-palace',
+    imageCover: {
+      link: '60351639_10156116060266781_4042868392355430400_n.jpg',
+      alt: 'Teodora Palace',
+    },
+    images: [],
+    gallery_category: categoriesObjectId.weddings,
+  });
+
+  fs.readdirSync('./static/images/gallery/weddings/teodora-palace/').forEach((file) => {
+    const getDimensions = sizeOf(`./static/images/gallery/weddings/teodora-palace/${file}`);
+    Albums.images.push({
+      link: file,
+      dimensions: {
+        width: getDimensions.width,
+        height: getDimensions.height,
+      },
+    });
+  });
+
+  Albums.save();
+}
+
 async function findAlbums(currentCategory) {
   const allAlbums = await getGalleryAlbums.find().populate('gallery_category', 'id -_id');
   const albums = [];
@@ -36,18 +76,21 @@ async function findAlbums(currentCategory) {
   return albums;
 }
 
-async function findAlbum(res, currentAlbum) {
+async function findAlbum(res, currentCategory, currentAlbum) {
   const album = await getGalleryAlbums.findOne({ id: currentAlbum });
+
   if (album === null) {
     return res.sendStatus(404);
   }
+
   return album;
 }
 
 function GalleryAlbumsModel(res, currentCategory, currentAlbum) {
   this.findAlbums = findAlbums(currentCategory);
+  // this.createAlbum = createAlbum();
   if (res && currentAlbum) {
-    this.findAlbum = findAlbum(res, currentAlbum);
+    this.findAlbum = findAlbum(res, currentCategory, currentAlbum);
   }
 }
 

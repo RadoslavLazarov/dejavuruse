@@ -9,14 +9,13 @@ router.get('/', async (req, res) => {
 
   try {
     getBackgroundVideo = await backgroundVideo.findBackgroundVideo;
-
-    res.render('home', {
-      getBackgroundVideo,
-    });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
   }
+  res.render('home', {
+    getBackgroundVideo,
+  });
 });
 
 module.exports = router;

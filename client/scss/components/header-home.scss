@@ -1,65 +1,7 @@
-#header-default {
+#header-home {
     font-family: 'Cormorant Garamond', serif;
     position: absolute;
     width: 100%;
-    @media screen and (min-width: 1201px) {
-        transform: translatey(0%);
-        transition: transform .2s ease-in-out, background-color .2s ease-in-out;
-    }
-    &.fixed {
-        position: fixed;
-        z-index: 1000;
-        background-color: $white;
-        border-bottom: 1px solid $color1;
-        transform: translatey(100%);
-        transition: transform .2s ease-in-out, background-color .2s ease-in-out;
-        top: -53px;
-        .header-top {
-            display: none;
-        }
-        .logo {
-            top: unset;
-            width: 37px;
-            .logo-big {
-                display: none;
-            }
-            .logo-small {
-                display: block;
-            }
-        }
-        
-        .header-bottom nav[role="main-nav"] ul li {
-            &:nth-child(3) {
-                margin-right: 100px;
-            }
-            &:hover:after {
-                background: $color1;
-            }
-            a {
-                color: $color1;
-            }
-        }
-    }
-    i {
-        color: $white;
-    }
-    .circle-animate { 
-        color: $white;
-        &:hover {
-            color: $white;
-        }
-        &:hover::before {
-            border-top-color: $white;
-            border-right-color: $white;
-            border-bottom-color: $white;
-        }
-        &:hover::after {
-            border-top: 2px solid $white;
-        }    
-    }
-    a:hover {
-        text-decoration: none;
-    } 
     .header-top {
         padding-top: 5px;
         @media screen and (max-width: 1200px) {
@@ -70,12 +12,15 @@
         .socials-wrapper, .language-wrapper {
             @media screen and (max-width: 1200px) {
                 position: absolute;
-                z-index: 20;
                 top: 28px;
             }
         }
+        .socials-wrapper {
+            z-index: 21;
+        }
         .language-wrapper {
             right: 80px;
+            z-index: 20;
         }
         .socials-wrapper .social, .language-wrapper .language {
             display: flex;
@@ -141,7 +86,7 @@
                     position: relative;
                     flex-direction: column;
                     justify-content: space-evenly;
-                    z-index: 100;
+                    z-index: 15;
                     height: 80vh;
                     width: unset;
                     margin: 0;
@@ -201,7 +146,7 @@
               position: absolute;
               z-index: 10;
               border-radius: 50%;
-              background-color: $color1;
+              background-color: $purple-dark;
               // screen diameter can be 142vmax at most, circle needs to be twice that size to cover it
               width: 284vmax;
               height: 284vmax;
@@ -218,12 +163,6 @@
         position: absolute;
         top: 10px;   
         width: 250px;
-        .logo-big {
-            display: block;
-        }
-        .logo-small {
-            display: none;
-        }
         @media screen and (max-width: 1200px) {
             width: 200px;
         }
@@ -249,6 +188,7 @@
         z-index: 200;
         @media screen and (max-width: 1200px) {
             display: block;
+            // position: fixed;
         }
         .menuicon {
             display: block;
@@ -283,6 +223,7 @@
     // Active state
     // ---------------------------
     &.mobile-menu-open {
+        // z-index: 10;
         .header-top {
             .language-wrapper .language, .socials-wrapper .social {
                 opacity: 1;
