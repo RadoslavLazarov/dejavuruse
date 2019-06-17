@@ -221,7 +221,7 @@ initPhotoSwipeFromDOM('.my-gallery');
 
 
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e055494e.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c1d10d11.js","/")
 },{"./test":2,"aos":3,"buffer":5,"e/U+97":10,"jquery":7,"photoswipe":9,"photoswipe/dist/photoswipe-ui-default":8}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
@@ -240,7 +240,7 @@ setTimeout(function () {
 }, 500);
 
 /*! Fades out the whole page when clicking links */
-$('a').click(function (e) {
+$('a:not(.image)').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', newpage);
