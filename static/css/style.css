@@ -12905,7 +12905,7 @@ li {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  height: 450px;
+  height: 50vh;
   margin-bottom: 25px;
   z-index: -10; }
   .background-page-wrapper .background-image {
@@ -12938,6 +12938,9 @@ li {
       font-size: 4em;
       font-weight: 300;
       text-transform: uppercase; }
+      @media (max-width: 414px) {
+        .background-page-wrapper .page-title h1 {
+          font-size: 3em; } }
 
 .button {
   position: relative;
@@ -12983,11 +12986,17 @@ li {
     .page-description .heading h1 {
       font-size: 3.5em;
       margin: 0; }
+      @media (max-width: 414px) {
+        .page-description .heading h1 {
+          font-size: 2em; } }
   .page-description .separator {
     width: 250px;
     height: 50px;
     background-size: contain;
     background-repeat: no-repeat; }
+    @media (max-width: 414px) {
+      .page-description .separator {
+        width: 200px; } }
   .page-description .summary {
     display: flex;
     justify-content: center; }
@@ -13035,7 +13044,8 @@ li {
     @media screen and (max-width: 1200px) {
       #header-default .header-top .socials-wrapper, #header-default .header-top .language-wrapper {
         position: absolute;
-        top: 28px; } }
+        top: 28px;
+        left: 15px; } }
     #header-default .header-top .socials-wrapper {
       z-index: 21; }
     #header-default .header-top .language-wrapper {
@@ -13574,7 +13584,7 @@ li {
       padding-right: 0; }
     .category-wrapper:nth-child(2n + 1) {
       padding-left: 0; } }
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 575px) {
     .category-wrapper {
       padding-left: 0;
       padding-right: 0; } }
@@ -13594,6 +13604,9 @@ li {
       height: 500px;
       width: 100%;
       z-index: -2; }
+      @media screen and (max-width: 575px) {
+        .category-wrapper .category .image {
+          height: 400px; } }
     .category-wrapper .category:hover .overlay, .category-wrapper .category:focus .overlay, .category-wrapper .category:active .overlay {
       left: 0; }
     .category-wrapper .category:hover .title, .category-wrapper .category:focus .title, .category-wrapper .category:active .title {

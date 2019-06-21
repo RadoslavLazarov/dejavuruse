@@ -29,6 +29,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
+    
 }
 
 i {
@@ -160,7 +161,7 @@ li {
     display: flex;
     justify-content: center;
     overflow: hidden;
-    height: 450px;
+    height: 50vh;
     margin-bottom: 25px;
     z-index: -10;
     .background-image {
@@ -196,6 +197,9 @@ li {
             font-size: 4em;
             font-weight: 300;
             text-transform: uppercase;
+            @media (max-width: 414px) {
+                font-size: 3em;
+            }
         }
     }
 }
@@ -247,6 +251,9 @@ li {
         h1 {
             font-size: 3.5em;
             margin: 0;
+            @media (max-width: 414px) {
+                font-size: 2em;
+            }
         }
     } 
     .separator {
@@ -254,6 +261,9 @@ li {
         height: 50px;
         background-size: contain;
         background-repeat: no-repeat;
+        @media (max-width: 414px) {
+            width: 200px;
+        }
     }
     .summary {
         display: flex;
