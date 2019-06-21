@@ -13660,11 +13660,11 @@ li {
 
 .album-wrapper {
   padding: 10px; }
-  .album-wrapper:first-child, .album-wrapper:nth-child(2n + 1) {
+  .album-wrapper:nth-child(odd) {
     padding-left: 0; }
-  .album-wrapper:nth-child(2n) {
+  .album-wrapper:nth-child(even) {
     padding-right: 0; }
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 575px) {
     .album-wrapper {
       padding-left: 0;
       padding-right: 0; } }
@@ -13672,15 +13672,24 @@ li {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    padding-top: 56.25%; }
     .album-wrapper .album .title {
       position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
+      height: 100%;
       color: #fff;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300; }
+      .album-wrapper .album .title h1 {
+        margin: 0; }
       .album-wrapper .album .title .view-more {
         opacity: 0;
         transition: opacity 1s ease-in-out;
@@ -13691,7 +13700,7 @@ li {
           position: absolute;
           width: 1px;
           height: 0;
-          bottom: -140px;
+          bottom: 10%;
           left: 50%;
           background-color: #fff;
           transform: translateX(-50%);
@@ -13700,15 +13709,24 @@ li {
           -webkit-backface-visibility: hidden;
           -webkit-transform: translateZ(0) scale(1, 1); }
     .album-wrapper .album .image {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      height: 450px;
+      height: 100%;
       width: 100%;
       z-index: -2;
       transition: filter .5s ease-in-out; }
     .album-wrapper .album .overlay {
       position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
@@ -13722,7 +13740,7 @@ li {
       opacity: 1;
       transition: opacity .5s ease-in-out; }
       .album-wrapper .album:hover .view-more::after, .album-wrapper .album:focus .view-more::after, .album-wrapper .album:active .view-more::after {
-        height: 130px; }
+        height: 25%; }
 
 .photo-wrapper {
   overflow: hidden;

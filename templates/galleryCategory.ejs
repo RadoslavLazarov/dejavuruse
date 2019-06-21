@@ -1,9 +1,9 @@
 <% layout('common/layout/default') -%>
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-4">
         <% getGalleryAlbums.forEach(function(album) { %>
-            <div class="col-lg-6 album-wrapper" data-aos-once="true" data-aos-duration="800" data-aos-easing="ease-in-sine">
+            <div class="col-sm-6 album-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800" data-aos-easing="ease-in-sine">
                 <a href="/gallery/<%= currentCategory %>/<%= album.id %>" class="album">
                     <div class="title">
                         <h1><%= album.name[getLocale] %></h1>
