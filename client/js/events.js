@@ -9,7 +9,7 @@ $('.nav-button').on('click', function () {
 });
 
 // Fades out the whole page when clicking links
-$('a:not(.image, a[target="blank"], a[href^="tel:"])').click(function (e) {
+$('a:not(.image-wrapper, a[target="blank"], a[href^="tel:"])').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {

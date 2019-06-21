@@ -11,7 +11,7 @@ $('.nav-button').on('click', function () {
 });
 
 // Fades out the whole page when clicking links
-$('a:not(.image, a[target="blank"], a[href^="tel:"])').click(function (e) {
+$('a:not(.image-wrapper, a[target="blank"], a[href^="tel:"])').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {
@@ -62,7 +62,7 @@ require('./thirdParty/photoswipe');
 require('./events');
 require('./init');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6eea8a7e.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_3156d1fd.js","/")
 },{"./events":1,"./init":3,"./thirdParty/aos":4,"./thirdParty/jquery":5,"./thirdParty/photoswipe":6,"buffer":9,"e/U+97":14}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
@@ -75,7 +75,24 @@ $(function () {
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/init.js","/")
 },{"buffer":9,"e/U+97":14}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/* eslint-disable */
 window.AOS = require('aos');
+
+if (window.matchMedia('(min-width: 1201px)').matches) {
+    $('.album-wrapper:nth-child(1), .album-wrapper:nth-child(3n)').attr({
+        'data-aos': 'fade-right',
+
+    });
+    $('.album-wrapper:nth-child(2), .album-wrapper:nth-child(2n)').attr({
+        'data-aos': 'fade-left',
+
+    });
+} else if (window.matchMedia('(max-width: 1200px)').matches) {
+    $('.album-wrapper').attr({
+        'data-aos': 'fade-up',
+
+    });
+}
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/thirdParty\\aos.js","/thirdParty")
 },{"aos":7,"buffer":9,"e/U+97":14}],5:[function(require,module,exports){
@@ -132,7 +149,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             if (linkEl.children.length > 0) {
                 // <img> thumbnail element, retrieving thumbnail url
-                item.msrc = linkEl.children[0].getAttribute('src');
+                item.msrc = linkEl.children[0].getAttribute('data-src');
             }
 
             item.el = figureEl; // save link to element for getThumbBoundsFn
@@ -236,7 +253,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             getThumbBoundsFn: function (index) {
                 // See Options -> getThumbBoundsFn section of documentation for more info
-                var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                var thumbnail = items[index].el.getElementsByClassName('image')[0], // find thumbnail
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect();
 

@@ -1,16 +1,27 @@
 <% layout('common/layout/default') -%>
 
 <div class="container">
+    <div class="row page-description">
+        <div class="col-12 d-flex justify-content-center">
+            <img src="/static/images/graphics/separator-purple.png" alt="separator" class="separator">
+        </div>
+        <div class="col-12 heading">
+                <h1><%= album.name ? album.name[getLocale] : '' %></h1>
+                <h3><%= album.date ? album.date.getFullYear() : '' %></h3>
+        </div>
+        <div class="col-xl-6 col-md-8 summary">
+            <span><%= album.summary ? album.summary[getLocale] : '' %></span>
+        </div>
+    </div>
     <div class="row justify-content-center my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
         <% album.images.forEach(function(item) { %>
-            <figure class="col-xl-3 col-lg-4 col-sm-6 photo-wrapper" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
-                <a href="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" class="image" itemprop="contentUrl" data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">      
-                    <img src="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" itemprop="thumbnail" alt="Image description" />
+            <figure class="col-lg-3 col-sm-4 col-6 photo-wrapper" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
+                <a href="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" class="image-wrapper" itemprop="contentUrl" data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">
+                    <div class="image" style="background-image:url('/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>')" data-src="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" itemprop="thumbnail"></div>      
                     <div class="overlay">
                         <i class="far fa-eye"></i>
                     </div>
                 </a>
-                <figcaption itemprop="caption description">Image caption</figcaption>
             </figure>
         <% }); %>
     </div>

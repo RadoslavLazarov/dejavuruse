@@ -1,11 +1,13 @@
 <% layout('common/layout/default') -%>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <a href="/" class="button">
-            <%= translation.viewOurServices %>
-            <span></span>
-        </a>
+    <div class="row page-description">
+        <div class="col-12 d-flex justify-content-center">
+            <img src="/static/images/graphics/separator-purple.png" alt="" class="separator">
+        </div>
+        <div class="col-12 heading">
+            <h1><%= translation.checkOutOurDecorations %></h1>
+        </div>
     </div>
     <div class="row justify-content-center">
         <% getGalleryCategories.forEach(function(category) { %>
@@ -25,5 +27,11 @@
                 </a>
             </div>
         <% }); %>
+    </div>
+    <div class="row justify-content-center">
+        <a href="/" class="button">
+            <%= translation.viewOurServices %>
+            <span></span>
+        </a>
     </div>
 </div>

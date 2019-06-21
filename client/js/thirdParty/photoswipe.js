@@ -44,7 +44,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             if (linkEl.children.length > 0) {
                 // <img> thumbnail element, retrieving thumbnail url
-                item.msrc = linkEl.children[0].getAttribute('src');
+                item.msrc = linkEl.children[0].getAttribute('data-src');
             }
 
             item.el = figureEl; // save link to element for getThumbBoundsFn
@@ -148,7 +148,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             getThumbBoundsFn: function (index) {
                 // See Options -> getThumbBoundsFn section of documentation for more info
-                var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                var thumbnail = items[index].el.getElementsByClassName('image')[0], // find thumbnail
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect();
 

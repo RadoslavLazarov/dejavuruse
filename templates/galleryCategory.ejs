@@ -3,11 +3,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <% getGalleryAlbums.forEach(function(album) { %>
-            <div class="col-lg-6 album-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
+            <div class="col-lg-6 album-wrapper" data-aos-once="true" data-aos-duration="800" data-aos-easing="ease-in-sine">
                 <a href="/gallery/<%= currentCategory %>/<%= album.id %>" class="album">
                     <div class="title">
                         <h1><%= album.name[getLocale] %></h1>
-                        <span class="view-more">View more</span>
+                        <span class="view-more"><%= translation.viewMore %></span>
                     </div>
                     <% if (album.imageCover) { %>
                         <div class="image" style="background-image:url('/static/images/gallery/<%= url.currentPage %>/<%= album.id %>/<%= album.imageCover.link %>')"></div>

@@ -15,6 +15,12 @@ const galleryAlbums = new mongoose.Schema({
   imageCover: {
     type: Object,
   },
+  summary: {
+    type: Object,
+  },
+  date: {
+    type: Date,
+  },
   images: {
     type: Array,
   },

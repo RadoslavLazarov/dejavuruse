@@ -27,6 +27,10 @@ a:hover {
     text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
 i {
     font-weight: 500;
     color: $white;
@@ -157,7 +161,7 @@ li {
     justify-content: center;
     overflow: hidden;
     height: 450px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     z-index: -10;
     .background-image {
         position: absolute;
@@ -168,9 +172,10 @@ li {
         background-repeat: no-repeat;
         background-size: cover;
         z-index: -5;
-        transition: transform 10s ease-in;
+        transition: transform 15s ease-in-out;
+        transform: scale(1.4);
         &.loaded {
-            transform: scale(1.1);
+            transform: scale(1);
         }
     }
     .background-overlay {
@@ -225,5 +230,35 @@ li {
         transition: width 0.4s, height 0.4s;
         z-index: -1;
         background-color: $purple-dark;
+    }
+}
+
+.page-description {
+    display: flex;
+    justify-content: center;
+    color: $purple-dark;
+    margin-bottom: 25px;
+    .heading {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 2px;    
+        h1 {
+            font-size: 3.5em;
+            margin: 0;
+        }
+    } 
+    .separator {
+        width: 250px;
+    }
+    .summary {
+        display: flex;
+        justify-content: center;
+        span {
+            font-style: italic;
+            text-align: center;
+        }
+        
     }
 }
