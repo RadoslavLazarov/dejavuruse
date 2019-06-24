@@ -53,6 +53,26 @@ $(window).scroll(function () {
     }
 });
 
+// Animate gallery albums on scroll
+$.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+$(window).on('resize scroll', function () {
+    $('.album-wrapper .image').each(function () {
+        if ($(this).isInViewport()) {
+            $(this).css({ 'transform': 'scale(1)' });
+        } else {
+            $(this).css({ 'transform': 'scale(1.2)' });
+        }
+    });
+});
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":9,"e/U+97":14}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -62,7 +82,7 @@ require('./thirdParty/photoswipe');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_40ae2c34.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c9edf4d8.js","/")
 },{"./events":1,"./onLoad":3,"./thirdParty/aos":4,"./thirdParty/jquery":5,"./thirdParty/photoswipe":6,"buffer":9,"e/U+97":14}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */

@@ -2,9 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable quote-props */
 const fs = require('fs');
-
 const Categories = require('../models/categories');
-const { locale } = require('./getLocale');
 
 async function getPageResources(url) {
   const modelsDirectory = [];

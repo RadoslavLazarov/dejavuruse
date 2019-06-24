@@ -1,17 +1,12 @@
 .background-video-wrapper {
-    position: absolute;
+    @include absolute-0;
     display: flex;
     justify-content: center;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     overflow: hidden;
     height: 100vh;
     z-index: -100;
     .overlay {
-        height: 100%;
-        width: 100%;
+        @include height-width-100;
         //gradient top and bottom
         background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
     }  
@@ -27,8 +22,7 @@
         z-index: -120;
     }
     .summary.loaded {
-        position: absolute;
-        bottom: 20%;
+        @include position(absolute, auto, auto, 20%, auto);
         color: $white;
         animation: 2s ease-out 0s 1 slideInFromLeft;
         @media screen and (max-width: 1200px) {

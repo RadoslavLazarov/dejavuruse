@@ -50,3 +50,24 @@ $(window).scroll(function () {
         }
     }
 });
+
+// Animate gallery albums on scroll
+$.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+$(window).on('resize scroll', function () {
+    $('.album-wrapper .image').each(function () {
+        if ($(this).isInViewport()) {
+            $(this).css({ 'transform': 'scale(1)' });
+        } else {
+            $(this).css({ 'transform': 'scale(1.2)' });
+        }
+    });
+});
