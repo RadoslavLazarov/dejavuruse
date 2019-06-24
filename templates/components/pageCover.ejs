@@ -3,5 +3,5 @@
         <div class="background-image onload" style="background-image:url('<%= pageResources.imageCover %>')"></div>
     <% }; %>
     <div class="background-overlay"></div>
-    <div class="page-title"><h1><%= pageResources.name[getLocale] %></h1></div>
+    <div class="page-title"><a href="/<%= url.controller %><%= url.subPage ? `/${url.subPage}` : '' %>"><h1><%= pageResources.name[getLocale] %></h1></a></div>
 </div>

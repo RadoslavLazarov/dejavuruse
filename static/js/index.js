@@ -60,19 +60,18 @@ require('./thirdParty/jquery');
 require('./thirdParty/aos');
 require('./thirdParty/photoswipe');
 require('./events');
-require('./init');
+require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e32cda4e.js","/")
-},{"./events":1,"./init":3,"./thirdParty/aos":4,"./thirdParty/jquery":5,"./thirdParty/photoswipe":6,"buffer":9,"e/U+97":14}],3:[function(require,module,exports){
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_40ae2c34.js","/")
+},{"./events":1,"./onLoad":3,"./thirdParty/aos":4,"./thirdParty/jquery":5,"./thirdParty/photoswipe":6,"buffer":9,"e/U+97":14}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
 $(function () {
-    AOS.init();
     $('#loading-screen').delay(500).fadeOut('slow');
     $('.onload').addClass('loaded');
 });
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/init.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/onLoad.js","/")
 },{"buffer":9,"e/U+97":14}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
@@ -85,7 +84,11 @@ if (window.matchMedia('(min-width: 576px)').matches) {
     $('.album-wrapper:nth-child(even)').attr({
         'data-aos': 'fade-left',
     });
-} 
+}
+
+$(function () {
+    AOS.init();
+});
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/thirdParty\\aos.js","/thirdParty")
 },{"aos":7,"buffer":9,"e/U+97":14}],5:[function(require,module,exports){

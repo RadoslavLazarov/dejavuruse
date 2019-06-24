@@ -12906,8 +12906,7 @@ li {
   justify-content: center;
   overflow: hidden;
   height: 50vh;
-  margin-bottom: 25px;
-  z-index: -10; }
+  margin-bottom: 25px; }
   .background-page-wrapper .background-image {
     position: absolute;
     top: 0;
@@ -12931,16 +12930,19 @@ li {
   .background-page-wrapper .page-title {
     position: absolute;
     top: 50%;
-    text-align: center;
-    color: #fff; }
+    text-align: center; }
     .background-page-wrapper .page-title h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 4em;
       font-weight: 300;
-      text-transform: uppercase; }
+      color: #fff;
+      text-transform: uppercase;
+      transition: transform .3s ease-in-out; }
       @media (max-width: 414px) {
         .background-page-wrapper .page-title h1 {
           font-size: 3em; } }
+      .background-page-wrapper .page-title h1:hover {
+        transform: scale(1.1); }
 
 .button {
   position: relative;
@@ -13006,6 +13008,7 @@ li {
 
 #header-default {
   position: absolute;
+  z-index: 10;
   width: 100%;
   font-family: 'Cormorant Garamond', serif; }
   @media screen and (min-width: 1201px) {
@@ -13602,12 +13605,14 @@ li {
     position: relative;
     display: flex;
     overflow: hidden;
+    height: 100%;
     color: #fff; }
     .category-wrapper .category .image {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      height: 500px;
+      padding-top: 146%;
+      /* ~ 9:16 Aspect Ratio */
       width: 100%;
       z-index: -2; }
       @media screen and (max-width: 575px) {
@@ -13673,7 +13678,8 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 56.25%; }
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */ }
     .album-wrapper .album .title {
       position: absolute;
       top: 0;
@@ -13690,6 +13696,12 @@ li {
       font-weight: 300; }
       .album-wrapper .album .title h1 {
         margin: 0; }
+        @media screen and (max-width: 1200px) {
+          .album-wrapper .album .title h1 {
+            font-size: 2.250em; } }
+        @media screen and (max-width: 992px) {
+          .album-wrapper .album .title h1 {
+            font-size: 1.750em; } }
       .album-wrapper .album .title .view-more {
         opacity: 0;
         transition: opacity 1s ease-in-out;
@@ -13754,7 +13766,8 @@ li {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    padding-top: 100%; }
+    padding-top: 100%;
+    /* 1:1 Aspect Ratio */ }
     .photo-wrapper .image-wrapper .image {
       position: absolute;
       top: 0;
@@ -13779,14 +13792,14 @@ li {
       font-size: 2.5em;
       opacity: 0;
       transition: top .2s ease-in-out, opacity .2s ease-in-out; }
-  .photo-wrapper:hover {
+  .photo-wrapper:hover, .photo-wrapper:focus, .photo-wrapper:active {
     cursor: pointer; }
-    .photo-wrapper:hover .image-wrapper .image {
+    .photo-wrapper:hover .image-wrapper .image, .photo-wrapper:focus .image-wrapper .image, .photo-wrapper:active .image-wrapper .image {
       transform: scale(1.1);
       transition: transform .3s ease-in-out; }
-    .photo-wrapper:hover .overlay {
+    .photo-wrapper:hover .overlay, .photo-wrapper:focus .overlay, .photo-wrapper:active .overlay {
       background-color: rgba(255, 255, 255, 0.2);
       transition: background-color .3s ease-in-out; }
-      .photo-wrapper:hover .overlay i {
+      .photo-wrapper:hover .overlay i, .photo-wrapper:focus .overlay i, .photo-wrapper:active .overlay i {
         top: 45%;
         opacity: .8; }

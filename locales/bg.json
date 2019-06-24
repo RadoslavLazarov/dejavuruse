@@ -7,5 +7,7 @@
 	"cookies": "Бисквитки",
 	"viewOurServices": "вижте нашите услуги",
 	"viewMore": "Виж повече",
-	"checkOutOurDecorations": "Разгледайте нашите украси"
+	"checkOutOurDecorations": {
+		"test": "Разгледайте нашите украси"
+	}
 }

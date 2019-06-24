@@ -163,7 +163,7 @@ li {
     overflow: hidden;
     height: 50vh;
     margin-bottom: 25px;
-    z-index: -10;
+    // z-index: -10;
     .background-image {
         position: absolute;
         top: 0;
@@ -191,14 +191,18 @@ li {
         position: absolute;
         top: 50%;
         text-align: center;
-        color: $white;
         h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4em;
             font-weight: 300;
+            color: $white;
             text-transform: uppercase;
+            transition: transform .3s ease-in-out;
             @media (max-width: 414px) {
                 font-size: 3em;
+            }
+            &:hover {
+                transform: scale(1.1);
             }
         }
     }

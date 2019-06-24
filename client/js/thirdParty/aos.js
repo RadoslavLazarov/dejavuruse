@@ -8,4 +8,8 @@ if (window.matchMedia('(min-width: 576px)').matches) {
     $('.album-wrapper:nth-child(even)').attr({
         'data-aos': 'fade-left',
     });
-} 
+}
+
+$(function () {
+    AOS.init();
+});

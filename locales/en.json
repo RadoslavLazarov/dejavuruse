@@ -7,5 +7,7 @@
     "cookies": "Cookies",
     "viewOurServices": "view our services",
     "viewMore": "View more",
-    "checkOutOurDecorations": "Check out our decorations"
+    "checkOutOurDecorations": {
+        "test": "Check out our decorations"
+    }
 }

@@ -6,10 +6,10 @@
             <div class="separator" style="background-image:url('/static/images/graphics/separator-purple.png')"></div>
         </div>
         <div class="col-12 heading">
-            <h1><%= translation.checkOutOurDecorations %></h1>
+            <h1><%= translation.checkOutOurDecorations.test %></h1>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-4">
         <% getGalleryCategories.forEach(function(category) { %>
             <div class="col-xl-3 col-lg-4 col-sm-6 category-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
                 <a href="gallery/<%= category.id %>" class="category">

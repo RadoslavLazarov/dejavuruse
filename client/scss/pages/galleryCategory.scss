@@ -15,7 +15,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 56.25%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
         .title {
             position: absolute;
             top: 0;
@@ -32,6 +32,12 @@
             font-weight: 300;
             h1 {
                 margin: 0;
+                @media screen and (max-width: 1200px) {
+                    font-size: 2.250em;
+                }
+                @media screen and (max-width: 992px) {
+                    font-size: 1.750em;
+                }
             }
             .view-more {
                 opacity: 0;
