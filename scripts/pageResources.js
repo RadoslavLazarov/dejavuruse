@@ -14,7 +14,7 @@ async function getPageResources(url) {
   });
 
   if (url.controller) {
-    categories = await Categories.findOne({ id: url.controller }).select('name meta imageCover subPages -_id');
+    categories = await Categories.findOne({ id: url.controller }).select('name meta imageCover subPages content -_id');
     pageResources = categories;
     if (url.currentPage !== url.controller) {
       if (categories.subPages && modelsDirectory.indexOf(categories.subPages) === 1) {
@@ -32,6 +32,7 @@ async function getPageResources(url) {
   } else {
     pageResources = await Categories.findOne({ id: 'home' });
   }
+
   return pageResources;
 }
 

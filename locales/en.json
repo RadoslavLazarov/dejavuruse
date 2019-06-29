@@ -9,5 +9,20 @@
     "viewMore": "View more",
     "checkOutOurDecorations": {
         "test": "Check out our decorations"
+    },
+    "open": "Open",
+    "closed": "Closed",
+    "days": {
+        "weekly": {
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday"
+        },
+        "weekend": {
+            "saturday": "Saturday",
+            "sunday": "Sunday"
+        }
     }
 }

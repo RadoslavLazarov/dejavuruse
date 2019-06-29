@@ -25,6 +25,9 @@ const category = new mongoose.Schema({
   subPages: {
     type: String,
   },
+  content: {
+    type: Object,
+  },
 });
 
 module.exports = mongoose.model('Category', category);

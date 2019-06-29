@@ -1,7 +1,7 @@
-<div class="background-page-wrapper">
-    <% if(pageResources) { %>
+<% if(pageResources.imageCover) { %>
+    <div class="background-page-wrapper">
         <div class="background-image onload" style="background-image:url('<%= pageResources.imageCover %>')"></div>
-    <% }; %>
-    <div class="background-overlay"></div>
-    <div class="page-title"><a href="/<%= url.controller %><%= url.subPage ? `/${url.subPage}` : '' %>"><h1><%= pageResources.name[getLocale] %></h1></a></div>
-</div>
+        <div class="background-overlay"></div>
+        <div class="page-title"><a href="/<%= url.controller %><%= url.subPage ? `/${url.subPage}` : '' %>"><h1><%= pageResources.name[getLocale] %></h1></a></div>
+    </div>
+<% }; %>

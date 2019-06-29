@@ -24,3 +24,10 @@
     height: 100%;
     width: 100%;
 }
+
+// @mixin prefix($property, $value) {
+//     #{'-' + webkit + '-' + $property}: $value;
+//     #{'-' + moz + '-' + $property}: $value;
+//     #{'-' + o + '-' + $property}: $value;
+//     #{$property}: $value;
+// }

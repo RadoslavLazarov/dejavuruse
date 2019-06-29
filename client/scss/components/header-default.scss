@@ -202,6 +202,7 @@
             width: 100%;
         }
         @media screen and (max-width: 1200px) {
+            z-index: 1;
             width: 200px;
         }
         @media screen and (max-width: 576px) {

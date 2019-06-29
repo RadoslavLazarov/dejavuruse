@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const eslint = require('gulp-eslint');
 const browserify = require('gulp-browserify');
+const prefix = require('gulp-autoprefixer');
 // const concat = require('gulp-concat');
 
 gulp.task('lintChecker', () => gulp.src(['./*.js', './routes/*.js', './static/js/*.js'])
@@ -11,6 +12,7 @@ gulp.task('lintChecker', () => gulp.src(['./*.js', './routes/*.js', './static/js
 
 gulp.task('scssCompiler', () => gulp.src('./client/scss/style.scss')
   .pipe(sass().on('error', sass.logError))
+  .pipe(prefix({ overrideBrowserslist: ['defaults'] }))
   .pipe(gulp.dest('./static/css/')));
 
 gulp.task('scss:watch', () => {

@@ -9,5 +9,20 @@
 	"viewMore": "Виж повече",
 	"checkOutOurDecorations": {
 		"test": "Разгледайте нашите украси"
+	},
+	"open": "Отворено",
+	"closed": "Затворено",
+	"days": {
+		"weekly": {
+			"monday": "Понеделник",
+			"tuesday": "Вторник",
+			"wednesday": "Сряда",
+			"thursday": "Четвъртък",
+			"friday": "Петък"
+		},
+		"weekend": {
+			"saturday": "Събота",
+			"sunday": "Неделя"
+		}
 	}
 }
