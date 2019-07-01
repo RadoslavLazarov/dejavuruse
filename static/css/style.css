@@ -14783,9 +14783,19 @@ li {
         top: 45%;
         opacity: .8; }
 
-.contacts-wrapper .fas {
-  color: #755275;
-  font-size: 2.5em; }
+.contacts-wrapper .contact {
+  display: -webkit-box;
+  display: flex;
+  padding: 25px 0; }
+  .contacts-wrapper .contact__icon {
+    color: #755275;
+    font-size: 2.5em; }
+  .contacts-wrapper .contact__description {
+    margin: 0 0 0 25px; }
+  .contacts-wrapper .contact__name {
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: capitalize;
+    text-align: left; }
 
 #map {
   height: 50vh; }

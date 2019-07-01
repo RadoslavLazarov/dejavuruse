@@ -12,17 +12,9 @@
     },
     "open": "Open",
     "closed": "Closed",
-    "days": {
-        "weekly": {
-            "monday": "Monday",
-            "tuesday": "Tuesday",
-            "wednesday": "Wednesday",
-            "thursday": "Thursday",
-            "friday": "Friday"
-        },
-        "weekend": {
-            "saturday": "Saturday",
-            "sunday": "Sunday"
-        }
+    "contacts": {
+        "address": "address",
+        "phone": "phone",
+        "email": "E-Mail"
     }
 }

@@ -12,17 +12,9 @@
 	},
 	"open": "Отворено",
 	"closed": "Затворено",
-	"days": {
-		"weekly": {
-			"monday": "Понеделник",
-			"tuesday": "Вторник",
-			"wednesday": "Сряда",
-			"thursday": "Четвъртък",
-			"friday": "Петък"
-		},
-		"weekend": {
-			"saturday": "Събота",
-			"sunday": "Неделя"
-		}
+	"contacts": {
+		"address": "адрес",
+		"phone": "телефон",
+		"email": "E-Mail"
 	}
 }
