@@ -4,15 +4,15 @@
     <div class="row justify-content-center p-4">
         <% getGalleryAlbums.forEach(function(album) { %>
             <div class="col-sm-6 album-wrapper" data-aos="fade-up" data-aos-once="true" data-aos-duration="800" data-aos-easing="ease-in-sine">
-                <a href="/gallery/<%= currentCategory %>/<%= album.id %>" class="album">
-                    <div class="title">
+                <a href="/gallery/<%= currentCategory %>/<%= album.id %>" class="album fadeout-page">
+                    <div class="album__title">
                         <h1><%= album.name[getLocale] %></h1>
                         <span class="view-more"><%= translation.viewMore %></span>
                     </div>
                     <% if (album.imageCover) { %>
-                        <div class="image" style="background-image:url('/static/images/gallery/<%= url.currentPage %>/<%= album.id %>/<%= album.imageCover.link %>')"></div>
+                        <div class="album__image" style="background-image:url('/static/images/gallery/<%= url.currentPage %>/<%= album.id %>/<%= album.imageCover.link %>')"></div>
                     <% } %>
-                    <div class="overlay"></div>
+                    <div class="album__overlay"></div>
                 </a>
             </div>
         <% }); %>

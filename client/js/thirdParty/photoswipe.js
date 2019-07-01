@@ -148,7 +148,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             getThumbBoundsFn: function (index) {
                 // See Options -> getThumbBoundsFn section of documentation for more info
-                var thumbnail = items[index].el.getElementsByClassName('image')[0], // find thumbnail
+                var thumbnail = items[index].el.getElementsByClassName('photo__image')[0], // find thumbnail
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect();
 

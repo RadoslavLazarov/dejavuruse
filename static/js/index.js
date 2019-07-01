@@ -4,14 +4,14 @@
 
 // Mobile menu toggle
 $('.nav-button').on('click', function () {
-    $('nav[role="main-nav"]>ul').toggleClass('visibility-xl-visible');
-    $('.socials-wrapper').toggleClass('visibility-xl-visible');
-    $('.language-wrapper').toggleClass('visibility-xl-visible');
-    $('header').toggleClass('mobile-menu-open');
+    $('.navigation>ul').toggleClass('visibility-xl-visible');
+    $('.socials').toggleClass('visibility-xl-visible');
+    $('.languages').toggleClass('visibility-xl-visible');
+    $('.header').toggleClass('header--mobile-menu-open');
 });
 
 // Fades out the whole page when clicking links
-$('a:not(.image-wrapper, a[target="blank"], a[href^="tel:"])').click(function (e) {
+$('.fadeout-page').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {
@@ -41,30 +41,25 @@ $('.button')
 
 // Fixed header on scroll
 $(window).scroll(function () {
-    var sticky = $('#header-default'),
+    var $header = $('.header'),
         scroll = $(window).scrollTop();
 
     if (window.matchMedia('(min-width: 1201px)').matches) {
-        if (scroll >= 100) {
-            sticky.addClass('fixed');
+        if (scroll >= 300) {
+            $header.addClass('header--fixed');
+            $header.addClass('header--animated');
         } else {
-            sticky.removeClass('fixed');
+            if (scroll < 200) {
+                $header.removeClass('header--fixed');
+            }
+            $header.removeClass('header--animated');
         }
     }
 });
 
 // Animate gallery albums on scroll
-$.fn.isInViewport = function () {
-    var elementTop = $(this).offset().top;
-    var elementBottom = elementTop + $(this).outerHeight();
-    var viewportTop = $(window).scrollTop();
-    var viewportBottom = viewportTop + $(window).height();
-
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-};
-
 $(window).on('resize scroll', function () {
-    $('.album-wrapper .image').each(function () {
+    $('.album-wrapper .album__image').each(function () {
         if ($(this).isInViewport()) {
             $(this).css({ 'transform': 'scale(1)' });
         } else {
@@ -72,6 +67,7 @@ $(window).on('resize scroll', function () {
         }
     });
 });
+
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":11,"e/U+97":16}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -83,13 +79,26 @@ require('./functions');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_16b5cc30.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_17affbbe.js","/")
 },{"./events":1,"./functions":3,"./onLoad":4,"./thirdParty/aos":5,"./thirdParty/googleMaps":6,"./thirdParty/jquery":7,"./thirdParty/photoswipe":8,"buffer":11,"e/U+97":16}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
 
 /**
- * Checking if store is open now
+ * Checking if element is in viewport. The function is attached to jQuery Object.
+ * @returns {Boolean}
+ */
+$.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+/**
+ * Checking if store is open now.
  * @returns {Boolean}
  */
 var workingTime = (function () {
@@ -98,10 +107,10 @@ var workingTime = (function () {
     var hours = date.getHours();
     var isOpen;
 
-    $('.day').each(function (index, value) {
+    $('.working-time__day').each(function (index, value) {
         var el = $(value);
         var $dayIndex = el.data('day-index');
-        var $hour = el.find('.hour');
+        var $hour = el.find('.working-time__hour');
         var hourFrom;
         var hourTo;
 
@@ -112,10 +121,10 @@ var workingTime = (function () {
 
         if ($dayIndex === day) {
             if (hours >= hourFrom && hours < hourTo) {
-                $('.working-time .closed').hide();
+                $('.working-time--closed').hide();
                 isOpen = true;
             } else {
-                $('.working-time .open').hide();
+                $('.working-time--open').hide();
                 isOpen = false;
             }
         }
@@ -573,7 +582,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
             getThumbBoundsFn: function (index) {
                 // See Options -> getThumbBoundsFn section of documentation for more info
-                var thumbnail = items[index].el.getElementsByClassName('image')[0], // find thumbnail
+                var thumbnail = items[index].el.getElementsByClassName('photo__image')[0], // find thumbnail
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect();
 

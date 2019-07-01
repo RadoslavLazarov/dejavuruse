@@ -17,7 +17,7 @@
         padding: 2px;
     }
     
-    .image-wrapper {
+    .photo {
         position: relative;
         display: block;
         // height: 100%;
@@ -35,33 +35,33 @@
         //     min-height: 100%;
         //     transition: transform .3s ease-in-out;
         // }
-        .image {
+        &__image {
             @include absolute-0;
             background-position: center;
             // background-repeat: no-repeat;
             background-size: cover;
             transition: transform .3s ease-in-out;
         }
-    }
-    .overlay {
-        @include position(absolute, 0, auto, auto, auto);
-        @include flex-center;
-        @include height-width-100;
-        transition: background-color .3s ease-in-out;
-        i {
-            @include position(absolute, 35%, auto, auto, auto);
-            font-size: 2.5em;
-            opacity: 0;
-            transition: top .2s ease-in-out, opacity .2s ease-in-out;
+        &__overlay {
+            @include position(absolute, 0, auto, auto, auto);
+            @include flex-center;
+            @include height-width-100;
+            transition: background-color .3s ease-in-out;
+            i {
+                @include position(absolute, 35%, auto, auto, auto);
+                font-size: 2.5em;
+                opacity: 0;
+                transition: top .2s ease-in-out, opacity .2s ease-in-out;
+            }
         }
     }
     &:hover, &:focus, &:active {
         cursor: pointer;
-        .image-wrapper .image {
+        .photo .photo__image {
             transform: scale(1.1);
             transition: transform .3s ease-in-out;
         }
-        .overlay {
+        .photo__overlay {
             background-color: rgba($white, 0.2);
             transition: background-color .3s ease-in-out;
             i {

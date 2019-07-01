@@ -15,7 +15,7 @@
         @include flex-center;
         padding-top: 56.25%; /* 16:9 Aspect Ratio */
         overflow: hidden;
-        .title {
+        &__title {
             @include absolute-0;
             @include flex-center;
             flex-direction: column;
@@ -51,7 +51,7 @@
                 }
             }
         }
-        .image {
+        &__image {
             @include absolute-0;       
             background-position: center;
             background-repeat: no-repeat;
@@ -62,17 +62,17 @@
             // transition: filter .5s ease-in-out;
             transition: transform 2s ease;
         }
-        .overlay {
+        &__overlay {
             @include absolute-0;
             @include height-width-100;
             z-index: -1;
             transition: background-color .5s ease-in-out;
         }
         &:hover , &:focus, &:active {
-            .image {
+            .album__image {
                 // transition: filter .5s ease-in-out;
             }
-            .overlay {
+            .album__overlay {
                 background-color: rgba($black, 0.6);
                 transition: background-color .5s ease-in-out;
             }

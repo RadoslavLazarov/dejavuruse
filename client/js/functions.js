@@ -1,7 +1,20 @@
 /* eslint-disable */
 
 /**
- * Checking if store is open now
+ * Checking if element is in viewport. The function is attached to jQuery Object.
+ * @returns {Boolean}
+ */
+$.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+/**
+ * Checking if store is open now.
  * @returns {Boolean}
  */
 var workingTime = (function () {
@@ -10,10 +23,10 @@ var workingTime = (function () {
     var hours = date.getHours();
     var isOpen;
 
-    $('.day').each(function (index, value) {
+    $('.working-time__day').each(function (index, value) {
         var el = $(value);
         var $dayIndex = el.data('day-index');
-        var $hour = el.find('.hour');
+        var $hour = el.find('.working-time__hour');
         var hourFrom;
         var hourTo;
 
@@ -24,10 +37,10 @@ var workingTime = (function () {
 
         if ($dayIndex === day) {
             if (hours >= hourFrom && hours < hourTo) {
-                $('.working-time .closed').hide();
+                $('.working-time--closed').hide();
                 isOpen = true;
             } else {
-                $('.working-time .open').hide();
+                $('.working-time--open').hide();
                 isOpen = false;
             }
         }

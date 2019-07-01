@@ -1,11 +1,12 @@
-<% layout('common/layout/default') -%>
+<% layout('common/layout/contacts') -%>
 <%  const days = pageResources.content.workingTime.days; %>
-<div class="container-fluid p-0" id="contacts-wrapper">
+<div class="container-fluid p-0 contacts-wrapper">
     <div class="row no-gutters justify-content-center">
         <div class="col-8">
             <div class="row">
                 <div class="col-4">
                     <i class="fas fa-map-marker-alt"></i>
+                    <span>Address</span>
                 </div>
                 <div class="col-4">
                     <i class="fas fa-phone"></i>
@@ -17,13 +18,13 @@
         </div>
         <div class="col-12 d-flex justify-content-center">
             <div class="col-4 working-time" data-weekly="">
-                <div class="open"><%= translation.open %></div>
-                <div class="closed"><%= translation.closed %></div>
+                <div class="working-time--open"><%= translation.open %></div>
+                <div class="working-time--closed"><%= translation.closed %></div>
                 <%  days.forEach(function(item) { %>
-                        <div class="day" data-day-index="<%= item.index %>">
-                            <span><%= item.day[getLocale] %></span>
-                            <span class="hour"><%= item.hours[getLocale] %></span>
-                        </div>
+                    <div class="working-time__day" data-day-index="<%= item.index %>">
+                        <span><%= item.day[getLocale] %></span>
+                        <span class="working-time__hour"><%= item.hours[getLocale] %></span>
+                    </div>
                 <% }); %>     
             </div>
         </div>

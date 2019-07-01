@@ -2,14 +2,14 @@
 
 // Mobile menu toggle
 $('.nav-button').on('click', function () {
-    $('nav[role="main-nav"]>ul').toggleClass('visibility-xl-visible');
-    $('.socials-wrapper').toggleClass('visibility-xl-visible');
-    $('.language-wrapper').toggleClass('visibility-xl-visible');
-    $('header').toggleClass('mobile-menu-open');
+    $('.navigation>ul').toggleClass('visibility-xl-visible');
+    $('.socials').toggleClass('visibility-xl-visible');
+    $('.languages').toggleClass('visibility-xl-visible');
+    $('.header').toggleClass('header--mobile-menu-open');
 });
 
 // Fades out the whole page when clicking links
-$('a:not(.image-wrapper, a[target="blank"], a[href^="tel:"])').click(function (e) {
+$('.fadeout-page').click(function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {
@@ -39,30 +39,25 @@ $('.button')
 
 // Fixed header on scroll
 $(window).scroll(function () {
-    var sticky = $('#header-default'),
+    var $header = $('.header'),
         scroll = $(window).scrollTop();
 
     if (window.matchMedia('(min-width: 1201px)').matches) {
-        if (scroll >= 100) {
-            sticky.addClass('fixed');
+        if (scroll >= 300) {
+            $header.addClass('header--fixed');
+            $header.addClass('header--animated');
         } else {
-            sticky.removeClass('fixed');
+            if (scroll < 200) {
+                $header.removeClass('header--fixed');
+            }
+            $header.removeClass('header--animated');
         }
     }
 });
 
 // Animate gallery albums on scroll
-$.fn.isInViewport = function () {
-    var elementTop = $(this).offset().top;
-    var elementBottom = elementTop + $(this).outerHeight();
-    var viewportTop = $(window).scrollTop();
-    var viewportBottom = viewportTop + $(window).height();
-
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-};
-
 $(window).on('resize scroll', function () {
-    $('.album-wrapper .image').each(function () {
+    $('.album-wrapper .album__image').each(function () {
         if ($(this).isInViewport()) {
             $(this).css({ 'transform': 'scale(1)' });
         } else {

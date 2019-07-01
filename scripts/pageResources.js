@@ -37,10 +37,15 @@ async function getPageResources(url) {
 }
 
 async function getNavCategories() {
-  const mainCategories = await Categories.find(
-    { isVisible: true }, null, { sort: { priority: 1 } },
-  );
+  const mainCategories = {};
 
+  mainCategories.left = await Categories.find(
+    { isVisible: true, navPosition: 'left' }, null, { sort: { priority: 1 } },
+  );
+  mainCategories.right = await Categories.find(
+    { isVisible: true, navPosition: 'right' }, null, { sort: { priority: 1 } },
+  );
+  console.log(mainCategories.length);
   return mainCategories;
 }
 

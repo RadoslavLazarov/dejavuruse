@@ -7,6 +7,9 @@ const category = new mongoose.Schema({
   priority: {
     type: Number,
   },
+  navPosition: {
+    type: String,
+  },
   name: {
     type: Object,
   },
