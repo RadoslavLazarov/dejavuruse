@@ -1,26 +1,43 @@
 .contacts-wrapper {
     .contact {
         display: flex;
-        padding: 25px 0;
+        flex-direction: column;
+        padding-top: 25px;
+        padding-bottom: 25px;
         &__icon {
-            color: $purple-dark;
-            font-size: 2.5em;
+            text-align: center;
+            i {
+                color: $purple-dark;
+                font-size: 2.5em;
+            }
         }
         &__description {
-            margin: 0 0 0 25px;
+            padding: 10px 0;
+            margin: 0;
+
         }
         &__name {
+            text-align: center;
             font-family: 'Cormorant Garamond', serif;
             text-transform: capitalize;
-            text-align: left;
-            // font-size: 1.5em;
+        }
+        &__value {
+            text-align: center;
+            a {
+                color: inherit;
+            }
         }
     }
 }
 
 
 #map {
-    height: 50vh;
+    @media (min-height: 451px) {
+        height: 450px;
+    }
+    @media (max-height: 450px) {
+        height: 100vh;
+    }
 }
 
 .working-time__day {

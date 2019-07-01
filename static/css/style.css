@@ -13558,6 +13558,22 @@ figure {
 li {
   list-style-type: none; }
 
+/* Hide HTML video play button on iOS */
+video::-webkit-media-controls {
+  display: none !important; }
+
+*::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none; }
+
+*::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none; }
+
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none; }
+
 @media (min-width: 576px) {
   .container {
     max-width: 100%; } }
@@ -13680,8 +13696,13 @@ li {
   -webkit-box-pack: center;
           justify-content: center;
   overflow: hidden;
-  height: 50vh;
   margin-bottom: 25px; }
+  @media (min-height: 451px) {
+    .page-banner {
+      min-height: 450px; } }
+  @media (max-height: 450px) {
+    .page-banner {
+      height: 100vh; } }
   .page-banner__image {
     position: absolute;
     top: 0;
@@ -14786,19 +14807,35 @@ li {
 .contacts-wrapper .contact {
   display: -webkit-box;
   display: flex;
-  padding: 25px 0; }
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding-top: 25px;
+  padding-bottom: 25px; }
   .contacts-wrapper .contact__icon {
-    color: #755275;
-    font-size: 2.5em; }
+    text-align: center; }
+    .contacts-wrapper .contact__icon i {
+      color: #755275;
+      font-size: 2.5em; }
   .contacts-wrapper .contact__description {
-    margin: 0 0 0 25px; }
+    padding: 10px 0;
+    margin: 0; }
   .contacts-wrapper .contact__name {
+    text-align: center;
     font-family: 'Cormorant Garamond', serif;
-    text-transform: capitalize;
-    text-align: left; }
+    text-transform: capitalize; }
+  .contacts-wrapper .contact__value {
+    text-align: center; }
+    .contacts-wrapper .contact__value a {
+      color: inherit; }
 
-#map {
-  height: 50vh; }
+@media (min-height: 451px) {
+  #map {
+    height: 450px; } }
+
+@media (max-height: 450px) {
+  #map {
+    height: 100vh; } }
 
 .working-time__day {
   display: -webkit-box;

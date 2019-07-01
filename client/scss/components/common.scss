@@ -44,6 +44,27 @@ li {
     list-style-type: none;
 }
 
+/* Hide HTML video play button on iOS */
+
+video::-webkit-media-controls {
+    display:none !important;
+}
+
+*::-webkit-media-controls-panel {
+    display: none!important;
+    -webkit-appearance: none;
+}
+
+*::-webkit-media-controls-play-button {
+    display: none!important;
+    -webkit-appearance: none;
+}
+
+*::-webkit-media-controls-start-playback-button {
+    display: none!important;
+    -webkit-appearance: none;
+}
+
 .container {
     @media (min-width: 576px) {
         max-width: 100%; 
@@ -149,9 +170,13 @@ li {
     display: flex;
     justify-content: center;
     overflow: hidden;
-    height: 50vh;
     margin-bottom: 25px;
-    // z-index: -10;
+    @media (min-height: 451px) {
+        min-height: 450px;
+    }
+    @media (max-height: 450px) {
+        height: 100vh;
+    }
     &__image {
         @include position(absolute, 0, auto, auto, auto);
         @include height-width-100;
