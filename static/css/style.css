@@ -14032,6 +14032,9 @@ video::-webkit-media-controls {
       @media screen and (max-width: 576px) {
         .header .logo--big {
           width: 150px; } }
+      @media screen and (max-height: 576px) {
+        .header .logo--big {
+          width: 150px; } }
     .header .logo--small {
       display: none;
       width: 34px; }
@@ -14518,15 +14521,21 @@ video::-webkit-media-controls {
     .home-background .summary__title {
       font-family: 'Cormorant Garamond', serif;
       text-align: center; }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 576px) {
         .home-background .summary__title {
           font-size: 1.5em; } }
+      @media screen and (max-height: 576px) {
+        .home-background .summary__title {
+          display: none; } }
     .home-background .summary__text {
       font-size: 1.125em;
       text-align: center; }
       @media screen and (max-width: 576px) {
         .home-background .summary__text {
           font-size: 0.938em; } }
+      @media screen and (max-height: 576px) {
+        .home-background .summary__text {
+          display: none; } }
 
 .category-wrapper {
   overflow: hidden;

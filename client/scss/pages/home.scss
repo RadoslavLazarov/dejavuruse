@@ -34,8 +34,11 @@
         &__title {
             font-family: 'Cormorant Garamond', serif;
             text-align: center;
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 576px) {
                 font-size: 1.5em;
+            }
+            @media screen and (max-height: 576px) {
+                display: none;
             }
         }
         &__text {
@@ -43,6 +46,9 @@
             text-align: center;
             @media screen and (max-width: 576px) {
                 font-size: 0.938em;
+            }
+            @media screen and (max-height: 576px) {
+                display: none;
             }
         }
     }

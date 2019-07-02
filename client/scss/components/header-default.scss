@@ -181,6 +181,9 @@
             @media screen and (max-width: 576px) {
                 width: 150px;
             }
+            @media screen and (max-height: 576px) {
+                width: 150px;
+            }
         }
         &--small {
             display: none;
