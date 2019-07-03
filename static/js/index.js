@@ -68,6 +68,25 @@ $(window).on('resize scroll', function () {
     });
 });
 
+// Animate scroll to Google Maps
+$('a[href="#map"]').on('click', function () {
+    var thisHref = $(this).attr('href');
+    var $el = $(thisHref);
+    var elOffset = $el.offset().top;
+    var elHeight = $el.height();
+    var windowHeight = $(window).innerHeight();
+    var offset;
+
+    if (elHeight < windowHeight) {
+        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+    }
+    else {
+        offset = elOffset;
+    }
+
+    $('html, body').animate({ scrollTop: offset }, 700);
+});
+
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":11,"e/U+97":16}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -79,7 +98,7 @@ require('./functions');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a1a64ce5.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b4f61507.js","/")
 },{"./events":1,"./functions":3,"./onLoad":4,"./thirdParty/aos":5,"./thirdParty/googleMaps":6,"./thirdParty/jquery":7,"./thirdParty/photoswipe":8,"buffer":11,"e/U+97":16}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
@@ -107,10 +126,10 @@ var workingTime = (function () {
     var hours = date.getHours();
     var isOpen;
 
-    $('.working-time__day').each(function (index, value) {
-        var el = $(value);
-        var $dayIndex = el.data('day-index');
-        var $hour = el.find('.working-time__hour');
+    $('.working-time__row').each(function (index, value) {
+        var $el = $(value);
+        var dayIndex = $el.data('day-index');
+        var $hour = $el.find('.working-time__hour');
         var hourFrom;
         var hourTo;
 
@@ -119,12 +138,25 @@ var workingTime = (function () {
             hourTo = $hour.text().split('–')[1].split(':')[0];
         }
 
-        if ($dayIndex === day) {
+        if (dayIndex === day) {
+            $el.addClass('working-time--current-day');
             if (hours >= hourFrom && hours < hourTo) {
-                $('.working-time--closed').hide();
+                if (hourTo - hours === 1) {
+                    $('.working-time').addClass('working-time__closes-soon');
+                    $('.working-time--closes-soon').show();
+                } else {
+                    $('.working-time').addClass('working-time__open');
+                    $('.working-time--open').show();
+                }
                 isOpen = true;
             } else {
-                $('.working-time--open').hide();
+                $('.working-time').addClass('working-time__closed');
+                if (hourFrom - hours === 1) {
+                    $('.working-time').addClass('working-time__opens-soon');
+                    $('.working-time--opens-soon').show();
+                } else {
+                    $('.working-time--closed').show();
+                }
                 isOpen = false;
             }
         }

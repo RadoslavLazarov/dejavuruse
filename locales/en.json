@@ -10,8 +10,11 @@
     "checkOutOurDecorations": {
         "test": "Check out our decorations"
     },
+    "workingTime": "Working time",
     "open": "Open",
+    "opensSoon": "Opens soon",
     "closed": "Closed",
+    "closesSoon": "Closes soon",
     "contacts": {
         "address": "address",
         "phone": "phone",

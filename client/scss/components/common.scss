@@ -22,6 +22,14 @@ body {
     background: $purple-dark; 
 }
 
+a {
+    color: inherit;
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -253,15 +261,6 @@ video::-webkit-media-controls {
     display: flex;
     justify-content: center;
     margin-bottom: 25px;
-    &__separator {
-        width: 250px;
-        height: 50px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        @media (max-width: 414px) {
-            width: 200px;
-        }
-    }
     &__heading {
         display: flex;
         align-items: center;
@@ -285,6 +284,16 @@ video::-webkit-media-controls {
             text-align: center;
         }
         
+    }
+}
+
+.separator {
+    width: 250px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    @media (max-width: 414px) {
+        width: 200px;
     }
 }
 

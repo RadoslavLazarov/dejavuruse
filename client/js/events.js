@@ -65,3 +65,22 @@ $(window).on('resize scroll', function () {
         }
     });
 });
+
+// Animate scroll to Google Maps
+$('a[href="#map"]').on('click', function () {
+    var thisHref = $(this).attr('href');
+    var $el = $(thisHref);
+    var elOffset = $el.offset().top;
+    var elHeight = $el.height();
+    var windowHeight = $(window).innerHeight();
+    var offset;
+
+    if (elHeight < windowHeight) {
+        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+    }
+    else {
+        offset = elOffset;
+    }
+
+    $('html, body').animate({ scrollTop: offset }, 700);
+});

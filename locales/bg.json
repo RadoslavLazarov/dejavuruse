@@ -10,8 +10,11 @@
 	"checkOutOurDecorations": {
 		"test": "Разгледайте нашите украси"
 	},
-	"open": "Отворено",
-	"closed": "Затворено",
+	"workingTime": "Работно време",
+	"open": "Отворено в момента",
+	"opensSoon": "Скоро отваря",
+	"closed": "Затворено в момента",
+	"closesSoon": "Скоро затваря",
 	"contacts": {
 		"address": "адрес",
 		"phone": "телефон",

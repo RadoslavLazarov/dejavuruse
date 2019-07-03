@@ -23,10 +23,10 @@ var workingTime = (function () {
     var hours = date.getHours();
     var isOpen;
 
-    $('.working-time__day').each(function (index, value) {
-        var el = $(value);
-        var $dayIndex = el.data('day-index');
-        var $hour = el.find('.working-time__hour');
+    $('.working-time__row').each(function (index, value) {
+        var $el = $(value);
+        var dayIndex = $el.data('day-index');
+        var $hour = $el.find('.working-time__hour');
         var hourFrom;
         var hourTo;
 
@@ -35,12 +35,25 @@ var workingTime = (function () {
             hourTo = $hour.text().split('–')[1].split(':')[0];
         }
 
-        if ($dayIndex === day) {
+        if (dayIndex === day) {
+            $el.addClass('working-time--current-day');
             if (hours >= hourFrom && hours < hourTo) {
-                $('.working-time--closed').hide();
+                if (hourTo - hours === 1) {
+                    $('.working-time').addClass('working-time__closes-soon');
+                    $('.working-time--closes-soon').show();
+                } else {
+                    $('.working-time').addClass('working-time__open');
+                    $('.working-time--open').show();
+                }
                 isOpen = true;
             } else {
-                $('.working-time--open').hide();
+                $('.working-time').addClass('working-time__closed');
+                if (hourFrom - hours === 1) {
+                    $('.working-time').addClass('working-time__opens-soon');
+                    $('.working-time--opens-soon').show();
+                } else {
+                    $('.working-time--closed').show();
+                }
                 isOpen = false;
             }
         }

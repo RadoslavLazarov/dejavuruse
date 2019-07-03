@@ -2,36 +2,108 @@
     .contact {
         display: flex;
         flex-direction: column;
-        padding-top: 25px;
-        padding-bottom: 25px;
+        margin: 15px;
+        // padding-top: 25px;
+        // padding-bottom: 25px;
+        &:hover {
+            .contact__icon {
+                transform: translateY(10px);
+            }
+            .contact__value {
+                color: $purple-dark;
+            }
+        }
         &__icon {
             text-align: center;
+            transition: transform .5s ease-in-out;
             i {
+                margin-bottom: 15px;
                 color: $purple-dark;
                 font-size: 2.5em;
             }
         }
         &__description {
-            padding: 10px 0;
+            // padding: 15px 0;
             margin: 0;
 
         }
         &__name {
+            margin-bottom: 10px;
             text-align: center;
             font-family: 'Cormorant Garamond', serif;
             text-transform: capitalize;
         }
         &__value {
             text-align: center;
-            a {
-                color: inherit;
+            transition: color .3s;
+            // padding: 0 15px;
+        }
+    }
+    .working-time {
+        @include flex-center;
+        flex-direction: column;
+        &__title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        &__hour {
+
+        }
+        &--closed {
+            color: #b60000;
+        }
+        &--open {
+            color: #036403;
+        }
+        &--opens-soon, &--closes-soon {
+            color: #c78f21;
+        }
+        &--open, &--closed, &--opens-soon, &--closes-soon {
+            display: none;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        &__row {
+            display: flex;
+            justify-content: space-between;
+            // width: 400px;
+            width: 400px;
+            border: 1px solid transparent;
+            padding: 0 5px;
+            @media (max-width: 576px) {
+                width: 300px;
             }
         }
+        &__day {
+            text-transform: capitalize;
+        }
+        i {
+            text-align: center;
+            color: $purple-dark;
+            font-size: 2.5em;
+        }
+        &.working-time__open {
+            .working-time--current-day {
+                color: #036403;
+                border-color: #036403;
+            }
+        }
+        &.working-time__closed {
+            .working-time--current-day {
+                color: #b60000;
+                border-color: #b60000;
+            }
+        }
+        &.working-time__opens-soon, &.working-time__closes-soon {
+            .working-time--current-day {
+                color: #c78f21;
+                border-color: #c78f21;
+            }
+        }   
     }
 }
 
-
 #map {
+    margin-bottom: 100px;
     @media (min-height: 451px) {
         height: 450px;
     }
@@ -39,19 +111,3 @@
         height: 100vh;
     }
 }
-
-.working-time__day {
-    display: flex;
-    justify-content: space-between;
-}
-
-// .map-overlay {
-//     position: absolute;
-//     top: 0;
-//     width: 100%;
-//     height: 155px;
-//     background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
-//     @media (max-width: 1200px) {
-//         display: none;
-//     }
-// }
