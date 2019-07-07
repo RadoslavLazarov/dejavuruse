@@ -11,13 +11,28 @@
         "test": "Check out our decorations"
     },
     "workingTime": "Working time",
-    "open": "Open",
+    "open": "Open now",
     "opensSoon": "Opens soon",
-    "closed": "Closed",
+    "closed": "Closed now",
     "closesSoon": "Closes soon",
     "contacts": {
         "address": "address",
         "phone": "phone",
         "email": "E-Mail"
+    },
+    "email": "E-mail",
+    "subject": "Subject",
+    "name": "Name",
+    "phone": "Phone",
+    "event": "Event",
+    "preferedDate": "Prefered date",
+    "tellUsMore": "Tell us more",
+    "sendYourMessage": "Send your message",
+    "feedback": "Feedback",
+    "phrases": {
+        "contactForm": {
+            "message": "We would love to connect! Let us know in the form below.",
+            "advice": "Please fill required fields *"
+        }
     }
 }

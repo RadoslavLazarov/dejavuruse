@@ -13542,6 +13542,13 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #755275; }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: #755275; }
+
+input:focus, textarea:focus {
+  outline: none; }
+
 a {
   color: inherit; }
   a:hover {
@@ -13830,13 +13837,24 @@ video::-webkit-media-controls {
       text-align: center; }
 
 .separator {
-  width: 250px;
-  height: 50px;
+  background-image: url("/static/images/graphics/separator-purple.png");
   background-size: contain;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 40px; }
   @media (max-width: 414px) {
     .separator {
       width: 200px; } }
+
+.heading {
+  font-family: 'Cormorant Garamond', serif;
+  margin: 0; }
+
+.line {
+  height: 2px;
+  width: 60px;
+  background-color: #755275;
+  margin: 25px 0; }
 
 .header {
   position: absolute;
@@ -14874,6 +14892,7 @@ video::-webkit-media-controls {
     color: #c78f21; }
   .contacts-wrapper .working-time--open, .contacts-wrapper .working-time--closed, .contacts-wrapper .working-time--opens-soon, .contacts-wrapper .working-time--closes-soon {
     display: none;
+    margin-bottom: 10px;
     text-transform: uppercase;
     text-align: center; }
   .contacts-wrapper .working-time__row {
@@ -14904,10 +14923,114 @@ video::-webkit-media-controls {
     border-color: #c78f21; }
 
 #map {
-  margin-bottom: 100px; }
+  margin-bottom: 50px; }
   @media (min-height: 451px) {
     #map {
       height: 450px; } }
   @media (max-height: 450px) {
     #map {
       height: 100vh; } }
+
+#feedback-form {
+  margin: 50px 0;
+  padding: 45px 25px;
+  background-color: #fff; }
+  #feedback-form::before, #feedback-form::after {
+    content: "";
+    position: absolute;
+    top: -8%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 90px;
+    height: 95px; }
+  #feedback-form::before {
+    left: -4%;
+    background-image: url("/static/images/graphics/bird-1.png"); }
+  #feedback-form::after {
+    right: -4%;
+    background-image: url("/static/images/graphics/bird-2.png"); }
+  #feedback-form .form-image-left, #feedback-form .form-image-right {
+    position: absolute;
+    width: 90px; }
+  #feedback-form .form-image-left {
+    top: -8%;
+    left: -4%; }
+  #feedback-form .form-image-right {
+    top: -8%;
+    right: -4%; }
+  #feedback-form .form-group {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    margin: 0 25px 45px 25px;
+    margin-bottom: 45px; }
+    #feedback-form .form-group label {
+      position: absolute;
+      left: 5px;
+      margin: 0;
+      -webkit-transition: all .3s ease;
+      transition: all .3s ease;
+      pointer-events: none;
+      color: #755275; }
+    #feedback-form .form-group textarea {
+      resize: none;
+      line-height: 1.9; }
+    #feedback-form .form-group input, #feedback-form .form-group textarea {
+      width: 100%;
+      padding: 0 5px;
+      border: none;
+      background: transparent;
+      color: #755275; }
+      #feedback-form .form-group input:focus ~ label, #feedback-form .form-group input.has-value ~ label, #feedback-form .form-group textarea:focus ~ label, #feedback-form .form-group textarea.has-value ~ label {
+        -webkit-transform: translateY(-25px);
+                transform: translateY(-25px);
+        font-size: 0.875em;
+        color: #755275; }
+      #feedback-form .form-group input:focus ~ .bar::before, #feedback-form .form-group textarea:focus ~ .bar::before {
+        width: 100%;
+        left: 0; }
+    #feedback-form .form-group textarea {
+      width: 100%; }
+    #feedback-form .form-group .bar {
+      position: relative;
+      border-bottom: 1px solid #755275;
+      display: block;
+      width: 100%; }
+      #feedback-form .form-group .bar::before {
+        content: '';
+        height: 2px;
+        width: 0;
+        left: 50%;
+        bottom: -0.0625rem;
+        position: absolute;
+        background: #755275;
+        -webkit-transition: left 0.28s ease, width 0.28s ease;
+        transition: left 0.28s ease, width 0.28s ease;
+        z-index: 2; }
+  #feedback-form .form-required {
+    text-align: center;
+    font-size: 0.875em; }
+  #feedback-form .form-submit {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    z-index: 1; }
+    #feedback-form .form-submit .button {
+      cursor: pointer; }
+      #feedback-form .form-submit .button input {
+        color: inherit;
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 3px; }
+    #feedback-form .form-submit input[type="submit"] {
+      background-color: inherit;
+      border: none;
+      width: 0;
+      height: 0;
+      padding: 0; }

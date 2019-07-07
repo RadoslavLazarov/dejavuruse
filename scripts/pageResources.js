@@ -1,33 +1,35 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable quote-props */
+
 const fs = require('fs');
 const Categories = require('../models/categories');
 
+/**
+ * According to the URL, the page resources are obtained
+ * @param {Object} url - current URL
+ * @returns {Object} an object that contains rosources for current page
+ */
 async function getPageResources(url) {
-  const modelsDirectory = [];
+  const getCategories = await Categories.find().select('id -_id');
+  const controller = getCategories.find(category => category.id === url.controller);
   let categories;
   let pageResources;
+  let modelsDirectory;
 
-  fs.readdirSync('./models/').forEach((file) => {
-    modelsDirectory.push(file);
-  });
-
-  if (url.controller) {
+  if (controller) {
     categories = await Categories.findOne({ id: url.controller }).select('name meta imageCover subPages content -_id');
     pageResources = categories;
+    modelsDirectory = fs.readdirSync('./models/').indexOf(`${categories.subPages}.js`) !== -1;
+
     if (url.currentPage !== url.controller) {
-      if (categories.subPages && modelsDirectory.indexOf(categories.subPages) === 1) {
+      if (categories.subPages && modelsDirectory) {
         const GetModel = require(`../models/${categories.subPages}`);
         const model = new GetModel().Model;
         const subPages = await model.findOne({ id: url.currentPage }).select('name meta imageCover -_id');
         pageResources = subPages;
-      } else {
-        const GetModel = require(`../models/${categories.subPages}`);
-        const model = new GetModel().Model;
-        const subPages = await model.findOne({ id: url.subPage }).select('name meta imageCover -_id');
-        pageResources = subPages;
       }
+      pageResources = categories;
     }
   } else {
     pageResources = await Categories.findOne({ id: 'home' });
@@ -66,6 +68,11 @@ async function getNavCategories() {
   return mainCategories;
 }
 
+/**
+ * PageResources class that represents the current page resources
+ * @param {Object} url - current URL
+ * @constructor
+ */
 function PageResources(url) {
   this.pageResources = getPageResources(url);
   this.navCategories = getNavCategories();

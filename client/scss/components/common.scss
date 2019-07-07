@@ -22,6 +22,15 @@ body {
     background: $purple-dark; 
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px $white inset;
+    -webkit-text-fill-color: $purple-dark;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
 a {
     color: inherit;
     &:hover {
@@ -288,12 +297,25 @@ video::-webkit-media-controls {
 }
 
 .separator {
-    width: 250px;
-    height: 50px;
+    background-image:url('/static/images/graphics/separator-purple.png');
     background-size: contain;
     background-repeat: no-repeat;
+    width: 300px;
+    height: 40px;
     @media (max-width: 414px) {
         width: 200px;
     }
+}
+
+.heading {
+    font-family: 'Cormorant Garamond', serif;
+    margin: 0;
+}
+
+.line {
+    height: 2px;
+    width: 60px;
+    background-color: $purple-dark;
+    margin: 25px 0;
 }
 

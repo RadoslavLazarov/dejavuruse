@@ -84,3 +84,12 @@ $('a[href="#map"]').on('click', function () {
 
     $('html, body').animate({ scrollTop: offset }, 700);
 });
+
+// Check if input has value and add class to it
+$('#feedback-form input, #feedback-form textarea').on('input', function () {
+    if ($(this).val()) {
+        $(this).addClass('has-value');
+    } else {
+        $(this).removeClass('has-value');
+    }
+});

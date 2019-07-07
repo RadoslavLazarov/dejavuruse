@@ -28,10 +28,10 @@
                 <div class="col-xl-4 col-md-6 col-sm-8 col-11 working-time">
                     <i class="fas fa-clock"></i>
                     <h1 class="working-time__title"><%= translation.workingTime %></h1>
-                    <div class="working-time--open mb-2"><%= translation.open %></div>
-                    <div class="working-time--opens-soon mb-2"><%= translation.opensSoon %></div>
-                    <div class="working-time--closed mb-2"><%= translation.closed %></div>
-                    <div class="working-time--closes-soon mb-2"><%= translation.closesSoon %></div>
+                    <div class="working-time--open"><%= translation.open %></div>
+                    <div class="working-time--opens-soon"><%= translation.opensSoon %></div>
+                    <div class="working-time--closed"><%= translation.closed %></div>
+                    <div class="working-time--closes-soon"><%= translation.closesSoon %></div>
                     <%  pageResources.content.workingTime.days.forEach(function(item) { %>
                         <div class="working-time__row" data-day-index="<%= item.index %>">
                             <span class="working-time__day"><%= item.day[getLocale] %></span>
@@ -51,9 +51,84 @@
     </div>
 </div>
 <div class="container p-0">
-    <div class="row no-gutters">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-3">
+            <div class="separator"></div>
+        </div>
         <div class="col-12">
-            <form>
+            <h1 class="heading"><%= translation.feedback %></h1>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <div class="line"></div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <div class=""><%= translation.phrases.contactForm.message %></div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-7" id="feedback-form">
+            <form action="/contacts/feedback" method="POST">
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="email" >
+                            <label for="input"><%= translation.email %>*</label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="subject" >
+                            <label for="input"><%= translation.subject %>*</label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="name" >
+                            <label for="input"><%= translation.name %>*</label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="tel" name="phone" min="3" max="20">
+                            <label for="input"><%= translation.phone %></label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="event">
+                            <label for="input"><%= translation.event %></label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="date">
+                            <label for="input"><%= translation.preferedDate %></label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <textarea name="text" ></textarea>
+                            <label for="textarea"><%= translation.tellUsMore %>*</label>
+                            <i class="bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-required"><%= translation.phrases.contactForm.advice %></div>
+                        <div class="form-submit">
+                            <label for="form-send" class="button">
+                                <%= translation.sendYourMessage %>
+                                <input type="submit" id="form-send">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 
             </form>
         </div>
