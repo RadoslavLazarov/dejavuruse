@@ -4,11 +4,11 @@
     width: 100%;
     padding: 5px 0;
     margin-top: 25px;
-    // color: $purple-dark;
+    color: $white;
     border-top: 1px solid rgba($color: $purple-dark, $alpha: 0.1);
-    background-color: $white;
+    background-color: $purple-dark;
     a {
-        color: $black;
+        color: $white;
         &:hover {
             text-decoration: underline;
         }
