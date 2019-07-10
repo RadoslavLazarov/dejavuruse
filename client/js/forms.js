@@ -21,27 +21,38 @@ var regex = {
     name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
 }
 
+var errorMessage = {
+    bg: {
+        fieldRequired: 'задължително поле',
+        fieldInvalid: 'невалидно поле'
+    },
+    en: {
+        fieldRequired: 'required field',
+        fieldInvalid: 'invalid field'
+    }
+};
+
+var getLocale = $('body').data('locale');
+
 // Check form field for error and add class to it
 $('.form-field--validate').on('focusout input', function () {
     var $inputField = $(this);
-    var $errorInvalid = $(this).next('.error').find('.error--invalid');
-    var $errorRequired = $(this).next('.error').find('.error--required');
     var inputName = $inputField.attr('name');
+    var $error = $(this).next('.error');
 
     if ($inputField.val()) {
         $inputField.removeClass('form-field--required');
-        $errorRequired.hide();
+        $error.text('');
         if ($inputField.val().match(regex[inputName])) {
             $inputField.removeClass('form-field--invalid');
-            $errorInvalid.hide();
+            $error.text('');
         } else {
             $inputField.addClass('form-field--invalid');
-            $errorInvalid.show();
+            $error.text(errorMessage[getLocale].fieldInvalid);
         }
     } else {
         $inputField.addClass('form-field--required');
-        $errorRequired.show();
+        $error.text(errorMessage[getLocale].fieldRequired);
         $inputField.removeClass('form-field--invalid');
-        $errorInvalid.hide();
     }
 });

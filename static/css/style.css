@@ -14428,7 +14428,6 @@ video::-webkit-media-controls {
   padding: 5px 0;
   margin-top: 25px;
   color: #fff;
-  border-top: 1px solid rgba(117, 82, 117, 0.1);
   background-color: #755275; }
   #footer-default a {
     color: #fff; }

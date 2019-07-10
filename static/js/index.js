@@ -103,7 +103,7 @@ require('./functions');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_463de011.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_12f88fac.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/googleMaps":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"buffer":14,"e/U+97":19}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -214,28 +214,39 @@ var regex = {
     name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
 }
 
+var errorMessage = {
+    bg: {
+        fieldRequired: 'задължително поле',
+        fieldInvalid: 'невалидно поле'
+    },
+    en: {
+        fieldRequired: 'required field',
+        fieldInvalid: 'invalid field'
+    }
+};
+
+var getLocale = $('body').data('locale');
+
 // Check form field for error and add class to it
 $('.form-field--validate').on('focusout input', function () {
     var $inputField = $(this);
-    var $errorInvalid = $(this).next('.error').find('.error--invalid');
-    var $errorRequired = $(this).next('.error').find('.error--required');
     var inputName = $inputField.attr('name');
+    var $error = $(this).next('.error');
 
     if ($inputField.val()) {
         $inputField.removeClass('form-field--required');
-        $errorRequired.hide();
+        $error.text('');
         if ($inputField.val().match(regex[inputName])) {
             $inputField.removeClass('form-field--invalid');
-            $errorInvalid.hide();
+            $error.text('');
         } else {
             $inputField.addClass('form-field--invalid');
-            $errorInvalid.show();
+            $error.text(errorMessage[getLocale].fieldInvalid);
         }
     } else {
         $inputField.addClass('form-field--required');
-        $errorRequired.show();
+        $error.text(errorMessage[getLocale].fieldRequired);
         $inputField.removeClass('form-field--invalid');
-        $errorInvalid.hide();
     }
 });
 

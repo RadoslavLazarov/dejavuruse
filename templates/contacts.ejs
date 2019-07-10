@@ -28,7 +28,7 @@
                 <div class="col-xl-4 col-md-6 col-sm-8 col-11 working-time">
                     <div class="working-time__heading text-center">
                         <i class="fas fa-clock"></i>
-                        <h1 class="working-time__title"><%= translation.workingTime %></h1>
+                        <h2 class="working-time__title"><%= translation.workingTime %></h2>
                     </div>
                     <%  pageResources.content.workingTime.days.forEach(function(item) { %>
                         <div class="working-time__row" data-day-index="<%= item.index %>">
@@ -64,10 +64,7 @@
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
                             <input type="email" name="email" class="form-field form-field--validate" required>
-                            <div class="error">
-                                <span class="error--invalid"><%= translation.fieldInvalid %></span>
-                                <span class="error--required"><%= translation.fieldRequired %></span>
-                            </div>
+                            <span class="error"></span>
                             <label for="input"><%= translation.email %>*</label>
                             <i class="bar"></i>
                         </div>
@@ -75,10 +72,7 @@
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
                             <input type="text" name="subject" class="form-field form-field--validate" required>
-                            <div class="error">
-                                <span class="error--invalid"><%= translation.fieldInvalid %></span>
-                                <span class="error--required"><%= translation.fieldRequired %></span>
-                            </div>
+                            <span class="error"></span>
                             <label for="input"><%= translation.subject %>*</label>
                             <i class="bar"></i>
                         </div>
@@ -86,10 +80,7 @@
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
                             <input type="text" name="name" class="form-field form-field--validate" required>
-                            <div class="error">
-                                <span class="error--invalid"><%= translation.fieldInvalid %></span>
-                                <span class="error--required"><%= translation.fieldRequired %></span>
-                            </div>
+                            <span class="error"></span>
                             <label for="input"><%= translation.name %>*</label>
                             <i class="bar"></i>
                         </div>
@@ -97,10 +88,7 @@
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
                             <input type="tel" name="phone" min="3" max="20" class="form-field form-field--validate">
-                            <div class="error">
-                                <span class="error--invalid"><%= translation.fieldInvalid %></span>
-                                <span class="error--required"><%= translation.fieldRequired %></span>
-                            </div>
+                            <span class="error"></span>
                             <label for="input"><%= translation.phone %></label>
                             <i class="bar"></i>
                         </div>
@@ -122,10 +110,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <textarea name="text" class="form-field form-field--validate" required></textarea>
-                            <div class="error">
-                                <span class="error--invalid"><%= translation.fieldInvalid %></span>
-                                <span class="error--required"><%= translation.fieldRequired %></span>
-                            </div>
+                            <span class="error"></span>
                             <label for="textarea"><%= translation.tellUsMore %>*</label>
                             <i class="bar"></i>
                         </div>
