@@ -1,8 +1,10 @@
 require('./thirdParty/jquery');
-require('./thirdParty/googleRecaptcha');
 require('./thirdParty/googleMaps');
 require('./thirdParty/aos');
 require('./thirdParty/photoswipe');
+require('./thirdParty/sweetalert');
+require('./feedbackForm');
+require('./forms');
 require('./functions');
 require('./events');
 require('./onLoad');

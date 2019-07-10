@@ -18,41 +18,75 @@ $.fn.isInViewport = function () {
  * @returns {Boolean}
  */
 var workingTime = (function () {
+    var getLocale = $('body').data('locale');
     var date = new Date();
-    var day = date.getDay();
-    var hours = date.getHours();
+    var dayNow = date.getDay();
+    var hourNow = date.getHours();
     var isOpen;
+    var status = {
+        bg: {
+            openNow: 'Отворено в момента',
+            opensSoon: 'Скоро отваря',
+            closedNow: 'Затворено в момента',
+            closesSoon: 'Скоро затваря',
+            rest: 'Обедна повичка',
+        },
+        en: {
+            openNow: 'Open now',
+            opensSoon: 'Opens soon',
+            closedNow: 'Closed now',
+            closesSoon: 'Closes soon',
+            rest: 'Lunch break',
+        },
+    };
 
     $('.working-time__row').each(function (index, value) {
         var $el = $(value);
         var dayIndex = $el.data('day-index');
-        var $hour = $el.find('.working-time__hour');
+        var $hours = $el.find('.working-time__hour');
         var hourFrom;
         var hourTo;
+        var restFrom;
+        var restTo;
+        var rest = false;
 
-        if ($hour.text().indexOf('–') !== -1) {
-            hourFrom = $hour.text().split('–')[0].split(':')[0];
-            hourTo = $hour.text().split('–')[1].split(':')[0];
+        if ($hours.text().indexOf('–') !== -1) {
+            hourFrom = $hours.text().split('–')[0].split(':')[0];
+            hourTo = $hours.text().split('–')[1].split(':')[0];
+            if ($hours.text().indexOf(',') !== -1) {
+                rest = true;
+                hourFrom = $hours.text().split(',')[0].split('–')[0].split(':')[0];
+                hourTo = $hours.text().split(',')[1].split('–')[1].split(':')[0];
+                restFrom = $hours.text().split(',')[0].split('–')[1].split(':')[0];
+                restTo = $hours.text().split(',')[1].split('–')[0].split(':')[0];
+            }
+
         }
 
-        if (dayIndex === day) {
+        if (dayIndex === dayNow) {
             $el.addClass('working-time--current-day');
-            if (hours >= hourFrom && hours < hourTo) {
-                if (hourTo - hours === 1) {
-                    $('.working-time').addClass('working-time__closes-soon');
-                    $('.working-time--closes-soon').show();
+            if (hourNow >= hourFrom && hourNow < hourTo) {
+                if (rest && (hourNow >= restFrom && hourNow < restTo)) {
+                    $('.working-time').addClass('working-time__rest');
+                    $('.working-time__heading').append('<div class="working-time--rest">' + status[getLocale].rest + '</div>');
+                    isOpen = false;
                 } else {
-                    $('.working-time').addClass('working-time__open');
-                    $('.working-time--open').show();
+                    if (hourTo - hourNow === 1) {
+                        $('.working-time').addClass('working-time__closes-soon');
+                        $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
+                    } else {
+                        $('.working-time').addClass('working-time__open');
+                        $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
+                    }
+                    isOpen = true;
                 }
-                isOpen = true;
             } else {
-                $('.working-time').addClass('working-time__closed');
-                if (hourFrom - hours === 1) {
+                if (hourFrom - hourNow === 1) {
                     $('.working-time').addClass('working-time__opens-soon');
-                    $('.working-time--opens-soon').show();
+                    $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
                 } else {
-                    $('.working-time--closed').show();
+                    $('.working-time').addClass('working-time__closed');
+                    $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
                 }
                 isOpen = false;
             }

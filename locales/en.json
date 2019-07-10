@@ -32,7 +32,9 @@
     "phrases": {
         "contactForm": {
             "message": "We would love to connect! Let us know in the form below.",
-            "advice": "Please fill required fields *"
+            "error": "The form has incorect or empty fields"
         }
-    }
+    },
+    "fieldRequired": "required field",
+    "fieldInvalid": "invalid field"
 }

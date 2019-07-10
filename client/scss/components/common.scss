@@ -5,7 +5,9 @@ body {
     background-color: $background-color-light;
 }
 
-::selection { background: $color2 }
+::selection { 
+    background: $purple-light 
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -235,6 +237,7 @@ video::-webkit-media-controls {
 
 .button {
     position: relative;
+    display: flex;
     padding: 14px 40px;
     margin: 20px;
     text-transform: uppercase;
@@ -319,3 +322,22 @@ video::-webkit-media-controls {
     margin: 25px 0;
 }
 
+.swal-modal {
+    border-radius: 0;
+}
+
+.swal-button {
+    border-radius: 0;
+    background-color: transparent;
+    border: 1px solid $purple-dark;
+    color: $purple-dark;
+    transition: all .2s ease-in-out;
+
+    &:not([disabled]):hover:hover {
+        background-color: $purple-dark;
+        color: $white;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+}

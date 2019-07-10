@@ -13,17 +13,37 @@ router.get('/', async (req, res) => {
 router.post('/feedback', (req, res) => {
   const secretKey = '6LfhT6wUAAAAAGrCR-zJoslXC0jotiL6aZJ_jySB';
   const { token } = req.body;
-  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
 
-  if (req.body === undefined || req.body === '' || req.body === null) {
-    res.json({ responseError: 'Captcha error' });
+  if (token === undefined || token === '' || token === null) {
+    res.json({ captcha: { error: 'Captcha error' } });
   }
 
-  request(verificationURL, (error, response, body) => {
+  const regex = {
+    email: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g,
+    phone: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,
+    name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+  };
+
+  const formFields = {
+    email: req.body.email.match(regex.email),
+    subject: req.body.subject,
+    name: req.body.name.match(regex.name),
+    phone: req.body.phone.match(regex.phone),
+    text: req.body.text,
+  };
+
+  for (const field in formFields) {
+    if (!formFields[field]) {
+      res.sendStatus(400);
+    }
+  }
+
+  request.post(verificationURL, (error, response, body) => {
     const responseBody = JSON.parse(body);
 
     if (responseBody.success !== undefined && (!responseBody.success || responseBody.action !== 'feedback')) {
-      return res.json({ responseError: 'Failed captcha verification' });
+      res.json({ captcha: { error: 'Failed captcha verification' } });
     }
 
     const transporter = nodemailer.createTransport({
@@ -45,25 +65,19 @@ router.post('/feedback', (req, res) => {
       to: 'alien.lazarov@gmail.com',
       subject: `${req.body.subject}`,
       html: `${`<b>От:</b> ${req.body.email}<br>`}
-                ${`<b>Име:</b> ${req.body.name}<br>`}
-                ${req.body.phone ? `<b>Телефон:</b> ${req.body.phone}<br>` : ''}
-                ${req.body.event ? `<b>Събитие:</b> ${req.body.event}<br>` : ''}
-                ${req.body.date ? `<b>Предпочитана дата:</b> ${req.body.date}<br>` : ''}
-                ${`<b>Съобщение:</b> ${req.body.text}<br>`}`,
+             ${`<b>Име:</b> ${req.body.name}<br>`}
+             ${req.body.phone ? `<b>Телефон:</b> ${req.body.phone}<br>` : ''}
+             ${req.body.event ? `<b>Събитие:</b> ${req.body.event}<br>` : ''}
+             ${req.body.date ? `<b>Предпочитана дата:</b> ${req.body.date}<br>` : ''}
+             ${`<b>Съобщение:</b> ${req.body.text}<br>`}`,
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        console.log(err);
-        res.send(err);
-      } else {
-        console.log(`Email sent: ${info.response}`);
-        // res.send('Email sent: ' + info.response);
-        res.redirect('back');
+        res.json({ captcha: { success: true }, email: { error: 'Failed send message' } });
       }
+      res.json({ captcha: { success: true }, email: { success: true } });
     });
-
-    return res.json({ responseSuccess: 'Sucess' });
   });
 });
 

@@ -54,6 +54,9 @@ app.use('/news', controllers.News);
 app.use('/gallery', controllers.Gallery);
 app.use('/contacts', controllers.Contacts);
 app.use('/test', controllers.Test);
+app.use('*', (req, res) => {
+  res.status(404).send('404');
+});
 
 // Connect to DB
 mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-2v9az.mongodb.net/dejavu?retryWrites=true', { useNewUrlParser: true });

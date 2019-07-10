@@ -13774,6 +13774,8 @@ video::-webkit-media-controls {
 
 .button {
   position: relative;
+  display: -webkit-box;
+  display: flex;
   padding: 14px 40px;
   margin: 20px;
   text-transform: uppercase;
@@ -13855,6 +13857,22 @@ video::-webkit-media-controls {
   width: 60px;
   background-color: #755275;
   margin: 25px 0; }
+
+.swal-modal {
+  border-radius: 0; }
+
+.swal-button {
+  border-radius: 0;
+  background-color: transparent;
+  border: 1px solid #755275;
+  color: #755275;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+  .swal-button:not([disabled]):hover:hover {
+    background-color: #755275;
+    color: #fff; }
+  .swal-button:focus {
+    box-shadow: none; }
 
 .header {
   position: absolute;
@@ -14882,16 +14900,18 @@ video::-webkit-media-controls {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column; }
+  @media (max-width: 576px) {
+    .contacts-wrapper .working-time {
+      font-size: 0.875em; } }
   .contacts-wrapper .working-time__title {
     font-family: 'Cormorant Garamond', serif; }
   .contacts-wrapper .working-time--closed {
     color: #b60000; }
   .contacts-wrapper .working-time--open {
     color: #036403; }
-  .contacts-wrapper .working-time--opens-soon, .contacts-wrapper .working-time--closes-soon {
+  .contacts-wrapper .working-time--opens-soon, .contacts-wrapper .working-time--closes-soon, .contacts-wrapper .working-time--rest {
     color: #c78f21; }
-  .contacts-wrapper .working-time--open, .contacts-wrapper .working-time--closed, .contacts-wrapper .working-time--opens-soon, .contacts-wrapper .working-time--closes-soon {
-    display: none;
+  .contacts-wrapper .working-time--open, .contacts-wrapper .working-time--closed, .contacts-wrapper .working-time--opens-soon, .contacts-wrapper .working-time--closes-soon, .contacts-wrapper .working-time--rest {
     margin-bottom: 10px;
     text-transform: uppercase;
     text-align: center; }
@@ -14918,7 +14938,7 @@ video::-webkit-media-controls {
   .contacts-wrapper .working-time.working-time__closed .working-time--current-day {
     color: #b60000;
     border-color: #b60000; }
-  .contacts-wrapper .working-time.working-time__opens-soon .working-time--current-day, .contacts-wrapper .working-time.working-time__closes-soon .working-time--current-day {
+  .contacts-wrapper .working-time.working-time__opens-soon .working-time--current-day, .contacts-wrapper .working-time.working-time__closes-soon .working-time--current-day, .contacts-wrapper .working-time.working-time__rest .working-time--current-day {
     color: #c78f21;
     border-color: #c78f21; }
 
@@ -14931,11 +14951,20 @@ video::-webkit-media-controls {
     #map {
       height: 100vh; } }
 
-#feedback-form {
+.form-heading {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.feedback-form-container {
   margin: 50px 0;
-  padding: 45px 25px;
+  padding: 55px 25px;
   background-color: #fff; }
-  #feedback-form::before, #feedback-form::after {
+  .feedback-form-container::before, .feedback-form-container::after {
     content: "";
     position: absolute;
     top: -8%;
@@ -14943,22 +14972,22 @@ video::-webkit-media-controls {
     background-repeat: no-repeat;
     width: 90px;
     height: 95px; }
-  #feedback-form::before {
+  .feedback-form-container::before {
     left: -4%;
     background-image: url("/static/images/graphics/bird-1.png"); }
-  #feedback-form::after {
+  .feedback-form-container::after {
     right: -4%;
     background-image: url("/static/images/graphics/bird-2.png"); }
-  #feedback-form .form-image-left, #feedback-form .form-image-right {
+  .feedback-form-container .form-image-left, .feedback-form-container .form-image-right {
     position: absolute;
     width: 90px; }
-  #feedback-form .form-image-left {
+  .feedback-form-container .form-image-left {
     top: -8%;
     left: -4%; }
-  #feedback-form .form-image-right {
+  .feedback-form-container .form-image-right {
     top: -8%;
     right: -4%; }
-  #feedback-form .form-group {
+  .feedback-form-container .form-group {
     position: relative;
     display: -webkit-box;
     display: flex;
@@ -14967,7 +14996,17 @@ video::-webkit-media-controls {
             flex-direction: column;
     margin: 0 25px 45px 25px;
     margin-bottom: 45px; }
-    #feedback-form .form-group label {
+    .feedback-form-container .form-group .error {
+      position: absolute;
+      top: auto;
+      right: auto;
+      bottom: -18px;
+      left: 5px;
+      font-size: 0.813em;
+      color: #b60000; }
+      .feedback-form-container .form-group .error--invalid, .feedback-form-container .form-group .error--required {
+        display: none; }
+    .feedback-form-container .form-group label {
       position: absolute;
       left: 5px;
       margin: 0;
@@ -14975,31 +15014,31 @@ video::-webkit-media-controls {
       transition: all .3s ease;
       pointer-events: none;
       color: #755275; }
-    #feedback-form .form-group textarea {
+    .feedback-form-container .form-group textarea {
       resize: none;
       line-height: 1.9; }
-    #feedback-form .form-group input, #feedback-form .form-group textarea {
+    .feedback-form-container .form-group input, .feedback-form-container .form-group textarea {
       width: 100%;
       padding: 0 5px;
       border: none;
       background: transparent;
       color: #755275; }
-      #feedback-form .form-group input:focus ~ label, #feedback-form .form-group input.has-value ~ label, #feedback-form .form-group textarea:focus ~ label, #feedback-form .form-group textarea.has-value ~ label {
+      .feedback-form-container .form-group input:focus ~ label, .feedback-form-container .form-group input.has-value ~ label, .feedback-form-container .form-group textarea:focus ~ label, .feedback-form-container .form-group textarea.has-value ~ label {
         -webkit-transform: translateY(-25px);
                 transform: translateY(-25px);
         font-size: 0.875em;
         color: #755275; }
-      #feedback-form .form-group input:focus ~ .bar::before, #feedback-form .form-group textarea:focus ~ .bar::before {
+      .feedback-form-container .form-group input:focus ~ .bar::before, .feedback-form-container .form-group textarea:focus ~ .bar::before {
         width: 100%;
         left: 0; }
-    #feedback-form .form-group textarea {
+    .feedback-form-container .form-group textarea {
       width: 100%; }
-    #feedback-form .form-group .bar {
+    .feedback-form-container .form-group .bar {
       position: relative;
       border-bottom: 1px solid #755275;
       display: block;
       width: 100%; }
-      #feedback-form .form-group .bar::before {
+      .feedback-form-container .form-group .bar::before {
         content: '';
         height: 2px;
         width: 0;
@@ -15010,25 +15049,31 @@ video::-webkit-media-controls {
         -webkit-transition: left 0.28s ease, width 0.28s ease;
         transition: left 0.28s ease, width 0.28s ease;
         z-index: 2; }
-  #feedback-form .form-required {
+  .feedback-form-container .form-error {
+    display: none;
+    color: #b60000;
     text-align: center;
     font-size: 0.875em; }
-  #feedback-form .form-submit {
+  .feedback-form-container .form-submit {
     position: relative;
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
             justify-content: center;
     z-index: 1; }
-    #feedback-form .form-submit .button {
+    .feedback-form-container .form-submit .button {
       cursor: pointer; }
-      #feedback-form .form-submit .button input {
+      @media screen and (max-width: 430px) {
+        .feedback-form-container .form-submit .button {
+          font-size: 0.625em;
+          padding: 14px 10px; } }
+      .feedback-form-container .form-submit .button input {
         color: inherit;
         font-size: 1em;
         text-transform: uppercase;
         font-weight: 900;
         letter-spacing: 3px; }
-    #feedback-form .form-submit input[type="submit"] {
+    .feedback-form-container .form-submit input[type="submit"] {
       background-color: inherit;
       border: none;
       width: 0;
