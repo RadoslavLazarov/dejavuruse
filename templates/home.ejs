@@ -1,21 +1,37 @@
 <% layout('common/layout/home') -%>
+
+<% 
+    var backgroundVideo;
+    var pageSummary;
+    pageResources.content.backgroundVideos.forEach(function(video) {
+        if (video.isVisible) {
+            backgroundVideo = video;
+        }
+    });
+    pageResources.content.summary.forEach(function(summary) {
+        if (summary.isVisible) {
+            pageSummary = summary;
+        }
+    });
+%>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="home-background">
                 <div class="home-background__overlay"></div>
-                <video loop autoplay muted playsinline poster="<%= getBackgroundVideo.poster ? getBackgroundVideo.poster : '' %>" class="background-video">
-                    <% getBackgroundVideo.source.forEach(function(source) { %> 
+                <video loop autoplay muted playsinline poster="<%= backgroundVideo.poster ? backgroundVideo.poster : '' %>" class="background-video">
+                    <% backgroundVideo.source.forEach(function(source) { %> 
                         <source src="<%= source.src %>" type="<%= source.type %>">
                     <% }); %>
                     Your browser doesn't support HTML5 video tag.
                 </video>
                 <div class="container summary">
                     <h2 class="summary__title">
-                        <%= getBackgroundVideo.summary[getLocale].title %>
+                        <%= pageSummary[getLocale].title %>
                     </h2>
                     <div class="summary__text">
-                        <%= getBackgroundVideo.summary[getLocale].text %>
+                        <%= pageSummary[getLocale].text %>
                     </div>
                 </div> 
             </div>

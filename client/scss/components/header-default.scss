@@ -171,6 +171,7 @@
     }
     .logo {
         @include position(absolute, 10px, auto, auto, auto);   
+        z-index: 1;
         &--big {
             display: block;
             width: 250px;

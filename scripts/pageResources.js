@@ -38,6 +38,9 @@ async function getPageResources(url) {
   return pageResources;
 }
 
+/**
+ * @returns {Object} an object that contains rosources for header
+ */
 async function getNavCategories() {
   const mainCategories = {};
 

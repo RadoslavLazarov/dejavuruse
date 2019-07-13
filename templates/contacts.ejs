@@ -43,8 +43,8 @@
 </div>
 <div class="container-fluid p-0">
     <div class="row no-gutters">
-        <div class="col-12">
-            <div id="map"></div>
+        <div class="col-12" id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1017.2331448736148!2d25.960764668946517!3d43.85230874906776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x69a21bc889940290!2z0KHQstCw0YLQsdC10L3QsCDQuCDQv9Cw0YDRgtC4INCw0LPQtdC90YbQuNGPIOKAntCU0LXQttCwINCy0YPigJ0!5e0!3m2!1sbg!2sbg!4v1562943900256!5m2!1sbg!2sbg" width="600" height="450" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
@@ -63,7 +63,7 @@
                 <div class="row no-gutters justify-content-center">
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="email" name="email" class="form-field form-field--validate" required>
+                            <input type="email" name="email" class="form-field form-field--validation" required>
                             <span class="error"></span>
                             <label for="input"><%= translation.email %>*</label>
                             <i class="bar"></i>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="subject" class="form-field form-field--validate" required>
+                            <input type="text" name="subject" class="form-field form-field--validation" required>
                             <span class="error"></span>
                             <label for="input"><%= translation.subject %>*</label>
                             <i class="bar"></i>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-field form-field--validate" required>
+                            <input type="text" name="name" class="form-field form-field--validation" required>
                             <span class="error"></span>
                             <label for="input"><%= translation.name %>*</label>
                             <i class="bar"></i>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="tel" name="phone" min="3" max="20" class="form-field form-field--validate">
+                            <input type="tel" name="phone" min="3" max="20" class="form-field form-field--validation">
                             <span class="error"></span>
                             <label for="input"><%= translation.phone %></label>
                             <i class="bar"></i>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <textarea name="text" class="form-field form-field--validate" required></textarea>
+                            <textarea name="text" class="form-field form-field--validation" required></textarea>
                             <span class="error"></span>
                             <label for="textarea"><%= translation.tellUsMore %>*</label>
                             <i class="bar"></i>

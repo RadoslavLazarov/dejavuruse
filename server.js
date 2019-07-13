@@ -52,6 +52,7 @@ app.use('/lang', controllers.Locale);
 app.use('/about', controllers.About);
 app.use('/news', controllers.News);
 app.use('/gallery', controllers.Gallery);
+app.use('/video', controllers.Video);
 app.use('/contacts', controllers.Contacts);
 app.use('/test', controllers.Test);
 app.use('*', (req, res) => {

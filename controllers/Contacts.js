@@ -41,7 +41,7 @@ router.post('/feedback', (req, res) => {
 
   request.post(verificationURL, (error, response, body) => {
     const responseBody = JSON.parse(body);
-
+    // console.log(responseBody);
     if (responseBody.success !== undefined && (!responseBody.success || responseBody.action !== 'feedback')) {
       res.json({ captcha: { error: 'Failed captcha verification' } });
     }

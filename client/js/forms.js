@@ -34,8 +34,8 @@ var errorMessage = {
 
 var getLocale = $('body').data('locale');
 
-// Check form field for error and add class to it
-$('.form-field--validate').on('focusout input', function () {
+// Form fields validation
+$('.form-field--validation').on('focusout input', function () {
     var $inputField = $(this);
     var inputName = $inputField.attr('name');
     var $error = $(this).next('.error');
@@ -51,8 +51,13 @@ $('.form-field--validate').on('focusout input', function () {
             $error.text(errorMessage[getLocale].fieldInvalid);
         }
     } else {
-        $inputField.addClass('form-field--required');
-        $error.text(errorMessage[getLocale].fieldRequired);
-        $inputField.removeClass('form-field--invalid');
+        if ($inputField.attr('required')) {
+            $inputField.removeClass('form-field--invalid');
+            $inputField.addClass('form-field--required');
+            $error.text(errorMessage[getLocale].fieldRequired);
+        } else {
+            $inputField.removeClass('form-field--invalid');
+            $error.text('');
+        }
     }
 });

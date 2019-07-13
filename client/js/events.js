@@ -66,7 +66,7 @@ $(window).on('resize scroll', function () {
     });
 });
 
-// Animate scroll to Google Maps
+// Scroll animation to Google Maps
 $('a[href="#map"]').on('click', function () {
     var thisHref = $(this).attr('href');
     var $el = $(thisHref);
