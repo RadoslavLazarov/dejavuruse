@@ -8,13 +8,14 @@ const CredentialsModel = require('../models/credentials');
 // If modifying these scopes, delete your previously saved credentials
 var SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
 const uploads = [];
-
+let nextPageToken = '';
 // Load client secrets from DB.
 async function execute() {
   try {
-    const getCredentals = await new CredentialsModel('youtubeDataApi').findCredentials;
+    const credentials = await new CredentialsModel('youtubeDataApi').findCredentials;
     // Authorize a client with the loaded credentials, then call the YouTube API.
-    await authorize(getCredentals.clientSecret, retrieveMyUploads);
+    await authorize(credentials.clientSecret, retrieveMyUploads);
+    console.log(`nextPageToken: ${nextPageToken}`);
   } catch (e) {
     console.log(`Error loading client secret file: ${e}`);
   }
@@ -106,16 +107,17 @@ async function retrieveMyUploads(auth) {
   const channels = await service.channels.list({
     auth,
     part: 'snippet,contentDetails,statistics',
-    mine: true,
+    forUsername: 'VitalyzdTv',
+    // mine: true,
   });
 
   let channel = channels.data.items[0];
   const playlistId = channel.contentDetails.relatedPlaylists.uploads;
-  let nextPageToken = '';
   const playlistResponse = await service.playlistItems.list({
     auth,
     part: 'snippet',
     playlistId,
+    maxResults: 2,
     pageToken: nextPageToken,
   });
 
@@ -123,11 +125,14 @@ async function retrieveMyUploads(auth) {
     const playlistItem = playlistResponse.data.items[i];
     // console.log(playlistItem.snippet.title);
     uploads.push(playlistItem.snippet.resourceId.videoId);
+    // uploads.push(playlistItem.snippet.title);
   }
   nextPageToken = playlistResponse.data.nextPageToken;
+
 }
 
 module.exports = {
   execute,
-  uploads
+  uploads,
+  nextPageToken,
 };

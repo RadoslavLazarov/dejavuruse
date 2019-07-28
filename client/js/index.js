@@ -5,5 +5,6 @@ require('./thirdParty/sweetalert');
 require('./feedbackForm');
 require('./forms');
 require('./functions');
+require('./youtube');
 require('./events');
 require('./onLoad');

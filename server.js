@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(favicon(path.join(__dirname, 'static', 'favicon-32x32.png')));
 app.use(cookieParser());
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
