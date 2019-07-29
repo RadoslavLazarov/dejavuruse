@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get('/uploads', async (req, res) => {
   await youtubeApi.execute();
   const uploads = await youtubeApi.uploads;
-
+  // console.log(`nextPageToken: ${youtubeApi.nextPageToken}`);
   res.json({ uploads });
 });
 

@@ -15,7 +15,7 @@ async function execute() {
     const credentials = await new CredentialsModel('youtubeDataApi').findCredentials;
     // Authorize a client with the loaded credentials, then call the YouTube API.
     await authorize(credentials.clientSecret, retrieveMyUploads);
-    console.log(`nextPageToken: ${nextPageToken}`);
+    // console.log(`nextPageToken: ${nextPageToken}`);
   } catch (e) {
     console.log(`Error loading client secret file: ${e}`);
   }
@@ -110,29 +110,30 @@ async function retrieveMyUploads(auth) {
     forUsername: 'VitalyzdTv',
     // mine: true,
   });
-
+  // let nextPageToken = '';
   let channel = channels.data.items[0];
   const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+  // while (nextPageToken != null) {
   const playlistResponse = await service.playlistItems.list({
     auth,
     part: 'snippet',
     playlistId,
-    maxResults: 2,
+    // maxResults: 2,
     pageToken: nextPageToken,
   });
 
   for (let i = 0; i < playlistResponse.data.items.length; i++) {
     const playlistItem = playlistResponse.data.items[i];
     // console.log(playlistItem.snippet.title);
-    uploads.push(playlistItem.snippet.resourceId.videoId);
-    // uploads.push(playlistItem.snippet.title);
+    // uploads.push(playlistItem.snippet.resourceId.videoId);
+    uploads.push(playlistItem.snippet.title);
   }
   nextPageToken = playlistResponse.data.nextPageToken;
-
+  // }
 }
 
 module.exports = {
   execute,
   uploads,
-  nextPageToken,
+  // nextPageToken,
 };
