@@ -1,6 +1,7 @@
 // Dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+// const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -21,6 +22,7 @@ app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
 
 // Middleware
+// app.use(cors());
 app.use(favicon(path.join(__dirname, 'static', 'favicon-32x32.png')));
 app.use(cookieParser());
 // app.use(morgan('combined'));
@@ -60,7 +62,10 @@ app.use('*', (req, res) => {
 });
 
 // Connect to DB
-mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-2v9az.mongodb.net/dejavu?retryWrites=true', { useNewUrlParser: true });
+// mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-2v9az.mongodb.net/dejavu?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-cofgm.mongodb.net/dejavu?retryWrites=true&w=majority', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
+
 const db = mongoose.connection;
 db.on('error', error => console.error(error));
 db.once('open', () => console.log('Connected to Mongoose'));

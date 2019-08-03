@@ -103,7 +103,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_8bbd1eef.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6d83a000.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./youtube":11,"buffer":14,"e/U+97":19}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -611,61 +611,68 @@ require('sweetalert');
 },{"buffer":14,"e/U+97":19,"sweetalert":20}],11:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
-$.ajax({
-  type: 'GET',
-  url: '/video/uploads',
-  success: function (data) {
-    // console.log(data.uploads);
-    var uploads = data.uploads;
-    $('.batka').empty();
-    uploads.forEach(function (el) {
-      console.log(el);
-      // $('.batka').prepend(`
-      //   <div class="col-xl-6 d-flex justify-content-center pb-5">
-      //     <iframe width="560" 
-      //       height="315" 
-      //       src="https://www.youtube.com/embed/${el}"
-      //       frameborder="0" 
-      //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-      //       allowfullscreen
-      //       class='youtube-player'>
-      //     </iframe>
-      //   </div>
-      // `);
-      $('.batka').prepend(`<div>${el}</div>`);
-      // $('.batka').prepend(`<div>${el}</div>`);
-    });
-    // $('.youtube-player').attr('src', 'https://www.youtube.com/embed/UOyJwOoi1VE')
-  },
-});
 
+// if ($videos) {
+//   console.log('batkata');
+//   $.ajax({
+//     type: 'GET',
+//     url: '/video/uploads',
+//     success: function (data) {
+//       // console.log(data.uploads);
+//       var uploads = data;
+//       $('.batka').empty();
+//       uploads.forEach(function (el) {
+//         console.log(el);
+//         // $('.batka').prepend(`
+//         //   <div class="col-xl-6 d-flex justify-content-center pb-5">
+//         //     <iframe width="560" 
+//         //       height="315" 
+//         //       src="https://www.youtube.com/embed/${el}"
+//         //       frameborder="0" 
+//         //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+//         //       allowfullscreen
+//         //       class='youtube-player'>
+//         //     </iframe>
+//         //   </div>
+//         // `);
+//         $('.batka').prepend(`<div>${el}</div>`);
+//         // $('.batka').prepend(`<div>${el}</div>`);
+//       });
+//       // $('.youtube-player').attr('src', 'https://www.youtube.com/embed/UOyJwOoi1VE')
+//     },
+//   });
+// }
+
+var $videos = $('.videos');
 $('#uploads').on('click', function (e) {
-  e.preventDefault();
+  // e.preventDefault();
+  var token = $(this);
+  // console.log($(this).data('token'));
+  var test;
   $.ajax({
     type: 'GET',
-    url: '/video/uploads',
+    url: `/video/next?nextPageToken=${$(this).data('token')}`,
     success: function (data) {
-      // console.log(data.uploads);
       var uploads = data.uploads;
-      $('.batka').empty();
+
       uploads.forEach(function (el) {
         console.log(el);
-        // $('.batka').prepend(`
-        //   <div class="col-xl-6 d-flex justify-content-center pb-5">
-        //     <iframe width="560" 
-        //       height="315" 
-        //       src="https://www.youtube.com/embed/${el}"
-        //       frameborder="0" 
-        //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-        //       allowfullscreen
-        //       class='youtube-player'>
-        //     </iframe>
-        //   </div>
-        // `);
-
-        $('.batka').prepend(`<div>${el}</div>`);
+        $videos.append(`
+          <div class="col-xl-6 d-flex justify-content-center pb-5">
+            <iframe width="560" 
+              height="315" 
+              src="https://www.youtube.com/embed/${el}"
+              frameborder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              class='youtube-player'>
+            </iframe>
+          </div>
+        `);
       });
-      // $('.youtube-player').attr('src', 'https://www.youtube.com/embed/UOyJwOoi1VE')
+      console.log(data.nextPageToken);
+      token.data('token', data.nextPageToken);
+
     },
   });
 });
