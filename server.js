@@ -1,7 +1,7 @@
 // Dependencies
 const express = require('express');
 const mongoose = require('mongoose');
-// const cors = require('cors');
+const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
