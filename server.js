@@ -11,6 +11,7 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const setLocale = require('./scripts/middleware/setLocale');
 const locals = require('./scripts/middleware/locals');
+require('dotenv').config();
 
 const app = express();
 
@@ -60,8 +61,7 @@ app.use('*', (req, res) => {
 });
 
 // Connect to DB
-// mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-2v9az.mongodb.net/dejavu?retryWrites=true', { useNewUrlParser: true });
-mongoose.connect('mongodb+srv://radoslav:123radoslav456@cluster0-cofgm.mongodb.net/dejavu?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 // mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
 
 const db = mongoose.connection;

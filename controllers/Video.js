@@ -1,14 +1,17 @@
 const express = require('express');
 const axios = require('axios');
 
+const CredentialsModel = require('../models/credentials');
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=AIzaSyCNrSHcBS-gXiYiZ8vx1af6xJpB5kP9Ias';
   const uploads = [];
   let nextPageToken = '';
 
   try {
+    const youtubeCredentials = await CredentialsModel.findOne({ id: 'youtube' });
+    const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=${youtubeCredentials.credentials.key}`;
     const { data } = await axios.get(youtubeApiUrl);
     if (data.nextPageToken) {
       nextPageToken = data.nextPageToken;
@@ -28,8 +31,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/next', async (req, res) => {
+  const youtubeCredentials = await CredentialsModel.findOne({ id: 'youtube' });
   // const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=AIzaSyCNrSHcBS-gXiYiZ8vx1af6xJpB5kP9Ias`;
-  const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&pageToken=${req.query.nextPageToken}&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=AIzaSyCNrSHcBS-gXiYiZ8vx1af6xJpB5kP9Ias`;
+  const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&pageToken=${req.query.nextPageToken}&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=${youtubeCredentials.credentials.key}`;
   const uploads = [];
   let nextPageToken = '';
 
