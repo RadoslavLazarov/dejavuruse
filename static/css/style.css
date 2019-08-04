@@ -13728,13 +13728,13 @@ video::-webkit-media-controls {
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -5;
-    -webkit-transition: -webkit-transform 15s ease-in-out;
-    transition: -webkit-transform 15s ease-in-out;
-    transition: transform 15s ease-in-out;
-    transition: transform 15s ease-in-out, -webkit-transform 15s ease-in-out;
     -webkit-transform: scale(1.4);
             transform: scale(1.4); }
     .page-banner__image.loaded {
+      -webkit-transition: -webkit-transform 15s ease-in-out;
+      transition: -webkit-transform 15s ease-in-out;
+      transition: transform 15s ease-in-out;
+      transition: transform 15s ease-in-out, -webkit-transform 15s ease-in-out;
       -webkit-transform: scale(1);
               transform: scale(1); }
   .page-banner__overlay {
