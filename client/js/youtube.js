@@ -46,44 +46,11 @@
 //   },
 // });
 
-var swiper = new Swiper('.swiper-container', {
-  effect: 'coverflow',
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: 'auto',
-  spaceBetween: 50,
-  mousewheel: {
-    eventsTarged: 'main',
-  },
-  keyboard: {
-    enabled: true,
-    onlyInViewport: false,
-  },
-  coverflowEffect: {
-    rotate: 50,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: true,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-});
-
-
 var $videos = $('.swiper-wrapper');
 $('.uploads-container').on('click', function (e) {
+  $('#loading-screen').find($('path').attr('fill', '#fff'));
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-  // e.preventDefault();
   var token = $(this);
-  // console.log($(this).data('token'));
-  var test;
   $.ajax({
     type: 'GET',
     url: `/video/next?nextPageToken=${$(this).data('token')}`,
@@ -111,7 +78,6 @@ $('.uploads-container').on('click', function (e) {
           </div>
         `
         );
-        // $videos.append();
       });
       swiper.appendSlide(append);
       console.log(data.nextPageToken);

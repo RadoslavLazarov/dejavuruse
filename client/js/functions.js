@@ -5,7 +5,12 @@ function calculateVideoPageHeight() {
     var headerHight = $('header').outerHeight();
     var footerHight = $('footer').outerHeight();
     var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
-    $('.swiper-container').height(calculateSwiperHeight);
+
+    if (window.matchMedia('(min-width: 1201px)').matches) {
+        $('.swiper-container').height(calculateSwiperHeight);
+    } else {
+        $('.swiper-container').height(100 + '%');
+    }
 }
 
 $(function () {

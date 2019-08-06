@@ -1,3 +1,5 @@
 .header--video {
-    position: relative !important;
+    @media (min-width: 1201px) {
+        // position: relative !important;
+    }
 }
