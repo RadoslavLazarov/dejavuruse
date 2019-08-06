@@ -9,6 +9,7 @@ const engine = require('ejs-locals');
 const i18n = require('i18n-express');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
+const controllers = require('./controllers/index');
 const setLocale = require('./scripts/middleware/setLocale');
 const locals = require('./scripts/middleware/locals');
 require('dotenv').config();
@@ -46,8 +47,6 @@ app.use(setLocale);
 app.use(locals);
 
 // Controllers
-const controllers = require('./controllers/index');
-
 app.use('/', controllers.Home);
 app.use('/lang', controllers.Locale);
 app.use('/about', controllers.About);

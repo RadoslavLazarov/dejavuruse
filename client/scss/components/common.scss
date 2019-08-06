@@ -250,6 +250,7 @@ video::-webkit-media-controls {
     text-align: center;
     transition: color .5s;
     &:hover {
+        cursor: pointer;
         color: $white;
         text-decoration: none;
         transition: color .5s;

@@ -5,7 +5,10 @@
     "termsAndConditions": "Terms and conditions",
     "privacyPolicy": "Privacy policy",
     "cookies": "Cookies",
-    "viewOurServices": "view our services",
+    "buttons": {
+        "viewOurServices": "View our services",
+        "loadMoreVideos": "Load more videos..."
+    },
     "viewMore": "View more",
     "checkOutOurDecorations": {
         "test": "Check out our decorations"

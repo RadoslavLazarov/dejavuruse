@@ -1,0 +1,50 @@
+<header class="header header--video">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 header__top"> 
+                <div class="row">
+                    <div class="col-6 p-0">
+                        <div class="socials visibility-xl-visible">
+                            <%- include ../socials.ejs %>
+                        </div>
+                    </div>
+                    <div class="col-6 p-0">
+                        <div class="languages visibility-xl-visible">
+                            <%- include ../lang.ejs %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 header__bottom">
+                <nav role="navigation" class="navigation">
+                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation__left">
+                        <% navCategories.left.forEach(function(category) { %>
+                            <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
+                        <% }); %>
+                    </ul>
+                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation__right">
+                        <% navCategories.right.forEach(function(category) { %>
+                            <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
+                        <% }); %>
+                    </ul>
+                    <div class="splash"></div>
+                </nav>
+            </div>
+            <a href="/" class="logo fadeout-page">
+                <img src="/static/logo-big.png" alt="DejaVu" class="logo--big">
+                <img src="/static/logo-small.png" alt="DejaVu" class="logo--small">
+            </a>
+            <div class="nav-button">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                    <g>
+                        <line class="nav-icon__bar" x1="13" y1="16.5" x2="37" y2="16.5"/>
+                        <line class="nav-icon__bar" x1="13" y1="24.5" x2="37" y2="24.5"/>
+                        <line class="nav-icon__bar" x1="13" y1="24.5" x2="37" y2="24.5"/>
+                        <line class="nav-icon__bar" x1="13" y1="32.5" x2="37" y2="32.5"/>
+                        <circle class="nav-icon__circle" r="23" cx="25" cy="25" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</header>

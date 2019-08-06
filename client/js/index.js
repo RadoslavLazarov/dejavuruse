@@ -2,6 +2,7 @@ require('./thirdParty/jquery');
 require('./thirdParty/aos');
 require('./thirdParty/photoswipe');
 require('./thirdParty/sweetalert');
+require('./thirdParty/swiper');
 require('./feedbackForm');
 require('./forms');
 require('./functions');

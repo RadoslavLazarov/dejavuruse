@@ -5,7 +5,10 @@
 	"termsAndConditions": "Условия за ползване",
 	"privacyPolicy": "Лични данни",
 	"cookies": "Бисквитки",
-	"viewOurServices": "вижте нашите услуги",
+	"buttons": {
+		"viewOurServices": "вижте нашите услуги",
+		"loadMoreVideos": "Зареди още видеа..."
+	},
 	"viewMore": "Виж повече",
 	"checkOutOurDecorations": {
 		"test": "Разгледайте нашите украси"

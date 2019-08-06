@@ -1,28 +1,39 @@
-<% layout('common/layout/default') -%>
+<% layout('common/layout/video') -%>
 
-<div class="container">
-    <div class="row justify-content-center videos">
-        <% if (uploads) { %>
-            <% uploads.forEach(function(item) { %>
-                <div class="col-xl-6 d-flex justify-content-center pb-5 youtube-container">
-                    <iframe width="560" 
-                        height="315" 
-                        src="https://www.youtube.com/embed/<%= item %>"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        class='youtube-player'>
-                    </iframe>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    <% if (uploads) { %>
+        <% uploads.forEach(function(item) { %>
+            <div class="col-7 p-0 swiper-slide">
+                <div class="d-flex justify-content-center youtube-container">
+                    <div class="col-12 batka">
+                        <iframe
+                            src="https://www.youtube.com/embed/<%= item %>"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class='youtube-player'>
+                        </iframe>
+                    </div>
                 </div>
-            <% }); %>
-        <% }; %>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-12 d-flex justify-content-center pb-5">
-            <div data-token="<%= nextPageToken %>" class="button" id="uploads">
-                Load more
-                <span></span>
+            </div>
+        <% }); %>
+    <% }; %>
+    <div class="col-7 p-0 swiper-slide append-buttons">
+        <div class="col-12 batka batka--last">
+            <div class="uploads-container" data-token="<%= nextPageToken %>">
+                <div class="view-more" id="uploads">
+                    <%= translation.buttons.loadMoreVideos %>
+                    <span class="animated-line"></span>
+                </div>
             </div>
         </div>
     </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
 </div>
+    

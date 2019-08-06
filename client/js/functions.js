@@ -1,5 +1,20 @@
 /* eslint-disable */
 
+function calculateVideoPageHeight() {
+    var windowHeight = $(window).outerHeight();
+    var headerHight = $('header').outerHeight();
+    var footerHight = $('footer').outerHeight();
+    var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+    $('.swiper-container').height(calculateSwiperHeight);
+}
+
+$(function () {
+    calculateVideoPageHeight();
+});
+$(window).on('resize', function () {
+    calculateVideoPageHeight();
+});
+
 /**
  * Checking if element is in viewport. The function is attached to jQuery Object.
  * @returns {Boolean}
