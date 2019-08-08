@@ -5,11 +5,12 @@ function calculateVideoPageHeight() {
     var headerHight = $('header').outerHeight();
     var footerHight = $('footer').outerHeight();
     var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+    var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
     if (window.matchMedia('(min-width: 1201px)').matches) {
-        $('.swiper-container').height(calculateSwiperHeight);
+        $('.swiper-container').height(windowHeight - (headerHight + footerHight));
     } else {
-        $('.swiper-container').height(100 + '%');
+        $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
     }
 }
 

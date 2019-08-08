@@ -51,6 +51,7 @@ $('.uploads-container').on('click', function (e) {
   $('#loading-screen').find($('path').attr('fill', '#fff'));
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var token = $(this);
+
   $.ajax({
     type: 'GET',
     url: `/video/next?nextPageToken=${$(this).data('token')}`,
@@ -63,9 +64,9 @@ $('.uploads-container').on('click', function (e) {
         console.log(id);
         swiper.appendSlide(
           `
-          <div class="col-7 p-0 swiper-slide">
+          <div class="swiper-slide">
             <div class="d-flex justify-content-center youtube-container">
-              <div class="col-xl-12 batka">
+              <div class="col-12 batka">
                 <iframe
                   src="https://www.youtube.com/embed/${id}"
                   frameborder="0" 

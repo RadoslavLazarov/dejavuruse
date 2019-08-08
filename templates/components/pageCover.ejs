@@ -1,7 +1,7 @@
 <% if(pageResources.imageCover) { %>
-    <div class="page-banner">
-        <div class="page-banner__image onload" style="background-image:url('<%= pageResources.imageCover %>')"></div>
-        <div class="page-banner__overlay"></div>
-        <div class="page-banner__title"><a href="/<%= url.controller %><%= url.subPage ? `/${url.subPage}` : '' %>" class="fadeout-page"><h1><%= pageResources.name[getLocale] %></h1></a></div>
+    <div class="page-cover">
+        <div class="page-cover__image onload" style="background-image:url('<%= pageResources.imageCover %>')"></div>
+        <div class="page-cover__overlay"></div>
+        <div class="page-cover__title"><a href="/<%= url.controller %><%= url.subPage ? `/${url.subPage}` : '' %>" class="fadeout-page"><h1><%= pageResources.name[getLocale] %></h1></a></div>
     </div>
 <% }; %>

@@ -184,12 +184,18 @@ video::-webkit-media-controls {
     }
 }
 
-.page-banner {
+.page-cover {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
     margin-bottom: 25px;
+    &--full {
+        @include position(absolute, 0, 0, 0, 0);
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+    }
     @media (min-height: 451px) {
         min-height: 450px;
     }
@@ -214,6 +220,9 @@ video::-webkit-media-controls {
         @include height-width-100;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
         z-index: -3;
+        &--full {
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
+        }
     }
     &__title {
         @include position(absolute, 50%, auto, auto, auto);
@@ -232,6 +241,21 @@ video::-webkit-media-controls {
                 transform: scale(1.1);
             }
         }
+    }
+}
+
+.page-banner-video {
+    // @include position(absolute, 0, 0, 0, 0);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    &__overlay {
+        //gradient top and bottom
+        @include height-width-100;
+        background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
     }
 }
 

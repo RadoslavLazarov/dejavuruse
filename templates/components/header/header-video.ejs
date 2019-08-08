@@ -17,12 +17,12 @@
             </div>
             <div class="col-12 header__bottom">
                 <nav role="navigation" class="navigation">
-                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation__left">
+                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation--left">
                         <% navCategories.left.forEach(function(category) { %>
                             <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
                         <% }); %>
                     </ul>
-                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation__right">
+                    <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation--right">
                         <% navCategories.right.forEach(function(category) { %>
                             <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
                         <% }); %>

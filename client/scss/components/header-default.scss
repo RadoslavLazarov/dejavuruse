@@ -1,6 +1,6 @@
 .header {
     $self: &;
-    position: absolute;
+    @include position(absolute, 0, auto, auto, auto);
     width: 100%;
     font-family: 'Cormorant Garamond', serif;
     @media screen and (min-width: 1201px) {
@@ -79,8 +79,9 @@
                 @include flex-center;
                 flex-direction: column;
                 height: 100vh;
+                transition: height 1s ease-out;
                 width: 100%;
-                &__left li {
+                &--left li {
                     &:nth-child(1) {
                         transform: translateY(-40px);
                     }
@@ -91,7 +92,7 @@
                         transform: translateY(-40px * 3);
                     }
                 }
-                &__right li {
+                &--right li {
                     &:nth-child(1) {
                         transform: translateY(-40px * 4);
                     }
@@ -103,7 +104,7 @@
                     }
                 }
             }
-            &__left, &__right {
+            &--left, &--right {
                 display: flex;
                 justify-content: space-between;
                 margin: 10px 0;
@@ -279,7 +280,7 @@
                 transform: scale(1);
             }
             .navigation {
-                &__left li, &__right li {
+                &--left li, &--right li {
                     opacity:1;
                     transform: translateY(0);
                 }     

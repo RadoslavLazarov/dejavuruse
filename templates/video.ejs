@@ -4,7 +4,7 @@
     <div class="swiper-wrapper">
     <% if (uploads) { %>
         <% uploads.forEach(function(item) { %>
-            <div class="col-7 p-0 swiper-slide">
+            <div class="swiper-slide">
                 <div class="d-flex justify-content-center youtube-container">
                     <div class="col-12 batka">
                         <iframe
@@ -19,16 +19,18 @@
             </div>
         <% }); %>
     <% }; %>
-    <div class="col-7 p-0 swiper-slide append-buttons">
-        <div class="col-12 batka batka--last">
-            <div class="uploads-container" data-token="<%= nextPageToken %>">
-                <div class="view-more" id="uploads">
-                    <%= translation.buttons.loadMoreVideos %>
-                    <span class="animated-line"></span>
+    <% if (nextPageToken) { %>
+        <div class="swiper-slide append-buttons">
+            <div class="col-12 batka batka--last">
+                <div class="uploads-container" data-token="<%= nextPageToken %>">
+                    <div class="view-more" id="uploads">
+                        <%= translation.buttons.loadMoreVideos %>
+                        <span class="animated-line"></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    <% }; %>
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
