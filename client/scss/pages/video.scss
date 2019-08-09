@@ -62,7 +62,8 @@
 .swiper-container {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     min-height: inherit;
     width: 100%;
     @media (max-width: 1200px) {
@@ -111,6 +112,8 @@
 }
 
 .swiper-container-horizontal > .swiper-scrollbar {
+    position: relative;
+    margin: 2% 0;
     width: 100%;
     left: 0;
     bottom: 5%;

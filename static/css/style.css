@@ -15569,8 +15569,11 @@ video::-webkit-media-controls {
   position: relative;
   display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
   min-height: inherit;
   width: 100%; }
   @media (max-width: 1200px) {
@@ -15617,6 +15620,8 @@ video::-webkit-media-controls {
   font-size: 13px; }
 
 .swiper-container-horizontal > .swiper-scrollbar {
+  position: relative;
+  margin: 2% 0;
   width: 100%;
   left: 0;
   bottom: 5%;

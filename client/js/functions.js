@@ -23,9 +23,8 @@ function calculatePageMinHeight() {
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
     // if (windowHeight > (pageHeight + 100 + footerHeight)) {
-    $('main').css({ 'min-height': windowHeight - (100 + footerHeight) });
+    $('.swiper-container').css({ 'min-height': windowHeight - (100 + footerHeight) });
     // $('.page-cover--full').css({ 'min-height': windowHeight });
-    console.log('executed');
     // }
     // console.log('executed');
 }
@@ -34,7 +33,6 @@ $(function () {
     calculatePageMinHeight();
     $(window).on('resize', function () {
         calculatePageMinHeight();
-        console.log('resized');
     });
 });
 
