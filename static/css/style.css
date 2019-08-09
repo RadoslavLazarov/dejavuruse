@@ -15575,10 +15575,11 @@ video::-webkit-media-controls {
   -webkit-box-pack: center;
           justify-content: center;
   min-height: inherit;
-  width: 100%; }
+  width: 100%;
+  margin-top: 20px; }
   @media (max-width: 1200px) {
     .swiper-container {
-      margin-top: 100px; } }
+      margin-top: 120px; } }
 
 .swiper-slide {
   background-position: center;
@@ -15621,7 +15622,7 @@ video::-webkit-media-controls {
 
 .swiper-container-horizontal > .swiper-scrollbar {
   position: relative;
-  margin: 2% 0;
+  margin: 50px 0;
   width: 100%;
   left: 0;
   bottom: 5%;
