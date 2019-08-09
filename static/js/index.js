@@ -104,7 +104,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5c6864cd.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a1a35bb0.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -261,26 +261,44 @@ $('.form-field--validation').on('focusout input', function () {
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
 
-function calculateVideoPageHeight() {
+// function calculateVideoPageHeight() {
+//     var windowHeight = $(window).outerHeight();
+//     var headerHight = $('header').outerHeight();
+//     var footerHight = $('footer').outerHeight();
+//     var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+//     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
+
+//     if (window.matchMedia('(min-width: 1201px)').matches) {
+//         $('.swiper-container').height(windowHeight - (headerHight + footerHight));
+//     } else {
+//         $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
+//     }
+// }
+
+function calculatePageMinHeight() {
     var windowHeight = $(window).outerHeight();
-    var headerHight = $('header').outerHeight();
-    var footerHight = $('footer').outerHeight();
-    var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+    var pageHeight = $('main').outerHeight();
+    var headerHeight = $('header').outerHeight();
+    var footerHeight = $('footer').outerHeight();
+    var calculateSwiperHeight = windowHeight - (headerHeight + footerHeight);
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    if (window.matchMedia('(min-width: 1201px)').matches) {
-        $('.swiper-container').height(windowHeight - (headerHight + footerHight));
-    } else {
-        $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
-    }
+    // if (windowHeight > (pageHeight + 100 + footerHeight)) {
+    $('main').css({ 'min-height': windowHeight - (100 + footerHeight) });
+    // $('.page-cover--full').css({ 'min-height': windowHeight });
+    console.log('executed');
+    // }
+    // console.log('executed');
 }
 
 $(function () {
-    calculateVideoPageHeight();
+    calculatePageMinHeight();
+    $(window).on('resize', function () {
+        calculatePageMinHeight();
+        console.log('resized');
+    });
 });
-$(window).on('resize', function () {
-    calculateVideoPageHeight();
-});
+
 
 /**
  * Checking if element is in viewport. The function is attached to jQuery Object.
@@ -637,10 +655,14 @@ window.Swiper = require('swiper');
 
 window.swiper = new Swiper('.swiper-container', {
   effect: 'coverflow',
-  grabCursor: true,
+  // grabCursor: true,
   centeredSlides: true,
   slidesPerView: 'auto',
   spaceBetween: 50,
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
+  },
   mousewheel: {
     eventsTarged: 'main',
   },
@@ -654,10 +676,6 @@ window.swiper = new Swiper('.swiper-container', {
     depth: 100,
     modifier: 1,
     slideShadows: true,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
   },
   navigation: {
     nextEl: '.swiper-button-next',

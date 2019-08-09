@@ -3,10 +3,14 @@ window.Swiper = require('swiper');
 
 window.swiper = new Swiper('.swiper-container', {
   effect: 'coverflow',
-  grabCursor: true,
+  // grabCursor: true,
   centeredSlides: true,
   slidesPerView: 'auto',
   spaceBetween: 50,
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
+  },
   mousewheel: {
     eventsTarged: 'main',
   },
@@ -20,10 +24,6 @@ window.swiper = new Swiper('.swiper-container', {
     depth: 100,
     modifier: 1,
     slideShadows: true,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
   },
   navigation: {
     nextEl: '.swiper-button-next',

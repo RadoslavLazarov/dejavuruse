@@ -1,25 +1,43 @@
 /* eslint-disable */
 
-function calculateVideoPageHeight() {
+// function calculateVideoPageHeight() {
+//     var windowHeight = $(window).outerHeight();
+//     var headerHight = $('header').outerHeight();
+//     var footerHight = $('footer').outerHeight();
+//     var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+//     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
+
+//     if (window.matchMedia('(min-width: 1201px)').matches) {
+//         $('.swiper-container').height(windowHeight - (headerHight + footerHight));
+//     } else {
+//         $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
+//     }
+// }
+
+function calculatePageMinHeight() {
     var windowHeight = $(window).outerHeight();
-    var headerHight = $('header').outerHeight();
-    var footerHight = $('footer').outerHeight();
-    var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
+    var pageHeight = $('main').outerHeight();
+    var headerHeight = $('header').outerHeight();
+    var footerHeight = $('footer').outerHeight();
+    var calculateSwiperHeight = windowHeight - (headerHeight + footerHeight);
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    if (window.matchMedia('(min-width: 1201px)').matches) {
-        $('.swiper-container').height(windowHeight - (headerHight + footerHight));
-    } else {
-        $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
-    }
+    // if (windowHeight > (pageHeight + 100 + footerHeight)) {
+    $('main').css({ 'min-height': windowHeight - (100 + footerHeight) });
+    // $('.page-cover--full').css({ 'min-height': windowHeight });
+    console.log('executed');
+    // }
+    // console.log('executed');
 }
 
 $(function () {
-    calculateVideoPageHeight();
+    calculatePageMinHeight();
+    $(window).on('resize', function () {
+        calculatePageMinHeight();
+        console.log('resized');
+    });
 });
-$(window).on('resize', function () {
-    calculateVideoPageHeight();
-});
+
 
 /**
  * Checking if element is in viewport. The function is attached to jQuery Object.

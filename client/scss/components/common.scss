@@ -5,6 +5,12 @@ body {
     background-color: $background-color-light;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 ::selection { 
     background: $purple-light 
 }
@@ -127,6 +133,7 @@ video::-webkit-media-controls {
     height: 53px;
     background-color: rgba(0,0,0,0.7);
     border-radius: 50%;
+    z-index: 100;
     &:hover {
         opacity: 1;
         transition: opacity 1s;
@@ -190,17 +197,13 @@ video::-webkit-media-controls {
     justify-content: center;
     overflow: hidden;
     margin-bottom: 25px;
+    min-height: 450px;
     &--full {
-        @include position(absolute, 0, 0, 0, 0);
-        height: 100vh;
+        @include position(fixed, 0, 0, 0, 0);
+        min-height: 100%;
         width: 100%;
         margin: 0;
-    }
-    @media (min-height: 451px) {
-        min-height: 450px;
-    }
-    @media (max-height: 450px) {
-        height: 100vh;
+        
     }
     &__image {
         @include position(absolute, 0, auto, auto, auto);
