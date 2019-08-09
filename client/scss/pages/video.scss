@@ -1,64 +1,3 @@
-.batka {
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    border: 3px solid $white;
-    .uploads-container {
-        @include position(absolute, 0, 0, 0, 0);
-        @include height-width-100;
-        @include flex-center;
-        transition: background-color 1s ease-in-out;
-        .animated-line {
-            position: absolute;
-            top: auto;
-            right: auto;
-            bottom: 10%;
-            left: 50%;
-            width: 1px;
-            height: 0;
-            background-color: #fff;
-            transform: translateX(-50%);
-            transition: all .4s;
-        }
-        
-    }
-    &--last {
-        background-color: rgba(0,0,0,0.3);
-        &:hover , &:focus, &:active {
-            animation: pulse 1.5s infinite;
-            animation-timing-function: ease-in-out; 
-            cursor: pointer; 
-            .animated-line {
-                height: 25%;
-            }
-        }
-    }
-}
-
-#uploads {
-    font-family: 'Cormorant Garamond', serif;
-    color: $white;
-    font-size: 2em;
-    text-transform: uppercase;
-    @media (max-width: 414px) {
-        font-size: 1.5em;
-    }
-}
-
-.videos {
-    @include position(absolute, 0, auto, auto, auto);
-}
-
-.youtube-player {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-wrapper {
-    align-items: center;
-}
-
 .swiper-container {
     position: relative;
     display: flex;
@@ -66,63 +5,100 @@
     justify-content: center;
     min-height: inherit;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
+    padding-bottom: 50px;
+    padding-top: 20px;
     @media (max-width: 1200px) {
         margin-top: 120px;
     }
-    
-}
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    height: initial;
-    max-width: 50%;
-    @media (max-width: 768px) {
-        max-width: 83%;
+    .swiper-wrapper {
+        align-items: center;
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            height: initial;
+            max-width: 50%;
+            border: 3px solid $white;
+            @media (max-width: 768px) {
+                max-width: 83%;
+            }
+            &--last {
+                background-color: rgba(0,0,0,0.3);
+                &:hover , &:focus, &:active {
+                    animation: pulse 1.5s infinite;
+                    animation-timing-function: ease-in-out; 
+                    cursor: pointer; 
+                    .animated-line {
+                        height: 25%;
+                    }
+                }
+                .load-videos {
+                    @include position(absolute, 0, 0, 0, 0);
+                    @include height-width-100;
+                    @include flex-center;
+                    transition: background-color 1s ease-in-out;
+                    .view-more {
+                        font-family: 'Cormorant Garamond', serif;
+                        color: $white;
+                        font-size: 2em;
+                        text-transform: uppercase;
+                        @media (max-width: 414px) {
+                            font-size: 1.5em;
+                        }
+                        .animated-line {
+                            position: absolute;
+                            top: auto;
+                            right: auto;
+                            bottom: 10%;
+                            left: 50%;
+                            width: 1px;
+                            height: 0;
+                            background-color: #fff;
+                            transform: translateX(-50%);
+                            transition: all .4s;
+                        }
+                    }  
+                }
+            }
+            .youtube {
+                width: 100%;
+                padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                &__player {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
-}
-.swiper-button-prev {
-    left: 0;
-}
-.swiper-button-next {
-    right: 0;
-}
-.swiper-button-prev, .swiper-button-next {
-    @media (min-width: 768px) {
-        width: 80px;
-        height: 80px;
-        margin-top: -40px;
-    } 
-}
-.swiper-button-prev:focus, .swiper-button-next:focus {
-    outline: none;
-}
-.append-buttons {
-    text-align: center;
-    margin-top: 20px;
-}
-.append-buttons a {
-    display: inline-block;
-    border: 1px solid #007aff;
-    color: #007aff;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin: 0 10px;
-    font-size: 13px;
-}
-
-.swiper-container-horizontal > .swiper-scrollbar {
-    position: relative;
-    margin: 50px 0;
-    width: 100%;
-    left: 0;
-    bottom: 5%;
-    height: 7px;
-    cursor: pointer;
-}
-
-.swiper-scrollbar-drag {
-    background-color: rgba($white, 0.5);
-    cursor: grab;
+    .swiper-scrollbar {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 5%;
+        height: 7px;
+        cursor: pointer;
+        .swiper-scrollbar-drag {
+            background-color: rgba($white, 0.5);
+            cursor: grab;
+        }
+    }
+    .swiper-button-prev {
+        left: 0;
+    }
+    .swiper-button-next {
+        right: 0;
+    }
+    .swiper-button-prev, .swiper-button-next {
+        @media (min-width: 768px) {
+            width: 80px;
+            height: 80px;
+            margin-top: -40px;
+        }
+        &:focus {
+            outline: none;
+        } 
+    }
 }

@@ -104,7 +104,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_d43e9aeb.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cc031824.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -733,7 +733,7 @@ window.swiper = new Swiper('.swiper-container', {
 // });
 
 var $videos = $('.swiper-wrapper');
-$('.uploads-container').on('click', function (e) {
+$('.load-videos').on('click', function (e) {
   $('#loading-screen').find($('path').attr('fill', '#fff'));
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var token = $(this);
@@ -742,7 +742,7 @@ $('.uploads-container').on('click', function (e) {
     type: 'GET',
     url: `/video/next?nextPageToken=${$(this).data('token')}`,
     success: function (data) {
-      var append = $('.append-buttons');
+      var append = $('.swiper-slide--last');
       append.detach();
       var uploads = data.uploads;
 
@@ -751,16 +751,14 @@ $('.uploads-container').on('click', function (e) {
         swiper.appendSlide(
           `
           <div class="swiper-slide">
-            <div class="d-flex justify-content-center youtube-container">
-              <div class="col-12 batka">
-                <iframe
-                  src="https://www.youtube.com/embed/${id}"
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen
-                  class="youtube-player">
-                </iframe>
-              </div>
+            <div class="youtube">
+              <iframe
+                src="https://www.youtube.com/embed/${id}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                class="youtube__player">
+              </iframe>
             </div>
           </div>
         `

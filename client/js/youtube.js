@@ -47,7 +47,7 @@
 // });
 
 var $videos = $('.swiper-wrapper');
-$('.uploads-container').on('click', function (e) {
+$('.load-videos').on('click', function (e) {
   $('#loading-screen').find($('path').attr('fill', '#fff'));
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var token = $(this);
@@ -56,7 +56,7 @@ $('.uploads-container').on('click', function (e) {
     type: 'GET',
     url: `/video/next?nextPageToken=${$(this).data('token')}`,
     success: function (data) {
-      var append = $('.append-buttons');
+      var append = $('.swiper-slide--last');
       append.detach();
       var uploads = data.uploads;
 
@@ -65,16 +65,14 @@ $('.uploads-container').on('click', function (e) {
         swiper.appendSlide(
           `
           <div class="swiper-slide">
-            <div class="d-flex justify-content-center youtube-container">
-              <div class="col-12 batka">
-                <iframe
-                  src="https://www.youtube.com/embed/${id}"
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen
-                  class="youtube-player">
-                </iframe>
-              </div>
+            <div class="youtube">
+              <iframe
+                src="https://www.youtube.com/embed/${id}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                class="youtube__player">
+              </iframe>
             </div>
           </div>
         `
