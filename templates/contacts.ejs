@@ -30,7 +30,7 @@
                         <i class="fas fa-clock"></i>
                         <h2 class="working-time__title"><%= translation.workingTime %></h2>
                     </div>
-                    <%  pageResources.content.workingTime.days.forEach(function(item) { %>
+                    <% pageResources.content.workingTime.days.forEach(function(item) { %>
                         <div class="working-time__row" data-day-index="<%= item.index %>">
                             <span class="working-time__day"><%= item.day[getLocale] %></span>
                             <span class="working-time__hour"><%= item.hours[getLocale] %></span>

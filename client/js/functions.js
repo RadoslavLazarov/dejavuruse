@@ -16,17 +16,10 @@
 
 function calculatePageMinHeight() {
     var windowHeight = $(window).outerHeight();
-    var pageHeight = $('main').outerHeight();
-    var headerHeight = $('header').outerHeight();
     var footerHeight = $('footer').outerHeight();
-    var calculateSwiperHeight = windowHeight - (headerHeight + footerHeight);
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    // if (windowHeight > (pageHeight + 100 + footerHeight)) {
-    $('.swiper-container').css({ 'min-height': windowHeight - (120 + footerHeight) });
-    // $('.page-cover--full').css({ 'min-height': windowHeight });
-    // }
-    // console.log('executed');
+    $('.swiper-container').css({ 'min-height': windowHeight - (swiperContainerMarginTop + footerHeight) });
 }
 
 $(function () {
@@ -56,9 +49,12 @@ $.fn.isInViewport = function () {
  */
 var workingTime = (function () {
     var getLocale = $('body').data('locale');
-    var date = new Date();
-    var dayNow = date.getDay();
-    var hourNow = date.getHours();
+    var currentDate = new Date();
+    var dayNow = currentDate.getDay();
+    // var hourNow = currentDate.getHours();
+    var hourNow = 9;
+    // var minutesNow = currentDate.getMinutes();
+    var minutesNow = 31;
     var isOpen;
     var status = {
         bg: {
@@ -82,49 +78,71 @@ var workingTime = (function () {
         var dayIndex = $el.data('day-index');
         var $hours = $el.find('.working-time__hour');
         var hourFrom;
+        var minutesFrom;
         var hourTo;
-        var restFrom;
-        var restTo;
+        var minutesTo;
+        var restHourFrom;
+        var restMinutesFrom;
+        var restHourTo;
+        var restMinutesTo;
         var rest = false;
 
         if ($hours.text().indexOf('–') !== -1) {
-            hourFrom = $hours.text().split('–')[0].split(':')[0];
-            hourTo = $hours.text().split('–')[1].split(':')[0];
+            hourFrom = parseInt($hours.text().split('–')[0].split(':')[0]);
+            minutesFrom = parseInt($hours.text().split('–')[0].split(':')[1]);
+            hourTo = parseInt($hours.text().split('–')[1].split(':')[0]);
+            minutesTo = parseInt($hours.text().split('–')[1].split(':')[1]);
+
             if ($hours.text().indexOf(',') !== -1) {
                 rest = true;
-                hourFrom = $hours.text().split(',')[0].split('–')[0].split(':')[0];
-                hourTo = $hours.text().split(',')[1].split('–')[1].split(':')[0];
-                restFrom = $hours.text().split(',')[0].split('–')[1].split(':')[0];
-                restTo = $hours.text().split(',')[1].split('–')[0].split(':')[0];
+                hourFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[0]);
+                minutesFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[1]);
+                hourTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[0]);
+                minutesTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[1]);
+                restHourFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[0]);
+                restMinutesFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[1]);
+                restHourTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[0]);
+                restMinutesTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[1]);
             }
 
         }
 
         if (dayIndex === dayNow) {
             $el.addClass('working-time--current-day');
-            if (hourNow >= hourFrom && hourNow < hourTo) {
-                if (rest && (hourNow >= restFrom && hourNow < restTo)) {
+            var openHour = new Date().setHours(hourFrom, minutesFrom);
+            var closeHour = new Date().setHours(hourTo, minutesTo);
+            var restFrom = new Date().setHours(restHourFrom, restMinutesFrom);
+            var restTo = new Date().setHours(restHourTo, restMinutesTo);
+            var openSoon = new Date().setHours(hourFrom - 1, minutesFrom);
+            var closeSoon = new Date().setHours(hourTo - 1, minutesTo);
+            // currentDate.setHours(9, 40);
+
+            if (currentDate >= openHour && currentDate < closeHour) {
+                if (rest && (currentDate >= restFrom && currentDate < restTo)) {
+                    console.log('rest');
                     $('.working-time').addClass('working-time__rest');
                     $('.working-time__heading').append('<div class="working-time--rest">' + status[getLocale].rest + '</div>');
                     isOpen = false;
+                } else if (currentDate >= closeSoon && currentDate < closeHour) {
+                    console.log('close soon');
+                    $('.working-time').addClass('working-time__closes-soon');
+                    $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
+                    isOpen = true;
                 } else {
-                    if (hourTo - hourNow === 1) {
-                        $('.working-time').addClass('working-time__closes-soon');
-                        $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
-                    } else {
-                        $('.working-time').addClass('working-time__open');
-                        $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
-                    }
+                    console.log('open');
+                    $('.working-time').addClass('working-time__open');
+                    $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
                     isOpen = true;
                 }
+            } else if (currentDate >= openSoon && currentDate < openHour) {
+                console.log('open soon');
+                $('.working-time').addClass('working-time__opens-soon');
+                $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
+                isOpen = false;
             } else {
-                if (hourFrom - hourNow === 1) {
-                    $('.working-time').addClass('working-time__opens-soon');
-                    $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
-                } else {
-                    $('.working-time').addClass('working-time__closed');
-                    $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
-                }
+                console.log('closed');
+                $('.working-time').addClass('working-time__closed');
+                $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
                 isOpen = false;
             }
         }

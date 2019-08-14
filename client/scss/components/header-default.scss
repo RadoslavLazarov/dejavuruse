@@ -240,7 +240,7 @@
     &--fixed {
         @include position(fixed, -53px, auto, auto, auto);
         z-index: 1000;
-        background-color: $purple-dark;
+        background-color: rgba($purple-dark,0.8);;
         #{ $self }__top {
             display: none;
         }

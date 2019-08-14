@@ -1,22 +1,12 @@
 .swiper-container {
-    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     min-height: inherit;
     width: 100%;
-    margin-top: 30px;
-    padding-bottom: 50px;
-    padding-top: 20px;
-    @media (max-width: 1200px) {
-        margin-top: 120px;
-    }
+    margin-top: 120px;
+    padding: 20px 0 50px 0;
     .swiper-wrapper {
-        align-items: center;
         .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            height: initial;
             max-width: 50%;
             border: 3px solid $white;
             @media (max-width: 768px) {
@@ -24,19 +14,10 @@
             }
             &--last {
                 background-color: rgba(0,0,0,0.3);
-                &:hover , &:focus, &:active {
-                    animation: pulse 1.5s infinite;
-                    animation-timing-function: ease-in-out; 
-                    cursor: pointer; 
-                    .animated-line {
-                        height: 25%;
-                    }
-                }
                 .load-videos {
                     @include position(absolute, 0, 0, 0, 0);
                     @include height-width-100;
                     @include flex-center;
-                    transition: background-color 1s ease-in-out;
                     .view-more {
                         font-family: 'Cormorant Garamond', serif;
                         color: $white;
@@ -45,41 +26,32 @@
                         @media (max-width: 414px) {
                             font-size: 1.5em;
                         }
-                        .animated-line {
-                            position: absolute;
-                            top: auto;
-                            right: auto;
-                            bottom: 10%;
-                            left: 50%;
-                            width: 1px;
-                            height: 0;
-                            background-color: #fff;
-                            transform: translateX(-50%);
-                            transition: all .4s;
-                        }
                     }  
+                }
+                &:hover , &:focus, &:active {
+                    animation: pulse 1.5s infinite;
+                    animation-timing-function: ease-in-out; 
+                    cursor: pointer; 
                 }
             }
             .youtube {
-                width: 100%;
                 padding-top: 56.25%; /* 16:9 Aspect Ratio */
                 &__player {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
+                    @include position(absolute, 0, 0, 0, 0);
+                    @include height-width-100;
                 }
             }
         }
     }
     .swiper-scrollbar {
+        @include position(absolute, inherit, 0, 5%, 0);
         position: absolute;
         width: 100%;
-        left: 0;
-        bottom: 5%;
         height: 7px;
         cursor: pointer;
+        @media (max-width: 768px) {
+            height: 10px;
+        }
         .swiper-scrollbar-drag {
             background-color: rgba($white, 0.5);
             cursor: grab;
@@ -92,10 +64,11 @@
         right: 0;
     }
     .swiper-button-prev, .swiper-button-next {
+        margin-top: 0;
+        top: unset;
         @media (min-width: 768px) {
             width: 80px;
             height: 80px;
-            margin-top: -40px;
         }
         &:focus {
             outline: none;

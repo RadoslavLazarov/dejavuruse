@@ -4,16 +4,13 @@
         <%- include ../head.ejs %>
     </head>
     <body data-locale='<%= getLocale %>'>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR5BPKP"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        <%- include ../../components/header/header-video.ejs %>
+        <%- include ../googleTagManager.ejs %>
+        <%- include ../../components/header/headerDefault.ejs %>
         <main>
             <%- include ../../components/pageCoverFull.ejs %>
             <%- body -%>
         </main>
-        <%- include ../../components/footer/footer-video.ejs %>
+        <%- include ../../components/footer/footerVideoPage.ejs %>
         <%- include ../scripts.ejs %>
     </body>
 </html>

@@ -104,7 +104,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cc031824.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cbd40f4d.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -277,17 +277,10 @@ $('.form-field--validation').on('focusout input', function () {
 
 function calculatePageMinHeight() {
     var windowHeight = $(window).outerHeight();
-    var pageHeight = $('main').outerHeight();
-    var headerHeight = $('header').outerHeight();
     var footerHeight = $('footer').outerHeight();
-    var calculateSwiperHeight = windowHeight - (headerHeight + footerHeight);
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    // if (windowHeight > (pageHeight + 100 + footerHeight)) {
-    $('.swiper-container').css({ 'min-height': windowHeight - (120 + footerHeight) });
-    // $('.page-cover--full').css({ 'min-height': windowHeight });
-    // }
-    // console.log('executed');
+    $('.swiper-container').css({ 'min-height': windowHeight - (swiperContainerMarginTop + footerHeight) });
 }
 
 $(function () {
@@ -317,9 +310,12 @@ $.fn.isInViewport = function () {
  */
 var workingTime = (function () {
     var getLocale = $('body').data('locale');
-    var date = new Date();
-    var dayNow = date.getDay();
-    var hourNow = date.getHours();
+    var currentDate = new Date();
+    var dayNow = currentDate.getDay();
+    // var hourNow = currentDate.getHours();
+    var hourNow = 9;
+    // var minutesNow = currentDate.getMinutes();
+    var minutesNow = 31;
     var isOpen;
     var status = {
         bg: {
@@ -343,49 +339,71 @@ var workingTime = (function () {
         var dayIndex = $el.data('day-index');
         var $hours = $el.find('.working-time__hour');
         var hourFrom;
+        var minutesFrom;
         var hourTo;
-        var restFrom;
-        var restTo;
+        var minutesTo;
+        var restHourFrom;
+        var restMinutesFrom;
+        var restHourTo;
+        var restMinutesTo;
         var rest = false;
 
         if ($hours.text().indexOf('–') !== -1) {
-            hourFrom = $hours.text().split('–')[0].split(':')[0];
-            hourTo = $hours.text().split('–')[1].split(':')[0];
+            hourFrom = parseInt($hours.text().split('–')[0].split(':')[0]);
+            minutesFrom = parseInt($hours.text().split('–')[0].split(':')[1]);
+            hourTo = parseInt($hours.text().split('–')[1].split(':')[0]);
+            minutesTo = parseInt($hours.text().split('–')[1].split(':')[1]);
+
             if ($hours.text().indexOf(',') !== -1) {
                 rest = true;
-                hourFrom = $hours.text().split(',')[0].split('–')[0].split(':')[0];
-                hourTo = $hours.text().split(',')[1].split('–')[1].split(':')[0];
-                restFrom = $hours.text().split(',')[0].split('–')[1].split(':')[0];
-                restTo = $hours.text().split(',')[1].split('–')[0].split(':')[0];
+                hourFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[0]);
+                minutesFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[1]);
+                hourTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[0]);
+                minutesTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[1]);
+                restHourFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[0]);
+                restMinutesFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[1]);
+                restHourTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[0]);
+                restMinutesTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[1]);
             }
 
         }
 
         if (dayIndex === dayNow) {
             $el.addClass('working-time--current-day');
-            if (hourNow >= hourFrom && hourNow < hourTo) {
-                if (rest && (hourNow >= restFrom && hourNow < restTo)) {
+            var openHour = new Date().setHours(hourFrom, minutesFrom);
+            var closeHour = new Date().setHours(hourTo, minutesTo);
+            var restFrom = new Date().setHours(restHourFrom, restMinutesFrom);
+            var restTo = new Date().setHours(restHourTo, restMinutesTo);
+            var openSoon = new Date().setHours(hourFrom - 1, minutesFrom);
+            var closeSoon = new Date().setHours(hourTo - 1, minutesTo);
+            // currentDate.setHours(9, 40);
+
+            if (currentDate >= openHour && currentDate < closeHour) {
+                if (rest && (currentDate >= restFrom && currentDate < restTo)) {
+                    console.log('rest');
                     $('.working-time').addClass('working-time__rest');
                     $('.working-time__heading').append('<div class="working-time--rest">' + status[getLocale].rest + '</div>');
                     isOpen = false;
+                } else if (currentDate >= closeSoon && currentDate < closeHour) {
+                    console.log('close soon');
+                    $('.working-time').addClass('working-time__closes-soon');
+                    $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
+                    isOpen = true;
                 } else {
-                    if (hourTo - hourNow === 1) {
-                        $('.working-time').addClass('working-time__closes-soon');
-                        $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
-                    } else {
-                        $('.working-time').addClass('working-time__open');
-                        $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
-                    }
+                    console.log('open');
+                    $('.working-time').addClass('working-time__open');
+                    $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
                     isOpen = true;
                 }
+            } else if (currentDate >= openSoon && currentDate < openHour) {
+                console.log('open soon');
+                $('.working-time').addClass('working-time__opens-soon');
+                $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
+                isOpen = false;
             } else {
-                if (hourFrom - hourNow === 1) {
-                    $('.working-time').addClass('working-time__opens-soon');
-                    $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
-                } else {
-                    $('.working-time').addClass('working-time__closed');
-                    $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
-                }
+                console.log('closed');
+                $('.working-time').addClass('working-time__closed');
+                $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
                 isOpen = false;
             }
         }
@@ -653,7 +671,6 @@ window.Swiper = require('swiper');
 
 window.swiper = new Swiper('.swiper-container', {
   effect: 'coverflow',
-  // grabCursor: true,
   centeredSlides: true,
   slidesPerView: 'auto',
   spaceBetween: 50,
@@ -686,68 +703,23 @@ window.swiper = new Swiper('.swiper-container', {
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
 
-// if ($videos) {
-//   console.log('batkata');
-//   $.ajax({
-//     type: 'GET',
-//     url: '/video/uploads',
-//     success: function (data) {
-//       // console.log(data.uploads);
-//       var uploads = data;
-//       $('.batka').empty();
-//       uploads.forEach(function (el) {
-//         console.log(el);
-//         // $('.batka').prepend(`
-//         //   <div class="col-xl-6 d-flex justify-content-center pb-5">
-//         //     <iframe width="560" 
-//         //       height="315" 
-//         //       src="https://www.youtube.com/embed/${el}"
-//         //       frameborder="0" 
-//         //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-//         //       allowfullscreen
-//         //       class='youtube-player'>
-//         //     </iframe>
-//         //   </div>
-//         // `);
-//         $('.batka').prepend(`<div>${el}</div>`);
-//         // $('.batka').prepend(`<div>${el}</div>`);
-//       });
-//       // $('.youtube-player').attr('src', 'https://www.youtube.com/embed/UOyJwOoi1VE')
-//     },
-//   });
-// }
-// var appendNumber = 4;
-// var prependNumber = 1;
-// var swiper = new Swiper('.swiper-container', {
-//   slidesPerView: 1,
-//   centeredSlides: true,
-//   spaceBetween: 30,
-//   pagination: {
-//     el: '.swiper-pagination',
-//     clickable: true,
-//   },
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-// });
-
-var $videos = $('.swiper-wrapper');
-$('.load-videos').on('click', function (e) {
+$('.load-videos').on('click', function () {
   $('#loading-screen').find($('path').attr('fill', '#fff'));
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-  var token = $(this);
+  var $that = $(this);
+  var token = $that.data('token');
 
   $.ajax({
     type: 'GET',
-    url: `/video/next?nextPageToken=${$(this).data('token')}`,
+    url: `/video/next?nextPageToken=${token}`,
     success: function (data) {
-      var append = $('.swiper-slide--last');
-      append.detach();
       var uploads = data.uploads;
+      var $lastSlide = $('.swiper-slide--last');
+
+      $lastSlide.detach();
 
       uploads.forEach(function (id) {
-        console.log(id);
+        // swiper is isntance of Swiper and it is attached to global window object
         swiper.appendSlide(
           `
           <div class="swiper-slide">
@@ -764,9 +736,9 @@ $('.load-videos').on('click', function (e) {
         `
         );
       });
-      swiper.appendSlide(append);
-      console.log(data.nextPageToken);
-      token.data('token', data.nextPageToken);
+
+      swiper.appendSlide($lastSlide);
+      $that.data('token', data.nextPageToken);
       $('#loading-screen').fadeOut('slow');
     },
   });

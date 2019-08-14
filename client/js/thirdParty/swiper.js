@@ -3,7 +3,6 @@ window.Swiper = require('swiper');
 
 window.swiper = new Swiper('.swiper-container', {
   effect: 'coverflow',
-  // grabCursor: true,
   centeredSlides: true,
   slidesPerView: 'auto',
   spaceBetween: 50,
