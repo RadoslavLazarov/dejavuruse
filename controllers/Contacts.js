@@ -2,6 +2,8 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const request = require('request');
 
+const CredentialsModel = require('../models/credentials');
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -10,10 +12,10 @@ router.get('/', async (req, res) => {
   });
 });
 
-router.post('/feedback', (req, res) => {
-  const secretKey = '6LfhT6wUAAAAAGrCR-zJoslXC0jotiL6aZJ_jySB';
+router.post('/feedback', async (req, res) => {
+  const recaptchaCredentials = await new CredentialsModel('recaptcha').findCredentials;
   const { token } = req.body;
-  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
+  const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaCredentials.credentials.secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
 
   if (token === undefined || token === '' || token === null) {
     res.json({ captcha: { error: 'Captcha error' } });
@@ -41,8 +43,8 @@ router.post('/feedback', (req, res) => {
 
   request.post(verificationURL, (error, response, body) => {
     const responseBody = JSON.parse(body);
-    // console.log(responseBody);
-    if (responseBody.success !== undefined && (!responseBody.success || responseBody.action !== 'feedback')) {
+
+    if (responseBody.success !== undefined && (!responseBody.success)) {
       res.json({ captcha: { error: 'Failed captcha verification' } });
     }
 

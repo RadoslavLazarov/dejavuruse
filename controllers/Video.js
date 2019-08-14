@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   let nextPageToken = '';
 
   try {
-    const youtubeCredentials = await CredentialsModel.findOne({ id: 'youtube' });
+    const youtubeCredentials = await new CredentialsModel('youtube').findCredentials;
     const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=4&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=${youtubeCredentials.credentials.key}`;
     const { data } = await axios.get(youtubeApiUrl);
     if (data.nextPageToken) {
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/next', async (req, res) => {
-  const youtubeCredentials = await CredentialsModel.findOne({ id: 'youtube' });
+  const youtubeCredentials = await new CredentialsModel('youtube').findCredentials;
   // const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=AIzaSyCNrSHcBS-gXiYiZ8vx1af6xJpB5kP9Ias`;
   const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&pageToken=${req.query.nextPageToken}&maxResults=4&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=${youtubeCredentials.credentials.key}`;
   // UU1KPy3cAAj0i0RIFC_SzjMg - VitalyZdTv; UUeaJzNsXhbxDKadHyzBTDUg - Dejavu

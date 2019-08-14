@@ -104,10 +104,90 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cbd40f4d.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_8dfbe72f.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
+
+// var getLocale = $('body').data('locale');
+
+// var swalText = {
+//     bg: {
+//         reqError: 'Грешна заявка',
+//         formError: 'Формата има невалидни или непопълнени полета!',
+//         formSuccess: 'Съобщението е изпратено!'
+//     },
+//     en: {
+//         reqError: 'Request error',
+//         formError: 'The form has invalid or empty fields!',
+//         formSuccess: 'Your message has been sent!'
+//     }
+// };
+
+// $('#feedback-form').on('submit', function (e) {
+//     e.preventDefault();
+//     var $form = $(this);
+//     var $formField = $('#feedback-form .form-field');
+//     var errorCheck = (function () {
+//         var err;
+//         if ($formField.hasClass('form-field--invalid') || $formField.hasClass('form-field--required')) {
+//             err = true;
+//         } else {
+//             err = false;
+//         }
+//         return err;
+//     })();
+
+//     if (!errorCheck) {
+//         $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
+//         grecaptcha.ready(function () {
+//             grecaptcha.execute('6LfhT6wUAAAAACyWaCAedFLOJyDzksGZ9LChXbC0', { action: 'feedback' }).then(function (token) {
+//                 $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: '/contacts/feedback',
+//                     data: {
+//                         email: $form.find('input[name="email"]').val(),
+//                         subject: $form.find('input[name="subject"]').val(),
+//                         name: $form.find('input[name="name"]').val(),
+//                         phone: $form.find('input[name="phone"]').val(),
+//                         event: $form.find('input[name="event"]').val(),
+//                         date: $form.find('input[name="date"]').val(),
+//                         text: $form.find('textarea').val(),
+//                         token: token
+//                     },
+//                     cache: false,
+//                     error: function (err) {
+//                         $('#loading-screen').fadeOut('slow');
+//                         swal({
+//                             title: swalText[getLocale].reqError,
+//                             icon: 'error',
+//                         })
+//                     },
+//                     success: function (data) {
+//                         $('#loading-screen').fadeOut('slow');
+//                         console.log(data);
+//                         if (data.captcha.error || data.email.error) {
+//                             $('.feedback-form-container').append('<div class="error">' + data.captcha.error || data.email.error || data.form.error + '</div>');
+//                         } else if (data.captcha.success && data.email.success) {
+//                             swal({
+//                                 title: swalText[getLocale].formSuccess,
+//                                 icon: 'success',
+//                             }).then(function () {
+//                                 location.reload();
+//                             });
+//                         }
+//                     },
+//                 });
+//             });
+//         });
+//     } else {
+//         swal({
+//             title: swalText[getLocale].formError,
+//             icon: 'error',
+//         })
+//     }
+// });
 
 var getLocale = $('body').data('locale');
 
@@ -138,49 +218,49 @@ $('#feedback-form').on('submit', function (e) {
         return err;
     })();
 
-    if (!errorCheck) {
+    var token = grecaptcha.getResponse();
+
+    if (!errorCheck && token) {
         $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6LfhT6wUAAAAACyWaCAedFLOJyDzksGZ9LChXbC0', { action: 'feedback' }).then(function (token) {
-                $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
-                $.ajax({
-                    type: 'POST',
-                    url: '/contacts/feedback',
-                    data: {
-                        email: $form.find('input[name="email"]').val(),
-                        subject: $form.find('input[name="subject"]').val(),
-                        name: $form.find('input[name="name"]').val(),
-                        phone: $form.find('input[name="phone"]').val(),
-                        event: $form.find('input[name="event"]').val(),
-                        date: $form.find('input[name="date"]').val(),
-                        text: $form.find('textarea').val(),
-                        token: token
-                    },
-                    cache: false,
-                    error: function (err) {
-                        $('#loading-screen').fadeOut('slow');
-                        swal({
-                            title: swalText[getLocale].reqError,
-                            icon: 'error',
-                        })
-                    },
-                    success: function (data) {
-                        $('#loading-screen').fadeOut('slow');
-                        console.log(data);
-                        if (data.captcha.error || data.email.error) {
-                            $('.feedback-form-container').append('<div class="error">' + data.captcha.error || data.email.error || data.form.error + '</div>');
-                        } else if (data.captcha.success && data.email.success) {
-                            swal({
-                                title: swalText[getLocale].formSuccess,
-                                icon: 'success',
-                            }).then(function () {
-                                location.reload();
-                            });
-                        }
-                    },
-                });
-            });
+
+        $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+        $.ajax({
+            type: 'POST',
+            url: '/contacts/feedback',
+            data: {
+                email: $form.find('input[name="email"]').val(),
+                subject: $form.find('input[name="subject"]').val(),
+                name: $form.find('input[name="name"]').val(),
+                phone: $form.find('input[name="phone"]').val(),
+                event: $form.find('input[name="event"]').val(),
+                date: $form.find('input[name="date"]').val(),
+                text: $form.find('textarea').val(),
+                token: token
+            },
+            cache: false,
+            error: function (err) {
+                $('#loading-screen').fadeOut('slow');
+                swal({
+                    title: swalText[getLocale].reqError,
+                    icon: 'error',
+                })
+            },
+            success: function (data) {
+                $('#loading-screen').fadeOut('slow');
+
+                if (data.captcha.error || data.email.error) {
+                    $('.feedback-form-container').append('<div class="error">' + data.captcha.error || data.email.error || data.form.error + '</div>');
+                } else if (data.captcha.success && data.email.success) {
+                    swal({
+                        title: swalText[getLocale].formSuccess,
+                        icon: 'success',
+                    }).then(function () {
+                        location.reload();
+                    });
+                }
+            },
         });
+
     } else {
         swal({
             title: swalText[getLocale].formError,
@@ -188,6 +268,7 @@ $('#feedback-form').on('submit', function (e) {
         })
     }
 });
+
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feedbackForm.js","/")
 },{"buffer":15,"e/U+97":20}],4:[function(require,module,exports){
@@ -261,21 +342,7 @@ $('.form-field--validation').on('focusout input', function () {
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable */
 
-// function calculateVideoPageHeight() {
-//     var windowHeight = $(window).outerHeight();
-//     var headerHight = $('header').outerHeight();
-//     var footerHight = $('footer').outerHeight();
-//     var calculateSwiperHeight = windowHeight - (headerHight + footerHight);
-//     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
-
-//     if (window.matchMedia('(min-width: 1201px)').matches) {
-//         $('.swiper-container').height(windowHeight - (headerHight + footerHight));
-//     } else {
-//         $('.swiper-container').height(windowHeight - (swiperContainerMarginTop + footerHight));
-//     }
-// }
-
-function calculatePageMinHeight() {
+function calculateSwiperMinHeight() {
     var windowHeight = $(window).outerHeight();
     var footerHeight = $('footer').outerHeight();
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
@@ -284,9 +351,9 @@ function calculatePageMinHeight() {
 }
 
 $(function () {
-    calculatePageMinHeight();
+    calculateSwiperMinHeight();
     $(window).on('resize', function () {
-        calculatePageMinHeight();
+        calculateSwiperMinHeight();
     });
 });
 
@@ -312,10 +379,6 @@ var workingTime = (function () {
     var getLocale = $('body').data('locale');
     var currentDate = new Date();
     var dayNow = currentDate.getDay();
-    // var hourNow = currentDate.getHours();
-    var hourNow = 9;
-    // var minutesNow = currentDate.getMinutes();
-    var minutesNow = 31;
     var isOpen;
     var status = {
         bg: {
@@ -336,6 +399,8 @@ var workingTime = (function () {
 
     $('.working-time__row').each(function (index, value) {
         var $el = $(value);
+        var $workingTime = $('.working-time');
+        var $workingTimeHeading = $('.working-time__heading');
         var dayIndex = $el.data('day-index');
         var $hours = $el.find('.working-time__hour');
         var hourFrom;
@@ -348,27 +413,26 @@ var workingTime = (function () {
         var restMinutesTo;
         var rest = false;
 
-        if ($hours.text().indexOf('–') !== -1) {
-            hourFrom = parseInt($hours.text().split('–')[0].split(':')[0]);
-            minutesFrom = parseInt($hours.text().split('–')[0].split(':')[1]);
-            hourTo = parseInt($hours.text().split('–')[1].split(':')[0]);
-            minutesTo = parseInt($hours.text().split('–')[1].split(':')[1]);
+        if (dayIndex === dayNow) {
+            if ($hours.text().indexOf('–') !== -1) {
+                hourFrom = parseInt($hours.text().split('–')[0].split(':')[0]);
+                minutesFrom = parseInt($hours.text().split('–')[0].split(':')[1]);
+                hourTo = parseInt($hours.text().split('–')[1].split(':')[0]);
+                minutesTo = parseInt($hours.text().split('–')[1].split(':')[1]);
 
-            if ($hours.text().indexOf(',') !== -1) {
-                rest = true;
-                hourFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[0]);
-                minutesFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[1]);
-                hourTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[0]);
-                minutesTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[1]);
-                restHourFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[0]);
-                restMinutesFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[1]);
-                restHourTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[0]);
-                restMinutesTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[1]);
+                if ($hours.text().indexOf(',') !== -1) {
+                    rest = true;
+                    hourFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[0]);
+                    minutesFrom = parseInt($hours.text().split(',')[0].split('–')[0].split(':')[1]);
+                    hourTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[0]);
+                    minutesTo = parseInt($hours.text().split(',')[1].split('–')[1].split(':')[1]);
+                    restHourFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[0]);
+                    restMinutesFrom = parseInt($hours.text().split(',')[0].split('–')[1].split(':')[1]);
+                    restHourTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[0]);
+                    restMinutesTo = parseInt($hours.text().split(',')[1].split('–')[0].split(':')[1]);
+                }
             }
 
-        }
-
-        if (dayIndex === dayNow) {
             $el.addClass('working-time--current-day');
             var openHour = new Date().setHours(hourFrom, minutesFrom);
             var closeHour = new Date().setHours(hourTo, minutesTo);
@@ -376,34 +440,28 @@ var workingTime = (function () {
             var restTo = new Date().setHours(restHourTo, restMinutesTo);
             var openSoon = new Date().setHours(hourFrom - 1, minutesFrom);
             var closeSoon = new Date().setHours(hourTo - 1, minutesTo);
-            // currentDate.setHours(9, 40);
 
-            if (currentDate >= openHour && currentDate < closeHour) {
+            if (currentDate >= openHour && currentDate < closeHour) { // Store is open
                 if (rest && (currentDate >= restFrom && currentDate < restTo)) {
-                    console.log('rest');
-                    $('.working-time').addClass('working-time__rest');
-                    $('.working-time__heading').append('<div class="working-time--rest">' + status[getLocale].rest + '</div>');
+                    $workingTime.addClass('working-time__rest');
+                    $workingTimeHeading.append('<div class="working-time--rest">' + status[getLocale].rest + '</div>');
                     isOpen = false;
                 } else if (currentDate >= closeSoon && currentDate < closeHour) {
-                    console.log('close soon');
-                    $('.working-time').addClass('working-time__closes-soon');
-                    $('.working-time__heading').append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
+                    $workingTime.addClass('working-time__closes-soon');
+                    $workingTimeHeading.append('<div class="working-time--closes-soon">' + status[getLocale].closesSoon + '</div>');
                     isOpen = true;
                 } else {
-                    console.log('open');
-                    $('.working-time').addClass('working-time__open');
-                    $('.working-time__heading').append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
+                    $workingTime.addClass('working-time__open');
+                    $workingTimeHeading.append('<div class="working-time--open">' + status[getLocale].openNow + '</div>');
                     isOpen = true;
                 }
-            } else if (currentDate >= openSoon && currentDate < openHour) {
-                console.log('open soon');
-                $('.working-time').addClass('working-time__opens-soon');
-                $('.working-time__heading').append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
+            } else if (currentDate >= openSoon && currentDate < openHour) { // Store will open soon
+                $workingTime.addClass('working-time__opens-soon');
+                $workingTimeHeading.append('<div class="working-time--opens-soon">' + status[getLocale].opensSoon + '</div>');
                 isOpen = false;
-            } else {
-                console.log('closed');
-                $('.working-time').addClass('working-time__closed');
-                $('.working-time__heading').append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
+            } else { // Store is close
+                $workingTime.addClass('working-time__closed');
+                $workingTimeHeading.append('<div class="working-time--closed">' + status[getLocale].closedNow + '</div>');
                 isOpen = false;
             }
         }
