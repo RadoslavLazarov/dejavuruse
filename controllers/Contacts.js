@@ -18,7 +18,7 @@ router.post('/feedback', async (req, res) => {
   const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaCredentials.credentials.secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
 
   if (token === undefined || token === '' || token === null) {
-    res.json({ captcha: { error: 'Captcha error' } });
+    return res.json({ captcha: { error: 'Captcha error' } });
   }
 
   const regex = {
@@ -37,7 +37,7 @@ router.post('/feedback', async (req, res) => {
 
   for (const field in formFields) {
     if (!formFields[field]) {
-      res.sendStatus(400);
+      return res.sendStatus(400);
     }
   }
 
@@ -46,48 +46,48 @@ router.post('/feedback', async (req, res) => {
   request.post(verificationURL, (error, response, body) => {
     if (error) {
       console.log(`recaptcha error: ${error}`);
-      res.sendStatus(500);
-    } else {
-      const responseBody = JSON.parse(body);
+      return res.sendStatus(500);
+    }
+    const responseBody = JSON.parse(body);
 
-      if (responseBody.success !== undefined && (!responseBody.success)) {
-        res.json({ captcha: { error: 'Failed captcha verification' } });
-      }
+    if (responseBody.success !== undefined && (!responseBody.success)) {
+      return res.json({ captcha: { error: 'Failed captcha verification' } });
+    }
 
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: 'alien.lazarov@gmail.com',
-          pass: gmailCredentials.credentials.password,
-        },
-      });
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'alien.lazarov@gmail.com',
+        pass: gmailCredentials.credentials.password,
+      },
+    });
 
-      /* Gmail always sets authenticated username as the From: email address.
-        So if you authenticate as foo@example.com and set bar@example.com as the from: address,
-        then Gmail reverts this and replaces the sender with the authenticated user.
-        https://nodemailer.com/usage/using-gmail/ */
-      const mailOptions = {
-        from: `${req.body.name} <${req.body.email}>`,
-        to: 'alien.lazarov@gmail.com',
-        subject: `${req.body.subject}`,
-        html: `${`<b>От:</b> ${req.body.email}<br>`}
+    /* Gmail always sets authenticated username as the From: email address.
+      So if you authenticate as foo@example.com and set bar@example.com as the from: address,
+      then Gmail reverts this and replaces the sender with the authenticated user.
+      https://nodemailer.com/usage/using-gmail/ */
+    const mailOptions = {
+      from: `${req.body.name} <${req.body.email}>`,
+      to: 'alien.lazarov@gmail.com',
+      subject: `${req.body.subject}`,
+      html: `${`<b>От:</b> ${req.body.email}<br>`}
                ${`<b>Име:</b> ${req.body.name}<br>`}
                ${req.body.phone ? `<b>Телефон:</b> ${req.body.phone}<br>` : ''}
                ${req.body.event ? `<b>Събитие:</b> ${req.body.event}<br>` : ''}
                ${req.body.date ? `<b>Предпочитана дата:</b> ${req.body.date}<br>` : ''}
                ${`<b>Съобщение:</b> ${req.body.text}<br>`}`,
-      };
+    };
 
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          res.json({ captcha: { success: true }, email: { error: 'Failed send message' } });
-        } else {
-          res.json({ captcha: { success: true }, email: { success: true } });
-        }
-      });
-    }
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        res.json({ captcha: { success: true }, email: { error: 'Failed send message' } });
+      } else {
+        res.json({ captcha: { success: true }, email: { success: true } });
+      }
+    });
+
   });
 });
 
