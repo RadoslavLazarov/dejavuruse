@@ -15809,5 +15809,6 @@ video::-webkit-media-controls {
       height: 0;
       padding: 0; }
   .feedback-form-container .error {
+    display: none;
     text-align: center;
     color: #b60000; }

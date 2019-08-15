@@ -24,7 +24,7 @@ router.post('/feedback', async (req, res) => {
   const regex = {
     email: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g,
     phone: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,
-    name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+    name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g,
   };
 
   const formFields = {
@@ -41,6 +41,8 @@ router.post('/feedback', async (req, res) => {
     }
   }
 
+  const gmailCredentials = await new CredentialsModel('gmail').findCredentials;
+
   request.post(verificationURL, (error, response, body) => {
     const responseBody = JSON.parse(body);
 
@@ -54,7 +56,7 @@ router.post('/feedback', async (req, res) => {
       secure: true,
       auth: {
         user: 'alien.lazarov@gmail.com',
-        pass: 'qrohbpxifboasaax',
+        pass: gmailCredentials.credentials.password,
       },
     });
 
@@ -77,8 +79,9 @@ router.post('/feedback', async (req, res) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         res.json({ captcha: { success: true }, email: { error: 'Failed send message' } });
+      } else {
+        res.json({ captcha: { success: true }, email: { success: true } });
       }
-      res.json({ captcha: { success: true }, email: { success: true } });
     });
   });
 });

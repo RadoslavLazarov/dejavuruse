@@ -129,7 +129,7 @@ $('#feedback-form').on('submit', function (e) {
                 token: token
             },
             cache: false,
-            error: function (err) {
+            error: function (request, status, error) {
                 $('#loading-screen').fadeOut('slow');
                 swal({
                     title: swalText[getLocale].reqError,
@@ -140,7 +140,7 @@ $('#feedback-form').on('submit', function (e) {
                 $('#loading-screen').fadeOut('slow');
 
                 if (data.captcha.error || data.email.error) {
-                    $('.feedback-form-container').append('<div class="error">' + data.captcha.error || data.email.error || data.form.error + '</div>');
+                    $('.feedback-form-container > .error').show().text(data.captcha.error || data.email.error);
                 } else if (data.captcha.success && data.email.success) {
                     swal({
                         title: swalText[getLocale].formSuccess,
