@@ -104,7 +104,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_59823876.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_9d5b7174.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -206,8 +206,10 @@ var swalText = {
 
 $('#feedback-form').on('submit', function (e) {
     e.preventDefault();
+    var token = grecaptcha.getResponse();
     var $form = $(this);
     var $formField = $('#feedback-form .form-field');
+
     var errorCheck = (function () {
         var err;
         if ($formField.hasClass('form-field--invalid') || $formField.hasClass('form-field--required')) {
@@ -218,15 +220,13 @@ $('#feedback-form').on('submit', function (e) {
         return err;
     })();
 
-    var token = grecaptcha.getResponse();
-
     if (!errorCheck && token) {
         $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-
         $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+
         $.ajax({
             type: 'POST',
-            url: '/contacts/feedback',
+            url: $form.attr('action'),
             data: {
                 email: $form.find('input[name="email"]').val(),
                 subject: $form.find('input[name="subject"]').val(),
@@ -236,14 +236,6 @@ $('#feedback-form').on('submit', function (e) {
                 date: $form.find('input[name="date"]').val(),
                 text: $form.find('textarea').val(),
                 token: token
-            },
-            cache: false,
-            error: function (request, status, error) {
-                $('#loading-screen').fadeOut('slow');
-                swal({
-                    title: swalText[getLocale].reqError,
-                    icon: 'error',
-                })
             },
             success: function (data) {
                 $('#loading-screen').fadeOut('slow');
@@ -259,8 +251,14 @@ $('#feedback-form').on('submit', function (e) {
                     });
                 }
             },
+            error: function (request, status, error) {
+                $('#loading-screen').fadeOut('slow');
+                swal({
+                    title: swalText[getLocale].reqError,
+                    icon: 'error',
+                })
+            },
         });
-
     } else {
         swal({
             title: swalText[getLocale].formError,
@@ -268,7 +266,6 @@ $('#feedback-form').on('submit', function (e) {
         })
     }
 });
-
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/feedbackForm.js","/")
 },{"buffer":15,"e/U+97":20}],4:[function(require,module,exports){

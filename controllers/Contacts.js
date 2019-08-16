@@ -28,15 +28,27 @@ router.post('/feedback', async (req, res) => {
   };
 
   const formFields = {
-    email: req.body.email.match(regex.email),
-    subject: req.body.subject,
-    name: req.body.name.match(regex.name),
-    phone: req.body.phone.match(regex.phone),
-    text: req.body.text,
+    required: {
+      email: req.body.email.match(regex.email),
+      subject: req.body.subject,
+      name: req.body.name.match(regex.name),
+      text: req.body.text,
+    },
+    unrequired: {
+      phone: req.body.phone,
+    },
   };
 
-  for (const field in formFields) {
-    if (!formFields[field]) {
+  // Check for missing required fields and if they match regex
+  for (const field in formFields.required) {
+    if (!formFields.required[field]) {
+      return res.sendStatus(400);
+    }
+  }
+
+  // Check if unrequired fields match regex
+  for (const field in formFields.unrequired) {
+    if (formFields.unrequired[field] !== '' && !formFields.unrequired[field].match(regex[field])) {
       return res.sendStatus(400);
     }
   }
@@ -87,7 +99,6 @@ router.post('/feedback', async (req, res) => {
         res.json({ captcha: { success: true }, email: { success: true } });
       }
     });
-
   });
 });
 

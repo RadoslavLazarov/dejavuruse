@@ -97,8 +97,10 @@ var swalText = {
 
 $('#feedback-form').on('submit', function (e) {
     e.preventDefault();
+    var token = grecaptcha.getResponse();
     var $form = $(this);
     var $formField = $('#feedback-form .form-field');
+
     var errorCheck = (function () {
         var err;
         if ($formField.hasClass('form-field--invalid') || $formField.hasClass('form-field--required')) {
@@ -109,15 +111,13 @@ $('#feedback-form').on('submit', function (e) {
         return err;
     })();
 
-    var token = grecaptcha.getResponse();
-
     if (!errorCheck && token) {
         $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-
         $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+
         $.ajax({
             type: 'POST',
-            url: '/contacts/feedback',
+            url: $form.attr('action'),
             data: {
                 email: $form.find('input[name="email"]').val(),
                 subject: $form.find('input[name="subject"]').val(),
@@ -127,14 +127,6 @@ $('#feedback-form').on('submit', function (e) {
                 date: $form.find('input[name="date"]').val(),
                 text: $form.find('textarea').val(),
                 token: token
-            },
-            cache: false,
-            error: function (request, status, error) {
-                $('#loading-screen').fadeOut('slow');
-                swal({
-                    title: swalText[getLocale].reqError,
-                    icon: 'error',
-                })
             },
             success: function (data) {
                 $('#loading-screen').fadeOut('slow');
@@ -150,8 +142,14 @@ $('#feedback-form').on('submit', function (e) {
                     });
                 }
             },
+            error: function (request, status, error) {
+                $('#loading-screen').fadeOut('slow');
+                swal({
+                    title: swalText[getLocale].reqError,
+                    icon: 'error',
+                })
+            },
         });
-
     } else {
         swal({
             title: swalText[getLocale].formError,
@@ -159,4 +157,3 @@ $('#feedback-form').on('submit', function (e) {
         })
     }
 });
-
