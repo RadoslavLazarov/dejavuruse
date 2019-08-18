@@ -1,6 +1,6 @@
 .header {
     $self: &;
-    @include position(absolute, 0, auto, auto, auto);
+    @include position(absolute, auto, auto, auto, auto);
     width: 100%;
     font-family: 'Cormorant Garamond', serif;
     @media screen and (min-width: 1201px) {

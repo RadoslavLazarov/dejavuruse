@@ -49,6 +49,7 @@ app.use(locals);
 // Controllers
 app.use('/', controllers.Home);
 app.use('/lang', controllers.Locale);
+app.use('/cookies-consent', controllers.CookiesConsent);
 app.use('/about', controllers.About);
 app.use('/news', controllers.News);
 app.use('/gallery', controllers.Gallery);

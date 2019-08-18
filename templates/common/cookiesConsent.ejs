@@ -1,0 +1,23 @@
+<% if (cookies.cookies_consent !== 'yes') { %>
+    <div class="container-fluid cookie-warning">
+        <div class="row">
+            <div class="col-12">
+                <div class="row cookie-content">
+                    <div class="cookie-content__message">
+                        <%= translation.messages.cookies %>
+                    </div>
+                    <div class="cookie-content__buttons">
+                        <div class="cookie-content__buttons--learn-more button mt-0 mb-0">
+                            <%= translation.buttons.learnMore %>
+                            <span></span>
+                        </div>
+                        <a href="/cookies-consent" class="cookie-content__buttons--agree button mt-0 mb-0">
+                            <%= translation.buttons.agree %>
+                            <span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>

@@ -6,6 +6,7 @@
     margin-top: 120px;
     padding: 20px 0 50px 0;
     .swiper-wrapper {
+        height: unset;
         .swiper-slide {
             max-width: 50%;
             border: 3px solid $white;

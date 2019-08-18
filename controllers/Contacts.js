@@ -7,6 +7,7 @@ const CredentialsModel = require('../models/credentials');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+  console.log(req.cookies.cookies_consent);
   res.render('contacts', {
     // getGalleryCategories,
   });

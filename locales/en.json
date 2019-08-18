@@ -7,7 +7,9 @@
     "cookies": "Cookies",
     "buttons": {
         "viewOurServices": "View our services",
-        "loadMoreVideos": "Load more videos..."
+        "loadMoreVideos": "Load more videos...",
+        "agree": "Agree",
+        "learnMore": "Learn more"
     },
     "viewMore": "View more",
     "checkOutOurDecorations": {
@@ -37,6 +39,9 @@
             "message": "We would love to connect! Let us know in the form below.",
             "error": "The form has incorect or empty fields"
         }
+    },
+    "messages": {
+        "cookies": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies."
     },
     "fieldRequired": "required field",
     "fieldInvalid": "invalid field"

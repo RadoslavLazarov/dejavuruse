@@ -16,6 +16,7 @@ module.exports = async (req, res, next) => {
   }
   // console.log(pageResources);
   const pageMeta = pageResources.meta[getLocale];
+  const { cookies } = req;
 
   res.locals = {
     url,
@@ -23,6 +24,7 @@ module.exports = async (req, res, next) => {
     pageResources,
     navCategories,
     pageMeta,
+    cookies,
   };
 
   next();

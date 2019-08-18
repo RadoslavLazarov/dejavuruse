@@ -264,7 +264,7 @@ video::-webkit-media-controls {
 
 .button {
     position: relative;
-    display: flex;
+    @include flex-center;
     padding: 14px 40px;
     margin: 20px;
     text-transform: uppercase;
@@ -373,5 +373,33 @@ video::-webkit-media-controls {
 .g-recaptcha {
     @media screen and (max-width: 430px) {
         transform: scale(0.77);
+    }
+}
+
+.cookie-warning {
+    @include position(fixed, auto, auto, 0, auto);
+    @include flex-center;
+    z-index: 5;
+    min-height: 7%;
+    background-color: $white;
+    border-top: 2px solid $purple-dark;
+    .cookie-content {
+        @include flex-center;
+            flex-direction: column;
+            margin: 7px 0;
+        &__message {
+            color: $purple-dark;
+            font-weight: 700;
+            text-align: center;
+        }
+        &__buttons {
+            display: flex;
+            z-index: 100;
+            margin-top: 5px;
+            .button {
+                margin: 0 0 0 20px;
+                padding: 10px 30px;
+            }
+        }
     }
 }
