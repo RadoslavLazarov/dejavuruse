@@ -34,8 +34,13 @@ $('.load-videos').on('click', function () {
         );
       });
 
-      swiper.appendSlide($lastSlide);
-      $that.data('token', data.nextPageToken);
+      if (data.nextPageToken) {
+        swiper.appendSlide($lastSlide);
+        $that.data('token', data.nextPageToken);
+      } else {
+        $lastSlide.detach();
+      }
+
       $('#loading-screen').fadeOut('slow');
     },
   });

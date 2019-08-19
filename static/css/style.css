@@ -14516,8 +14516,14 @@ video::-webkit-media-controls {
       z-index: 100;
       margin-top: 5px; }
       .cookie-warning .cookie-content__buttons .button {
-        margin: 0 0 0 20px;
-        padding: 10px 30px; }
+        margin: 0 5px;
+        padding: 10px 15px; }
+        @media screen and (min-width: 768px) {
+          .cookie-warning .cookie-content__buttons .button {
+            padding: 10px 25px; } }
+        @media screen and (max-width: 360px) {
+          .cookie-warning .cookie-content__buttons .button {
+            padding: 10px 4px; } }
 
 .header {
   position: absolute;
