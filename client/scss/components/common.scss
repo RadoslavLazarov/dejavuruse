@@ -232,16 +232,19 @@ video::-webkit-media-controls {
         text-align: center;
         h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4em;
+            font-size: 3em;
             font-weight: 300;
             color: $white;
             text-transform: uppercase;
             transition: transform .3s ease-in-out;
+            @media (max-width: 575px) {
+                font-size: 2.5em;
+            }
             @media (max-width: 414px) {
-                font-size: 3em;
+                font-size: 2em;
             }
             &:hover {
-                transform: scale(1.1);
+                transform: scale(1.03);
             }
         }
     }
@@ -406,6 +409,44 @@ video::-webkit-media-controls {
                     padding: 10px 4px;
                 }
             }
+        }
+    }
+}
+
+.default {
+    li {
+        list-style-type: unset;
+        margin-bottom: 15px;
+    }
+    b {
+        font-size: 1.125em;
+    }
+    a {
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;  
+        }
+    }
+    ol {
+        list-style-type: none;
+        counter-reset: item;
+        margin: 0;
+        padding: 0;
+        & > li {
+            display: table;
+            counter-increment: item;
+            margin-bottom: 0.6em;
+            &:before {
+                content: counters(item, ".") ". ";
+                display: table-cell;
+                padding-right: 0.6em;    
+            }
+        }
+    }
+    li ol > li {
+        margin: 0;
+        &:before {
+            content: counters(item, ".") " ";
         }
     }
 }

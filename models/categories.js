@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const category = new mongoose.Schema({
-  isVisible: {
+  showOnHeader: {
+    type: Boolean,
+  },
+  showOnFooter: {
     type: Boolean,
   },
   priority: {

@@ -6,6 +6,9 @@ const News = require('./News');
 const Gallery = require('./Gallery');
 const Video = require('./Video');
 const Contacts = require('./Contacts');
+const PrivacyPolicy = require('./PrivacyPolicy');
+const Cookies = require('./Cookies');
+const TermsConditions = require('./TermsConditions');
 const Test = require('./Test');
 
 module.exports = {
@@ -17,5 +20,8 @@ module.exports = {
   Gallery,
   Video,
   Contacts,
+  PrivacyPolicy,
+  Cookies,
+  TermsConditions,
   Test,
 };

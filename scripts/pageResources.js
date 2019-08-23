@@ -26,10 +26,11 @@ async function getPageResources(url) {
       if (categories.subPages && modelsDirectory) {
         const GetModel = require(`../models/${categories.subPages}`);
         const model = new GetModel().Model;
-        const subPages = await model.findOne({ id: url.currentPage }).select('name meta imageCover -_id');
+        const subPages = await model.findOne({ id: url.subPage }).select('name meta imageCover -_id');
         pageResources = subPages;
+      } else {
+        pageResources = categories;
       }
-      pageResources = categories;
     }
   } else {
     pageResources = await Categories.findOne({ id: 'home' });
@@ -45,10 +46,10 @@ async function getNavCategories() {
   const mainCategories = {};
 
   mainCategories.left = await Categories.find(
-    { isVisible: true, navPosition: 'left' }, null, { sort: { priority: 1 } },
+    { showOnHeader: true, navPosition: 'left' }, null, { sort: { priority: 1 } },
   );
   mainCategories.right = await Categories.find(
-    { isVisible: true, navPosition: 'right' }, null, { sort: { priority: 1 } },
+    { showOnHeader: true, navPosition: 'right' }, null, { sort: { priority: 1 } },
   );
   mainCategories.contacts = await Categories.findOne(
     { id: 'contacts' },
@@ -72,6 +73,19 @@ async function getNavCategories() {
 }
 
 /**
+ * @returns {Object} an object that contains footer pages
+ */
+async function getFooterPages() {
+  let footerPages = {};
+
+  footerPages = await Categories.find(
+    { showOnFooter: true }, null, { sort: { priority: 1 } },
+  );
+
+  return footerPages;
+}
+
+/**
  * PageResources class that represents the current page resources
  * @param {Object} url - current URL
  * @constructor
@@ -79,6 +93,7 @@ async function getNavCategories() {
 function PageResources(url) {
   this.pageResources = getPageResources(url);
   this.navCategories = getNavCategories();
+  this.footerPages = getFooterPages();
 }
 
 module.exports = PageResources;

@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-12 footer-nav">
                 <ul>
-                    <li><a href="/" class="fadeout-page"><%= translation.termsAndConditions %></a></li>
-                    <li><a href="/" class="fadeout-page"><%= translation.privacyPolicy %></a></li>
-                    <li><a href="/" class="fadeout-page"><%= translation.cookies %></a></li>
+                    <% footerPages.forEach((item) => { %>
+                        <li><a href="<%= item.url %>" class="fadeout-page"><%= item.name[getLocale] %></a></li>
+                    <% }); %>
                 </ul>
             </div>
             <div class="col-12">

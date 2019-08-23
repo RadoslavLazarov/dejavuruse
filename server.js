@@ -55,6 +55,9 @@ app.use('/news', controllers.News);
 app.use('/gallery', controllers.Gallery);
 app.use('/video', controllers.Video);
 app.use('/contacts', controllers.Contacts);
+app.use('/privacy-policy', controllers.PrivacyPolicy);
+app.use('/cookies', controllers.Cookies);
+app.use('/terms-conditions', controllers.TermsConditions);
 app.use('/test', controllers.Test);
 app.use('*', (req, res) => {
   res.status(404).send('404');

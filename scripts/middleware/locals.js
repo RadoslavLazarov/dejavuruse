@@ -8,9 +8,16 @@ module.exports = async (req, res, next) => {
   const getPageResources = new PageResourcesModel(url);
   let pageResources;
   let navCategories;
+  let footerPages;
+  // let footerItems;
+  // let footerItemContent;
+  // console.log(url);
   try {
     pageResources = await getPageResources.pageResources;
     navCategories = await getPageResources.navCategories;
+    footerPages = await getPageResources.footerPages;
+    // footerItems = await getPageResources.footerItems;
+    // footerItemContent = await getPageResources.footerItemContent;
   } catch (e) {
     console.log(e);
   }
@@ -23,6 +30,9 @@ module.exports = async (req, res, next) => {
     getLocale,
     pageResources,
     navCategories,
+    footerPages,
+    // footerItems,
+    // footerItemContent,
     pageMeta,
     cookies,
   };
