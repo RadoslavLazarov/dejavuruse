@@ -20,20 +20,41 @@
         <div class="col-12">
             <div class="home-background">
                 <div class="home-background__overlay"></div>
-                <video loop autoplay muted playsinline poster="<%= backgroundVideo.poster ? backgroundVideo.poster : '' %>" class="background-video">
-                    <% backgroundVideo.source.forEach(function(source) { %> 
-                        <source src="<%= source.src %>" type="<%= source.type %>">
+                <video loop autoplay muted playsinline
+                    poster="<%= backgroundVideo.poster ? backgroundVideo.poster : '' %>" class="background-video">
+                    <% backgroundVideo.source.forEach(function(source) { %>
+                    <source src="<%= source.src %>" type="<%= source.type %>">
                     <% }); %>
                     Your browser doesn't support HTML5 video tag.
                 </video>
-                <div class="container summary">
-                    <h2 class="summary__title">
-                        <%= pageSummary[getLocale].title %>
-                    </h2>
-                    <div class="summary__text">
-                        <%= pageSummary[getLocale].text %>
+            </div>
+        </div>
+        <div class="col-12 home-content">
+            <div class="home-content--left">
+                <div class="home-content__logo">
+                    <a href="/" class="logo fadeout-page">
+                        <img src="/static/logo-big.png" alt="DejaVu" class="logo--big">
+                    </a>
+                </div>
+                <div class="home-content__summary">
+                    <div class="summary">
+                        <span class="summary__title">
+                            <%= pageSummary[getLocale].title %>.
+                        </span>
+                        <span class="summary__text">
+                            <%= pageSummary[getLocale].text %>
+                        </span>
                     </div>
-                </div> 
+                </div>
+            </div>
+            <div class="home-content--right">
+                <%- include ./components/lang.ejs %>
+                <div class="home-content__button">
+                    <a href="/gallery" class="button fadeout-page">
+                        <%= translation.buttons.enter %>
+                        <span></span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

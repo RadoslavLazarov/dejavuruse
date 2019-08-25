@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include ../head.ejs %>
-    </head>
-    <body data-locale='<%= getLocale %>'>
-        <%- include ../googleTagManager.ejs %>
-        <%- include ../../components/header/headerDefault.ejs %>
-        <main>
-            <%- body -%>
-        </main>
-        <%- include ../../components/footer/footerHomePage.ejs %>
-        <%- include ../cookiesConsent.ejs %>
-        <%- include ../scripts.ejs %>
-    </body>
+
+<head>
+    <%- include ../head.ejs %>
+</head>
+
+<body data-locale='<%= getLocale %>'>
+    <%- include ../googleTagManager.ejs %>
+    <main>
+        <%- body -%>
+    </main>
+    <%- include ../cookiesConsent.ejs %>
+    <%- include ../scripts.ejs %>
+</body>
+
 </html>
