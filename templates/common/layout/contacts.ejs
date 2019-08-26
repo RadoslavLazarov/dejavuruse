@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include ../head.ejs %>
-    </head>
-    <body data-locale='<%= getLocale %>'>
-        <%- include ../googleTagManager.ejs %>
-        <%- include ../../components/header/headerDefault.ejs %>
-        <main>
-            <%- include ../../components/pageCover.ejs %>
-            <%- body -%>
-        </main>
-        <%- include ../../components/footer/footerDefault.ejs %>
-        <%- include ../googleRecaptcha.ejs %>
-        <%- include ../cookiesConsent.ejs %>
-        <%- include ../scripts.ejs %>
-    </body>
+
+<head>
+    <%- include ../head.ejs %>
+</head>
+
+<body data-locale='<%= getLocale %>'>
+    <%- include ../googleTagManager.ejs %>
+    <%- include ../cookiesConsent.ejs %>
+    <%- include ../../components/header/headerDefault.ejs %>
+    <main>
+        <%- include ../../components/pageCover.ejs %>
+        <%- body -%>
+    </main>
+    <%- include ../../components/footer/footerDefault.ejs %>
+    <%- include ../googleRecaptcha.ejs %>
+    <%- include ../scripts.ejs %>
+</body>
+
 </html>

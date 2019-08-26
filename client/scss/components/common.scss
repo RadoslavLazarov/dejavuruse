@@ -380,12 +380,12 @@ video::-webkit-media-controls {
 }
 
 .cookie-warning {
-    @include position(fixed, auto, auto, 0, auto);
+    @include position(relative, 0, auto, auto, auto);
     @include flex-center;
     z-index: 5;
     min-height: 7%;
     background-color: $white;
-    border-top: 2px solid $purple-dark;
+    border-bottom: 2px solid $purple-dark;
     .cookie-content {
         @include flex-center;
             flex-direction: column;
@@ -410,6 +410,25 @@ video::-webkit-media-controls {
                 }
             }
         }
+    }
+    &--homepage {
+        position: fixed;
+        border-bottom-color: $black;
+        .cookie-content {
+            &__message {
+                color: $black;
+            }
+        }  
+        .button {
+            border-color: $black;
+            color: $black !important;
+            &:hover {
+                color: $white !important; 
+            }
+            span {
+                background-color: $black;
+            }
+        } 
     }
 }
 
