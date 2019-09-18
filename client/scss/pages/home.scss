@@ -23,7 +23,6 @@
     }
 }
 .home-content {
-    animation: 2.5s ease-in 0s 1 fadeIn;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -88,6 +87,7 @@
     }
     &__summary {
         max-width: 530px;
+        animation: 2.5s ease-in fadeIn;
         .summary {
             color: $white;
             font-size: 0.938em;

@@ -58,9 +58,6 @@
             background-size: cover;
             @include height-width-100;
             z-index: -2;
-            transform: scale(1.2);
-            // transition: filter .5s ease-in-out;
-            transition: transform 2s ease;
         }
         &__overlay {
             @include absolute-0;

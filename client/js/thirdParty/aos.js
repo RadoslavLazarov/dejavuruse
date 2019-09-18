@@ -2,10 +2,10 @@
 window.AOS = require('aos');
 
 if (window.matchMedia('(min-width: 576px)').matches) {
-    $('.album-wrapper:nth-child(odd)').attr({
+    $('.fade-animation:nth-child(odd)').find('.fade-animation-element').attr({
         'data-aos': 'fade-right',
     });
-    $('.album-wrapper:nth-child(even)').attr({
+    $('.fade-animation:nth-child(even)').find('.fade-animation-element').attr({
         'data-aos': 'fade-left',
     });
 }

@@ -55,11 +55,11 @@ $(window).scroll(function () {
     }
 });
 
-// Animate gallery albums on scroll
+// Animate image on scroll
 $(window).on('resize scroll', function () {
-    $('.album-wrapper .album__image').each(function () {
+    $('.image-scale-animate').each(function () {
         if ($(this).isInViewport()) {
-            $(this).css({ 'transform': 'scale(1)' });
+            $(this).css({ 'transform': 'scale(1.01)' });
         } else {
             $(this).css({ 'transform': 'scale(1.2)' });
         }
@@ -86,3 +86,11 @@ $('a[href="#map"]').on('click', function () {
 });
 
 
+// Parallax effect
+$(window).scroll(function () {
+    var scrolled = window.pageYOffset;
+    var $background = $('.parallax');
+    if ($background.closest('.parallax-wrapper').isInViewport()) {
+        $background.css({ top: scrolled * 0.4 + 'px' });
+    }
+});

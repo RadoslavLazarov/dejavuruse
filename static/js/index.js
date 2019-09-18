@@ -57,11 +57,11 @@ $(window).scroll(function () {
     }
 });
 
-// Animate gallery albums on scroll
+// Animate image on scroll
 $(window).on('resize scroll', function () {
-    $('.album-wrapper .album__image').each(function () {
+    $('.image-scale-animate').each(function () {
         if ($(this).isInViewport()) {
-            $(this).css({ 'transform': 'scale(1)' });
+            $(this).css({ 'transform': 'scale(1.01)' });
         } else {
             $(this).css({ 'transform': 'scale(1.2)' });
         }
@@ -88,6 +88,14 @@ $('a[href="#map"]').on('click', function () {
 });
 
 
+// Parallax effect
+$(window).scroll(function () {
+    var scrolled = window.pageYOffset;
+    var $background = $('.parallax');
+    if ($background.closest('.parallax-wrapper').isInViewport()) {
+        $background.css({ top: scrolled * 0.4 + 'px' });
+    }
+});
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":15,"e/U+97":20}],2:[function(require,module,exports){
@@ -104,7 +112,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bc813b42.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6518b0a8.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -508,10 +516,10 @@ $(function () {
 window.AOS = require('aos');
 
 if (window.matchMedia('(min-width: 576px)').matches) {
-    $('.album-wrapper:nth-child(odd)').attr({
+    $('.fade-animation:nth-child(odd)').find('.fade-animation-element').attr({
         'data-aos': 'fade-right',
     });
-    $('.album-wrapper:nth-child(even)').attr({
+    $('.fade-animation:nth-child(even)').find('.fade-animation-element').attr({
         'data-aos': 'fade-left',
     });
 }

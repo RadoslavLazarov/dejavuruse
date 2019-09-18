@@ -5,6 +5,7 @@ const CookiesConsent = require('./CookiesConsent');
 const News = require('./News');
 const Gallery = require('./Gallery');
 const Video = require('./Video');
+const Services = require('./Services');
 const Contacts = require('./Contacts');
 const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
@@ -19,6 +20,7 @@ module.exports = {
   News,
   Gallery,
   Video,
+  Services,
   Contacts,
   PrivacyPolicy,
   Cookies,

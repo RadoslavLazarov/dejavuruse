@@ -1,5 +1,6 @@
-<div class="page-cover">
-    <div class="page-cover__image onload" style="background-image:url('<%= pageResources.imageCover ? pageResources.imageCover : '' %>')"></div>
+<div class="page-cover parallax-wrapper">
+    <div class="page-cover__image onload parallax"
+        style="background-image:url('<%= pageResources.imageCover ? pageResources.imageCover : '' %>')"></div>
     <div class="page-cover__overlay"></div>
     <div class="page-cover__title">
         <a href="/<%= url.controller %><%= url.subPage ? '/' + url.subPage : '' %>" class="fadeout-page">
@@ -7,4 +8,3 @@
         </a>
     </div>
 </div>
-

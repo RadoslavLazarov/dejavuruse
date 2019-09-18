@@ -54,6 +54,7 @@ app.use('/about', controllers.About);
 app.use('/news', controllers.News);
 app.use('/gallery', controllers.Gallery);
 app.use('/video', controllers.Video);
+app.use('/services', controllers.Services);
 app.use('/contacts', controllers.Contacts);
 app.use('/privacy-policy', controllers.PrivacyPolicy);
 app.use('/cookies', controllers.Cookies);
