@@ -1,22 +1,40 @@
-<footer id="footer-default">
+<footer id="footer-default" class="footer">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 footer-nav">
-                <ul>
-                    <% footerPages.forEach((item) => { %>
-                    <li><a href="<%= item.url %>" class="fadeout-page"><%= item.name[getLocale] %></a></li>
-                    <% }); %>
-                </ul>
+        <div class="row justify-content-center p-5">
+            <div class="col-3">
+                <div class="footer__nav">
+                    <h3 class="footer__heading"><%= translation.dataProtection %></h3>
+                    <ul>
+                        <% footerPages.forEach((item) => { %>
+                        <li><a href="<%= item.url %>" class="fadeout-page"><%= item.name[getLocale] %></a></li>
+                        <% }); %>
+                    </ul>
+                </div>
             </div>
-            <div class="col-12">
-                <%- include ../copyright.ejs %>
+            <div class="col-3">
+                <h3 class="footer__heading">Copyright ©</h3>
+                <div class="">
+                    <%- include ../copyright.ejs %>
+                </div>
+                <div class="site-author">
+                    Development &amp; design by <a href="https://www.linkedin.com/in/radoslav-lazarov-02291215a/"
+                        target="blank">Radoslav Lazarov</a>
+                </div>
             </div>
-            <div class="col-12 site-author">
-                Development &amp; design by <a href="https://www.linkedin.com/in/radoslav-lazarov-02291215a/"
-                    target="blank">Radoslav Lazarov</a>
+            <div class="col-3 footer__socials">
+                <h3 class="footer__heading"><%= translation.followUs %></h3>
+                <div class="socials">
+                    <div class="test1">
+                        <div class="test2">
+                            <%- include ../socials.ejs %>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="fb-page" data-href="https://www.facebook.com/DEJAVURUSE/" data-width="280"
-                data-show-facepile="false"></div>
+            <div class="col-3 footer_social-plugin">
+                <div class="fb-page" data-href="https://www.facebook.com/DEJAVURUSE/" data-width="280"
+                    data-show-facepile="false"></div>
+            </div>
         </div>
     </div>
 </footer>

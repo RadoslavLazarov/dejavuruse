@@ -14097,10 +14097,10 @@ main {
           flex-direction: column; }
 
 ::-moz-selection {
-  background: #c1a1c1; }
+  background: #f4eaf4; }
 
 ::selection {
-  background: #c1a1c1; }
+  background: #f4eaf4; }
 
 /* width */
 ::-webkit-scrollbar {
@@ -14229,7 +14229,7 @@ video::-webkit-media-controls {
     text-decoration: none;
     color: #fff; }
 
-.circle-animate {
+.circle-animate a {
   position: relative;
   display: -webkit-box;
   display: flex;
@@ -14241,28 +14241,28 @@ video::-webkit-media-controls {
   height: 33px;
   font-weight: 700;
   color: #fff; }
-  .circle-animate:hover {
+  .circle-animate a:hover {
     color: #fff; }
-  .circle-animate::before, .circle-animate::after {
+  .circle-animate a::before, .circle-animate a::after {
     content: '';
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: -1; }
-  .circle-animate::before, .circle-animate::after {
+  .circle-animate a::before, .circle-animate a::after {
     top: 0;
     left: 0; }
-  .circle-animate::before {
+  .circle-animate a::before {
     border: 2px solid transparent; }
-  .circle-animate:hover::before {
+  .circle-animate a:hover::before {
     border-top-color: #fff;
     border-right-color: #fff;
     border-bottom-color: #fff;
     -webkit-transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.10s, border-bottom-color 0.15s linear 0.20s;
     transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.10s, border-bottom-color 0.15s linear 0.20s; }
-  .circle-animate::after {
+  .circle-animate a::after {
     border: 0 solid transparent; }
-  .circle-animate:hover::after {
+  .circle-animate a:hover::after {
     border-left-width: 2px;
     border-right-width: 2px;
     border-top: 2px solid #fff;
@@ -14272,7 +14272,7 @@ video::-webkit-media-controls {
     transition: border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;
     transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
     transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s; }
-  .circle-animate::before, .circle-animate::after {
+  .circle-animate a::before, .circle-animate a::after {
     border-radius: 100%; }
 
 .page-cover {
@@ -15133,44 +15133,100 @@ video::-webkit-media-controls {
       -webkit-transform: rotate(-45deg);
               transform: rotate(-45deg); }
 
-#footer-default {
+.footer {
   position: relative;
   bottom: 0;
   width: 100%;
   padding: 5px 0;
   margin-top: 25px;
-  color: #fff;
-  background-color: #755275; }
-  #footer-default a {
-    color: #fff; }
-    #footer-default a:hover {
-      text-decoration: underline; }
-  #footer-default .footer-nav {
-    padding: 0; }
-    #footer-default .footer-nav ul {
+  background-color: #f4eaf4; }
+  .footer a:hover {
+    text-decoration: underline; }
+  .footer__nav {
+    padding: 0;
+    height: 100%; }
+    .footer__nav ul {
       display: -webkit-box;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column;
+      height: 100%;
+      padding: 0;
+      margin-bottom: 0; }
+      .footer__nav ul li {
+        text-transform: uppercase;
+        font-size: 0.75em;
+        margin: 5px 0; }
+        @media screen and (max-width: 414px) {
+          .footer__nav ul li {
+            font-size: 0.625em; } }
+        .footer__nav ul li::after {
+          margin: 0 5px; }
+  .footer__heading {
+    font-family: 'Cormorant Garamond', serif;
+    text-align: left; }
+  .footer__socials .socials {
+    display: -webkit-box;
+    display: flex; }
+    .footer__socials .socials a:hover {
+      text-decoration: unset; }
+    .footer__socials .socials .test2 {
+      display: -webkit-box;
+      display: flex;
+      flex-wrap: wrap; }
+    .footer__socials .socials .test1 .test2 a {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+              align-items: center;
       -webkit-box-pack: center;
               justify-content: center;
-      padding: 0;
-      margin-bottom: 5px; }
-      #footer-default .footer-nav ul li {
-        text-transform: uppercase;
-        font-size: 0.75em; }
-        @media screen and (max-width: 414px) {
-          #footer-default .footer-nav ul li {
-            font-size: 0.625em; } }
-        #footer-default .footer-nav ul li::after {
-          content: "|";
-          margin: 0 5px; }
-        #footer-default .footer-nav ul li:last-child::after {
-          content: ""; }
-  #footer-default .copyright, #footer-default .site-author {
-    text-align: center;
-    font-size: 0.625em; }
-    @media screen and (max-width: 414px) {
-      #footer-default .copyright, #footer-default .site-author {
-        font-size: 0.563em; } }
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      font-size: 24px;
+      margin: 0 20px 20px 0;
+      margin-right: 20px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #fff;
+      z-index: 1;
+      box-shadow: 3px 3px 5px -3px rgba(0, 0, 0, 0.75); }
+      .footer__socials .socials .test1 .test2 a:last-child {
+        margin-right: 0; }
+    .footer__socials .socials .test1 .test2 a i {
+      position: relative;
+      color: #262626;
+      -webkit-transition: .5s;
+      transition: .5s;
+      z-index: 3; }
+    .footer__socials .socials .test1 .test2 a:hover i {
+      color: #fff !important;
+      -webkit-transform: rotateY(360deg);
+              transform: rotateY(360deg); }
+    .footer__socials .socials .test1 .test2 div {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      -webkit-transition: .5s;
+      transition: .5s;
+      z-index: 2; }
+    .footer__socials .socials .test1 .test2 a:hover div {
+      top: 0; }
+  .footer__social-plugin {
+    min-height: 140px; }
+
+.copyright, .site-author {
+  font-size: 0.813em; }
+  @media screen and (max-width: 414px) {
+    .copyright, .site-author {
+      font-size: 0.563em; } }
 
 .footer-home {
   width: 100%;

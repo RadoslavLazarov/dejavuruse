@@ -1,12 +1,6 @@
-<div class="socials__links">
-    <% navCategories.headerSocials.forEach(function(social) { %>
-        <a href="<%= social.link %>" target="blank" class="circle-animate">
-            <i class="<%= social.icon %>"></i>
-        </a>
-    <% }); %>
-    <% navCategories.headerContacts.forEach(function(contact) { %>
-        <a href="<%= contact.items[0].link %>" class="circle-animate">
-            <i class="<%= contact.icon %>"></i>
-        </a>
-    <% }); %>
-</div>
+<% navCategories.headerSocials.forEach(function(social) { %>
+<a href="<%= social.link %>" target="blank" data-color="<%= social.color %>">
+    <i class="<%= social.icon %>"></i>
+    <div></div>
+</a>
+<% }); %>

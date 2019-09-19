@@ -45,5 +45,7 @@
         "cookies": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies."
     },
     "fieldRequired": "required field",
-    "fieldInvalid": "invalid field"
+    "fieldInvalid": "invalid field",
+    "followUs": "Follow us",
+    "dataProtection": "Data protection"
 }

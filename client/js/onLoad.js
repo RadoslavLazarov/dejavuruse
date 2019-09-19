@@ -27,4 +27,12 @@ $(function () {
     });
 
     // console.log(getCookie('cookies_consent'));
+
+
+    // Retrieve colors from DB and set to socials
+    $('.footer__socials a').each(function () {
+        var color = $(this).data('color');
+        $(this).find('i').css({ 'color': color });
+        $(this).find('div').css({ 'background-color': color });
+    });
 });
