@@ -3,24 +3,24 @@
     @include position(absolute, auto, auto, auto, auto);
     width: 100%;
     font-family: 'Cormorant Garamond', serif;
-    @media screen and (min-width: 1201px) {
+    @media screen and (min-width: 1200px) {
         transform: translatey(0%);
         transition: transform .3s cubic-bezier(0.52, 0.01, 0.16, 1);
         z-index: 10;
     }
     &__top {
         padding-top: 5px;
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1199px) {
             @include position(absolute, 0, auto, auto, auto);
             padding-top: 0px;
         }
         .socials, .languages {
-            @media screen and (max-width: 1200px) {
+            @media screen and (max-width: 1199px) {
                 @include position(absolute, 28px, auto, auto, 15px);
             }
             &__links {
                 display: flex;
-                @media screen and (max-width: 1200px) {
+                @media screen and (max-width: 1199px) {
                     opacity: 0;
                     transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
                     transform: translateY(-40px);
@@ -75,7 +75,7 @@
             @media screen and (max-width: 1440px) {
                 width: 90%;
             }
-            @media screen and (max-width: 1200px) {
+            @media screen and (max-width: 1199px) {
                 @include flex-center;
                 flex-direction: column;
                 height: 100vh;
@@ -109,7 +109,7 @@
                 justify-content: space-between;
                 margin: 10px 0;
                 padding: 0;
-                @media screen and (max-width: 1200px) {
+                @media screen and (max-width: 1199px) {
                     position: relative;
                     flex-direction: column;
                     justify-content: space-around;
@@ -126,7 +126,7 @@
                     font-size: 1.25em;
                     font-weight: 700;
                     text-transform: uppercase;
-                    @media screen and (max-width: 1200px) {
+                    @media screen and (max-width: 1199px) {
                         text-align: center;
                         margin-right: 0;
                         font-size: 1.5em;
@@ -164,7 +164,7 @@
         &--big {
             display: block;
             width: 250px;
-            @media screen and (max-width: 1200px) {
+            @media screen and (max-width: 1199px) {
                 z-index: 1;
                 width: 200px;
             }
@@ -191,7 +191,7 @@
         transition: background-color .15s linear;
         cursor: pointer;
         z-index: 200;
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1199px) {
             display: block;
         }
         .nav-icon {

@@ -5,7 +5,15 @@
     <div class="row service-wrapper fade-animation">
         <div class="col-xl-9">
             <div class="row align-items-center service">
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-8">
+                    <div class="service__heading--mobile">
+                        <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
+                            data-aos-easing="ease-in-sine">
+                            <%= service.title[getLocale] %>
+                        </h1>
+                        <div class="line fade-animation-element" data-aos-once="true" data-aos-duration="800"
+                            data-aos-easing="ease-in-sine" data-aos-delay="400"></div>
+                    </div>
                     <div class=" service__image-wrapper fade-animation-element" data-aos-once="true"
                         data-aos-duration="800" data-aos-easing="ease-in-sine">
                         <div style="background-image:url('<%= service.imageCover %>')"
@@ -14,12 +22,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 service__description">
-                    <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
-                        data-aos-easing="ease-in-sine">
-                        <%= service.title[getLocale] %>
-                    </h1>
-                    <div class="line fade-animation-element" data-aos-once="true" data-aos-duration="800"
-                        data-aos-easing="ease-in-sine" data-aos-delay="400"></div>
+                    <div class="service__heading--desktop">
+                        <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
+                            data-aos-easing="ease-in-sine">
+                            <%= service.title[getLocale] %>
+                        </h1>
+                        <div class="line fade-animation-element" data-aos-once="true" data-aos-duration="800"
+                            data-aos-easing="ease-in-sine" data-aos-delay="400"></div>
+                    </div>
                     <div class="service__text">
                         <p data-aos="zoom-in" data-aos-once="true" data-aos-duration="800"
                             data-aos-easing="ease-in-sine" data-aos-delay="400"><%= service.text[getLocale] %></p>

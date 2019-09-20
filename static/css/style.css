@@ -14171,7 +14171,7 @@ video::-webkit-media-controls {
   .container {
     max-width: 100%; } }
 
-@media (min-width: 1201px) {
+@media (min-width: 1200px) {
   .container {
     max-width: 85%; } }
 
@@ -14587,7 +14587,7 @@ video::-webkit-media-controls {
   left: auto;
   width: 100%;
   font-family: 'Cormorant Garamond', serif; }
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: 1200px) {
     .header {
       -webkit-transform: translatey(0%);
               transform: translatey(0%);
@@ -14598,7 +14598,7 @@ video::-webkit-media-controls {
       z-index: 10; } }
   .header__top {
     padding-top: 5px; }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1199px) {
       .header__top {
         position: absolute;
         top: 0;
@@ -14606,7 +14606,7 @@ video::-webkit-media-controls {
         bottom: auto;
         left: auto;
         padding-top: 0px; } }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1199px) {
       .header__top .socials, .header__top .languages {
         position: absolute;
         top: 28px;
@@ -14616,7 +14616,7 @@ video::-webkit-media-controls {
     .header__top .socials__links, .header__top .languages__links {
       display: -webkit-box;
       display: flex; }
-      @media screen and (max-width: 1200px) {
+      @media screen and (max-width: 1199px) {
         .header__top .socials__links, .header__top .languages__links {
           opacity: 0;
           -webkit-transition: all 0.4s cubic-bezier(0, 0.995, 0.99, 1) 0.3s;
@@ -14662,7 +14662,7 @@ video::-webkit-media-controls {
       @media screen and (max-width: 1440px) {
         .header__bottom .navigation {
           width: 90%; } }
-      @media screen and (max-width: 1200px) {
+      @media screen and (max-width: 1199px) {
         .header__bottom .navigation {
           display: -webkit-box;
           display: flex;
@@ -14702,7 +14702,7 @@ video::-webkit-media-controls {
                 justify-content: space-between;
         margin: 10px 0;
         padding: 0; }
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1199px) {
           .header__bottom .navigation--left, .header__bottom .navigation--right {
             position: relative;
             -webkit-box-orient: vertical;
@@ -14720,7 +14720,7 @@ video::-webkit-media-controls {
           font-size: 1.25em;
           font-weight: 700;
           text-transform: uppercase; }
-          @media screen and (max-width: 1200px) {
+          @media screen and (max-width: 1199px) {
             .header__bottom .navigation--left li, .header__bottom .navigation--right li {
               text-align: center;
               margin-right: 0;
@@ -14782,7 +14782,7 @@ video::-webkit-media-controls {
     .header .logo--big {
       display: block;
       width: 250px; }
-      @media screen and (max-width: 1200px) {
+      @media screen and (max-width: 1199px) {
         .header .logo--big {
           z-index: 1;
           width: 200px; } }
@@ -14811,7 +14811,7 @@ video::-webkit-media-controls {
     transition: background-color .15s linear;
     cursor: pointer;
     z-index: 200; }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1199px) {
       .header .nav-button {
         display: block; } }
     .header .nav-button .nav-icon {
@@ -15245,9 +15245,6 @@ video::-webkit-media-controls {
         text-transform: uppercase;
         font-size: 0.75em;
         margin: 5px 0; }
-        @media screen and (max-width: 414px) {
-          .footer__nav ul li {
-            font-size: 0.625em; } }
         .footer__nav ul li .line-animation {
           display: inline-block; }
           .footer__nav ul li .line-animation:after {
@@ -15292,10 +15289,10 @@ video::-webkit-media-controls {
       border: 3px solid #fff;
       z-index: 1;
       box-shadow: 3px 3px 5px -3px rgba(0, 0, 0, 0.75); }
-      @media screen and (max-width: 1300px) {
+      @media screen and (max-width: 1230px) and (max-width: 1300px) {
         .footer__socials .socials-wrapper .socials-block .socials-inner a {
           margin: 0 10px 10px 0; } }
-      @media screen and (max-width: 1230px) {
+      @media screen and (min-width: 1200px) and (max-width: 1230px) {
         .footer__socials .socials-wrapper .socials-block .socials-inner a {
           margin: 0 5px 5px 0; } }
       .footer__socials .socials-wrapper .socials-block .socials-inner a:last-child {
@@ -15971,7 +15968,11 @@ video::-webkit-media-controls {
       outline: none; }
 
 .service-wrapper {
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 0 35px;
+  margin-bottom: 50px; }
+  .service-wrapper:first-child {
+    margin-top: 50px; }
   @media screen and (max-width: 1199px) {
     .service-wrapper {
       padding: 0 35px; } }
@@ -15988,7 +15989,7 @@ video::-webkit-media-controls {
                 flex-direction: row-reverse; }
         .service-wrapper:nth-child(2n) .service__title {
           text-align: right; }
-        .service-wrapper:nth-child(2n) .service__description {
+        .service-wrapper:nth-child(2n) .service__heading--desktop {
           display: -webkit-box;
           display: flex;
           -webkit-box-orient: vertical;
@@ -16006,7 +16007,20 @@ video::-webkit-media-controls {
     margin-bottom: 100px; }
     @media screen and (max-width: 767px) {
       .service-wrapper .service {
-        margin-bottom: 25px; } }
+        margin-bottom: 25px; }
+        .service-wrapper .service__heading--mobile {
+          display: block; }
+          .service-wrapper .service__heading--mobile .line {
+            margin-bottom: 25px !important; }
+        .service-wrapper .service__heading--desktop {
+          display: none; } }
+    @media screen and (min-width: 768px) {
+      .service-wrapper .service {
+        margin-bottom: 25px; }
+        .service-wrapper .service__heading--mobile {
+          display: none; }
+        .service-wrapper .service__heading--desktop {
+          display: block; } }
     .service-wrapper .service__image-wrapper {
       overflow: hidden;
       border: 1px solid transparent;
@@ -16014,12 +16028,9 @@ video::-webkit-media-controls {
     .service-wrapper .service__image {
       position: relative;
       width: 100%;
-      height: 620px;
+      padding-top: 120%;
       background-size: cover;
       background-position: center; }
-      @media screen and (max-width: 767px) {
-        .service-wrapper .service__image {
-          height: 250px; } }
     .service-wrapper .service__title {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
