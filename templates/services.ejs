@@ -5,13 +5,15 @@
     <div class="row service-wrapper fade-animation">
         <div class="col-xl-9">
             <div class="row align-items-center service">
-                <div class="col-6 p-0 service__image-wrapper fade-animation-element" data-aos-once="true"
-                    data-aos-duration="800" data-aos-easing="ease-in-sine">
-                    <div style="background-image:url('<%= service.imageCover %>')"
-                        class="service__image image-scale-animate">
+                <div class="col-md-6">
+                    <div class=" service__image-wrapper fade-animation-element" data-aos-once="true"
+                        data-aos-duration="800" data-aos-easing="ease-in-sine">
+                        <div style="background-image:url('<%= service.imageCover %>')"
+                            class="service__image image-scale-animation">
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 service__description">
+                <div class="col-md-6 service__description">
                     <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
                         data-aos-easing="ease-in-sine">
                         <%= service.title[getLocale] %>

@@ -10,9 +10,6 @@ window.swiper = new Swiper('.swiper-container', {
     el: '.swiper-scrollbar',
     draggable: true,
   },
-  mousewheel: {
-    eventsTarged: 'main',
-  },
   keyboard: {
     enabled: true,
     onlyInViewport: false,

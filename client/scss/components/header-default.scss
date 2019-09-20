@@ -44,7 +44,7 @@
                 margin: 0;
                 li {
                     margin-left: 5px;
-                    .circle-animate.active {
+                    .active {
                         &::before {
                             border-top-color: $white;
                             border-right-color: $white;
@@ -133,19 +133,7 @@
                         opacity: 0;
                         transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
                     }
-                    &:after {
-                        content: '';
-                        display: block;
-                        margin: auto;
-                        height: 2px;
-                        width: 0px;
-                        background: transparent;
-                        transition: width .5s ease, background-color .5s ease;
-                    }        
-                    &:hover:after {
-                        width: 100%;
-                        background: $white;
-                    }
+                    @include line-animation(2px, $white);
                 }
             }
         }

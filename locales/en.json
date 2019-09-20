@@ -10,7 +10,8 @@
         "viewOurServices": "View our services",
         "loadMoreVideos": "Load more videos...",
         "agree": "Agree",
-        "learnMore": "Learn more"
+        "learnMore": "Learn more",
+        "writeUs": "Write us"
     },
     "viewMore": "View more",
     "checkOutOurDecorations": {
@@ -39,6 +40,9 @@
         "contactForm": {
             "message": "We would love to connect! Let us know in the form below.",
             "error": "The form has incorect or empty fields"
+        },
+        "footer": {
+            "saveHour": "Book a date for your event"
         }
     },
     "messages": {
@@ -47,5 +51,5 @@
     "fieldRequired": "required field",
     "fieldInvalid": "invalid field",
     "followUs": "Follow us",
-    "dataProtection": "Data protection"
+    "privacy": "Privacy"
 }

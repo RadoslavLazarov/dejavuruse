@@ -41,7 +41,7 @@
             margin: 0;
             li {
                 margin-left: 5px;
-                .circle-animate.active {
+                .active {
                     &::before {
                         border-top-color: $white;
                         border-right-color: $white;

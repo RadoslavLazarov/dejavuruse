@@ -27,14 +27,14 @@ $('.button')
             width = $(this).outerWidth() * 2 + 7,
             height = $(this).outerWidth() * 2 + 7;
         $(this).find('span').css({ top: relY, left: relX, width: width, height: height })
-        $(this).css({ color: '#fff' });
+        // $(this).css({ color: '#fff' });
     })
     .on('mouseout touchend', function (e) {
         var parentOffset = $(this).offset(),
             relX = e.pageX - parentOffset.left,
             relY = e.pageY - parentOffset.top;
         $(this).find('span').css({ top: relY, left: relX, width: 0, height: 0 })
-        $(this).css({ color: '#755275' });
+        // $(this).css({ color: '#755275' });
     });
 
 // Fixed header on scroll
@@ -57,7 +57,7 @@ $(window).scroll(function () {
 
 // Animate image on scroll
 $(window).on('resize scroll', function () {
-    $('.image-scale-animate').each(function () {
+    $('.image-scale-animation').each(function () {
         if ($(this).isInViewport()) {
             $(this).css({ 'transform': 'scale(1.01)' });
         } else {

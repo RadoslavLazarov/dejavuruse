@@ -1,37 +1,59 @@
 <footer id="footer-default" class="footer">
+    <div class="container-fluid p-0 footer__banner-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 footer__banner">
+                    <div class="footer__banner-title m-3">
+                        <i class="far fa-calendar-check"></i>
+                        <h2><%= translation.phrases.footer.saveHour%></h2>
+                    </div>
+                    <div>
+                        <a href="/contacts#form-anchor"
+                            class="button <%= url.controller === 'contacts' ? '' : 'fadeout-page' %>">
+                            <%= translation.buttons.writeUs%>
+                            <span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="row justify-content-center p-5">
-            <div class="col-3">
+        <div class="row footer__bottom">
+            <div class="col-xl-3 col-sm-6 footer__column">
                 <div class="footer__nav">
-                    <h3 class="footer__heading"><%= translation.dataProtection %></h3>
+                    <h3 class="footer__heading"><%= translation.privacy %></h3>
                     <ul>
                         <% footerPages.forEach((item) => { %>
-                        <li><a href="<%= item.url %>" class="fadeout-page"><%= item.name[getLocale] %></a></li>
+                        <li>
+                            <a href="<%= item.url %>"
+                                class="fadeout-page line-animation"><%= item.name[getLocale] %></a>
+                        </li>
                         <% }); %>
                     </ul>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-sm-6 footer__column">
                 <h3 class="footer__heading">Copyright ©</h3>
                 <div class="">
                     <%- include ../copyright.ejs %>
                 </div>
                 <div class="site-author">
                     Development &amp; design by <a href="https://www.linkedin.com/in/radoslav-lazarov-02291215a/"
-                        target="blank">Radoslav Lazarov</a>
+                        target="blank" class="line-animation">Radoslav Lazarov</a>
                 </div>
             </div>
-            <div class="col-3 footer__socials">
+            <div class="col-xl-3 col-sm-6 footer__column footer__socials">
                 <h3 class="footer__heading"><%= translation.followUs %></h3>
-                <div class="socials">
-                    <div class="test1">
-                        <div class="test2">
+                <div class="socials-wrapper">
+                    <div class="socials-block">
+                        <div class="socials-inner">
                             <%- include ../socials.ejs %>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-3 footer_social-plugin">
+            <div class="col-xl-3 col-md-6 footer__column footer__social-plugin">
                 <div class="fb-page" data-href="https://www.facebook.com/DEJAVURUSE/" data-width="280"
                     data-show-facepile="false"></div>
             </div>

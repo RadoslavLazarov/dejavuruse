@@ -29,14 +29,14 @@ $('.button')
             width = $(this).outerWidth() * 2 + 7,
             height = $(this).outerWidth() * 2 + 7;
         $(this).find('span').css({ top: relY, left: relX, width: width, height: height })
-        $(this).css({ color: '#fff' });
+        // $(this).css({ color: '#fff' });
     })
     .on('mouseout touchend', function (e) {
         var parentOffset = $(this).offset(),
             relX = e.pageX - parentOffset.left,
             relY = e.pageY - parentOffset.top;
         $(this).find('span').css({ top: relY, left: relX, width: 0, height: 0 })
-        $(this).css({ color: '#755275' });
+        // $(this).css({ color: '#755275' });
     });
 
 // Fixed header on scroll
@@ -59,7 +59,7 @@ $(window).scroll(function () {
 
 // Animate image on scroll
 $(window).on('resize scroll', function () {
-    $('.image-scale-animate').each(function () {
+    $('.image-scale-animation').each(function () {
         if ($(this).isInViewport()) {
             $(this).css({ 'transform': 'scale(1.01)' });
         } else {
@@ -112,7 +112,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6dcc378e.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_95a63dc3.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -352,7 +352,7 @@ function calculateSwiperMinHeight() {
     var footerHeight = $('footer').outerHeight();
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    $('.swiper-container').css({ 'min-height': windowHeight - (swiperContainerMarginTop + footerHeight) });
+    $('.swiper-container').css({ 'min-height': windowHeight - swiperContainerMarginTop });
 }
 
 $(function () {
@@ -773,9 +773,6 @@ window.swiper = new Swiper('.swiper-container', {
   scrollbar: {
     el: '.swiper-scrollbar',
     draggable: true,
-  },
-  mousewheel: {
-    eventsTarged: 'main',
   },
   keyboard: {
     enabled: true,

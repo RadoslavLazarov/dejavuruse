@@ -57,7 +57,7 @@
             padding: 0;
             li {
                 margin-left: 10px;
-                .circle-animate.active {
+                .active {
                     &::before {
                         border-top-color: $white;
                         border-right-color: $white;
@@ -110,17 +110,9 @@
     }
     &__button {
         width: 160px;
+        @include button-animation($white, $black);
         .button {
-            border-color: $white;
-            color: $white !important;
             font-size: 1em;
-            padding: 10px 40px;
-            &:hover {
-                color: $black !important;
-            }
-            span {
-                background-color: $white;
-            }
         }
     }
 }

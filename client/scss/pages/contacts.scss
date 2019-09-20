@@ -231,20 +231,21 @@
         display: flex;
         justify-content: center;
         z-index: 1;
-        .button {
-            cursor: pointer;
-            @media screen and (max-width: 430px) {
-                font-size: 0.625em;
-                padding: 14px 10px;
-            }
-            input {
-                color: inherit;
-                font-size: 1em;
-                text-transform: uppercase;
-                font-weight: 900;
-                letter-spacing: 3px;
-            }
-        }
+        // .button {
+        //     cursor: pointer;
+        //     @media screen and (max-width: 430px) {
+        //         font-size: 0.625em;
+        //         padding: 14px 10px;
+        //     }
+        //     input {
+        //         color: inherit;
+        //         font-size: 1em;
+        //         text-transform: uppercase;
+        //         font-weight: 900;
+        //         letter-spacing: 3px;
+        //     }
+        // }
+        @include button-animation($purple-dark, $white);
         input[type="submit"] {
             background-color: inherit;
             border: none;

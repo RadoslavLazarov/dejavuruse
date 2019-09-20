@@ -5,7 +5,7 @@ function calculateSwiperMinHeight() {
     var footerHeight = $('footer').outerHeight();
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
-    $('.swiper-container').css({ 'min-height': windowHeight - (swiperContainerMarginTop + footerHeight) });
+    $('.swiper-container').css({ 'min-height': windowHeight - swiperContainerMarginTop });
 }
 
 $(function () {

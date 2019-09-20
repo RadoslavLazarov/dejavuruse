@@ -5,21 +5,21 @@
         <div class="col-8 mb-5">
             <div class="row no-gutters justify-content-center">
                 <% navCategories.contacts.content.contacts.forEach(function(contact) { %>
-                    <% contact.items.forEach(function(item) { %>
-                        <div class="col-xl-4 col-lg-6 mt-4 mb-4">
-                            <a href="<%= item.link %>" class="contact">
-                                <div class="contact__icon">
-                                    <i class="<%= contact.icon %>"></i>
-                                </div> 
-                                <div class="contact__description">
-                                    <h2 class="contact__name"><%= contact.name[getLocale] %></h2>
-                                    <div class="contact__value">
-                                        <%= item[getLocale] %>
-                                    </div>
-                                </div>
-                            </a>
-                        </div> 
-                    <% }); %>
+                <% contact.items.forEach(function(item) { %>
+                <div class="col-xl-4 col-lg-6 mt-4 mb-4">
+                    <a href="<%= item.link %>" class="contact">
+                        <div class="contact__icon">
+                            <i class="<%= contact.icon %>"></i>
+                        </div>
+                        <div class="contact__description">
+                            <h2 class="contact__name"><%= contact.name[getLocale] %></h2>
+                            <div class="contact__value">
+                                <%= item[getLocale] %>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <% }); %>
                 <% }); %>
             </div>
         </div>
@@ -31,11 +31,11 @@
                         <h2 class="working-time__title"><%= translation.workingTime %></h2>
                     </div>
                     <% pageResources.content.workingTime.days.forEach(function(item) { %>
-                        <div class="working-time__row" data-day-index="<%= item.index %>">
-                            <span class="working-time__day"><%= item.day[getLocale] %></span>
-                            <span class="working-time__hour"><%= item.hours[getLocale] %></span>
-                        </div>
-                    <% }); %>     
+                    <div class="working-time__row" data-day-index="<%= item.index %>">
+                        <span class="working-time__day"><%= item.day[getLocale] %></span>
+                        <span class="working-time__hour"><%= item.hours[getLocale] %></span>
+                    </div>
+                    <% }); %>
                 </div>
             </div>
         </div>
@@ -44,11 +44,13 @@
 <div class="container-fluid p-0">
     <div class="row no-gutters">
         <div class="col-12" id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1017.2331448736148!2d25.960764668946517!3d43.85230874906776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x69a21bc889940290!2z0KHQstCw0YLQsdC10L3QsCDQuCDQv9Cw0YDRgtC4INCw0LPQtdC90YbQuNGPIOKAntCU0LXQttCwINCy0YPigJ0!5e0!3m2!1sbg!2sbg!4v1562943900256!5m2!1sbg!2sbg" width="600" height="450" frameborder="0" allowfullscreen></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1017.2331448736148!2d25.960764668946517!3d43.85230874906776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x69a21bc889940290!2z0KHQstCw0YLQsdC10L3QsCDQuCDQv9Cw0YDRgtC4INCw0LPQtdC90YbQuNGPIOKAntCU0LXQttCwINCy0YPigJ0!5e0!3m2!1sbg!2sbg!4v1562943900256!5m2!1sbg!2sbg"
+                width="600" height="450" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
-<div class="container p-0">
+<div class="container p-0" id="form-anchor">
     <div class="row no-gutters justify-content-center">
         <div class="col-10 form-heading">
             <div class="separator mb-3"></div>

@@ -10,7 +10,8 @@
 		"viewOurServices": "вижте нашите услуги",
 		"loadMoreVideos": "Зареди още видеа...",
 		"agree": "Съгласен",
-		"learnMore": "Научи повече"
+		"learnMore": "Научи повече",
+		"writeUs": "Пишете ни"
 	},
 	"viewMore": "Виж повече",
 	"checkOutOurDecorations": {
@@ -39,6 +40,9 @@
 		"contactForm": {
 			"message": "Ще се радваме да се свържете с нас! Пишете ни във формата по-долу.",
 			"error": "Формата има невалидни или непопълнени полета"
+		},
+		"footer": {
+			"saveHour": "Запазете дата за Вашето събитие"
 		}
 	},
 	"messages": {
@@ -47,5 +51,5 @@
 	"fieldRequired": "задължително поле",
 	"fieldInvalid": "невалидно поле",
 	"followUs": "Следвайте ни",
-	"dataProtection": "Защита на данни"
+	"privacy": "Поверителност"
 }

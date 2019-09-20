@@ -5,14 +5,14 @@
                 <div class="row">
                     <div class="col-6 p-0">
                         <div class="socials visibility-xl-visible">
-                            <div class="socials__links circle-animate">
+                            <div class="socials__links circle-animation">
                                 <%- include ../socials.ejs %>
                                 <%- include ../contacts.ejs %>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 p-0">
-                        <div class="languages visibility-xl-visible circle-animate">
+                        <div class="languages visibility-xl-visible circle-animation">
                             <%- include ../lang.ejs %>
                         </div>
                     </div>
@@ -22,12 +22,14 @@
                 <nav role="navigation" class="navigation">
                     <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation--left">
                         <% navCategories.left.forEach(function(category) { %>
-                        <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
+                        <li><a href="<%= category.url %>"
+                                class="fadeout-page line-animation"><%= category.name[getLocale] %></a></li>
                         <% }); %>
                     </ul>
                     <ul class="col-xl-4 col-5 p-0 visibility-xl-visible navigation--right">
                         <% navCategories.right.forEach(function(category) { %>
-                        <li><a href="<%= category.url %>" class="fadeout-page"><%= category.name[getLocale] %></a></li>
+                        <li><a href="<%= category.url %>"
+                                class="fadeout-page line-animation"><%= category.name[getLocale] %></a></li>
                         <% }); %>
                     </ul>
                     <div class="splash"></div>
