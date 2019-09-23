@@ -6,7 +6,11 @@
  * @returns {Object} URL object
  */
 function getCurrentUtl(req) {
-  const url = {};
+  const url = {
+    fullUrl: `${req.protocol}://${req.host}${req.originalUrl}`,
+    protocol: req.protocol,
+    host: req.host,
+  };
 
   if (req.path === '/') {
     url.path = 'home';
@@ -24,7 +28,7 @@ function getCurrentUtl(req) {
       url.currentPage = url.path.slice(-1)[0];
     }
   }
-
+  console.log(req.hostname);
   return url;
 }
 

@@ -6,6 +6,14 @@
 <meta name="theme-color" content="#755275">
 <meta name="author" content="Radoslav Lazarov">
 
+<meta property="og:url" content="<%= url.fullUrl %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title"
+    content="<%= pageMeta.title ? pageMeta.title : '' %> - <%= url.currentPage !== 'home' ? translation.DEJAVU : ''  %>" />
+<meta property="og:description" content="<%= pageMeta.description ? pageMeta.description : '' %>" />
+<meta property="og:image"
+    content="<%= pageResources.imageCover ? url.protocol + '://' + url.host + pageResources.imageCover : url.protocol + '://' + url.host + '/static/logo-big.png' %>" />
+
 <title><%= pageMeta.title ? pageMeta.title : '' %> - <%= url.currentPage !== 'home' ? translation.DEJAVU : ''  %>
 </title>
 
