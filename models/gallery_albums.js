@@ -13,7 +13,7 @@ const galleryAlbums = new mongoose.Schema({
     type: String,
   },
   imageCover: {
-    type: Object,
+    type: String,
   },
   summary: {
     type: Object,
@@ -23,6 +23,9 @@ const galleryAlbums = new mongoose.Schema({
   },
   images: {
     type: Array,
+  },
+  meta: {
+    type: Object,
   },
   gallery_category: {
     type: mongoose.Schema.Types.ObjectId,
@@ -48,10 +51,7 @@ async function createAlbum() {
       en: 'Teodora Palace',
     },
     id: 'teodora-palace',
-    imageCover: {
-      link: '60351639_10156116060266781_4042868392355430400_n.jpg',
-      alt: 'Teodora Palace',
-    },
+    imageCover: '/static/images/gallery/weddings/teodora-palace/60351639_10156116060266781_4042868392355430400_n.jpg',
     images: [],
     gallery_category: categoriesObjectId.weddings,
   });
@@ -93,6 +93,7 @@ async function findAlbum(res, currentCategory, currentAlbum) {
 }
 
 function GalleryAlbumsModel(res, currentCategory, currentAlbum) {
+  this.Model = getGalleryAlbums;
   this.findAlbums = findAlbums(currentCategory);
   // this.createAlbum = createAlbum();
   if (res && currentAlbum) {

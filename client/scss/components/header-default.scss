@@ -25,6 +25,9 @@
                     transition: all .4s cubic-bezier(0.000, 0.995, 0.990, 1.000) .3s;
                     transform: translateY(-40px);
                 }
+                i {
+                    color: $white !important;
+                }
             }
         }
         .socials {
@@ -170,6 +173,9 @@
             }
             @media screen and (max-width: 576px) {
                 width: 150px;
+            }
+            @media screen and (min-height: 577px) and (max-height: 625px) {
+                width: 220px;
             }
             @media screen and (max-height: 576px) {
                 width: 150px;

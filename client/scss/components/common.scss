@@ -439,7 +439,3 @@ video::-webkit-media-controls {
     transform: scale(1.2);
     transition: transform 2s ease;
 }
-
-.gallery-button {
-    @include button-animation($purple-dark, $white);
-}

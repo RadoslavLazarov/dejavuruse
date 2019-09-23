@@ -112,7 +112,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ca7d40a7.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ec5cfd78.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -510,11 +510,11 @@ $(function () {
 
 
     // Retrieve colors from DB and set to socials
-    $('.footer__socials a').each(function () {
-        var color = $(this).data('color');
-        $(this).find('i').css({ 'color': color });
-        $(this).find('div').css({ 'background-color': color });
-    });
+    // $('.footer__socials a').each(function () {
+    //     var color = $(this).data('color');
+    //     $(this).find('i').css({ 'color': color });
+    //     $(this).find('div').css({ 'background-color': color });
+    // });
 });
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/onLoad.js","/")

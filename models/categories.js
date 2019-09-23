@@ -28,9 +28,6 @@ const category = new mongoose.Schema({
   imageCover: {
     type: String,
   },
-  subPages: {
-    type: String,
-  },
   content: {
     type: Object,
   },

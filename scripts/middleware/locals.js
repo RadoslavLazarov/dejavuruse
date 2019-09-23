@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
     console.log(e);
   }
   // console.log(pageResources);
-  const pageMeta = pageResources.meta[getLocale];
+  const pageMeta = pageResources.meta ? pageResources.meta[getLocale] : '';
   const { cookies } = req;
 
   res.locals = {

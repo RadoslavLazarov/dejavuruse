@@ -56,6 +56,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            background-color: $purple-dark;
             @include height-width-100;
             z-index: -2;
         }

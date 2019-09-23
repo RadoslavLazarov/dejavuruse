@@ -107,3 +107,6 @@
         }
     }
 }
+.gallery-button {
+    @include button-animation($purple-dark, $white);
+}

@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable quote-props */
 
-const fs = require('fs');
 const Categories = require('../models/categories');
+const pageHelper = require('../scripts/helpers/pageHelpers');
 
 /**
  * According to the URL, the page resources are obtained
@@ -15,22 +15,14 @@ async function getPageResources(url) {
   const controller = getCategories.find(category => category.id === url.controller);
   let categories;
   let pageResources;
-  let modelsDirectory;
 
   if (controller) {
-    categories = await Categories.findOne({ id: url.controller }).select('name meta imageCover subPages content -_id');
+    categories = await Categories.findOne({ id: url.controller });
     pageResources = categories;
-    modelsDirectory = fs.readdirSync('./models/').indexOf(`${categories.subPages}.js`) !== -1;
 
-    if (url.currentPage !== url.controller) {
-      if (categories.subPages && modelsDirectory) {
-        const GetModel = require(`../models/${categories.subPages}`);
-        const model = new GetModel().Model;
-        const subPages = await model.findOne({ id: url.subPage }).select('name meta imageCover -_id');
-        pageResources = subPages;
-      } else {
-        pageResources = categories;
-      }
+    if (url.controller === 'gallery' && url.currentPage !== url.controller) {
+      const getGalleryResources = await pageHelper.galleryResources(url);
+      pageResources = getGalleryResources;
     }
   } else {
     pageResources = await Categories.findOne({ id: 'home' });
@@ -87,7 +79,7 @@ async function getFooterPages() {
 
 /**
  * PageResources class that represents the current page resources
- * @param {Object} url - current URL
+ * @param {Object} url - current URL object
  * @constructor
  */
 function PageResources(url) {

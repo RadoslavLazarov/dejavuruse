@@ -1,12 +1,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="<%= pageMeta.description %>">
-<meta name="keywords" content="<%= pageMeta.keywords %>">
+<meta name="description" content="<%= pageMeta.description ? pageMeta.description : '' %>">
+<meta name="keywords" content="<%= pageMeta.keywords ? pageMeta.keywords : '' %>">
 <meta name="theme-color" content="#755275">
 <meta name="author" content="Radoslav Lazarov">
 
-<title><%= pageMeta.title %></title>
+<title><%= pageMeta.title ? pageMeta.title : '' %> - <%= url.currentPage !== 'home' ? translation.DEJAVU : ''  %>
+</title>
 
 <!-- Google Tag Manager -->
 <script>(function (w, d, s, l, i) {

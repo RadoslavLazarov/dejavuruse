@@ -41,6 +41,7 @@
             // background-repeat: no-repeat;
             background-size: cover;
             transition: transform .3s ease-in-out;
+            background-color: $purple-dark;
         }
         &__overlay {
             @include position(absolute, 0, auto, auto, auto);
@@ -70,4 +71,7 @@
             }
         }
     }
+}
+.my-gallery {
+    margin-bottom: 100px;
 }
