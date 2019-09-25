@@ -16,11 +16,12 @@
         <% album.images.forEach(function(item) { %>
         <figure class="col-lg-3 col-sm-4 col-6 photo-wrapper" itemprop="associatedMedia" itemscope
             itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
-            <a href="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>" class="photo"
-                itemprop="contentUrl" data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">
+            <a href="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/fullsize/<%= item.link %>"
+                class="photo" itemprop="contentUrl"
+                data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">
                 <div class="photo__image"
-                    style="background-image:url('/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>')"
-                    data-src="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/<%= item.link %>"
+                    style="background-image:url('/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/thumbnails/<%= item.link %>')"
+                    data-src="/static/images/gallery/<%= url.subPage %>/<%= url.currentPage %>/thumbnails/<%= item.link %>"
                     itemprop="thumbnail"></div>
                 <div class="photo__overlay">
                     <i class="far fa-eye"></i>

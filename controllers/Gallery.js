@@ -22,13 +22,14 @@ router.get('/', async (req, res) => {
 router.get('/:category', async (req, res) => {
   const currentCategory = req.params.category;
   const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
-  const galleryAlbums = new GalleryAlbumsModel(null, currentCategory);
+  const galleryAlbums = new GalleryAlbumsModel(null, currentCategory, null, 'create');
   let getGalleryCategories;
   let getGalleryAlbums;
 
   try {
     getGalleryCategories = await galleryCategories.findCategories;
     getGalleryAlbums = await galleryAlbums.findAlbums;
+    // await galleryAlbums.createAlbum;
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);

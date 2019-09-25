@@ -1,15 +1,15 @@
 /* eslint-disable prefer-destructuring */
 
 /**
- * Create URL object
+ * Create global URL object
  * @param {Object} req - express request object
  * @returns {Object} URL object
  */
-function getCurrentUtl(req) {
+function getCurrentUrl(req) {
   const url = {
-    fullUrl: `${req.protocol}://${req.host}${req.originalUrl}`,
+    fullUrl: `${req.protocol}://${req.hostname}${req.originalUrl}`,
     protocol: req.protocol,
-    host: req.host,
+    host: req.hostname,
   };
 
   if (req.path === '/') {
@@ -28,8 +28,8 @@ function getCurrentUtl(req) {
       url.currentPage = url.path.slice(-1)[0];
     }
   }
-  console.log(req.hostname);
+  console.log(req.baseUrl);
   return url;
 }
 
-module.exports = getCurrentUtl;
+module.exports = getCurrentUrl;
