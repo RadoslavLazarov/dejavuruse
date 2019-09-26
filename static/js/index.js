@@ -112,7 +112,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_4a0f7d30.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_993055cb.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -549,6 +549,9 @@ window.$ = window.jQuery = require('jquery');
 var PhotoSwipe = require('photoswipe');
 var PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
+var $ogImage = $('meta[property="og:image"]');
+var ogImageLink = $ogImage.attr('content');
+
 var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // parse slide data (url, title, size ...) from DOM elements 
@@ -608,7 +611,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // triggers when user clicks on thumbnail
     var onThumbnailsClick = function (e) {
-        console.log('batka');
         e = e || window.event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
@@ -641,7 +643,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
                 break;
             }
             nodeIndex++;
-            console.log('batka2');
         }
 
 
@@ -721,6 +722,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
                 // in URL indexes start from 1
                 options.index = parseInt(index, 10) - 1;
             }
+            console.log('url');
         } else {
             options.index = parseInt(index, 10);
         }
@@ -737,6 +739,11 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
+
+        // Set og:image content to page cover image url
+        gallery.listen('close', function () {
+            $ogImage.attr('content', ogImageLink);
+        });
     };
 
     // loop through all gallery elements and bind events
@@ -753,6 +760,12 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
     }
 };
+
+// Set og:image content to current image url
+$('.photo-wrapper a').on('click', function () {
+    var currentImgUrl = window.location.origin + $(this).attr('href');
+    $ogImage.attr('content', currentImgUrl);
+});
 
 // execute above function
 initPhotoSwipeFromDOM('.my-gallery');

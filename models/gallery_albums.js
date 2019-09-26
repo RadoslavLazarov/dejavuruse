@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
+const fsExtra = require('fs-extra');
 const sizeOf = require('image-size');
 const { thumb } = require('node-thumbnail');
 
@@ -48,38 +49,39 @@ async function createAlbum() {
   const Albums = new getGalleryAlbums({
     isVisible: true,
     name: {
-      bg: 'Теодора Палас',
-      en: 'Teodora Palace',
+      bg: 'Хълк Парти',
+      en: 'Hulk Party',
     },
-    id: 'teodora-palace',
-    imageCover: '/static/images/gallery/weddings/teodora-palace/fullsize/60351639_10156116060266781_4042868392355430400_n.jpg',
+    id: 'hulk-party',
+    imageCover: '/static/images/gallery/kids-parties/hulk-party/fullsize/61657007_10156147549916781_2050628974379270144_n.jpg',
     summary: {
       bg: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
       en: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
     },
     date: new Date(),
     images: [],
-    gallery_category: categoriesObjectId.weddings,
+    gallery_category: categoriesObjectId.kidsParties,
     meta: {
       bg: {
-        title: 'Теодора Палас',
-        description: 'описание теодора палас',
-        keywords: 'ключови думи теодора палас',
+        title: 'Хълк Парти',
+        description: 'описание Хълк Парти',
+        keywords: 'ключови думи Хълк Парти',
       },
       en: {
-        title: 'Teodora Palace',
-        description: 'description teodora palace',
-        keywords: 'teodora palace keywords',
+        title: 'Hulk Party',
+        description: 'description Hulk Party',
+        keywords: 'Hulk Party keywords',
       },
     },
   });
 
+  // Resize thumbnails
   const resizeThumbnails = () => new Promise((resolve, reject) => {
     let counter = 0;
-    fs.readdirSync('./static/images/gallery/weddings/teodora-palace/original/').forEach((file, index, array) => {
+    fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/original/').forEach((file, index, array) => {
       thumb({
-        source: `./static/images/gallery/weddings/teodora-palace/original/${file}`, // could be a filename: dest/path/image.jpg
-        destination: './static/images/gallery/weddings/teodora-palace/thumbnails/',
+        source: `./static/images/gallery/kids-parties/hulk-party/original/${file}`, // could be a filename: dest/path/image.jpg
+        destination: './static/images/gallery/kids-parties/hulk-party/thumbnails/',
         width: 600,
         suffix: '',
         quiet: true,
@@ -96,33 +98,58 @@ async function createAlbum() {
     });
   });
 
+  // Resize fullsize images. Just copy if width is small
   const resizeFullsize = () => new Promise((resolve, reject) => {
     let counter = 0;
-    fs.readdirSync('./static/images/gallery/weddings/teodora-palace/original/').forEach((file, index, array) => {
-      thumb({
-        source: `./static/images/gallery/weddings/teodora-palace/original/${file}`, // could be a filename: dest/path/image.jpg
-        destination: './static/images/gallery/weddings/teodora-palace/fullsize/',
-        width: 1920,
-        suffix: '',
-        quiet: true,
-      }).then(() => {
-        console.log('Success fullsize');
-        counter += 1;
-        if (counter === array.length) {
-          resolve();
-        }
-      }).catch((e) => {
-        console.log('Error', e.toString());
-        reject(e);
-      });
+
+    fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/original/').forEach((file, index, array) => {
+      const getDimensions = sizeOf(`./static/images/gallery/kids-parties/hulk-party/original/${file}`);
+
+      if (getDimensions.width < 1920) {
+        fsExtra.copy(`./static/images/gallery/kids-parties/hulk-party/original/${file}`, `./static/images/gallery/kids-parties/hulk-party/fullsize/${file}`, (err) => {
+          if (err) {
+            return console.error(err);
+          }
+          console.log('Coping file success');
+          counter += 1;
+          if (counter === array.length) {
+            resolve();
+          }
+        });
+      } else {
+        thumb({
+          source: `./static/images/gallery/kids-parties/hulk-party/original/${file}`, // could be a filename: dest/path/image.jpg
+          destination: './static/images/gallery/kids-parties/hulk-party/fullsize/',
+          width: 1920,
+          suffix: '',
+          quiet: true,
+        }).then(() => {
+          console.log('Success fullsize');
+          counter += 1;
+          if (counter === array.length) {
+            resolve();
+          }
+        }).catch((e) => {
+          console.log('Error', e.toString());
+          reject(e);
+        });
+      }
     });
   });
 
-  // Waiting for resizing functions, then adding images dimensions in getGalleryAlbums model, then saving in DB
+  /* Waiting for resizing functions, deleting original images folder,
+    then adding images dimensions in getGalleryAlbums model and saving in DB */
   resizeThumbnails().then(() => {
     resizeFullsize().then(() => {
-      fs.readdirSync('./static/images/gallery/weddings/teodora-palace/fullsize/').forEach((file) => {
-        const getDimensions = sizeOf(`./static/images/gallery/weddings/teodora-palace/fullsize/${file}`);
+      fsExtra.remove('./static/images/gallery/kids-parties/hulk-party/original', (err) => {
+        if (err) {
+          return console.error(err);
+        }
+        return console.log('Deleted original images folder!');
+      });
+
+      fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/fullsize/').forEach((file) => {
+        const getDimensions = sizeOf(`./static/images/gallery/kids-parties/hulk-party/fullsize/${file}`);
         Albums.images.push({
           link: file,
           dimensions: {
@@ -131,8 +158,9 @@ async function createAlbum() {
           },
         });
       });
-      console.log('Album saved to DB');
+
       Albums.save();
+      console.log('Album saved to DB');
     }).catch((e) => {
       console.log('Error', e.toString());
     });

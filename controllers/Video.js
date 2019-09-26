@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
   } catch (error) {
     return res.sendStatus(404);
   }
-  console.log(nextPageToken);
+
   res.render('video', {
     uploads,
     nextPageToken,
@@ -48,7 +48,7 @@ router.get('/next', async (req, res) => {
   } catch (error) {
     return res.sendStatus(500);
   }
-  console.log(nextPageToken);
+
   res.json({ uploads, nextPageToken });
 });
 

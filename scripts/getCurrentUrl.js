@@ -28,7 +28,7 @@ function getCurrentUrl(req) {
       url.currentPage = url.path.slice(-1)[0];
     }
   }
-  console.log(req.baseUrl);
+
   return url;
 }
 

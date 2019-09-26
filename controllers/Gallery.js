@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/:category', async (req, res) => {
   const currentCategory = req.params.category;
   const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
-  const galleryAlbums = new GalleryAlbumsModel(null, currentCategory, null, 'create');
+  const galleryAlbums = new GalleryAlbumsModel(null, currentCategory);
   let getGalleryCategories;
   let getGalleryAlbums;
 

@@ -2,6 +2,9 @@
 var PhotoSwipe = require('photoswipe');
 var PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
+var $ogImage = $('meta[property="og:image"]');
+var ogImageLink = $ogImage.attr('content');
+
 var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // parse slide data (url, title, size ...) from DOM elements 
@@ -61,7 +64,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // triggers when user clicks on thumbnail
     var onThumbnailsClick = function (e) {
-        console.log('batka');
         e = e || window.event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
@@ -94,7 +96,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
                 break;
             }
             nodeIndex++;
-            console.log('batka2');
         }
 
 
@@ -174,6 +175,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
                 // in URL indexes start from 1
                 options.index = parseInt(index, 10) - 1;
             }
+            console.log('url');
         } else {
             options.index = parseInt(index, 10);
         }
@@ -190,6 +192,11 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
+
+        // Set og:image content to page cover image url
+        gallery.listen('close', function () {
+            $ogImage.attr('content', ogImageLink);
+        });
     };
 
     // loop through all gallery elements and bind events
@@ -206,6 +213,12 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
     }
 };
+
+// Set og:image content to current image url
+$('.photo-wrapper a').on('click', function () {
+    var currentImgUrl = window.location.origin + $(this).attr('href');
+    $ogImage.attr('content', currentImgUrl);
+});
 
 // execute above function
 initPhotoSwipeFromDOM('.my-gallery');
