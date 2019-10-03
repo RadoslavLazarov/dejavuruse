@@ -92,7 +92,7 @@ $('a[href="#map"]').on('click', function () {
 $(window).scroll(function () {
     var scrolled = window.pageYOffset;
     var $background = $('.parallax');
-    if ($background.closest('.parallax-wrapper').isInViewport()) {
+    if ($background.length && $background.closest('.parallax-wrapper').isInViewport()) {
         $background.css({ top: scrolled * 0.4 + 'px' });
     }
 });
@@ -112,7 +112,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_993055cb.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_89537ad5.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -549,9 +549,6 @@ window.$ = window.jQuery = require('jquery');
 var PhotoSwipe = require('photoswipe');
 var PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
-var $ogImage = $('meta[property="og:image"]');
-var ogImageLink = $ogImage.attr('content');
-
 var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // parse slide data (url, title, size ...) from DOM elements 
@@ -739,11 +736,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
-
-        // Set og:image content to page cover image url
-        gallery.listen('close', function () {
-            $ogImage.attr('content', ogImageLink);
-        });
     };
 
     // loop through all gallery elements and bind events
@@ -760,12 +752,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
     }
 };
-
-// Set og:image content to current image url
-$('.photo-wrapper a').on('click', function () {
-    var currentImgUrl = window.location.origin + $(this).attr('href');
-    $ogImage.attr('content', currentImgUrl);
-});
 
 // execute above function
 initPhotoSwipeFromDOM('.my-gallery');
@@ -816,10 +802,11 @@ $('.load-videos').on('click', function () {
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var $that = $(this);
   var token = $that.data('token');
+  var locale = window.location.pathname.split('/')[1];
 
   $.ajax({
     type: 'GET',
-    url: `/video/next?nextPageToken=${token}`,
+    url: `/${locale}/video/next?nextPageToken=${token}`,
     success: function (data) {
       var uploads = data.uploads;
       var $lastSlide = $('.swiper-slide--last');

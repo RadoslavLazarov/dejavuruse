@@ -6,14 +6,14 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const engine = require('ejs-locals');
-const i18n = require('i18n-express');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
 const controllers = require('./controllers/index');
-const setLocale = require('./scripts/middleware/setLocale');
-const locals = require('./scripts/middleware/locals');
-require('dotenv').config();
+const i18n = require('./scripts/middleware/i18n');
+const globalLocals = require('./scripts/middleware/globalLocals');
 
+dotenv.config();
 const app = express();
 
 // Environments
@@ -35,34 +35,12 @@ app.use(session({
   cookie: { secure: true },
 }));
 app.use('/static', express.static(path.join(__dirname, 'static')));
-app.use(i18n({
-  translationsPath: path.join(__dirname, 'locales'),
-  siteLangs: ['bg', 'en'],
-  textsVarName: 'translation',
-  browserEnable: false,
-  defaultLang: 'bg',
-  cookieLangName: 'lang',
-}));
-app.use(setLocale);
-app.use(locals);
+app.use(i18n.init);
+app.use(i18n.checkUrlForLocale);
+app.use(globalLocals);
 
-// Controllers
-app.use('/', controllers.Home);
-app.use('/lang', controllers.Locale);
-app.use('/cookies-consent', controllers.CookiesConsent);
-app.use('/about', controllers.About);
-app.use('/news', controllers.News);
-app.use('/gallery', controllers.Gallery);
-app.use('/video', controllers.Video);
-app.use('/services', controllers.Services);
-app.use('/contacts', controllers.Contacts);
-app.use('/privacy-policy', controllers.PrivacyPolicy);
-app.use('/cookies', controllers.Cookies);
-app.use('/terms-conditions', controllers.TermsConditions);
-app.use('/test', controllers.Test);
-app.use('*', (req, res) => {
-  res.status(404).send('404');
-});
+// Execute controllers
+controllers(app);
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });

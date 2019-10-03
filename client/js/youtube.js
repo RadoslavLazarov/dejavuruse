@@ -5,10 +5,11 @@ $('.load-videos').on('click', function () {
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var $that = $(this);
   var token = $that.data('token');
+  var locale = window.location.pathname.split('/')[1];
 
   $.ajax({
     type: 'GET',
-    url: `/video/next?nextPageToken=${token}`,
+    url: `/${locale}/video/next?nextPageToken=${token}`,
     success: function (data) {
       var uploads = data.uploads;
       var $lastSlide = $('.swiper-slide--last');

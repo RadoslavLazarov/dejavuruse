@@ -1,18 +1,18 @@
-<% if (cookies.cookies_consent !== 'yes') { %>
+<% if (globalLocals.cookies.cookies_consent !== 'yes') { %>
 <div class="container-fluid cookie-warning">
     <div class="row">
         <div class="col-12">
             <div class="row cookie-content">
                 <div class="cookie-content__message">
-                    <%= translation.messages.cookies %>
+                    <%= __('messages.cookies') %>
                 </div>
                 <div class="cookie-content__buttons">
                     <a href="/cookies" class="cookie-content__buttons--learn-more button fadeout-page">
-                        <%= translation.buttons.learnMore %>
+                        <%= __('buttons.learnMore') %>
                         <span></span>
                     </a>
                     <a href="/cookies-consent" class="cookie-content__buttons--agree button">
-                        <%= translation.buttons.agree %>
+                        <%= __('buttons.agree') %>
                         <span></span>
                     </a>
                 </div>

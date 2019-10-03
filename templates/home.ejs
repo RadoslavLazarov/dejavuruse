@@ -3,12 +3,12 @@
 <% 
     var backgroundVideo;
     var pageSummary;
-    pageResources.content.backgroundVideos.forEach(function(video) {
+    globalLocals.pageResources.content.backgroundVideos.forEach(function(video) {
         if (video.isVisible) {
             backgroundVideo = video;
         }
     });
-    pageResources.content.summary.forEach(function(summary) {
+    globalLocals.pageResources.content.summary.forEach(function(summary) {
         if (summary.isVisible) {
             pageSummary = summary;
         }
@@ -39,10 +39,10 @@
                 <div class="home-content__summary">
                     <div class="summary">
                         <span class="summary__title">
-                            <%= pageSummary[getLocale].title %>.
+                            <%= pageSummary[globalLocals.getLocale].title %>.
                         </span>
                         <span class="summary__text">
-                            <%= pageSummary[getLocale].text %>
+                            <%= pageSummary[globalLocals.getLocale].text %>
                         </span>
                     </div>
                 </div>
@@ -52,8 +52,8 @@
                     <%- include ./components/lang.ejs %>
                 </div>
                 <div class="home-content__button">
-                    <a href="/gallery" class="button fadeout-page">
-                        <%= translation.buttons.enter %>
+                    <a href="/<%= globalLocals.getLocale %>/gallery" class="button fadeout-page">
+                        <%= __('buttons.enter') %>
                         <span></span>
                     </a>
                 </div>

@@ -221,9 +221,10 @@ video::-webkit-media-controls {
     &__overlay {
         @include position(absolute, 0, auto, auto, auto);
         @include height-width-100;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%);
         z-index: -3;
         &--full {
+            //gradient top and bottom
             background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
         }
     }
@@ -236,15 +237,11 @@ video::-webkit-media-controls {
             font-weight: 300;
             color: $white;
             text-transform: uppercase;
-            transition: transform .3s ease-in-out;
             @media (max-width: 575px) {
                 font-size: 2.5em;
             }
             @media (max-width: 414px) {
                 font-size: 2em;
-            }
-            &:hover {
-                transform: scale(1.03);
             }
         }
     }
@@ -364,6 +361,7 @@ video::-webkit-media-controls {
             display: flex;
             z-index: 100;
             margin-top: 5px;
+            @include button-animation($purple-dark, $white);
             .button {
                 margin: 0 5px;
                 padding: 10px 15px;
@@ -385,19 +383,20 @@ video::-webkit-media-controls {
             }
         }  
         .button {
-            border-color: $black;
+            border-color: $black !important;
             color: $black !important;
             &:hover {
                 color: $white !important; 
             }
             span {
-                background-color: $black;
+                background-color: $black !important;
             }
         } 
     }
 }
 
 .default {
+    padding: 25px 0;
     li {
         list-style-type: unset;
         margin-bottom: 15px;
@@ -438,4 +437,24 @@ video::-webkit-media-controls {
 .image-scale-animation {
     transform: scale(1.2);
     transition: transform 2s ease;
+}
+
+.breadcrumbs {
+    position: absolute;
+    bottom: 0;
+    color: $white;
+    &__links {
+        padding: 15px 0 15px 10px;
+    }
+    &__link {
+        &:after {
+            content: '>';
+            margin-left: 5px;
+        }
+        &:last-child {
+            &:after {
+                content: '';
+            }
+        }
+    }
 }

@@ -3,10 +3,20 @@
 /* eslint-disable quote-props */
 
 const Categories = require('../models/categories');
-const pageHelper = require('../scripts/helpers/pageHelpers');
+const pageHelper = require('./helpers/galleryHelpers');
 
 /**
- * According to the URL, the page resources are obtained
+ * According to the URL, controller resources are obtained
+ * @param {Object} url - current URL
+ * @returns {Object} an object that contains rosources for current page
+ */
+async function getControllerResources(url) {
+  const controller = await Categories.findOne({ id: url.controller });
+  return controller;
+}
+
+/**
+ * According to the URL, page resources are obtained
  * @param {Object} url - current URL
  * @returns {Object} an object that contains rosources for current page
  */
@@ -83,6 +93,7 @@ async function getFooterPages() {
  * @constructor
  */
 function PageResources(url) {
+  this.controllerResources = getControllerResources(url);
   this.pageResources = getPageResources(url);
   this.navCategories = getNavCategories();
   this.footerPages = getFooterPages();

@@ -5,7 +5,7 @@
     <%- include ../head.ejs %>
 </head>
 
-<body data-locale='<%= getLocale %>'>
+<body data-locale='<%= globalLocals.getLocale %>'>
     <%- include ../googleTagManager.ejs %>
     <%- include ../cookiesConsentHomePage.ejs %>
     <main>

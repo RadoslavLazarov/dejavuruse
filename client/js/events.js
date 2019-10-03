@@ -90,7 +90,7 @@ $('a[href="#map"]').on('click', function () {
 $(window).scroll(function () {
     var scrolled = window.pageYOffset;
     var $background = $('.parallax');
-    if ($background.closest('.parallax-wrapper').isInViewport()) {
+    if ($background.length && $background.closest('.parallax-wrapper').isInViewport()) {
         $background.css({ top: scrolled * 0.4 + 'px' });
     }
 });

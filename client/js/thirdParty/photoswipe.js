@@ -2,9 +2,6 @@
 var PhotoSwipe = require('photoswipe');
 var PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
-var $ogImage = $('meta[property="og:image"]');
-var ogImageLink = $ogImage.attr('content');
-
 var initPhotoSwipeFromDOM = function (gallerySelector) {
 
     // parse slide data (url, title, size ...) from DOM elements 
@@ -192,11 +189,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
-
-        // Set og:image content to page cover image url
-        gallery.listen('close', function () {
-            $ogImage.attr('content', ogImageLink);
-        });
     };
 
     // loop through all gallery elements and bind events
@@ -213,12 +205,6 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
         openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
     }
 };
-
-// Set og:image content to current image url
-$('.photo-wrapper a').on('click', function () {
-    var currentImgUrl = window.location.origin + $(this).attr('href');
-    $ogImage.attr('content', currentImgUrl);
-});
 
 // execute above function
 initPhotoSwipeFromDOM('.my-gallery');

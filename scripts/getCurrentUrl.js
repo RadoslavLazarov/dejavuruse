@@ -6,6 +6,7 @@
  * @returns {Object} URL object
  */
 function getCurrentUrl(req) {
+
   const url = {
     fullUrl: `${req.protocol}://${req.hostname}${req.originalUrl}`,
     protocol: req.protocol,
@@ -19,16 +20,25 @@ function getCurrentUrl(req) {
     url.currentPage = url.path;
   } else {
     url.path = req.path.split('/');
-    url.controller = url.path[1];
-    if (url.path.length === 2) {
+    url.controller = url.path[2];
+    if (url.path.length === 3) {
       url.subPage = false;
       url.currentPage = url.controller;
-    } else if (url.path.length > 2) {
-      url.subPage = url.path[2];
+    } else if (url.path.length > 3) {
+      url.subPage = url.path[3];
       url.currentPage = url.path.slice(-1)[0];
     }
   }
 
+  const path = req.path.split('/');
+  url.shortPath = [];
+  path.forEach((element, index) => {
+    if (index > 1) {
+      url.shortPath.push(element);
+    }
+  });
+  url.shortPath = url.shortPath.join('/');
+  // console.log(url);
   return url;
 }
 

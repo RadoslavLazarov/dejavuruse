@@ -1,7 +1,7 @@
 <% layout('common/layout/default') -%>
 
 <div class="container">
-    <% pageResources.content.services.forEach(function(service) { %>
+    <% globalLocals.pageResources.content.services.forEach(function(service) { %>
     <div class="row service-wrapper fade-animation">
         <div class="col-xl-9">
             <div class="row align-items-center service">
@@ -9,7 +9,7 @@
                     <div class="service__heading--mobile">
                         <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
                             data-aos-easing="ease-in-sine">
-                            <%= service.title[getLocale] %>
+                            <%= service.title[globalLocals.getLocale] %>
                         </h1>
                         <div class="line fade-animation-element" data-aos-once="true" data-aos-duration="800"
                             data-aos-easing="ease-in-sine" data-aos-delay="400"></div>
@@ -25,14 +25,15 @@
                     <div class="service__heading--desktop">
                         <h1 class="service__title" data-aos="fade-up" data-aos-once="true" data-aos-duration="800"
                             data-aos-easing="ease-in-sine">
-                            <%= service.title[getLocale] %>
+                            <%= service.title[globalLocals.getLocale] %>
                         </h1>
                         <div class="line fade-animation-element" data-aos-once="true" data-aos-duration="800"
                             data-aos-easing="ease-in-sine" data-aos-delay="400"></div>
                     </div>
                     <div class="service__text">
                         <p data-aos="zoom-in" data-aos-once="true" data-aos-duration="800"
-                            data-aos-easing="ease-in-sine" data-aos-delay="400"><%= service.text[getLocale] %></p>
+                            data-aos-easing="ease-in-sine" data-aos-delay="400">
+                            <%= service.text[globalLocals.getLocale] %></p>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,8 @@
 <ul class="languages__links">
-    <li><a class="fadeout-page <%= (lang=="bg"?"active":"") %>" href="/lang/bg">bg</a></li>
-    <li><a class="fadeout-page <%= (lang=="en"?"active":"") %>" href="/lang/en">en</a></li>
+    <li><a class="fadeout-page <%= globalLocals.getLocale == 'bg' ? 'active' : '' %>"
+            href="/lang/?lang=bg&path=<%= globalLocals.url.shortPath %>">bg</a>
+    </li>
+    <li><a class="fadeout-page <%= globalLocals.getLocale == 'en' ? 'active' : '' %>"
+            href="/lang/?lang=en&path=<%= globalLocals.url.shortPath %>">en</a>
+    </li>
 </ul>

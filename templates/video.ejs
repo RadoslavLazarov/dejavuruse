@@ -2,32 +2,29 @@
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
-    <% if (uploads) { %>
+        <% if (uploads) { %>
         <% uploads.forEach((item) => { %>
-            <div class="swiper-slide">
-                <div class="youtube">
-                    <iframe
-                        src="https://www.youtube.com/embed/<%= item %>"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        class='youtube__player'>
-                    </iframe>
-                </div>
+        <div class="swiper-slide">
+            <div class="youtube">
+                <iframe src="https://www.youtube.com/embed/<%= item %>" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    class='youtube__player'>
+                </iframe>
             </div>
+        </div>
         <% }); %>
-    <% }; %>
-    <% if (nextPageToken) { %>
+        <% }; %>
+        <% if (nextPageToken) { %>
         <div class="swiper-slide swiper-slide--last">
             <div class="youtube">
                 <div class="load-videos" data-token="<%= nextPageToken %>">
                     <div class="view-more">
-                        <%= translation.buttons.loadMoreVideos %>
+                        <%= __('buttons.loadMoreVideos') %>
                     </div>
                 </div>
             </div>
         </div>
-    <% }; %>
+        <% }; %>
     </div>
     <!-- Swiper Scrollbar -->
     <div class="swiper-scrollbar"></div>

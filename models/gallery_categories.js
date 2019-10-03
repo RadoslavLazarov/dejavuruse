@@ -26,6 +26,11 @@ const galleryCategories = new mongoose.Schema({
 
 const getGalleryCategories = mongoose.model('Gallery_categories', galleryCategories);
 
+async function findCategory(res, currentCategory) {
+  const categories = await getGalleryCategories.findOne({ id: currentCategory });
+  return categories;
+}
+
 async function findCategories() {
   const categories = await getGalleryCategories.find(
     { isVisible: true }, null, { sort: { priority: 1 } },
@@ -54,6 +59,7 @@ function GalleryCategoriesModel(res, currentCategory) {
   this.findCategories = findCategories();
   if (res && currentCategory) {
     this.validateCategories = validateCategories(res, currentCategory);
+    this.findCategory = findCategory(res, currentCategory);
   }
 }
 

@@ -5,12 +5,12 @@
                 <div class="col-12 footer__banner">
                     <div class="footer__banner-title m-3">
                         <i class="far fa-calendar-check"></i>
-                        <h2><%= translation.phrases.footer.saveHour%></h2>
+                        <h2><%= __('phrases.footer.saveHour') %></h2>
                     </div>
                     <div>
-                        <a href="/contacts#form-anchor"
-                            class="button <%= url.controller === 'contacts' ? '' : 'fadeout-page' %>">
-                            <%= translation.buttons.writeUs%>
+                        <a href="/<%= globalLocals.getLocale %>/contacts#form-anchor"
+                            class="button <%= globalLocals.url.controller === 'contacts' ? '' : 'fadeout-page' %>">
+                            <%= __('buttons.writeUs') %>
                             <span></span>
                         </a>
                     </div>
@@ -22,12 +22,12 @@
         <div class="row footer__bottom">
             <div class="col-xl-3 col-sm-6 footer__column">
                 <div class="footer__nav">
-                    <h3 class="footer__heading"><%= translation.privacy %></h3>
+                    <h3 class="footer__heading"><%= __('privacy') %></h3>
                     <ul>
-                        <% footerPages.forEach((item) => { %>
+                        <% globalLocals.footerPages.forEach((item) => { %>
                         <li>
-                            <a href="<%= item.url %>"
-                                class="fadeout-page line-animation"><%= item.name[getLocale] %></a>
+                            <a href="/<%= globalLocals.getLocale %><%= item.url %>"
+                                class="fadeout-page line-animation"><%= item.name[globalLocals.getLocale] %></a>
                         </li>
                         <% }); %>
                     </ul>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-xl-3 col-sm-6 footer__column">
                 <h3 class="footer__heading">Copyright ©</h3>
-                <div class="">
+                <div>
                     <%- include ../copyright.ejs %>
                 </div>
                 <div class="site-author">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 footer__column footer__socials">
-                <h3 class="footer__heading"><%= translation.followUs %></h3>
+                <h3 class="footer__heading"><%= __('followUs') %></h3>
                 <div class="socials-wrapper">
                     <div class="socials-block">
                         <div class="socials-inner">
