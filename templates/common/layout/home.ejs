@@ -7,10 +7,12 @@
 
 <body data-locale='<%= globalLocals.getLocale %>'>
     <%- include ../googleTagManager.ejs %>
-    <%- include ../cookiesConsentHomePage.ejs %>
+    <%- include ../cookiesConsent.ejs %>
+    <%- include ../../components/header/headerDefault.ejs %>
     <main>
         <%- body -%>
     </main>
+    <%- include ../../components/footer/footerDefault.ejs %>
     <%- include ../scripts.ejs %>
 </body>
 

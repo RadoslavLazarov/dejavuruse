@@ -19,10 +19,10 @@
             <a href="/static/images/gallery/<%= globalLocals.url.subPage %>/<%= globalLocals.url.currentPage %>/fullsize/<%= item.link %>"
                 class="photo" itemprop="contentUrl"
                 data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">
-                <div class="photo__image"
-                    style="background-image:url('/static/images/gallery/<%= globalLocals.url.subPage %>/<%=globalLocals. url.currentPage %>/thumbnails/<%= item.link %>')"
+                <img src="/static/images/gallery/<%= globalLocals.url.subPage %>/<%=globalLocals. url.currentPage %>/thumbnails/<%= item.link %>"
+                    alt="<%= item.alt ? item.alt[globalLocals.getLocale] : '' %>" class="photo__image"
                     data-src="/static/images/gallery/<%= globalLocals.url.subPage %>/<%= globalLocals.url.currentPage %>/thumbnails/<%= item.link %>"
-                    itemprop="thumbnail"></div>
+                    itemprop="thumbnail">
                 <div class="photo__overlay">
                     <i class="far fa-eye"></i>
                 </div>

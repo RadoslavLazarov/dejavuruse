@@ -20,7 +20,7 @@
                 <div class="category__image" style="background-image:url('<%= category.imageCover %>')"></div>
                 <div class="category__overlay">
                     <span class="category__overlay__line"></span>
-                    <div class="category__overlay__summary"><%= category.summary[getLocale] %></div>
+                    <div class="category__overlay__summary"><%= category.summary[globalLocals.getLocale] %></div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                         id="arrow_icon" x="0px" y="0px" viewBox="0 0 45.9 20.9" enable-background="new 0 0 45.9 20.9"
                         xml:space="preserve" class="svg replaced-svg">
@@ -37,7 +37,7 @@
     </div>
     <div class="row justify-content-center gallery-button">
         <a href="/services" class="button fadeout-page">
-            <%= __('buttons.viewOurServices')%>
+            <%= __('buttons.viewOurServices') %>
             <span></span>
         </a>
     </div>

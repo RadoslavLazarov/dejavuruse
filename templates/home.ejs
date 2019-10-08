@@ -25,39 +25,20 @@
                     <% backgroundVideo.source.forEach(function(source) { %>
                     <source src="<%= source.src %>" type="<%= source.type %>">
                     <% }); %>
-                    Your browser doesn't support HTML5 video tag.
+                    <%= __('messages.videoTagSupport') %>
                 </video>
             </div>
         </div>
         <div class="col-12 home-content">
-            <div class="home-content--left">
-                <div class="home-content__logo">
-                    <a href="/" class="logo fadeout-page">
-                        <img src="/static/logo-big.png" alt="DejaVu" class="logo--big">
-                    </a>
-                </div>
-                <div class="home-content__summary">
-                    <div class="summary">
-                        <span class="summary__title">
-                            <%= pageSummary[globalLocals.getLocale].title %>.
-                        </span>
-                        <span class="summary__text">
-                            <%= pageSummary[globalLocals.getLocale].text %>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="home-content--right">
-                <div class="circle-animation">
-                    <%- include ./components/lang.ejs %>
-                </div>
-                <div class="home-content__button">
-                    <a href="/<%= globalLocals.getLocale %>/gallery" class="button fadeout-page">
-                        <%= __('buttons.enter') %>
-                        <span></span>
-                    </a>
-                </div>
+            <div class="summary">
+                <span class="summary__title">
+                    <%= pageSummary[globalLocals.getLocale].title %>.
+                </span>
+                <span class="summary__text">
+                    <%= pageSummary[globalLocals.getLocale].text %>
+                </span>
             </div>
         </div>
     </div>
+</div>
 </div>

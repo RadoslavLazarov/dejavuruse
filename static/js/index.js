@@ -112,90 +112,10 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_89537ad5.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_3a9f2590.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/jquery":8,"./thirdParty/photoswipe":9,"./thirdParty/sweetalert":10,"./thirdParty/swiper":11,"./youtube":12,"buffer":15,"e/U+97":20}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
-
-// var getLocale = $('body').data('locale');
-
-// var swalText = {
-//     bg: {
-//         reqError: 'Грешна заявка',
-//         formError: 'Формата има невалидни или непопълнени полета!',
-//         formSuccess: 'Съобщението е изпратено!'
-//     },
-//     en: {
-//         reqError: 'Request error',
-//         formError: 'The form has invalid or empty fields!',
-//         formSuccess: 'Your message has been sent!'
-//     }
-// };
-
-// $('#feedback-form').on('submit', function (e) {
-//     e.preventDefault();
-//     var $form = $(this);
-//     var $formField = $('#feedback-form .form-field');
-//     var errorCheck = (function () {
-//         var err;
-//         if ($formField.hasClass('form-field--invalid') || $formField.hasClass('form-field--required')) {
-//             err = true;
-//         } else {
-//             err = false;
-//         }
-//         return err;
-//     })();
-
-//     if (!errorCheck) {
-//         $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
-//         grecaptcha.ready(function () {
-//             grecaptcha.execute('6LfhT6wUAAAAACyWaCAedFLOJyDzksGZ9LChXbC0', { action: 'feedback' }).then(function (token) {
-//                 $('#feedback-form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
-//                 $.ajax({
-//                     type: 'POST',
-//                     url: '/contacts/feedback',
-//                     data: {
-//                         email: $form.find('input[name="email"]').val(),
-//                         subject: $form.find('input[name="subject"]').val(),
-//                         name: $form.find('input[name="name"]').val(),
-//                         phone: $form.find('input[name="phone"]').val(),
-//                         event: $form.find('input[name="event"]').val(),
-//                         date: $form.find('input[name="date"]').val(),
-//                         text: $form.find('textarea').val(),
-//                         token: token
-//                     },
-//                     cache: false,
-//                     error: function (err) {
-//                         $('#loading-screen').fadeOut('slow');
-//                         swal({
-//                             title: swalText[getLocale].reqError,
-//                             icon: 'error',
-//                         })
-//                     },
-//                     success: function (data) {
-//                         $('#loading-screen').fadeOut('slow');
-//                         console.log(data);
-//                         if (data.captcha.error || data.email.error) {
-//                             $('.feedback-form-container').append('<div class="error">' + data.captcha.error || data.email.error || data.form.error + '</div>');
-//                         } else if (data.captcha.success && data.email.success) {
-//                             swal({
-//                                 title: swalText[getLocale].formSuccess,
-//                                 icon: 'success',
-//                             }).then(function () {
-//                                 location.reload();
-//                             });
-//                         }
-//                     },
-//                 });
-//             });
-//         });
-//     } else {
-//         swal({
-//             title: swalText[getLocale].formError,
-//             icon: 'error',
-//         })
-//     }
-// });
 
 var getLocale = $('body').data('locale');
 
@@ -806,7 +726,7 @@ $('.load-videos').on('click', function () {
 
   $.ajax({
     type: 'GET',
-    url: `/${locale}/video/next?nextPageToken=${token}`,
+    url: '/' + locale + '/video/next?nextPageToken=' + token,
     success: function (data) {
       var uploads = data.uploads;
       var $lastSlide = $('.swiper-slide--last');
@@ -815,21 +735,7 @@ $('.load-videos').on('click', function () {
 
       uploads.forEach(function (id) {
         // swiper is isntance of Swiper and it is attached to global window object
-        swiper.appendSlide(
-          `
-          <div class="swiper-slide">
-            <div class="youtube">
-              <iframe
-                src="https://www.youtube.com/embed/${id}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                class="youtube__player">
-              </iframe>
-            </div>
-          </div>
-        `
-        );
+        swiper.appendSlide('<div class=\'swiper-slide\'><div class=\'youtube\'><iframe src=\'https://www.youtube.com/embed/'.concat(id, '\' frameborder=\'0\' allow=\'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen class=\'youtube__player\'></iframe></div></div>'));
       });
 
       if (data.nextPageToken) {

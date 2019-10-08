@@ -60,7 +60,7 @@ router.get('/:category/:album', async (req, res) => {
     console.log(e);
     return res.sendStatus(500);
   }
-
+  // console.log(album);
   res.render('galleryAlbum', {
     currentCategory,
     album,

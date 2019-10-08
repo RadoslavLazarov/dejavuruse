@@ -1,55 +1,58 @@
 {
-    "hello": "hello",
-    "DEJAVU": "DEJA VU",
-    "allRightsReserved": "All rights reserved",
-    "termsAndConditions": "Terms and conditions",
-    "privacyPolicy": "Privacy policy",
-    "cookies": "Cookies",
-    "buttons": {
-        "enter": "enter",
-        "viewOurServices": "View our services",
-        "loadMoreVideos": "Load more videos...",
-        "agree": "Agree",
-        "learnMore": "Learn more",
-        "writeUs": "Write us"
-    },
-    "viewMore": "View more",
-    "checkOutOurDecorations": {
-        "test": "Check out our decorations"
-    },
-    "workingTime": "Working time",
-    "open": "Open now",
-    "opensSoon": "Opens soon",
-    "closed": "Closed now",
-    "closesSoon": "Closes soon",
-    "contacts": {
-        "address": "address",
-        "phone": "phone",
-        "email": "E-Mail"
-    },
-    "email": "E-mail",
-    "subject": "Subject",
-    "name": "Name",
-    "phone": "Phone",
-    "event": "Event",
-    "preferedDate": "Prefered date",
-    "tellUsMore": "Tell us more",
-    "sendYourMessage": "Send your message",
-    "feedback": "Feedback",
-    "phrases": {
-        "contactForm": {
-            "message": "We would love to connect! Let us know in the form below.",
-            "error": "The form has incorect or empty fields"
-        },
-        "footer": {
-            "saveHour": "Book a date for your event"
-        }
-    },
-    "messages": {
-        "cookies": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies."
-    },
-    "fieldRequired": "required field",
-    "fieldInvalid": "invalid field",
-    "followUs": "Follow us",
-    "privacy": "Privacy"
+	"hello": "hello",
+	"DEJAVU": "DEJA VU",
+	"allRightsReserved": "All rights reserved",
+	"termsAndConditions": "Terms and conditions",
+	"privacyPolicy": "Privacy policy",
+	"cookies": "Cookies",
+	"buttons": {
+		"enter": "enter",
+		"viewOurServices": "View our services",
+		"loadMoreVideos": "Load more videos...",
+		"agree": "Agree",
+		"learnMore": "Learn more",
+		"footerButton": "Book"
+	},
+	"viewMore": "View more",
+	"checkOutOurDecorations": {
+		"test": "Check out our decorations"
+	},
+	"workingTime": "Working time",
+	"open": "Open now",
+	"opensSoon": "Opens soon",
+	"closed": "Closed now",
+	"closesSoon": "Closes soon",
+	"contacts": {
+		"address": "address",
+		"phone": "phone",
+		"email": "E-Mail"
+	},
+	"email": "E-mail",
+	"subject": "Subject",
+	"name": "Name",
+	"phone": "Phone",
+	"event": "Event",
+	"preferedDate": "Prefered date",
+	"tellUsMore": "Tell us more",
+	"sendYourMessage": "Send your message",
+	"feedback": "Feedback",
+	"phrases": {
+		"aboutHeading": "Our team can make any wish come true",
+		"contactForm": {
+			"message": "We would love to connect! Let us know in the form below.",
+			"error": "The form has incorect or empty fields"
+		},
+		"footer": {
+			"saveHour": "Book a date for your event"
+		}
+	},
+	"messages": {
+		"cookies": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
+		"videoTagSupport": "Your browser doesn't support HTML5 video tag."
+	},
+	"fieldRequired": "required field",
+	"fieldInvalid": "invalid field",
+	"followUs": "Follow us",
+	"privacy": "Privacy",
+	"en": "en"
 }

@@ -1,4 +1,24 @@
 <% layout('common/layout/default') -%>
 
-<div>about page</div>
-<div><p><%= translation.hello %></p></div>
+<div class="container position-relative">
+    <div class="row page-description">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="separator"></div>
+        </div>
+        <div class="col-8 page-description__heading">
+            <h1><%= __('phrases.aboutHeading') %></h1>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xl-10 mb-5">
+            <div class="row">
+                <% globalLocals.pageResources.content.paragraphs.forEach(function(paragraph) { %>
+                <div class="col-6">
+                    <p><%= paragraph[globalLocals.getLocale] %></p>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>

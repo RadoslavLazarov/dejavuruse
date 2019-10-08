@@ -184,6 +184,22 @@ async function findAlbums(currentCategory) {
 async function findAlbum(res, currentCategory, currentAlbum) {
   const album = await getGalleryAlbums.findOne({ id: currentAlbum });
 
+  /* CMS function for add photo alt text */
+
+  // album.images.forEach((element, index) => {
+  //   const test = element;
+  //   if (index === 1) {
+  //     test.alt = {
+  //       bg: 'тестване',
+  //       en: 'testing',
+  //     };
+  //   }
+  // });
+  // await getGalleryAlbums.findOneAndUpdate({ id: currentAlbum }, album, {
+  //   new: true,
+  // });
+  // console.log(album);
+
   if (album === null) {
     return res.sendStatus(404);
   }
