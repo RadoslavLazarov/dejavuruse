@@ -15505,43 +15505,47 @@ video::-webkit-media-controls {
       font-weight: 300;
       font-size: 0.938em; }
 
-.category-wrapper {
+@media screen and (max-width: 1199px) {
+  .category-container {
+    padding: 0 25px; } }
+
+.category-container .category-wrapper {
   overflow: hidden;
   padding: 5px; }
   @media screen and (min-width: 1200px) {
-    .category-wrapper:first-child, .category-wrapper:nth-child(4n + 1) {
+    .category-container .category-wrapper:first-child, .category-container .category-wrapper:nth-child(4n + 1) {
       padding-left: 0; }
-    .category-wrapper:nth-child(4n) {
+    .category-container .category-wrapper:nth-child(4n) {
       padding-right: 0; } }
   @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .category-wrapper:nth-child(3n) {
+    .category-container .category-wrapper:nth-child(3n) {
       padding-right: 0; }
-    .category-wrapper:nth-child(3n + 1) {
+    .category-container .category-wrapper:nth-child(3n + 1) {
       padding-left: 0; } }
   @media screen and (min-width: 576px) and (max-width: 991px) {
-    .category-wrapper:nth-child(2n) {
+    .category-container .category-wrapper:nth-child(2n) {
       padding-right: 0; }
-    .category-wrapper:nth-child(2n + 1) {
+    .category-container .category-wrapper:nth-child(2n + 1) {
       padding-left: 0; } }
   @media screen and (max-width: 575px) {
-    .category-wrapper {
+    .category-container .category-wrapper {
       padding-left: 0;
       padding-right: 0; } }
-  .category-wrapper .category {
+  .category-container .category-wrapper .category {
     position: relative;
     display: -webkit-box;
     display: flex;
     overflow: hidden;
     height: 100%;
     color: #fff; }
-    .category-wrapper .category:hover .category__overlay, .category-wrapper .category:focus .category__overlay, .category-wrapper .category:active .category__overlay {
+    .category-container .category-wrapper .category:hover .category__overlay, .category-container .category-wrapper .category:focus .category__overlay, .category-container .category-wrapper .category:active .category__overlay {
       left: 0; }
-    .category-wrapper .category:hover .category__title, .category-wrapper .category:focus .category__title, .category-wrapper .category:active .category__title {
+    .category-container .category-wrapper .category:hover .category__title, .category-container .category-wrapper .category:focus .category__title, .category-container .category-wrapper .category:active .category__title {
       background-color: rgba(117, 82, 117, 0); }
-    .category-wrapper .category:hover .category__image, .category-wrapper .category:focus .category__image, .category-wrapper .category:active .category__image {
+    .category-container .category-wrapper .category:hover .category__image, .category-container .category-wrapper .category:focus .category__image, .category-container .category-wrapper .category:active .category__image {
       -webkit-transform: rotate(2deg) scale(1.1);
               transform: rotate(2deg) scale(1.1); }
-    .category-wrapper .category__title {
+    .category-container .category-wrapper .category__title {
       position: absolute;
       top: 15%;
       right: auto;
@@ -15552,12 +15556,12 @@ video::-webkit-media-controls {
       -webkit-transition: all 720ms cubic-bezier(0.52, 0.01, 0.16, 1);
       transition: all 720ms cubic-bezier(0.52, 0.01, 0.16, 1);
       font-family: 'Cormorant Garamond', serif; }
-      .category-wrapper .category__title h1 {
+      .category-container .category-wrapper .category__title h1 {
         text-align: left;
         font-weight: 300;
         margin: 0;
         padding: 5px 0 5px 25px; }
-    .category-wrapper .category__image {
+    .category-container .category-wrapper .category__image {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -15572,9 +15576,9 @@ video::-webkit-media-controls {
       transition: transform 720ms cubic-bezier(0.52, 0.01, 0.16, 1);
       transition: transform 720ms cubic-bezier(0.52, 0.01, 0.16, 1), -webkit-transform 720ms cubic-bezier(0.52, 0.01, 0.16, 1); }
       @media screen and (max-width: 575px) {
-        .category-wrapper .category__image {
+        .category-container .category-wrapper .category__image {
           height: 400px; } }
-    .category-wrapper .category__overlay {
+    .category-container .category-wrapper .category__overlay {
       position: absolute;
       top: 0;
       right: auto;
@@ -15587,7 +15591,7 @@ video::-webkit-media-controls {
       -webkit-transition: all 720ms cubic-bezier(0.52, 0.01, 0.16, 1);
       transition: all 720ms cubic-bezier(0.52, 0.01, 0.16, 1);
       left: -101%; }
-      .category-wrapper .category__overlay__line {
+      .category-container .category-wrapper .category__overlay__line {
         position: absolute;
         top: 28%;
         right: auto;
@@ -15596,14 +15600,14 @@ video::-webkit-media-controls {
         height: 2px;
         width: 70px;
         background-color: #fff; }
-      .category-wrapper .category__overlay__summary {
+      .category-container .category-wrapper .category__overlay__summary {
         position: absolute;
         top: 32%;
         right: auto;
         bottom: auto;
         left: 25px;
         padding-right: 25px; }
-      .category-wrapper .category__overlay svg {
+      .category-container .category-wrapper .category__overlay svg {
         position: absolute;
         top: auto;
         right: 10%;
@@ -15611,7 +15615,7 @@ video::-webkit-media-controls {
         left: auto;
         width: 45px; }
 
-.gallery-button .button {
+.category-container .gallery-button .button {
   position: relative;
   display: -webkit-box;
   display: flex;
@@ -15631,13 +15635,13 @@ video::-webkit-media-controls {
   text-align: center;
   -webkit-transition: color .5s;
   transition: color .5s; }
-  .gallery-button .button:hover {
+  .category-container .gallery-button .button:hover {
     cursor: pointer;
     color: #fff;
     text-decoration: none;
     -webkit-transition: color .5s;
     transition: color .5s; }
-  .gallery-button .button span {
+  .category-container .gallery-button .button span {
     position: absolute;
     display: block;
     width: 0;
