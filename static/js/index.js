@@ -115,9 +115,11 @@ infScroll.on('load', function (response) {
     // var $svg = $('#loading-screen svg');
     // $('.my-gallery').append($svg);
     var path = window.location.pathname.split('/');
+    var alt;
 
     data.images.forEach(function (element) {
-        $('.my-gallery').append("<figure class=\"col-lg-3 col-sm-4 col-6 photo-wrapper\" itemprop=\"associatedMedia\" itemscope itemtype=\"http://schema.org/ImageObject\" data-aos=\"fade-up\" data-aos-once=\"true\" data-aos-duration=\"800\"><a href=\"/static/images/gallery/".concat(path[3], "/").concat(path[4], "/fullsize/").concat(element.link, "\" class=\"photo\" itemprop=\"contentUrl\" data-size=\"").concat(element.dimensions.width, "x").concat(element.dimensions.height, "\"><img src=\"/static/images/gallery/").concat(path[3], "/").concat(path[4], "/thumbnails/").concat(element.link, "\" alt=\"<%= item.alt ? item.alt[globalLocals.getLocale] : '' %>\" class=\"photo__image\" data-src=\"/static/images/gallery/").concat(path[3], "/").concat(path[4], "/thumbnails/").concat(element.link, "\" itemprop=\"thumbnail\"><div class=\"photo__overlay\"><i class=\"far fa-eye\"></i></div></a></figure>"));
+        alt = element.alt ? element.alt : '';
+        $('.my-gallery').append("<figure class=\"col-lg-3 col-sm-4 col-6 photo-wrapper\" itemprop=\"associatedMedia\" itemscope itemtype=\"http://schema.org/ImageObject\" data-aos=\"fade-up\" data-aos-once=\"true\" data-aos-duration=\"800\"><a href=\"/static/images/gallery/".concat(path[3], "/").concat(path[4], "/fullsize/").concat(element.link, "\" class=\"photo\" itemprop=\"contentUrl\" data-size=\"").concat(element.dimensions.width, "x").concat(element.dimensions.height, "\"><img src=\"/static/images/gallery/").concat(path[3], "/").concat(path[4], "/thumbnails/").concat(element.link, "\" alt=\"").concat(alt, "\" class=\"photo__image\" data-src=\"/static/images/gallery/").concat(path[3], "/").concat(path[4], "/thumbnails/").concat(element.link, "\" itemprop=\"thumbnail\"><div class=\"photo__overlay\"><i class=\"far fa-eye\"></i></div></a></figure>"));
     });
 });
 
@@ -137,7 +139,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_117d40bc.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1facbcf4.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
