@@ -1,4 +1,5 @@
 require('./thirdParty/jquery');
+require('./thirdParty/infiniteScroll');
 require('./thirdParty/aos');
 require('./thirdParty/photoswipe');
 require('./thirdParty/sweetalert');

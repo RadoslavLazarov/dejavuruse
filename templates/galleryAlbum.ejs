@@ -13,13 +13,13 @@
         </div>
     </div>
     <div class="row justify-content-center my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-        <% album.images.forEach(function(item) { %>
+        <% firstImages.forEach(function(item) { %>
         <figure class="col-lg-3 col-sm-4 col-6 photo-wrapper" itemprop="associatedMedia" itemscope
             itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
             <a href="/static/images/gallery/<%= globalLocals.url.subPage %>/<%= globalLocals.url.currentPage %>/fullsize/<%= item.link %>"
                 class="photo" itemprop="contentUrl"
                 data-size="<%= item.dimensions.width %>x<%= item.dimensions.height %>">
-                <img src="/static/images/gallery/<%= globalLocals.url.subPage %>/<%=globalLocals. url.currentPage %>/thumbnails/<%= item.link %>"
+                <img src="/static/images/gallery/<%= globalLocals.url.subPage %>/<%=globalLocals.url.currentPage %>/thumbnails/<%= item.link %>"
                     alt="<%= item.alt ? item.alt[globalLocals.getLocale] : '' %>" class="photo__image"
                     data-src="/static/images/gallery/<%= globalLocals.url.subPage %>/<%= globalLocals.url.currentPage %>/thumbnails/<%= item.link %>"
                     itemprop="thumbnail">

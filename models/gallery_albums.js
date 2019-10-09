@@ -49,28 +49,28 @@ async function createAlbum() {
   const Albums = new getGalleryAlbums({
     isVisible: true,
     name: {
-      bg: 'Хълк Парти',
-      en: 'Hulk Party',
+      bg: 'Исперих',
+      en: 'Isperih',
     },
-    id: 'hulk-party',
-    imageCover: '/static/images/gallery/kids-parties/hulk-party/fullsize/61657007_10156147549916781_2050628974379270144_n.jpg',
+    id: 'Isperih',
+    imageCover: '/static/images/gallery/weddings/isperih/fullsize/20190824_150800_fullsize.jpg',
     summary: {
       bg: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
       en: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
     },
     date: new Date(),
     images: [],
-    gallery_category: categoriesObjectId.kidsParties,
+    gallery_category: categoriesObjectId.weddings,
     meta: {
       bg: {
-        title: 'Хълк Парти',
-        description: 'описание Хълк Парти',
-        keywords: 'ключови думи Хълк Парти',
+        title: 'Исперих',
+        description: 'описание Исперих',
+        keywords: 'ключови думи Исперих',
       },
       en: {
-        title: 'Hulk Party',
-        description: 'description Hulk Party',
-        keywords: 'Hulk Party keywords',
+        title: 'Isperih',
+        description: 'description Isperih',
+        keywords: 'Isperih keywords',
       },
     },
   });
@@ -78,10 +78,10 @@ async function createAlbum() {
   // Resize thumbnails
   const resizeThumbnails = () => new Promise((resolve, reject) => {
     let counter = 0;
-    fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/original/').forEach((file, index, array) => {
+    fs.readdirSync('./static/images/gallery/weddings/isperih/original/').forEach((file, index, array) => {
       thumb({
-        source: `./static/images/gallery/kids-parties/hulk-party/original/${file}`, // could be a filename: dest/path/image.jpg
-        destination: './static/images/gallery/kids-parties/hulk-party/thumbnails/',
+        source: `./static/images/gallery/weddings/isperih/original/${file}`, // could be a filename: dest/path/image.jpg
+        destination: './static/images/gallery/weddings/isperih/thumbnails/',
         width: 600,
         suffix: '',
         quiet: true,
@@ -102,11 +102,11 @@ async function createAlbum() {
   const resizeFullsize = () => new Promise((resolve, reject) => {
     let counter = 0;
 
-    fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/original/').forEach((file, index, array) => {
-      const getDimensions = sizeOf(`./static/images/gallery/kids-parties/hulk-party/original/${file}`);
+    fs.readdirSync('./static/images/gallery/weddings/isperih/original/').forEach((file, index, array) => {
+      const getDimensions = sizeOf(`./static/images/gallery/weddings/isperih/original/${file}`);
 
       if (getDimensions.width < 1920) {
-        fsExtra.copy(`./static/images/gallery/kids-parties/hulk-party/original/${file}`, `./static/images/gallery/kids-parties/hulk-party/fullsize/${file}`, (err) => {
+        fsExtra.copy(`./static/images/gallery/weddings/isperih/original/${file}`, `./static/images/gallery/weddings/isperih/fullsize/${file}`, (err) => {
           if (err) {
             return console.error(err);
           }
@@ -118,8 +118,8 @@ async function createAlbum() {
         });
       } else {
         thumb({
-          source: `./static/images/gallery/kids-parties/hulk-party/original/${file}`, // could be a filename: dest/path/image.jpg
-          destination: './static/images/gallery/kids-parties/hulk-party/fullsize/',
+          source: `./static/images/gallery/weddings/isperih/original/${file}`, // could be a filename: dest/path/image.jpg
+          destination: './static/images/gallery/weddings/isperih/fullsize/',
           width: 1920,
           suffix: '',
           quiet: true,
@@ -141,15 +141,15 @@ async function createAlbum() {
     then adding images dimensions in getGalleryAlbums model and saving in DB */
   resizeThumbnails().then(() => {
     resizeFullsize().then(() => {
-      fsExtra.remove('./static/images/gallery/kids-parties/hulk-party/original', (err) => {
+      fsExtra.remove('./static/images/gallery/weddings/isperih/original', (err) => {
         if (err) {
           return console.error(err);
         }
         return console.log('Deleted original images folder!');
       });
 
-      fs.readdirSync('./static/images/gallery/kids-parties/hulk-party/fullsize/').forEach((file) => {
-        const getDimensions = sizeOf(`./static/images/gallery/kids-parties/hulk-party/fullsize/${file}`);
+      fs.readdirSync('./static/images/gallery/weddings/isperih/fullsize/').forEach((file) => {
+        const getDimensions = sizeOf(`./static/images/gallery/weddings/isperih/fullsize/${file}`);
         Albums.images.push({
           link: file,
           dimensions: {
