@@ -1,0 +1,61 @@
+.not-found {
+    position: relative;
+    &__cover {
+        @include position(absolute, 0, 0 ,0 ,0);
+    }
+    &__background {
+        @include position(absolute, 0, 0 ,0 ,0);
+        @include height-width-100;
+        background-image:url('/static/images/pages-covers/not-found-cover.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    &__overlay {
+        @include position(absolute, 0, 0 ,0 ,0);
+        @include height-width-100;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 100vh;
+        color: $white;
+    }
+    &__logo {
+        width: 250px;
+        margin-top: 10px;
+        img {
+            width: 100%;
+        }
+    }
+    &__title {
+        font-size: 15em;
+        font-weight: 700;
+        @media screen and (max-width: 768px) {
+            font-size: 9em;
+        }
+        @media screen and (max-height: 500px) {
+            font-size: 5em;
+        }
+    }
+    &__message {
+        font-size: 2.5em;
+        text-align: center;
+        @media screen and (max-height: 500px) {
+            font-size: 1.5em;
+        }
+    }
+    &__button {
+        z-index: 1;
+        margin-bottom: 25px;
+        @include button-animation($white, $black);
+        .button {
+            @media screen and (max-width: 400px) {
+                padding: 14px 18px;
+            }
+        }
+    }
+}

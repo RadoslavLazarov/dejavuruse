@@ -2,16 +2,24 @@
 
 function calculateSwiperMinHeight() {
     var windowHeight = $(window).outerHeight();
-    var footerHeight = $('footer').outerHeight();
     var swiperContainerMarginTop = parseInt($('.swiper-container').css('marginTop'));
 
     $('.swiper-container').css({ 'min-height': windowHeight - swiperContainerMarginTop });
 }
 
+// function calculate404MinHeight() {
+//     var windowHeight = $(window).outerHeight();
+//     var footerHeight = $('footer').outerHeight();
+
+//     $('.not-found__wrapper').css({ 'min-height': windowHeight - footerHeight });
+// }
+
 $(function () {
     calculateSwiperMinHeight();
+    // calculate404MinHeight();
     $(window).on('resize', function () {
         calculateSwiperMinHeight();
+        // calculate404MinHeight();
     });
 });
 

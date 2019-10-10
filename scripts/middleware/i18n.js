@@ -10,16 +10,24 @@ i18n.configure({
   objectNotation: true,
 });
 
+function checkUrlForLocale(req, res, next) {
+  const url = req.path.split('/', 2);
+  const cookie = req.cookies.lang;
+
+  locales.forEach((locale) => {
+    if (url[1] === locale) {
+      i18n.setLocale(req, locale);
+    } else if (cookie) {
+      i18n.setLocale(req, cookie);
+    } else {
+      i18n.setLocale(req, 'bg');
+    }
+  });
+  next();
+}
+
 module.exports = {
   locales,
   init: i18n.init,
-  checkUrlForLocale: (req, res, next) => {
-    const pathh = req.path.split('/', 2);
-    locales.forEach((locale) => {
-      if (pathh[1] === locale) {
-        i18n.setLocale(req, locale);
-      }
-    });
-    next();
-  },
+  checkUrlForLocale,
 };

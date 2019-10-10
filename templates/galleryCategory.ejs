@@ -1,7 +1,7 @@
 <% layout('common/layout/default') -%>
 
 <div class="container">
-    <div class="row justify-content-center p-4 pb-5">
+    <div class="row justify-content-center album-container">
         <% getGalleryAlbums.forEach(function(album) { %>
         <div class="col-sm-6 album-wrapper fade-animation">
             <a href="/<%= globalLocals.getLocale %>/gallery/<%= currentCategory %>/<%= album.id %>"

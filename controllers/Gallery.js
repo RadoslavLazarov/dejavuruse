@@ -58,16 +58,16 @@ router.get('/:category/:album', async (req, res) => {
   try {
     album = await galleryAlbums.findAlbum;
     getGalleryCategory = await galleryCategories.findCategory;
+    album.images.forEach((element, index) => {
+      if (index < 12) {
+        firstImages.push(element);
+      }
+    });
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
   }
 
-  album.images.forEach((element, index) => {
-    if (index < 8) {
-      firstImages.push(element);
-    }
-  });
   // console.log(firstImages);
   // console.log(album.images.length);
   res.render('galleryAlbum', {
@@ -95,7 +95,7 @@ router.get('/:category/:album/next', async (req, res) => {
   const items = Number(req.query.items);
 
   album.images.forEach((element, index) => {
-    if (index >= items && index <= items + 7) {
+    if (index >= items && index <= items + 11) {
       images.push(element);
     } else if (items > index) {
       images = [];

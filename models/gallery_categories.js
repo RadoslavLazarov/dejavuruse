@@ -48,7 +48,7 @@ async function validateCategories(res, currentCategory) {
   }
 
   if (categories.indexOf(currentCategory) === -1) {
-    return res.sendStatus(404);
+    return res.status(404).render('404');
   }
 
   return true;

@@ -201,7 +201,7 @@ async function findAlbum(res, currentCategory, currentAlbum) {
   // console.log(album);
 
   if (album === null) {
-    return res.sendStatus(404);
+    return res.status(404).render('404');
   }
 
   return album;

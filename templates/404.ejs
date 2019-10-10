@@ -1,0 +1,29 @@
+<% layout('common/layout/404') -%>
+
+<div class="container-fluid not-found">
+    <div class="not-found__cover">
+        <div class="not-found__background"></div>
+        <div class="not-found__overlay"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8 not-found__wrapper">
+            <a href="/" class="not-found__logo fadeout-page">
+                <img src="/static/logo-big.png" alt="DejaVu">
+            </a>
+            <div>
+                <div class="not-found__title">
+                    404
+                </div>
+                <div class="not-found__message">
+                    <%= __('messages.notFound') %>
+                </div>
+            </div>
+            <div class="not-found__button">
+                <a href="/" class="button fadeout-page">
+                    <%= __('buttons.notFound') %>
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

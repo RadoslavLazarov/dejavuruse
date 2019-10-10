@@ -15,6 +15,9 @@
         z-index: 1;
         color: $white;
         padding: 0 30px;
+        @media screen and (min-width: 1200px) {
+            padding: 0;
+        }
         @media screen and (max-width: 630px) {
             justify-content: center;
         }
@@ -31,20 +34,42 @@
             }
         }
         @include button-animation($white, $purple-dark);
+        .button {
+            @media screen and (min-width: 1200px) {
+                margin: 20px 0;
+            }
+        }
     }
     &__banner-title {
         @include flex-center;
         flex-wrap: wrap;
+        margin: 15px 15px;
+        @media screen and (min-width: 1200px) {
+            margin: 15px 0;
+        }
     }
     &__bottom {
-        padding: 35px;
+        @media screen and (min-width: 1200px) {
+            padding: 35px 0;
+        }
+        @media screen and (min-width: 501px) and (max-width: 1199px) {
+            padding: 35px;
+        }
         @media screen and (max-width: 500px) {
             padding: 35px 0;
         }
     }
     &__column {
         margin-bottom: 25px;
+        &:first-child {
+            @media screen and (min-width: 1200px) {
+                padding-left: 0;
+            }
+        }
         &:last-child {
+            @media screen and (min-width: 1200px) {
+                padding-right: 0;
+            }
             margin-bottom: 0;
         }
         @media screen and (max-width: 1199px) {

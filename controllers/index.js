@@ -42,6 +42,6 @@ module.exports = (app) => {
   app.use('/news', News);
   app.use('/cookies-consent', CookiesConsent);
   app.use('*', (req, res) => {
-    res.status(404).send('404');
+    res.status(404).render('404');
   });
 };

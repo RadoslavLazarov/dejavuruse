@@ -11,7 +11,8 @@
 		"loadMoreVideos": "Зареди още видеа...",
 		"agree": "Съгласен",
 		"learnMore": "Научи повече",
-		"footerButton": "Запази"
+		"footerButton": "Запази",
+		"notFound": "Начална страница"
 	},
 	"viewMore": "Виж повече",
 	"checkOutOurDecorations": {
@@ -48,7 +49,8 @@
 	},
 	"messages": {
 		"cookies": "Този сайт използва бисквитки. Продължавайки да разглеждате сайта, вие приемате използването на бисквитки.",
-		"videoTagSupport": "Браузърът ви не поддържа HTML5 видео."
+		"videoTagSupport": "Браузърът ви не поддържа HTML5 видео.",
+		"notFound": "Страницата не е намерена!"
 	},
 	"fieldRequired": "задължително поле",
 	"fieldInvalid": "невалидно поле",

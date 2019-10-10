@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
       uploads.push(item.contentDetails.videoId);
     }
   } catch (error) {
-    return res.sendStatus(404);
+    return res.status(404).render('404');
   }
 
   res.render('video', {
