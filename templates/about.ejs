@@ -5,18 +5,41 @@
         <div class="col-12 d-flex justify-content-center">
             <div class="separator"></div>
         </div>
-        <div class="col-8 page-description__heading">
-            <h1><%= __('phrases.aboutHeading') %></h1>
+        <div class="col-md-8 page-description__heading">
+            <h1><%= __('phrases.aboutTitle') %></h1>
         </div>
         <div class="line"></div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-xl-10 mb-5">
-            <div class="row">
-                <% globalLocals.pageResources.content.paragraphs.forEach(function(paragraph) { %>
-                <div class="col-md-6 col-12">
-                    <p><%= paragraph[globalLocals.getLocale] %></p>
-                </div>
+    <div class="row justify-content-center story">
+        <div class="col-md-6 story__text">
+            <div>
+                <h2><%= globalLocals.pageResources.content.stories.story1.title[globalLocals.getLocale] %></h2>
+                <% globalLocals.pageResources.content.stories.story1.paragraphs.forEach(function(paragraph) { %>
+                <p><%= paragraph[globalLocals.getLocale] %></p>
+                <% }); %>
+            </div>
+        </div>
+        <div class="col-md-6 col-11 story__image"
+            style="background-image:url('<%= globalLocals.pageResources.content.stories.story1.image %>')"></div>
+    </div>
+</div>
+<div class="container-fluid p-0">
+    <div class="about-banner"
+        style="background-image:url('<%= globalLocals.pageResources.content.banners.banner1.image %>')">
+        <h2 class="about-banner__title" data-aos="zoom-in" data-aos-once="true" data-aos-duration="1000">
+            <%= globalLocals.pageResources.content.banners.banner1.text[globalLocals.getLocale] %></h2>
+        <div class="about-banner__overlay"></div>
+    </div>
+</div>
+<div class="container position-relative mb-5">
+    <div class="row justify-content-center story mb-5">
+        <div class="col-md-6 col-11 story__image story__image"
+            style="background-image:url('<%= globalLocals.pageResources.content.stories.story2.image %>')"></div>
+        <div class="col-md-6 story__text">
+            <div>
+                <h2><%= globalLocals.pageResources.content.stories.story2.title[globalLocals.getLocale] %></h2>
+                <% globalLocals.pageResources.content.stories.story2.paragraphs.forEach(function(paragraph) { %>
+                <p><%= paragraph[globalLocals.getLocale] %></p>
                 <% }); %>
             </div>
         </div>

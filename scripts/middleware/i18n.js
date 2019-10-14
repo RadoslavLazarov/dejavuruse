@@ -10,7 +10,7 @@ i18n.configure({
   objectNotation: true,
 });
 
-function checkUrlForLocale(req, res, next) {
+function setLocale(req, res, next) {
   const url = req.path.split('/', 2);
   const cookie = req.cookies.lang;
 
@@ -29,5 +29,5 @@ function checkUrlForLocale(req, res, next) {
 module.exports = {
   locales,
   init: i18n.init,
-  checkUrlForLocale,
+  setLocale,
 };

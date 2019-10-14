@@ -35,4 +35,13 @@ $(function () {
     //     $(this).find('i').css({ 'color': color });
     //     $(this).find('div').css({ 'background-color': color });
     // });
+
+    // function getRandomInt(max) {
+    //     return Math.floor(Math.random() * Math.floor(max));
+    // }
+
+    // $('.photo-wrapper').each(function () {
+    //     $(this).attr('data-aos-delay', getRandomInt(1000));
+    //     $(this).attr('data-aos-duration', getRandomInt(1000));
+    // });
 });

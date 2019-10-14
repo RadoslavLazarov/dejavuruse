@@ -203,7 +203,9 @@ video::-webkit-media-controls {
         min-height: 100%;
         width: 100%;
         margin: 0;
-        
+        .page-cover__image {
+            transform: scale(1);
+        }
     }
     &__image {
         @include position(absolute, 0, auto, auto, auto);
@@ -302,6 +304,14 @@ video::-webkit-media-controls {
     @media (max-width: 414px) {
         width: 200px;
     }
+}
+
+.wedding-rings {
+    background-image:url('/static/images/graphics/rings.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
 }
 
 .heading {

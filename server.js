@@ -36,7 +36,7 @@ app.use(session({
 }));
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(i18n.init);
-app.use(i18n.checkUrlForLocale);
+app.use(i18n.setLocale);
 app.use(globalLocals);
 
 // Execute controllers
