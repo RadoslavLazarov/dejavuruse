@@ -155,7 +155,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_60f3b57a.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bd3e3732.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -791,7 +791,7 @@ $('.load-videos').on('click', function () {
 
       uploads.forEach(function (id) {
         // swiper is isntance of Swiper and it is attached to global window object
-        swiper.appendSlide('<div class=\'swiper-slide\'><div class=\'youtube\'><iframe src=\'https://www.youtube.com/embed/'.concat(id, '\' frameborder=\'0\' allow=\'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen class=\'youtube__player\'></iframe></div></div>'));
+        swiper.appendSlide('<div class=\'swiper-slide\'><div class=\'youtube\'><iframe src=\'https://www.youtube.com/embed/'.concat(id, '\' allow=\'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen class=\'youtube__player\'></iframe></div></div>'));
       });
 
       if (data.nextPageToken) {

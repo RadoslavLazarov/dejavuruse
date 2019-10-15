@@ -15938,7 +15938,8 @@ video::-webkit-media-controls {
           bottom: 0;
           left: 0;
           height: 100%;
-          width: 100%; }
+          width: 100%;
+          border: none; }
   .swiper-container .swiper-scrollbar {
     position: absolute;
     top: inherit;

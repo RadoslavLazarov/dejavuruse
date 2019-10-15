@@ -65,55 +65,60 @@
                 <div class="row no-gutters justify-content-center">
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="email" name="email" class="form-field form-field--validation" required>
+                            <input type="email" name="email" id="form-field-email"
+                                class="form-field form-field--validation" required>
                             <span class="error"></span>
-                            <label for="input"><%= __('email') %>*</label>
+                            <label for="form-field-email"><%= __('email') %>*</label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="subject" class="form-field form-field--validation" required>
+                            <input type="text" name="subject" id="form-field-subject"
+                                class="form-field form-field--validation" required>
                             <span class="error"></span>
-                            <label for="input"><%= __('subject') %>*</label>
+                            <label for="form-field-subject"><%= __('subject') %>*</label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-field form-field--validation" required>
+                            <input type="text" name="name" id="form-field-name"
+                                class="form-field form-field--validation" required>
                             <span class="error"></span>
-                            <label for="input"><%= __('name') %>*</label>
+                            <label for="form-field-name"><%= __('name') %>*</label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="tel" name="phone" min="3" max="20" class="form-field form-field--validation">
+                            <input type="tel" name="phone" id="form-field-phone"
+                                class="form-field form-field--validation">
                             <span class="error"></span>
-                            <label for="input"><%= __('phone') %></label>
+                            <label for="form-field-phone"><%= __('phone') %></label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="event" class="form-field">
-                            <label for="input"><%= __('event') %></label>
+                            <input type="text" name="event" id="form-field-event" class="form-field">
+                            <label for="form-field-event"><%= __('event') %></label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-sm-6 col-12">
                         <div class="form-group">
-                            <input type="text" name="date" class="form-field">
-                            <label for="input"><%= __('preferedDate') %></label>
+                            <input type="text" name="date" id="form-field-date" class="form-field">
+                            <label for="form-field-date"><%= __('preferedDate') %></label>
                             <i class="bar"></i>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <textarea name="text" class="form-field form-field--validation" required></textarea>
+                            <textarea name="text" id="form-field-textarea" class="form-field form-field--validation"
+                                required></textarea>
                             <span class="error"></span>
-                            <label for="textarea"><%= __('tellUsMore') %>*</label>
+                            <label for="form-field-textarea"><%= __('tellUsMore') %>*</label>
                             <i class="bar"></i>
                         </div>
                     </div>

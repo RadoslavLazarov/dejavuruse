@@ -18,7 +18,7 @@ $('.load-videos').on('click', function () {
 
       uploads.forEach(function (id) {
         // swiper is isntance of Swiper and it is attached to global window object
-        swiper.appendSlide('<div class=\'swiper-slide\'><div class=\'youtube\'><iframe src=\'https://www.youtube.com/embed/'.concat(id, '\' frameborder=\'0\' allow=\'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen class=\'youtube__player\'></iframe></div></div>'));
+        swiper.appendSlide('<div class=\'swiper-slide\'><div class=\'youtube\'><iframe src=\'https://www.youtube.com/embed/'.concat(id, '\' allow=\'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen class=\'youtube__player\'></iframe></div></div>'));
       });
 
       if (data.nextPageToken) {

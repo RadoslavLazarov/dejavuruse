@@ -40,6 +40,7 @@
                 &__player {
                     @include position(absolute, 0, 0, 0, 0);
                     @include height-width-100;
+                    border: none;
                 }
             }
         }
