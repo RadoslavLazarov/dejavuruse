@@ -11,7 +11,7 @@ $('.nav-button').on('click', function () {
 });
 
 // Fades out the whole page when clicking links
-$('.fadeout-page').click(function (e) {
+$('.fadeout-page').on('click', function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {
@@ -44,7 +44,7 @@ $(window).scroll(function () {
     var $header = $('.header'),
         scroll = $(window).scrollTop();
 
-    if (window.matchMedia('(min-width: 1201px)').matches) {
+    if (window.matchMedia('(min-width: 1200px)').matches) {
         if (scroll >= 300) {
             $header.addClass('header--fixed');
             $header.addClass('header--animated');
@@ -121,6 +121,23 @@ if ($('.my-gallery').length) {
     });
 }
 
+// Homepage video mute button toggle
+$('.mute-toggle').on('click', function () {
+    var $video = $('video');
+    var isMuted = $video.prop('muted');
+    var $mute = $('.fa-volume-mute');
+    var $unmute = $('.fa-volume-off');
+
+    if (isMuted === true) {
+        $video.prop('muted', false);
+        $mute.hide();
+        $unmute.show();
+    } else {
+        $video.prop('muted', true);
+        $mute.show();
+        $unmute.hide();
+    }
+});
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":16,"e/U+97":31}],2:[function(require,module,exports){
@@ -138,7 +155,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_f3b04d85.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_60f3b57a.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -300,19 +317,10 @@ function calculateSwiperMinHeight() {
     $('.swiper-container').css({ 'min-height': windowHeight - swiperContainerMarginTop });
 }
 
-// function calculate404MinHeight() {
-//     var windowHeight = $(window).outerHeight();
-//     var footerHeight = $('footer').outerHeight();
-
-//     $('.not-found__wrapper').css({ 'min-height': windowHeight - footerHeight });
-// }
-
 $(function () {
     calculateSwiperMinHeight();
-    // calculate404MinHeight();
     $(window).on('resize', function () {
         calculateSwiperMinHeight();
-        // calculate404MinHeight();
     });
 });
 

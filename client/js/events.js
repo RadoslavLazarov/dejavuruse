@@ -9,7 +9,7 @@ $('.nav-button').on('click', function () {
 });
 
 // Fades out the whole page when clicking links
-$('.fadeout-page').click(function (e) {
+$('.fadeout-page').on('click', function (e) {
     e.preventDefault();
     newLocation = this.href;
     $('body').fadeOut('slow', function () {
@@ -42,7 +42,7 @@ $(window).scroll(function () {
     var $header = $('.header'),
         scroll = $(window).scrollTop();
 
-    if (window.matchMedia('(min-width: 1201px)').matches) {
+    if (window.matchMedia('(min-width: 1200px)').matches) {
         if (scroll >= 300) {
             $header.addClass('header--fixed');
             $header.addClass('header--animated');
@@ -119,3 +119,20 @@ if ($('.my-gallery').length) {
     });
 }
 
+// Homepage video mute button toggle
+$('.mute-toggle').on('click', function () {
+    var $video = $('video');
+    var isMuted = $video.prop('muted');
+    var $mute = $('.fa-volume-mute');
+    var $unmute = $('.fa-volume-off');
+
+    if (isMuted === true) {
+        $video.prop('muted', false);
+        $mute.hide();
+        $unmute.show();
+    } else {
+        $video.prop('muted', true);
+        $mute.show();
+        $unmute.hide();
+    }
+});

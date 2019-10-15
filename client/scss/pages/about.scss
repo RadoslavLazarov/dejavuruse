@@ -8,9 +8,17 @@
     background-size: cover;
     background-attachment: fixed;
     margin: 150px 0;
+    @media (max-width: 1199px) {
+        margin: 100px 0;
+    }
     &__title {
         z-index: 1;
         text-transform: uppercase;
+        padding: 0 25px;
+        @media (max-width: 414px) {
+            line-height: 35px;
+            font-size: 1.5em;
+        }
     }
     &__overlay {
         @include position(absolute, 0, auto, auto, auto);
@@ -19,6 +27,16 @@
     }
 }
 .story {
+    align-items: center;
+    @media (max-width: 991px) {
+        &:nth-child(2n + 1) {
+            flex-direction: column-reverse;
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1199px) {
+        margin: 0 25px;
+    }
     &__text {
         @include flex-center;
         padding: 15px 7%;
@@ -31,7 +49,11 @@
             font-size: 0.938em;
         }
     }
-    &__image, &__image {
+    &__image {
+        @media (max-width: 991px) {
+            min-height: unset;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

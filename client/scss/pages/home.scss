@@ -29,7 +29,7 @@
         left: 8%;
         margin: 0 25px;
         max-width: 530px;
-        animation: 2.5s ease-in fadeIn;
+        // animation: 2.5s ease-in fadeIn;
         color: $white;
         font-size: 0.938em;
         letter-spacing: 2px;
@@ -51,5 +51,16 @@
             font-weight: 300;
             font-size: 0.938em;
         }
+    }
+}
+.mute-toggle {
+    @include position(absolute, auto, auto, 25px, auto)
+    display: inline-block;
+    font-size: 1.75em;
+    &:hover {
+        cursor: pointer;
+    }
+    .fa-volume-off {
+        display: none;
     }
 }

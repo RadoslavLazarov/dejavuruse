@@ -27,12 +27,12 @@ main {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $purple-dark; 
+    background: $purple-normal; 
 }
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px $white inset;
-    -webkit-text-fill-color: $purple-dark;
+    -webkit-text-fill-color: $purple-normal;
 }
 
 input:focus, textarea:focus {

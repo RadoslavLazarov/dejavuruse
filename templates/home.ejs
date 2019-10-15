@@ -29,7 +29,8 @@
                 </video>
             </div>
         </div>
-        <div class="col-12 home-content">
+        <div class="col-12 home-content" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000"
+            data-aos-delay="1500">
             <div class="summary">
                 <span class="summary__title">
                     <%= pageSummary[globalLocals.getLocale].title %>.
@@ -40,5 +41,10 @@
             </div>
         </div>
     </div>
+    <div class="mute-toggle">
+        <i class="fas fa-volume-mute"></i>
+        <i class="fas fa-volume-off"></i>
+    </div>
+
 </div>
 </div>
