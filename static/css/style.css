@@ -15537,7 +15537,7 @@ video::-webkit-media-controls {
   position: absolute;
   top: auto;
   right: auto;
-  bottom: 25px;
+  bottom: 5px;
   left: auto;
   display: inline-block;
   font-size: 1.75em; }

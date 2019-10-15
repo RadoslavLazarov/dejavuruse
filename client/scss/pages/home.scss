@@ -54,7 +54,7 @@
     }
 }
 .mute-toggle {
-    @include position(absolute, auto, auto, 25px, auto)
+    @include position(absolute, auto, auto, 5px, auto);
     display: inline-block;
     font-size: 1.75em;
     &:hover {
