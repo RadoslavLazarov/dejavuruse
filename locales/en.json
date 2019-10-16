@@ -1,5 +1,4 @@
 {
-	"hello": "hello",
 	"DEJAVU": "DEJA VU",
 	"allRightsReserved": "All rights reserved",
 	"termsAndConditions": "Terms and conditions",
@@ -15,9 +14,7 @@
 		"notFound": "Home page"
 	},
 	"viewMore": "View more",
-	"checkOutOurDecorations": {
-		"test": "Check out our decorations"
-	},
+	"galleryTitle": "Check out our decorations",
 	"workingTime": "Working time",
 	"open": "Open now",
 	"opensSoon": "Opens soon",
@@ -55,6 +52,5 @@
 	"fieldRequired": "required field",
 	"fieldInvalid": "invalid field",
 	"followUs": "Follow us",
-	"privacy": "Privacy",
-	"en": "en"
+	"privacy": "Privacy"
 }

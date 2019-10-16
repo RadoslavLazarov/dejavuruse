@@ -155,7 +155,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bd3e3732.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6b6a33cf.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -467,25 +467,6 @@ $(function () {
             },
         });
     });
-
-    // console.log(getCookie('cookies_consent'));
-
-
-    // Retrieve colors from DB and set to socials
-    // $('.footer__socials a').each(function () {
-    //     var color = $(this).data('color');
-    //     $(this).find('i').css({ 'color': color });
-    //     $(this).find('div').css({ 'background-color': color });
-    // });
-
-    // function getRandomInt(max) {
-    //     return Math.floor(Math.random() * Math.floor(max));
-    // }
-
-    // $('.photo-wrapper').each(function () {
-    //     $(this).attr('data-aos-delay', getRandomInt(1000));
-    //     $(this).attr('data-aos-duration', getRandomInt(1000));
-    // });
 });
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/onLoad.js","/")

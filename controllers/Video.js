@@ -35,10 +35,9 @@ router.get('/next', async (req, res) => {
 
   try {
     const youtubeCredentials = await new CredentialsModel('youtube').findCredentials;
-    // const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=2&playlistId=UU1KPy3cAAj0i0RIFC_SzjMg&key=AIzaSyCNrSHcBS-gXiYiZ8vx1af6xJpB5kP9Ias`;
     const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&pageToken=${req.query.nextPageToken}&maxResults=4&playlistId=UUeaJzNsXhbxDKadHyzBTDUg&key=${youtubeCredentials.credentials.key}`;
-    // UU1KPy3cAAj0i0RIFC_SzjMg - VitalyZdTv; UUeaJzNsXhbxDKadHyzBTDUg - Dejavu
     const { data } = await axios.get(youtubeApiUrl);
+
     if (data.nextPageToken) {
       nextPageToken = await data.nextPageToken;
     }

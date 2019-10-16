@@ -13,7 +13,7 @@ function getCurrentUrl(req) {
     host: req.hostname,
   };
 
-  if (req.path === '/') {
+  if (req.path.length < 5) {
     url.path = 'home';
     url.controller = url.path;
     url.subPage = false;

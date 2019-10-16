@@ -1,5 +1,4 @@
 {
-	"hello": "здравей",
 	"DEJAVU": "ДЕЖА ВУ",
 	"allRightsReserved": "Всички права запазени",
 	"termsAndConditions": "Условия за ползване",
@@ -15,9 +14,7 @@
 		"notFound": "Начална страница"
 	},
 	"viewMore": "Виж повече",
-	"checkOutOurDecorations": {
-		"test": "Разгледайте нашите украси"
-	},
+	"galleryTitle": "Разгледайте нашите украси",
 	"workingTime": "Работно време",
 	"open": "Отворено в момента",
 	"opensSoon": "Скоро отваря",
@@ -56,6 +53,5 @@
 	"fieldRequired": "задължително поле",
 	"fieldInvalid": "невалидно поле",
 	"followUs": "Следвайте ни",
-	"privacy": "Поверителност",
-	"en": "en"
+	"privacy": "Поверителност"
 }

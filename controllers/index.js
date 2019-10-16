@@ -2,7 +2,6 @@ const Home = require('./Home');
 const About = require('./About');
 const Locale = require('./Locale');
 const CookiesConsent = require('./CookiesConsent');
-const News = require('./News');
 const Gallery = require('./Gallery');
 const Video = require('./Video');
 const Services = require('./Services');
@@ -10,7 +9,6 @@ const Contacts = require('./Contacts');
 const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
 const TermsConditions = require('./TermsConditions');
-const Test = require('./Test');
 
 const { locales } = require('../scripts/middleware/i18n');
 
@@ -36,10 +34,8 @@ module.exports = (app) => {
     app.use(`/${locale}/privacy-policy`, PrivacyPolicy);
     app.use(`/${locale}/cookies`, Cookies);
     app.use(`/${locale}/terms-conditions`, TermsConditions);
-    app.use(`/${locale}/test`, Test);
   });
   app.use('/lang', Locale);
-  app.use('/news', News);
   app.use('/cookies-consent', CookiesConsent);
   app.use('*', (req, res) => {
     res.status(404).render('404');

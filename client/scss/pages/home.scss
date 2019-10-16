@@ -24,12 +24,9 @@
 .home-content {
     min-height: 100vh;
     .summary {
-        position: absolute;
-        bottom: 12%;
-        left: 8%;
+        @include position(absolute, auto, auto, 12%, 8%);
         margin: 0 25px;
         max-width: 530px;
-        // animation: 2.5s ease-in fadeIn;
         color: $white;
         font-size: 0.938em;
         letter-spacing: 2px;
@@ -57,10 +54,17 @@
     @include position(absolute, auto, auto, 5px, auto);
     display: inline-block;
     font-size: 1.75em;
-    &:hover {
-        cursor: pointer;
+    i {
+        opacity: 0.5;
+        transition: opacity .3s ease-in;
     }
     .fa-volume-off {
         display: none;
+    }
+    &:hover {
+        cursor: pointer;
+        i {
+            opacity: 1;
+        }
     }
 }

@@ -2,7 +2,6 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="<%= globalLocals.pageMeta ? globalLocals.pageMeta.description : '' %>">
-<meta name="keywords" content="<%= globalLocals.pageMeta ? globalLocals.pageMeta.keywords : '' %>">
 <meta name="theme-color" content="#755275">
 <meta name="author" content="Radoslav Lazarov">
 
@@ -10,13 +9,13 @@
 <meta property="og:url" content="<%= globalLocals.url.fullUrl %>" />
 <meta property="og:type" content="website" />
 <meta property="og:title"
-    content="<%= globalLocals.pageMeta.title ? globalLocals.pageMeta.title : '' %> - <%= globalLocals.url.currentPage !== 'home' ? __('DEJAVU')  : ''  %>" />
+    content="<%= globalLocals.pageMeta ? globalLocals.pageMeta.title : '' %><%= globalLocals.url.currentPage !== 'home' ? ' - ' + __('DEJAVU') : ''  %>" />
 <meta property="og:description" content="<%= globalLocals.pageMeta ? globalLocals.pageMeta.description : '' %>" />
 <meta property="og:image"
     content="<%= globalLocals.pageResources.imageCover ? globalLocals.url.protocol + '://' + globalLocals.url.host + globalLocals.pageResources.imageCover : globalLocals.url.protocol + '://' + globalLocals.url.host + '/static/logo-big-purple.png' %>" />
 
-<title><%= globalLocals.pageMeta ? globalLocals.pageMeta.title : '' %> -
-    <%= globalLocals.url.currentPage !== 'home' ? __('DEJAVU') : ''  %>
+<title>
+    <%= globalLocals.pageMeta ? globalLocals.pageMeta.title : '' %><%= globalLocals.url.currentPage !== 'home' ? ' - ' + __('DEJAVU') : ''  %>
 </title>
 
 <link rel="alternate" hreflang="bg"
