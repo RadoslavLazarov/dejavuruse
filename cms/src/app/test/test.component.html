@@ -1,0 +1,8 @@
+<p>test works!</p>
+<span (click)="buttonClick()">click</span>
+
+<ul *ngIf="galleryCategories">
+  <li *ngFor="let category of galleryCategories">
+    {{ category.name.bg }}
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+.hover-wrapper {
+  .hover {
+    &:hover {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}
+
+.active {
+  color: green;
+  margin-left: 25px;
+}
+
+.notactive {
+  color: blue;
+}

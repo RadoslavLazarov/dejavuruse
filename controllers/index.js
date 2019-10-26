@@ -9,6 +9,7 @@ const Contacts = require('./Contacts');
 const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
 const TermsConditions = require('./TermsConditions');
+const Content = require('./Content');
 
 const { locales } = require('../scripts/middleware/i18n');
 
@@ -37,6 +38,7 @@ module.exports = (app) => {
   });
   app.use('/lang', Locale);
   app.use('/cookies-consent', CookiesConsent);
+  app.use('/content', Content);
   app.use('*', (req, res) => {
     res.status(404).render('404');
   });
