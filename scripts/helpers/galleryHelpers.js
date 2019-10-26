@@ -1,5 +1,5 @@
 const Gallery = require('../../models/gallery');
-const { categoriesModel, albumModel } = require('../../models/dbModels');
+const { galleryCategoriesModel, albumModel } = require('../../models/dbModels');
 
 /**
  * According to the URL, the gallery resources are obtained
@@ -8,7 +8,7 @@ const { categoriesModel, albumModel } = require('../../models/dbModels');
  */
 async function galleryResources(url) {
   let resources;
-  const gallery = new Gallery(null, null, categoriesModel, albumModel);
+  const gallery = new Gallery(null, null, galleryCategoriesModel, albumModel);
 
   if (url.currentPage === url.subPage) {
     const model = gallery.categoriesModel;

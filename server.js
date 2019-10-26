@@ -52,10 +52,8 @@ mongoose.set('useCreateIndex', true);
 // mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
 
 const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose'));
+db.on('error', (error) => { console.error(error); });
+db.once('open', () => { console.log('Connected to Mongoose'); });
 
 // Run the server
-app.listen(app.get('port'), () =>
-  console.log(`Express listening on port ${app.get('port')}`)
-);
+app.listen(app.get('port'), () => { console.log(`Express listening on port ${app.get('port')}`); });
