@@ -1,5 +1,5 @@
-const GalleryCategories = require('../../models/gallery_categories');
-const GalleryAlbums = require('../../models/gallery_albums');
+const Gallery = require('../../models/gallery');
+const { categoriesModel, albumModel } = require('../../models/dbModels');
 
 /**
  * According to the URL, the gallery resources are obtained
@@ -8,13 +8,14 @@ const GalleryAlbums = require('../../models/gallery_albums');
  */
 async function galleryResources(url) {
   let resources;
+  const gallery = new Gallery(null, null, categoriesModel, albumModel);
 
   if (url.currentPage === url.subPage) {
-    const model = new GalleryCategories().Model;
+    const model = gallery.categoriesModel;
     const getResources = await model.findOne({ id: url.currentPage });
     resources = getResources;
   } else if (url.currentPage !== url.controller && url.currentPage !== url.subPage) {
-    const model = new GalleryAlbums().Model;
+    const model = gallery.albumModel;
     const getResources = await model.findOne({ id: url.currentPage });
     resources = getResources;
   }

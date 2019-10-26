@@ -1,10 +1,10 @@
 const getCurrentUrl = require('../getCurrentUrl');
-const PageResourcesModel = require('../pageResources');
+const TemplateResources = require('../../models/templateResources');
 
 module.exports = async (req, res, next) => {
   const url = getCurrentUrl(req);
   const getLocale = req.path.split('/')[1];
-  const getPageResources = new PageResourcesModel(url);
+  const templateResources = new TemplateResources(url);
   let controllerResources;
   let pageResources;
   let navCategories;
@@ -12,13 +12,13 @@ module.exports = async (req, res, next) => {
   let pageMeta;
 
   try {
-    controllerResources = await getPageResources.controllerResources;
-    pageResources = await getPageResources.pageResources;
-    navCategories = await getPageResources.navCategories;
-    footerPages = await getPageResources.footerPages;
-    // console.log(pageResources);
+    controllerResources = await templateResources.getControllerResources();
+    pageResources = await templateResources.getPageResources();
+    navCategories = await TemplateResources.getNavCategories();
+    footerPages = await TemplateResources.getFooterPages();
   } catch (e) {
     console.log(e);
+    res.sendStatus(500);
   }
 
   if (pageResources !== null) {

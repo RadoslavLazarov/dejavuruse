@@ -1,38 +1,35 @@
 const express = require('express');
-const GalleryCategoriesModel = require('../models/gallery_categories');
-const GalleryAlbumsModel = require('../models/gallery_albums');
+const Gallery = require('../models/gallery');
+const { galleryCategoriesModel, albumModel } = require('../models/dbModels');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const galleryCategories = new GalleryCategoriesModel();
-  let getGalleryCategories;
+  const gallery = new Gallery(null, null, galleryCategoriesModel);
+  let galleryCategories;
 
   try {
-    getGalleryCategories = await galleryCategories.findCategories;
+    galleryCategories = await gallery.findCategories();
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
   }
   res.render('gallery', {
-    getGalleryCategories,
+    galleryCategories,
   });
 });
 
 router.get('/:category', async (req, res) => {
+  const gallery = new Gallery(req, res, galleryCategoriesModel, albumModel);
   const currentCategory = req.params.category;
-  const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
-  const galleryAlbums = new GalleryAlbumsModel(null, currentCategory);
-  // const albumCreate = new GalleryAlbumsModel(null, null, null, 'create').createAlbum;
-  let getGalleryCategory;
-  let getGalleryCategories;
-  let getGalleryAlbums;
+
+  let galleryCategory;
+  let galleryAlbums;
 
   try {
-    getGalleryCategory = await galleryCategories.findCategory;
-    getGalleryCategories = await galleryCategories.findCategories;
-    getGalleryAlbums = await galleryAlbums.findAlbums;
-    // await galleryAlbums.createAlbum;
+    galleryAlbums = await gallery.findAlbums();
+    galleryCategory = galleryAlbums[0].gallery_category;
+    // await galleryAlbums.createAlbum();
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
@@ -40,70 +37,45 @@ router.get('/:category', async (req, res) => {
 
   res.render('galleryCategory', {
     currentCategory,
-    getGalleryCategory,
-    getGalleryCategories,
-    getGalleryAlbums,
+    galleryCategory,
+    galleryAlbums,
   });
 });
 
 router.get('/:category/:album', async (req, res) => {
-  let album;
-  const firstImages = [];
+  let galleryCategory;
+  let galleryAlbum;
   const currentCategory = req.params.category;
-  const currentAlbum = req.params.album;
-  const galleryCategories = new GalleryCategoriesModel(res, currentCategory);
-  const galleryAlbums = new GalleryAlbumsModel(res, currentCategory, currentAlbum);
-  let getGalleryCategory;
+  const gallery = new Gallery(req, res, galleryCategoriesModel, albumModel);
 
   try {
-    album = await galleryAlbums.findAlbum;
-    getGalleryCategory = await galleryCategories.findCategory;
-    album.images.forEach((element, index) => {
-      if (index < 12) {
-        firstImages.push(element);
-      }
-    });
+    galleryAlbum = await gallery.findAlbumFirstImages();
+    galleryCategory = galleryAlbum.gallery_category;
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
   }
 
-  // console.log(firstImages);
-  // console.log(album.images.length);
   res.render('galleryAlbum', {
     currentCategory,
-    album,
-    firstImages,
-    getGalleryCategory,
+    galleryAlbum,
+    galleryCategory,
   });
 });
 
 router.get('/:category/:album/next', async (req, res) => {
-  const currentCategory = req.params.category;
-  const currentAlbum = req.params.album;
-  const galleryAlbums = new GalleryAlbumsModel(res, currentCategory, currentAlbum);
-  let album;
-  let images = [];
+  const gallery = new Gallery(req, res, null, albumModel);
+  let galleryAlbum;
 
   try {
-    album = await galleryAlbums.findAlbum;
+    galleryAlbum = await gallery.findAlbumNextImages();
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
   }
 
-  const items = Number(req.query.items);
-
-  album.images.forEach((element, index) => {
-    if (index >= items && index <= items + 11) {
-      images.push(element);
-    } else if (items > index) {
-      images = [];
-    }
-  });
-
-  if (images.length) {
-    res.json({ images });
+  if (galleryAlbum.images.length) {
+    res.json({ images: galleryAlbum.images });
   } else {
     res.sendStatus(204);
   }

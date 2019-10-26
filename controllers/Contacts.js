@@ -2,7 +2,8 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const request = require('request');
 
-const CredentialsModel = require('../models/credentials');
+const { credentialsModel } = require('../models/dbModels');
+const Credentials = require('../models/credentials');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/feedback', async (req, res) => {
-  const recaptchaCredentials = await new CredentialsModel('recaptcha').findCredentials;
+  const recaptchaCredentials = await new Credentials('recaptcha', credentialsModel).findCredentials();
   const { token } = req.body;
   const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaCredentials.credentials.secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
 
@@ -54,7 +55,7 @@ router.post('/feedback', async (req, res) => {
     }
   }
 
-  const gmailCredentials = await new CredentialsModel('gmail').findCredentials;
+  const gmailCredentials = await new Credentials('gmail', credentialsModel).findCredentials();
 
   request.post(verificationURL, (error, response, body) => {
     if (error) {

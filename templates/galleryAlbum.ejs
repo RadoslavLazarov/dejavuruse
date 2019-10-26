@@ -6,14 +6,14 @@
             <div class="separator"></div>
         </div>
         <div class="col-12 page-description__heading">
-            <h3><%= album.date ? album.date.getFullYear() : '' %></h3>
+            <h3><%= galleryAlbum.date ? galleryAlbum.date.getFullYear() : '' %></h3>
         </div>
         <div class="col-xl-6 col-md-8 page-description__summary">
-            <span><%= album.summary ? album.summary[globalLocals.getLocale] : '' %></span>
+            <span><%= galleryAlbum.summary ? galleryAlbum.summary[globalLocals.getLocale] : '' %></span>
         </div>
     </div>
     <div class="row justify-content-center my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-        <% firstImages.forEach(function(item) { %>
+        <% galleryAlbum.images.forEach(function(item) { %>
         <figure class="col-lg-3 col-sm-4 col-6 photo-wrapper" itemprop="associatedMedia" itemscope
             itemtype="http://schema.org/ImageObject" data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
             <a href="/static/images/gallery/<%= globalLocals.url.subPage %>/<%= globalLocals.url.currentPage %>/fullsize/<%= item.link %>"

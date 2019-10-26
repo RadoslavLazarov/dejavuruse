@@ -1,7 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 
-const CredentialsModel = require('../models/credentials');
+const { credentialsModel } = require('../models/dbModels');
+const Credentials = require('../models/credentials');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.get('/', async (req, res) => {
   let nextPageToken = '';
 
   try {
-    const youtubeCredentials = await new CredentialsModel('youtube').findCredentials;
+    const youtubeCredentials = await new Credentials('youtube', credentialsModel).findCredentials();
     const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=4&playlistId=UUeaJzNsXhbxDKadHyzBTDUg&key=${youtubeCredentials.credentials.key}`;
     const { data } = await axios.get(youtubeApiUrl);
     if (data.nextPageToken) {

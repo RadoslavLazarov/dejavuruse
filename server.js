@@ -1,6 +1,7 @@
 // Dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -23,17 +24,20 @@ app.set('views', `${__dirname}/templates`);
 app.set('view engine', 'ejs');
 
 // Middleware
+app.use(cors());
 app.use(favicon(path.join(__dirname, 'static', 'favicon-32x32.png')));
 app.use(cookieParser());
 // app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'dejavu',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true },
-}));
+app.use(
+  session({
+    secret: 'dejavu',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  }),
+);
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(i18n.init);
 app.use(i18n.setLocale);
@@ -44,11 +48,14 @@ controllers(app);
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 // mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
 
 const db = mongoose.connection;
-db.on('error', error => console.error(error));
+db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Mongoose'));
 
 // Run the server
-app.listen(app.get('port'), () => console.log(`Express listening on port ${app.get('port')}`));
+app.listen(app.get('port'), () =>
+  console.log(`Express listening on port ${app.get('port')}`)
+);

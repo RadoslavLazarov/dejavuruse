@@ -1,23 +1,14 @@
-const mongoose = require('mongoose');
+/* */
+class Credentials {
+  constructor(id, credentialsModel) {
+    this.id = id;
+    this.credentialsModel = credentialsModel;
+  }
 
-const credentials = new mongoose.Schema({
-  id: {
-    type: String,
-  },
-  credentials: {
-    type: Object,
-  },
-});
-
-const getCredentials = mongoose.model('Credentials', credentials);
-
-async function findCredentials(id) {
-  const credential = await getCredentials.findOne({ id });
-  return credential;
+  async findCredentials() {
+    const credential = await this.credentialsModel.findOne({ id: this.id });
+    return credential;
+  }
 }
 
-function CredentialsModel(id) {
-  this.findCredentials = findCredentials(id);
-}
-
-module.exports = CredentialsModel;
+module.exports = Credentials;

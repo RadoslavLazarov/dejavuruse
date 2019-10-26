@@ -13,10 +13,10 @@
                 <a href="/<%= globalLocals.getLocale %>/<%= globalLocals.url.controller %>"
                     class="breadcrumbs__link fadeout-page"><%= globalLocals.controllerResources.name[globalLocals.getLocale] %></a>
                 <a href="/<%= globalLocals.getLocale %>/<%= globalLocals.url.controller %>/<%= globalLocals.url.subPage %>"
-                    class="breadcrumbs__link fadeout-page"><%= getGalleryCategory.name[globalLocals.getLocale] %></a>
+                    class="breadcrumbs__link fadeout-page"><%= galleryCategory.name[globalLocals.getLocale] %></a>
                 <% if (globalLocals.url.currentPage !== globalLocals.url.controller && globalLocals.url.currentPage !== globalLocals.url.subPage) { %>
                 <a href="/<%= globalLocals.getLocale %>/<%= globalLocals.url.controller %>/<%= globalLocals.url.subPage %>/<%=globalLocals. url.currentPage %>"
-                    class="breadcrumbs__link fadeout-page"><%= album.name[globalLocals.getLocale] %></a>
+                    class="breadcrumbs__link fadeout-page"><%= galleryAlbum.name[globalLocals.getLocale] %></a>
                 <% } %>
             </div>
             <% } %>
