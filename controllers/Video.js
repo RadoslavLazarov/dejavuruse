@@ -35,7 +35,7 @@ router.get('/next', async (req, res) => {
   let nextPageToken = '';
 
   try {
-    const youtubeCredentials = await new CredentialsModel('youtube').findCredentials;
+    const youtubeCredentials = await new Credentials('youtube', credentialsModel).findCredentials();
     const youtubeApiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&pageToken=${req.query.nextPageToken}&maxResults=4&playlistId=UUeaJzNsXhbxDKadHyzBTDUg&key=${youtubeCredentials.credentials.key}`;
     const { data } = await axios.get(youtubeApiUrl);
 
