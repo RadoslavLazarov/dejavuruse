@@ -38,7 +38,7 @@ module.exports = (app) => {
   });
   app.use('/lang', Locale);
   app.use('/cookies-consent', CookiesConsent);
-  app.use('/content', Content);
+  // app.use('/content', Content);
   app.use('*', (req, res) => {
     res.status(404).render('404');
   });
