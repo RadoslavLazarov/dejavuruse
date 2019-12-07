@@ -8,8 +8,8 @@
 function getCurrentUrl(req) {
 
   const url = {
-    fullUrl: `${req.protocol}://${req.hostname}${req.originalUrl}`,
-    protocol: req.protocol,
+    fullUrl: `https://${req.hostname}${req.originalUrl}`,
+    protocol: 'https',
     host: req.hostname,
   };
 
