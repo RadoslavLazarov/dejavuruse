@@ -3,12 +3,14 @@
 /* eslint-disable quote-props */
 
 const { categoriesModel } = require('./dbModels');
+const dbModels = require('./dbModels');
 const pageHelper = require('../scripts/helpers/galleryHelpers');
 
 /* */
 class TemplateResources {
-  constructor(url) {
+  constructor(url, req) {
     this.url = url;
+    this.req = req;
   }
 
   /**
@@ -46,8 +48,8 @@ class TemplateResources {
   }
 
   /**
- * @returns {Object} an object that contains rosources for header
- */
+   * @returns {Object} an object that contains rosources for header
+   */
   static async getNavCategories() {
     const mainCategories = {};
 
@@ -79,8 +81,8 @@ class TemplateResources {
   }
 
   /**
- * @returns {Object} an object that contains footer pages
- */
+   * @returns {Object} an object that contains footer pages
+   */
   static async getFooterPages() {
     let footerPages = {};
 
@@ -89,6 +91,52 @@ class TemplateResources {
     );
 
     return footerPages;
+  }
+
+  // CMS
+  async db() {
+    const collection = `${this.req.query.collection}Model`;
+    const { action } = this.req.query;
+    const { document } = this.req.query;
+    const { item } = this.req.query;
+    const options = {};
+
+    if (this.req.query.options) {
+      options.option = this.req.query.options.split('_')[0];
+      options.key = this.req.query.options.split('_')[1];
+      options.value = this.req.query.options.split('_')[2];
+    }
+
+    const { select } = this.req.query;
+    const object = this.req.body;
+    const model = dbModels[collection];
+
+    switch (action) {
+      case 'findOne': {
+        const dbFind = await model.findOne({ id: document }, (err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+        return dbFind;
+      }
+      case 'find': {
+        const dbFind = await model
+          .find(null, null, { [options.option]: { [options.key]: options.value } })
+          .select(select);
+        return dbFind;
+      }
+      case 'update': {
+        await model.findOneAndUpdate({ id: document }, { [item]: object }, { new: true }, (err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+        return { success: true };
+      }
+      default:
+        break;
+    }
   }
 }
 

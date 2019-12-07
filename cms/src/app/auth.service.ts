@@ -12,8 +12,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   loginUser(user) {
-    console.log('batka', user);
     return this.http.post<any>(this.loginUrl, user);
+  }
+
+  logoutUser() {
+    localStorage.removeItem('token');
   }
 
   getToken() {
@@ -21,7 +24,6 @@ export class AuthService {
   }
 
   loggedIn() {
-    console.log(localStorage.getItem('token'));
     return !!localStorage.getItem('token');
   }
 }

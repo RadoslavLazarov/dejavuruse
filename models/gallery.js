@@ -1,7 +1,10 @@
 const fs = require('fs');
 const fsExtra = require('fs-extra');
 const sizeOf = require('image-size');
-const { thumb } = require('node-thumbnail');
+const uuidv4 = require('uuid/v4');
+const Jimp = require('jimp');
+
+const { fork } = require('child_process');
 
 /* */
 class Gallery {
@@ -21,13 +24,18 @@ class Gallery {
 
   async findAlbums() {
     const currentCategory = this.req.params.category;
-    const allAlbums = await this.albumModel.find().populate('gallery_category');
-    const albums = [];
+    const { res } = this;
+    const allAlbums = await this.albumModel.find().populate('gallery_category', null, { id: currentCategory });
 
-    for (const album of allAlbums) {
-      if (album.gallery_category.id === currentCategory) {
-        albums.push(album);
+    const albums = allAlbums.filter((item) => {
+      if (item.gallery_category !== null) {
+        return item;
       }
+      return null;
+    });
+
+    if (!albums.length) {
+      return res.status(404).render('404');
     }
 
     return albums;
@@ -76,8 +84,19 @@ class Gallery {
     return album;
   }
 
+  // async createAlbum() {
+  //   const { res } = this;
+  //   const compute = fork('./imagesCompress.js');
+  //   compute.send('start');
+
+  //   compute.on('message', (result) => {
+  //     // this.res.send(`Long computation result: ${result}`);
+  //     console.log(`Long computation result: ${result}`);
+  //   });
+  // }
+
   async createAlbum() {
-    const { req } = this;
+    const startTime = new Date();
     const categoriesObjectId = {
       christenings: '5cf635f01c9d4400008e7d8e',
       graduates: '5cf636341c9d4400008e7d8f',
@@ -85,127 +104,237 @@ class Gallery {
       weddings: '5cf636781c9d4400008e7d91',
       kidsParties: '5cfb8cb21c9d4400004c3763',
     };
+    const albumCategory = 'birthdays';
+    const albumId = 'birthday-intriga';
+    const albumName = {
+      bg: 'Рожден ден - "Интрига"',
+      en: 'Birthday - "Intrigue"',
+    };
+    const summary = {
+      bg: ``,
+      en: ``,
+    };
+    const albumImageCover = 'g.jpg';
+    const albumDate = new Date(2018, 3, 17, 16, 57);
 
-    const Albums = new getGalleryAlbums({
+    const Albums = new this.albumModel({
       isVisible: true,
       name: {
-        bg: 'Исперих',
-        en: 'Isperih',
+        bg: albumName.bg,
+        en: albumName.en,
       },
-      id: 'isperih',
-      imageCover: '/static/images/gallery/weddings/isperih/fullsize/20190824_150800_fullsize.jpg',
+      id: albumId,
+      imageCover: albumImageCover,
       summary: {
-        bg: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
-        en: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+        bg: summary.bg,
+        en: summary.en,
       },
-      date: new Date(),
+      date: albumDate,
       images: [],
-      gallery_category: categoriesObjectId.weddings,
+      gallery_category: categoriesObjectId.birthdays,
       meta: {
         bg: {
-          title: 'Исперих',
-          description: 'описание Исперих',
-          keywords: 'ключови думи Исперих',
+          title: albumName.bg,
+          description: summary.bg,
+          keywords: '',
         },
         en: {
-          title: 'Isperih',
-          description: 'description Isperih',
-          keywords: 'Isperih keywords',
+          title: albumName.en,
+          description: summary.en,
+          keywords: '',
         },
       },
     });
 
-    // Resize thumbnails
-    const resizeThumbnails = () => new Promise((resolve, reject) => {
+    // Rename original images
+    const renameImages = () => new Promise((resolve, reject) => {
+      console.log('Start renaming images');
       let counter = 0;
-      fs.readdirSync('./static/images/gallery/weddings/isperih/original/').forEach((file, index, array) => {
-        thumb({
-          source: `./static/images/gallery/weddings/isperih/original/${file}`, // could be a filename: dest/path/image.jpg
-          destination: './static/images/gallery/weddings/isperih/thumbnails/',
-          width: 600,
-          suffix: '',
-          quiet: true,
-        }).then(() => {
-          console.log('Success thumbnail');
-          counter += 1;
-          if (counter === array.length) {
-            resolve();
+
+      fs.readdir(`./static/images/gallery/${albumCategory}/${albumId}/original/`, (err, files) => {
+        if (err) {
+          reject(err);
+        }
+
+        files.forEach((file, index, array) => {
+          const newName = `${uuidv4()}.${file.split('.').pop()}`;
+
+          // rename imageCover
+          if (file === Albums.imageCover) {
+            Albums.imageCover = `/static/images/gallery/${albumCategory}/${albumId}/fullsize/${albumId}-${newName}`;
           }
-        }).catch((e) => {
-          console.log('Error', e.toString());
-          reject(e);
+
+          fs.rename(`./static/images/gallery/${albumCategory}/${albumId}/original/${file}`, `./static/images/gallery/${albumCategory}/${albumId}/original/${newName}`, (err) => {
+            if (err) {
+              reject(err);
+            }
+            console.log(`File ${file} rename success!`);
+            counter += 1;
+            if (counter === array.length) {
+              resolve();
+            }
+          });
         });
       });
     });
 
-    // Resize fullsize images. Just copy if width is small
-    const resizeFullsize = () => new Promise((resolve, reject) => {
+    // Resize thumbnails
+    const resizeThumbnails = () => new Promise((resolve, reject) => {
+      console.log('Start resizing thumbnails');
       let counter = 0;
 
-      fs.readdirSync('./static/images/gallery/weddings/isperih/original/').forEach((file, index, array) => {
-        const getDimensions = sizeOf(`./static/images/gallery/weddings/isperih/original/${file}`);
-
-        if (getDimensions.width < 1920) {
-          fsExtra.copy(`./static/images/gallery/weddings/isperih/original/${file}`, `./static/images/gallery/weddings/isperih/fullsize/${file}`, (err) => {
-            if (err) {
-              return console.error(err);
-            }
-            console.log('Coping file success');
-            counter += 1;
-            if (counter === array.length) {
-              resolve();
-            }
-          });
-        } else {
-          thumb({
-            source: `./static/images/gallery/weddings/isperih/original/${file}`, // could be a filename: dest/path/image.jpg
-            destination: './static/images/gallery/weddings/isperih/fullsize/',
-            width: 1920,
-            suffix: '',
-            quiet: true,
-          }).then(() => {
-            console.log('Success fullsize');
-            counter += 1;
-            if (counter === array.length) {
-              resolve();
-            }
-          }).catch((e) => {
-            console.log('Error', e.toString());
-            reject(e);
-          });
+      fs.readdir(`./static/images/gallery/${albumCategory}/${albumId}/original/`, (err, files) => {
+        if (err) {
+          reject(err);
         }
+
+        files.forEach((file, index, array) => {
+          let getDimensions;
+
+          sizeOf(`./static/images/gallery/${albumCategory}/${albumId}/original/${file}`, (e, dimensions) => {
+            if (e) {
+              reject(e);
+            }
+            getDimensions = dimensions;
+          });
+
+          Jimp.read(`./static/images/gallery/${albumCategory}/${albumId}/original/${file}`)
+            .then((image) => {
+              // console.log('JIMPPPP: ', image);
+              counter += 1;
+              let width = 600;
+              let height = Jimp.AUTO;
+
+              if (getDimensions.height > getDimensions.width) {
+                width = Jimp.AUTO;
+                height = 600;
+              }
+
+              image
+                .resize(width, height)
+                .quality(60)
+                .write(`./static/images/gallery/${albumCategory}/${albumId}/thumbnails/${albumId}-${file}`, () => {
+                  console.log(`Success thumbnail ${file}`);
+                  if (counter === array.length) {
+                    resolve();
+                  }
+                });
+            }).catch((e) => {
+              reject(e);
+            });
+        });
+      });
+    });
+
+    const resizeFullsize = () => new Promise((resolve, reject) => {
+      console.log('Start resizing fullsize');
+      let counter = 0;
+
+      fs.readdir(`./static/images/gallery/${albumCategory}/${albumId}/original/`, (err, files) => {
+        if (err) {
+          reject(err);
+        }
+
+        files.forEach((file, index, array) => {
+          let getDimensions;
+
+          sizeOf(`./static/images/gallery/${albumCategory}/${albumId}/original/${file}`, (e, dimensions) => {
+            if (e) {
+              reject(e);
+            }
+            getDimensions = dimensions;
+          });
+
+          Jimp.read(`./static/images/gallery/${albumCategory}/${albumId}/original/${file}`)
+            .then((image) => {
+
+              let width = 2000;
+              let height = Jimp.AUTO;
+
+              if (getDimensions.height > getDimensions.width) {
+                width = Jimp.AUTO;
+                height = 2000;
+              }
+
+              image
+                .resize(width, height) // resize
+                .quality(60) // set JPEG quality
+                .write(`./static/images/gallery/${albumCategory}/${albumId}/fullsize/${albumId}-${file}`, () => {
+                  sizeOf(`./static/images/gallery/${albumCategory}/${albumId}/fullsize/${albumId}-${file}`, (e, dimensions) => {
+                    if (e) {
+                      reject(e);
+                    }
+
+                    const fullSizeDimensions = dimensions;
+
+                    Albums.images.push({
+                      link: `${albumId}-${file}`,
+                      dimensions: {
+                        width: fullSizeDimensions.width,
+                        height: fullSizeDimensions.height,
+                      },
+                    });
+
+                    console.log(`Success fullsize ${file}`);
+                    counter += 1;
+
+                    if (counter === array.length) {
+                      resolve();
+                    }
+                  });
+                });
+            }).catch((e) => {
+              reject(e);
+            });
+        });
       });
     });
 
     /* Waiting for resizing functions, deleting original images folder,
       then adding images dimensions in getGalleryAlbums model and saving in DB */
-    resizeThumbnails().then(() => {
-      resizeFullsize().then(() => {
-        fsExtra.remove('./static/images/gallery/weddings/isperih/original', (err) => {
-          if (err) {
-            return console.error(err);
-          }
-          return console.log('Deleted original images folder!');
-        });
-
-        fs.readdirSync('./static/images/gallery/weddings/isperih/fullsize/').forEach((file) => {
-          const getDimensions = sizeOf(`./static/images/gallery/weddings/isperih/fullsize/${file}`);
-          Albums.images.push({
-            link: file,
-            dimensions: {
-              width: getDimensions.width,
-              height: getDimensions.height,
-            },
+    renameImages().then(() => {
+      resizeThumbnails().then(() => {
+        resizeFullsize().then(() => {
+          fsExtra.remove(`./static/images/gallery/${albumCategory}/${albumId}/original`, (err) => {
+            if (err) {
+              return console.error(err);
+            }
+            return console.log('Deleted original images folder!');
           });
-        });
 
-        Albums.save();
-        console.log('Album saved to DB');
+          // fs.readdir(`./static/images/gallery/weddings/${albumId}/fullsize/`, (err, files) => {
+          //   files.forEach((file) => {
+          //     const getDimensions = sizeOf(`./static/images/gallery/weddings/${albumId}/fullsize/${file}`);
+          //     Albums.images.push({
+          //       link: file,
+          //       dimensions: {
+          //         width: getDimensions.width,
+          //         height: getDimensions.height,
+          //       },
+          //     });
+          //   });
+          // });
+
+          Albums.save((err) => {
+            if (err) {
+              console.error('Album failed to save to DB');
+            }
+            console.log('Album saved to DB');
+            const stopTime = new Date();
+            const startMinutes = startTime.getMinutes();
+            const startSeconds = startTime.getSeconds();
+            const stopMinutes = stopTime.getMinutes();
+            const stopSeconds = stopTime.getSeconds();
+            console.log(`Task done for ${stopMinutes - startMinutes}m ${stopSeconds - startSeconds}s`);
+          });
+        }).catch((e) => {
+          console.error(e);
+        });
       }).catch((e) => {
-        console.log('Error', e.toString());
+        console.error(e);
       });
     }).catch((e) => {
-      console.log('Error', e.toString());
+      console.error(e);
     });
   }
 }

@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     galleryCategories = await gallery.findCategories();
   } catch (e) {
     console.log(e);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
   res.render('gallery', {
     galleryCategories,
@@ -26,10 +26,11 @@ router.get('/:category', async (req, res) => {
   let galleryCategory;
   let galleryAlbums;
 
+  // gallery.createAlbum();
   try {
     galleryAlbums = await gallery.findAlbums();
+    // console.log(await gallery.findAlbums());
     galleryCategory = galleryAlbums[0].gallery_category;
-    // await galleryAlbums.createAlbum();
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);

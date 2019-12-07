@@ -1,0 +1,97 @@
+<mat-tab-group class="tab-group">
+  <mat-tab label="Албуми">
+    <app-gallery-album></app-gallery-album>
+  </mat-tab>
+  <mat-tab label="Галерия">
+
+    <div *ngIf="meta" class="tab-content">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>SEO настройки</mat-card-title>
+          <mat-icon svgIcon="info" aria-hidden="false"
+            matTooltip="Search Engine Optimization / Оптимизация за търсачки като Google, Yahoo и др."
+            aria-label="Icon that displays a tooltip when focused or hovered over"></mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Заглавие на страницата
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form class="example-form">
+                <!-- <mat-card>
+                  <mat-card-title>Заглавие на страницата</mat-card-title> -->
+                <mat-form-field class="example-full-width">
+                  <input matInput #titleBg maxlength="55" placeholder="български" [(ngModel)]="meta.bg.title"
+                    name="bg.title">
+                  <mat-hint align="start"><strong>максимален брой символи</strong> </mat-hint>
+                  <mat-hint align="end">{{titleBg.value.length}} / 55</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput #titleEn maxlength="55" placeholder="английски" [(ngModel)]="meta.en.title"
+                    name="en.title">
+                  <mat-hint align="start"><strong>максимален брой символи</strong> </mat-hint>
+                  <mat-hint align="end">{{titleEn.value.length}} / 55</mat-hint>
+                </mat-form-field>
+                <!-- </mat-card> -->
+              </form>
+              <button mat-raised-button color="primary" (click)="openDialog()">Запази</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Описание на страницата
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form class="example-form">
+                <!-- <mat-card>
+                  <mat-card-title>Описание на страницата</mat-card-title> -->
+                <mat-form-field class="example-full-width">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMaxRows="8" #descriptionBg maxlength="158"
+                    placeholder="български" [(ngModel)]="meta.bg.description" name="bg.description"></textarea>
+                  <mat-hint align="start"><strong>максимален брой символи</strong> </mat-hint>
+                  <mat-hint align="end">{{descriptionBg.value.length}} / 158</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <textarea matInput cdkTextareaAutosize cdkAutosizeMaxRows="8" #descriptionEn maxlength="158"
+                    placeholder="английски" [(ngModel)]="meta.en.description" name="en.description"></textarea>
+                  <mat-hint align="start"><strong>максимален брой символи</strong> </mat-hint>
+                  <mat-hint align="end">{{descriptionEn.value.length}} / 158</mat-hint>
+                </mat-form-field>
+                <!-- </mat-card> -->
+              </form>
+              <button mat-raised-button color="primary" (click)="openDialog()">Запази</button>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Банер на страницата</mat-card-title>
+        <mat-icon svgIcon="info" aria-hidden="false"
+          matTooltip="Изображение, което се показва в най-горната част на страницата под менюто."
+          aria-label="Icon that displays a tooltip when focused or hovered over"></mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card>
+          <mat-card-content>
+            <div>Размер: до 2mb</div>
+            <div>Резолюция: до 1920х1080</div>
+            <div>Тип: .jpg, .png</div>
+          </mat-card-content>
+          <mat-card-actions>
+            <app-upload [config]="uploadConfig.imageCover.gallery"></app-upload>
+          </mat-card-actions>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Категории">
+    <app-gallery-category></app-gallery-category>
+    <!-- Категории
+    <app-upload [config]="uploadConfig.imageCover.category"></app-upload> -->
+  </mat-tab>
+</mat-tab-group>

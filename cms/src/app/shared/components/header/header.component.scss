@@ -1,0 +1,15 @@
+  .header-toolbar {
+    justify-content: space-between;
+    &--left {
+      display: flex;
+      align-items: center;
+      button {
+        margin-right: 15px;
+      }
+    }
+    &--right {
+    }
+    .logo {
+      width: 30px;
+    }
+  }
