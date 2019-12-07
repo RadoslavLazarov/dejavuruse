@@ -39,15 +39,17 @@ app.use(
   }),
 );
 app.use('/static', express.static(path.join(__dirname, 'static')));
+// app.use(express.static(path.join(__dirname, 'cms/dist/cms')));
+// console.log(path.join(__dirname, 'cms/dist/cms'));
 app.use(i18n.init);
 app.use(i18n.setLocale);
 app.use(globalLocals);
 
-// Execute controllers
+// Use controllers
 controllers(app);
 
 // Connect to DB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 // mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
 
