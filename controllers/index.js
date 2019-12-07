@@ -36,6 +36,25 @@ module.exports = (app) => {
     app.use(`/${locale}/privacy-policy`, PrivacyPolicy);
     app.use(`/${locale}/cookies`, Cookies);
     app.use(`/${locale}/terms-conditions`, TermsConditions);
+    // Redirect old urls
+    app.get(`/${locale}/index.php`, (req, res) => {
+      res.redirect(301, `/${locale}`);
+    });
+    app.get(`/${locale}/aboutus.php`, (req, res) => {
+      res.redirect(301, `/${locale}/about`);
+    });
+    app.get(`/${locale}/gallery.php`, (req, res) => {
+      res.redirect(301, `/${locale}/gallery`);
+    });
+    app.get(`/${locale}/foryou.php`, (req, res) => {
+      res.redirect(301, `/${locale}/services`);
+    });
+    app.get(`/${locale}/contacts.php`, (req, res) => {
+      res.redirect(301, `/${locale}/contacts`);
+    });
+    app.get(`/${locale}/conditions.php`, (req, res) => {
+      res.redirect(301, `/${locale}/terms-conditions`);
+    });
   });
   app.use('/lang', Locale);
   app.use('/cookies-consent', CookiesConsent);
