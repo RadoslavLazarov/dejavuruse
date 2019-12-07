@@ -9,7 +9,7 @@ const Contacts = require('./Contacts');
 const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
 const TermsConditions = require('./TermsConditions');
-const Content = require('./Content');
+// const Content = require('./Content');
 
 const { locales } = require('../scripts/middleware/i18n');
 
