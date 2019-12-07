@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Home = require('./Home');
 const About = require('./About');
 const Locale = require('./Locale');
@@ -38,6 +39,15 @@ module.exports = (app) => {
   });
   app.use('/lang', Locale);
   app.use('/cookies-consent', CookiesConsent);
+  app.get('/sitemap.xml', (req, res) => {
+    fs.readFile('sitemap.xml', (err, file) => {
+      if (err) {
+        return res.status(404).render('404');
+      }
+      res.header('Content-Type', 'application/xml');
+      res.status(200).send(file);
+    });
+  });
   // app.use('/content', Content);
   app.use('*', (req, res) => {
     res.status(404).render('404');
