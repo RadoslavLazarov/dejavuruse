@@ -25,7 +25,7 @@ class Gallery {
   async findAlbums() {
     const currentCategory = this.req.params.category;
     const { res } = this;
-    const allAlbums = await this.albumModel.find().populate('gallery_category', null, { id: currentCategory });
+    const allAlbums = await this.albumModel.find(null, null, { sort: { date: -1 } }).populate('gallery_category', null, { id: currentCategory });
 
     const albums = allAlbums.filter((item) => {
       if (item.gallery_category !== null) {
@@ -105,17 +105,17 @@ class Gallery {
       kidsParties: '5cfb8cb21c9d4400004c3763',
     };
     const albumCategory = 'birthdays';
-    const albumId = 'birthday-intriga';
+    const albumId = 'rose-gold';
     const albumName = {
-      bg: 'Рожден ден - "Интрига"',
-      en: 'Birthday - "Intrigue"',
+      bg: 'Розово злато',
+      en: 'Rose gold',
     };
     const summary = {
       bg: ``,
       en: ``,
     };
     const albumImageCover = 'g.jpg';
-    const albumDate = new Date(2018, 3, 17, 16, 57);
+    const albumDate = new Date(2019, 6, 29, 22, 13);
 
     const Albums = new this.albumModel({
       isVisible: true,
