@@ -43,7 +43,7 @@ var workingTime = (function () {
             opensSoon: 'Скоро отваря',
             closedNow: 'Затворено в момента',
             closesSoon: 'Скоро затваря',
-            rest: 'Обедна повичка',
+            rest: 'Обедна почивка',
         },
         en: {
             openNow: 'Open now',
