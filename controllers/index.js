@@ -10,7 +10,7 @@ const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
 const TermsConditions = require('./TermsConditions');
 const Content = require('./Content');
-const Webhook = require('./Webhook');
+// const Webhook = require('./Webhook');
 
 const { locales } = require('../scripts/middleware/i18n');
 
@@ -40,7 +40,7 @@ module.exports = (app) => {
   app.use('/lang', Locale);
   app.use('/cookies-consent', CookiesConsent);
   app.use('/content', Content);
-  app.use('/webhook', Webhook);
+  // app.use('/webhook', Webhook);
   app.use('*', (req, res) => {
     res.status(404).render('404');
   });
