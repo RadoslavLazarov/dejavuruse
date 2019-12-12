@@ -68,10 +68,10 @@ router.post('/feedback', async (req, res) => {
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      port: 587, // 465 does not work on superhosting
+      secure: false, // true doest not work on superhosting
       auth: {
-        user: 'alien.lazarov@gmail.com',
+        user: 'dejavuruse@gmail.com',
         pass: gmailCredentials.credentials.password,
       },
     });
@@ -82,7 +82,7 @@ router.post('/feedback', async (req, res) => {
       https://nodemailer.com/usage/using-gmail/ */
     const mailOptions = {
       from: `${req.body.name} <${req.body.email}>`,
-      to: 'alien.lazarov@gmail.com',
+      to: 'dejavuruse@gmail.com',
       subject: `${req.body.subject}`,
       html: `${`<b>От:</b> ${req.body.email}<br>`}
                ${`<b>Име:</b> ${req.body.name}<br>`}
