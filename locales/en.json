@@ -47,7 +47,11 @@
 	"messages": {
 		"cookies": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
 		"videoTagSupport": "Your browser doesn't support HTML5 video tag.",
-		"notFound": "Page not found!"
+		"notFound": "Page not found!",
+		"messenger": {
+			"loggedInGreeting": "Hello, how can we help you?",
+			"loggedOutGreeting": "Log in to Chat with Us"
+		}
 	},
 	"fieldRequired": "required field",
 	"fieldInvalid": "invalid field",
