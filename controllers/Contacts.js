@@ -8,10 +8,8 @@ const Credentials = require('../models/credentials');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  // console.log(req.cookies.cookies_consent);
-  res.render('contacts', {
-    // getGalleryCategories,
-  });
+  console.log(req.connection.remoteAddress);
+  res.render('contacts');
 });
 
 router.post('/feedback', async (req, res) => {
@@ -96,7 +94,7 @@ router.post('/feedback', async (req, res) => {
 
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        res.json({ captcha: { success: true }, email: { error: 'Failed send message' } });
+        res.json({ captcha: { success: true }, email: { error: 'Failed send message', err } });
       } else {
         res.json({ captcha: { success: true }, email: { success: true } });
       }

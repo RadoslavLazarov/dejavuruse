@@ -69,11 +69,21 @@
             border: 1px solid transparent;
             padding: 0 5px;
             @media (max-width: 576px) {
-                width: 300px;
+                width: 100%;
+                flex-direction: column;
             }
         }
         &__day {
             text-transform: capitalize;
+            @media (max-width: 576px) {
+                text-align: center;
+                font-weight: 700;
+            }
+        }
+        &__hour {
+            @media (max-width: 576px) {
+                text-align: center;
+            }
         }
         i {
             text-align: center;
