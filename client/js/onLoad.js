@@ -2,7 +2,7 @@
 $(function () {
     $('#loading-screen').delay(500).fadeOut('slow');
     $('.onload').addClass('loaded');
-    FB.CustomerChat.hideDialog(); // hide messanger dialog
+    FB.CustomerChat.show(false); // hide messanger dialog
 
     function getCookie(name) {
         var value = "; " + document.cookie;
