@@ -2,7 +2,7 @@ const fs = require('fs');
 const Home = require('./Home');
 const About = require('./About');
 const Locale = require('./Locale');
-const CookiesConsent = require('./CookiesConsent');
+const SetCookies = require('./SetCookies');
 const Gallery = require('./Gallery');
 const Video = require('./Video');
 const Services = require('./Services');
@@ -57,7 +57,7 @@ module.exports = (app) => {
     });
   });
   app.use('/lang', Locale);
-  app.use('/cookies-consent', CookiesConsent);
+  app.use('/set-cookies', SetCookies);
   app.get('/sitemap.xml', (req, res) => {
     fs.readFile('sitemap.xml', (err, file) => {
       if (err) {

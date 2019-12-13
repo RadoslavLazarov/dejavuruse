@@ -10,8 +10,10 @@
     <%- include ../cookiesConsent.ejs %>
     <%- include ../../components/header/headerDefault.ejs %>
     <main>
-        <%- include ../../components/pageCover.ejs %>
-        <%- body -%>
+        <div id="page">
+            <%- include ../../components/pageCover.ejs %>
+            <%- body -%>
+        </div>
     </main>
     <%- include ../../components/footer/footerDefault.ejs %>
     <%- include ../scripts.ejs %>

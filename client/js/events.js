@@ -167,3 +167,48 @@ $('.mute-toggle').on('click', function () {
     $unmute.hide();
   }
 });
+
+// Close popup banner when clicked outside container
+$(document).mouseup(function (e) {
+  var container = $('.pop-up-banner__content');
+
+  if (container.length && !container.is(e.target) && container.has(e.target).length === 0) {
+    $.ajax({
+      type: 'GET',
+      url: '/set-cookies/popup-banner',
+      success: function (data) {
+        if (data.success) {
+
+          // if the target of the click isn't the container nor a descendant of the container
+          // container.fadeOut();
+          $('.pop-up-banner').detach();
+          $('body').removeClass('fixed-body');
+          $('#page').removeClass('blur-background');
+        }
+      },
+      error: function (request, status, error) {
+
+      },
+    });
+  }
+});
+
+// Close popup banner when clicked icon
+$(document).on('click', '.pop-up-banner__content', function (e) {
+  e.preventDefault();
+
+  $.ajax({
+    type: 'GET',
+    url: '/set-cookies/popup-banner',
+    success: function (data) {
+      if (data.success) {
+        $('.pop-up-banner').detach();
+        $('body').removeClass('fixed-body');
+        $('#page').removeClass('blur-background');
+      }
+    },
+    error: function (request, status, error) {
+
+    },
+  });
+})

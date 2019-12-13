@@ -170,6 +170,50 @@ $('.mute-toggle').on('click', function () {
   }
 });
 
+// Close popup banner when clicked outside container
+$(document).mouseup(function (e) {
+  var container = $('.pop-up-banner__content');
+
+  if (container.length && !container.is(e.target) && container.has(e.target).length === 0) {
+    $.ajax({
+      type: 'GET',
+      url: '/set-cookies/popup-banner',
+      success: function (data) {
+        if (data.success) {
+
+          // if the target of the click isn't the container nor a descendant of the container
+          // container.fadeOut();
+          $('.pop-up-banner').detach();
+          $('body').removeClass('fixed-body');
+          $('#page').removeClass('blur-background');
+        }
+      },
+      error: function (request, status, error) {
+
+      },
+    });
+  }
+});
+
+// Close popup banner when clicked icon
+$(document).on('click', '.pop-up-banner__content', function (e) {
+  e.preventDefault();
+
+  $.ajax({
+    type: 'GET',
+    url: '/set-cookies/popup-banner',
+    success: function (data) {
+      if (data.success) {
+        $('.pop-up-banner').detach();
+        $('body').removeClass('fixed-body');
+        $('#page').removeClass('blur-background');
+      }
+    },
+    error: function (request, status, error) {
+
+    },
+  });
+})
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/events.js","/")
 },{"buffer":16,"e/U+97":31}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -186,7 +230,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_f8e54428.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_825079a.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -479,7 +523,9 @@ $(function () {
     function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        if (parts.length == 2) {
+            return parts.pop().split(";").shift();
+        }
     }
 
     $('.cookie-content__buttons--agree').on('click', function (e) {
@@ -498,6 +544,14 @@ $(function () {
             },
         });
     });
+
+    if (getCookie('banner_closed') !== 'yes') {
+        setTimeout(function () {
+            $('body').prepend('<div class=\"pop-up-banner\" data-aos=\"fade-up\" data-aos-once=\"true\" data-aos-duration=\"1000\" data-aos-delay=\"\"><div class=\"pop-up-banner__content\"><i class=\"far fa-times-circle pop-up-banner__close\"></i><img src=\"/static/images/ten-years.jpg\" alt=\"DejaVu 10 years anniversary\"></div></div>');
+            $('body').addClass('fixed-body');
+            $('#page').addClass('blur-background');
+        }, 3000)
+    }
 });
 
 }).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/onLoad.js","/")

@@ -7,8 +7,7 @@ const Credentials = require('../models/credentials');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  console.log(req.connection.remoteAddress);
+router.get('/', (req, res) => {
   res.render('contacts');
 });
 
