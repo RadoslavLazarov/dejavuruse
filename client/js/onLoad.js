@@ -28,11 +28,13 @@ $(function () {
         });
     });
 
-    if (getCookie('banner_closed') !== 'yes') {
+    if (getCookie('banner_closed') !== 'yes' && getCookie('cookies_consent') === 'yes') {
         setTimeout(function () {
             $('body').prepend('<div class=\"pop-up-banner\" data-aos=\"fade-up\" data-aos-once=\"true\" data-aos-duration=\"1000\" data-aos-delay=\"\"><div class=\"pop-up-banner__content\"><i class=\"far fa-times-circle pop-up-banner__close\"></i><img src=\"/static/images/ten-years.jpg\" alt=\"DejaVu 10 years anniversary\"></div></div>');
-            $('body').addClass('fixed-body');
-            $('#page').addClass('blur-background');
+            $('body').addClass('lock-body');
+            $('header').addClass('blur-background');
+            $('main').addClass('blur-background');
+            $('footer').addClass('blur-background');
         }, 3000)
     }
 });

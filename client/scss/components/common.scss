@@ -514,13 +514,12 @@ h6, .h6 {
 
 .pop-up-banner {
     position: fixed;
-    top: 20%;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    z-index: 1000;
+    @include flex-center;
+    @include height-width-100;
+    z-index: 500;
     &__content {
         position: relative;
+        z-index: 1000;
         width: 50%;
         @media screen and (min-width: 501px) and (max-width: 1000px) {
             width: 70%;
@@ -543,9 +542,10 @@ h6, .h6 {
     }
 }
 
-.fixed-body {
-    position: fixed;
+.lock-body {
+    position: absolute;
     width: 100%;
+    overflow: hidden;
 }
 
 .blur-background {

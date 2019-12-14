@@ -169,21 +169,18 @@ $('.mute-toggle').on('click', function () {
 });
 
 // Close popup banner when clicked outside container
-$(document).mouseup(function (e) {
-  var container = $('.pop-up-banner__content');
-
-  if (container.length && !container.is(e.target) && container.has(e.target).length === 0) {
+$(document).on('click', function (e) {
+  if (e.target.className == 'pop-up-banner aos-init aos-animate') {
     $.ajax({
       type: 'GET',
       url: '/set-cookies/popup-banner',
       success: function (data) {
         if (data.success) {
-
-          // if the target of the click isn't the container nor a descendant of the container
-          // container.fadeOut();
           $('.pop-up-banner').detach();
-          $('body').removeClass('fixed-body');
-          $('#page').removeClass('blur-background');
+          $('body').removeClass('lock-body');
+          $('header').removeClass('blur-background');
+          $('main').removeClass('blur-background');
+          $('footer').removeClass('blur-background');
         }
       },
       error: function (request, status, error) {
@@ -194,7 +191,7 @@ $(document).mouseup(function (e) {
 });
 
 // Close popup banner when clicked icon
-$(document).on('click', '.pop-up-banner__content', function (e) {
+$(document).on('click', '.pop-up-banner__close', function (e) {
   e.preventDefault();
 
   $.ajax({
@@ -203,8 +200,10 @@ $(document).on('click', '.pop-up-banner__content', function (e) {
     success: function (data) {
       if (data.success) {
         $('.pop-up-banner').detach();
-        $('body').removeClass('fixed-body');
-        $('#page').removeClass('blur-background');
+        $('body').removeClass('lock-body');
+        $('header').removeClass('blur-background');
+        $('main').removeClass('blur-background');
+        $('footer').removeClass('blur-background');
       }
     },
     error: function (request, status, error) {
