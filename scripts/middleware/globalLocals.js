@@ -5,7 +5,6 @@ module.exports = async (req, res, next) => {
   const url = getCurrentUrl(req);
   const getLocale = req.path.split('/')[1];
   const templateResources = new TemplateResources(url);
-  const { ipInfo } = req.ipInfo;
   let controllerResources;
   let pageResources;
   let navCategories;
@@ -31,7 +30,6 @@ module.exports = async (req, res, next) => {
   res.locals.globalLocals = {
     url,
     getLocale,
-    ipInfo,
     controllerResources,
     pageResources,
     navCategories,

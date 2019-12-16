@@ -10,7 +10,6 @@ const engine = require('ejs-locals');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
-const expressip = require('express-ip');
 const controllers = require('./controllers/index');
 const i18n = require('./scripts/middleware/i18n');
 const globalLocals = require('./scripts/middleware/globalLocals');
@@ -42,7 +41,6 @@ app.use(
 app.use('/static', express.static(path.join(__dirname, 'static')));
 // app.use(express.static(path.join(__dirname, 'cms/dist/cms')));
 // console.log(path.join(__dirname, 'cms/dist/cms'));
-app.use(expressip().getIpInfoMiddleware);
 app.use(i18n.init);
 app.use(i18n.setLocale);
 app.use(globalLocals);
