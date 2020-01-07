@@ -1,7 +1,7 @@
 /* eslint-disable*/
 
 $('.load-videos').on('click', function () {
-  $('#loading-screen').find($('path').attr('fill', '#fff'));
+  $('#loading-screen .spinner-wrapper div').css({ 'box-shadow': '0 4px 0 0 #fff' });
   $('#loading-screen').css({ 'background-color': 'transparent' }).fadeIn('slow');
   var $that = $(this);
   var token = $that.data('token');
