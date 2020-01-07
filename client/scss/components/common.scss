@@ -112,15 +112,6 @@ video::-webkit-media-controls {
     }
 }
 
-#loading-screen {
-    @include position(fixed, 0, auto, auto, auto);
-    @include flex-center;
-    @include height-width-100;
-    background-color: $white;
-    color: $black;
-    z-index: 9999;
-}
-
 .fb-messenger {
     @include position(fixed, auto, auto, 85px, 20px);
     @include flex-center;
