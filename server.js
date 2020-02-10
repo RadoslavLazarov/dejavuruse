@@ -39,8 +39,7 @@ app.use(
   }),
 );
 app.use('/static', express.static(path.join(__dirname, 'static')));
-// app.use(express.static(path.join(__dirname, 'cms/dist/cms')));
-// console.log(path.join(__dirname, 'cms/dist/cms'));
+app.use('/cms', express.static(path.join(__dirname, 'cms/dist/cms')));
 app.use(i18n.init);
 app.use(i18n.setLocale);
 app.use(globalLocals);
@@ -52,8 +51,6 @@ controllers(app);
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true,
 });
-// mongoose.set('useCreateIndex', true);
-// mongoose.connect('mongodb://localhost:27017/dejavu', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', (error) => { console.error(error); });

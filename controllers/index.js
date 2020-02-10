@@ -10,7 +10,7 @@ const Contacts = require('./Contacts');
 const PrivacyPolicy = require('./PrivacyPolicy');
 const Cookies = require('./Cookies');
 const TermsConditions = require('./TermsConditions');
-// const Content = require('./Content');
+const Content = require('./Content');
 
 const { locales } = require('../scripts/middleware/i18n');
 
@@ -67,7 +67,7 @@ module.exports = (app) => {
       res.status(200).send(file);
     });
   });
-  // app.use('/content', Content);
+  app.use('/content', Content);
   app.use('*', (req, res) => {
     res.status(404).render('404');
   });
