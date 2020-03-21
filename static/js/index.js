@@ -229,7 +229,7 @@ require('./youtube');
 require('./events');
 require('./onLoad');
 
-}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_39382541.js","/")
+}).call(this,require("e/U+97"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bbad541c.js","/")
 },{"./events":1,"./feedbackForm":3,"./forms":4,"./functions":5,"./onLoad":6,"./thirdParty/aos":7,"./thirdParty/infiniteScroll":8,"./thirdParty/jquery":9,"./thirdParty/photoswipe":10,"./thirdParty/sweetalert":11,"./thirdParty/swiper":12,"./youtube":13,"buffer":16,"e/U+97":31}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* eslint-disable*/
@@ -335,7 +335,7 @@ $('.form-field').each(function () {
 var regex = {
     email: /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g,
     phone: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g,
-    name: /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+    name: /^([^0-9]*)$/
 }
 
 var errorMessage = {
