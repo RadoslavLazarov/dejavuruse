@@ -104,18 +104,18 @@ class Gallery {
       weddings: '5cf636781c9d4400008e7d91',
       kidsParties: '5cfb8cb21c9d4400004c3763',
     };
-    const albumCategory = 'birthdays';
-    const albumId = 'rose-gold';
+    const albumCategory = 'weddings';
+    const albumId = 'emerald-green';
     const albumName = {
-      bg: 'Розово злато',
-      en: 'Rose gold',
+      bg: 'Emerald Green',
+      en: 'Emerald Green',
     };
     const summary = {
       bg: ``,
       en: ``,
     };
     const albumImageCover = 'g.jpg';
-    const albumDate = new Date(2019, 6, 29, 22, 13);
+    const albumDate = new Date(2020, 5, 26, 16, 0);
 
     const Albums = new this.albumModel({
       isVisible: true,
@@ -131,7 +131,7 @@ class Gallery {
       },
       date: albumDate,
       images: [],
-      gallery_category: categoriesObjectId.birthdays,
+      gallery_category: categoriesObjectId.weddings,
       meta: {
         bg: {
           title: albumName.bg,
