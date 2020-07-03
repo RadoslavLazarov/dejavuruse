@@ -34,7 +34,7 @@
     "image-size": "^0.7.4",
     "infinite-scroll": "^3.0.6",
     "jimp": "^0.9.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.8",
