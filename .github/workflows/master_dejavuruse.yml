@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'dejavuruse'
           slot-name: 'Production'
-          publish-profile: AZUREAPPSERVICE_PUBLISHPROFILE_EE89926560BD42D1B2CF16BB6BE1479B
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE89926560BD42D1B2CF16BB6BE1479B }}
           package: .
