@@ -29,7 +29,6 @@ router.get('/:category', async (req, res) => {
   // gallery.createAlbum();
   try {
     galleryAlbums = await gallery.findAlbums();
-    // console.log(await gallery.findAlbums());
     galleryCategory = galleryAlbums[0].gallery_category;
   } catch (e) {
     console.log(e);

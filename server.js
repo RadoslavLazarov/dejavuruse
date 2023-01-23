@@ -36,7 +36,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: { secure: true },
-  }),
+  })
 );
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/cms', express.static(path.join(__dirname, 'cms/dist/cms')));
@@ -49,12 +49,19 @@ controllers(app);
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
-db.on('error', (error) => { console.error(error); });
-db.once('open', () => { console.log('Connected to Mongoose'); });
+db.on('error', (error) => {
+  console.error(error);
+});
+db.once('open', () => {
+  console.log('Connected to Mongoose');
+});
 
 // Run the server
-app.listen(app.get('port'), () => { console.log(`Express listening on port ${app.get('port')}`); });
+app.listen(app.get('port'), () => {
+  console.log(`Express listening on port ${app.get('port')}`);
+});
